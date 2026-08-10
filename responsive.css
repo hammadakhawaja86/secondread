@@ -132,8 +132,8 @@ img, svg, video { max-width: 100%; }
 
 /* ---------- Specialists: mobile/tablet swipe carousel (<= 860px) ---------- */
 @media (max-width: 860px) {
-  /* the desktop grid becomes a horizontal, snap-scrolling row: one full
-     card plus a peek of the next, matching the pattern of [data-r="stepper"] */
+  /* the desktop 6-up row becomes a horizontal, snap-scrolling, auto-advancing
+     strip: one full card plus a peek of the next, matching [data-r="stepper"] */
   [data-r="specialists"] {
     display: flex !important;
     overflow-x: auto !important;
@@ -154,77 +154,31 @@ img, svg, video { max-width: 100%; }
     border-radius: 20px;
   }
 
-  /* card becomes a self-contained, bordered profile panel */
   [data-r="specialists"] > [role="listitem"] {
     scroll-snap-align: start;
     scroll-snap-stop: always;
     flex: 0 0 82%;
     max-width: 82%;
     box-sizing: border-box;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    text-align: left !important;
-    gap: 16px !important;
-    background: #FFFFFF;
-    border: 1px solid #E7EDEF;
-    border-radius: 20px;
-    padding: 26px 22px !important;
-    box-shadow: 0 2px 8px rgba(10,31,44,0.05);
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1);
     transition: opacity 280ms ease-out, transform 280ms cubic-bezier(0.16,1,0.3,1), box-shadow 280ms ease-out;
   }
-  [data-r="specialists"] > [role="listitem"]:hover { transform: scale(1) translateY(0) !important; }
+  [data-r="specialists"] > [role="listitem"]:hover { transform: scale(1) !important; }
   [data-r="specialists"] > [role="listitem"][data-specialist-active="true"] {
     box-shadow: 0 12px 28px rgba(10,31,44,0.10);
     border-color: #CFE3E2;
   }
   [data-r="specialists"] > [role="listitem"][data-specialist-active="false"] {
     opacity: 0.5;
-    transform: scale(0.96) translateY(0);
+    transform: scale(0.96);
   }
 
-  /* profile header runs photo + name/role side by side, editorial-style */
   [data-r="specialists"] [data-r="specialist-avatar"] {
-    width: 72px !important;
-    height: 72px !important;
-    flex-shrink: 0;
+    width: 92px !important;
+    height: 92px !important;
   }
-  [data-r="specialists"] [data-r="specialist-body"] {
-    align-items: flex-start !important;
-    text-align: left !important;
-    gap: 5px !important;
-    flex: 1;
-    min-width: 0;
-  }
-  [data-r="specialists"] [data-r="specialist-body"] h3 {
-    min-height: 0 !important;
-    padding-top: 0 !important;
-    text-align: left !important;
-    font-size: 18px !important;
-  }
-  [data-r="specialists"] [data-r="specialist-body"] > span {
-    min-height: 0 !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-    justify-content: flex-start !important;
-    font-size: 13.5px !important;
-    font-weight: 600 !important;
-    color: #0D6E70 !important;
-  }
-  [data-r="specialists"] [data-r="specialist-body"] p {
-    max-width: none !important;
-    min-height: 0 !important;
-    text-align: left !important;
-    margin-top: 6px !important;
-  }
-  [data-r="specialists"] [data-r="specialist-badges"] {
-    justify-content: flex-start !important;
-    margin-top: 8px !important;
-  }
+
   [data-r="specialists"] [data-r="specialist-badges"] > span:not(:first-child) {
     position: relative;
     padding-left: 10px;
@@ -253,9 +207,9 @@ img, svg, video { max-width: 100%; }
   [data-r="specialists"] > [role="listitem"] {
     flex-basis: 84%;
     max-width: 84%;
-    padding: 22px 20px !important;
+    padding: 20px 18px !important;
   }
-  [data-r="specialists"] [data-r="specialist-avatar"] { width: 64px !important; height: 64px !important; }
+  [data-r="specialists"] [data-r="specialist-avatar"] { width: 80px !important; height: 80px !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
