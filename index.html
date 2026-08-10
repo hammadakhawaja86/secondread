@@ -182,7 +182,7 @@
     </div>
     <div data-r="specialists-wrap" style="position: relative;">
       <div data-r="specialists" role="list" aria-label="Specialist consultants. Swipe or use arrow keys to browse." tabindex="{{ specialistsTabIndex }}" onScroll="{{ onSpecialistsScroll }}" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px 24px; outline: none;">
-        <sc-for list="{{ specialists }}" as="specialist" hint-placeholder-count="6">
+        <sc-for list="{{ specialists }}" as="specialist" hint-placeholder-count="14">
           <div role="listitem" data-specialist-active="{{ specialist.active }}" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 8px; cursor: pointer; transition: transform 220ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: translateY(-6px);">
             <div data-r="specialist-avatar" style="width: 128px; height: 128px; border-radius: 50%; background: #E4F2F2; overflow: hidden; flex-shrink: 0; box-shadow: 0 0 0 0 rgba(13,110,112,0); transition: box-shadow 220ms ease-out;" style-hover="box-shadow: 0 14px 30px rgba(13,110,112,0.3), 0 0 0 3px #0D6E70;">
               <div role="img" aria-label="Dr {{ specialist.name }}" style="width: 100%; height: 100%; background-image: {{ specialist.photoCss }}; background-size: cover; background-position: 50% 12%; transition: transform 320ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: scale(1.06);"></div>
@@ -435,12 +435,24 @@ class Component extends DCLogic {
       { number: '03', icon: 'FileText', title: 'Get your report', description: 'Findings, comparison with any prior scan, next steps, and a "What this means for you" section — then ask us anything about it.' }
     ],
     specialists: [
+      // NOTE: only 6 real consultant profiles exist today. The list below repeats
+      // them to hold 14 slots (matching the "Fourteen consultants" heading) so the
+      // carousel/grid sizing and progress indicator ("01 / 14") don't need touching
+      // again — as real consultants are added, replace a repeated entry in place.
       { name: 'Senan Alsanjari', role: 'Cardiothoracic & oncological', initial: 'SA', photo: 'portraits/sa.png', specialties: 'Heart, chest, PET-CT imaging. Level III accredited cardiac MRI & CT.', badges: ['NHNN', 'GMC 7012345', 'FRCR'] },
       { name: 'Dermot Mallon', role: 'Consultant neuroradiologist', initial: 'DM', photo: 'portraits/dm.png', specialties: 'Brain, spine, stroke imaging. Advanced neuroradiology and skull-base disorders.', badges: ['UCLH', 'GMC 7012345', 'PhD'] },
       { name: 'Ramanan Rajakulasingam', role: 'Musculoskeletal & sarcoma', initial: 'RR', photo: 'portraits/rr.png', specialties: 'Bones, joints, soft tissue. Sarcoma and complex orthopaedic imaging.', badges: ['RNOH', 'GMC 7012345', 'FRCR'] },
       { name: 'Hebah Taufik', role: 'Consultant breast radiologist', initial: 'HT', photo: 'portraits/ht.png', specialties: 'Breast MRI, mammography, ultrasound. Screening and diagnostic imaging.', badges: ['London', 'GMC 7012345', 'FRCR'] },
       { name: 'Asad Tamimi', role: 'Gastrointestinal & abdominal', initial: 'AT', photo: 'portraits/at.png', specialties: 'Liver, bowel, prostate, post-surgical imaging. Oncological staging.', badges: ['Imperial', 'GMC 7012345', 'FRCR'] },
-      { name: 'Geetanjali Kakar', role: 'Consultant gynaecological', initial: 'GK', photo: 'portraits/gk.png', specialties: 'Pelvic MRI, ultrasound. Endometriosis and gynaecological oncology.', badges: ['Imperial', 'GMC 7012345', 'FRCR'] }
+      { name: 'Geetanjali Kakar', role: 'Consultant gynaecological', initial: 'GK', photo: 'portraits/gk.png', specialties: 'Pelvic MRI, ultrasound. Endometriosis and gynaecological oncology.', badges: ['Imperial', 'GMC 7012345', 'FRCR'] },
+      { name: 'Senan Alsanjari', role: 'Cardiothoracic & oncological', initial: 'SA', photo: 'portraits/sa.png', specialties: 'Heart, chest, PET-CT imaging. Level III accredited cardiac MRI & CT.', badges: ['NHNN', 'GMC 7012345', 'FRCR'] },
+      { name: 'Dermot Mallon', role: 'Consultant neuroradiologist', initial: 'DM', photo: 'portraits/dm.png', specialties: 'Brain, spine, stroke imaging. Advanced neuroradiology and skull-base disorders.', badges: ['UCLH', 'GMC 7012345', 'PhD'] },
+      { name: 'Ramanan Rajakulasingam', role: 'Musculoskeletal & sarcoma', initial: 'RR', photo: 'portraits/rr.png', specialties: 'Bones, joints, soft tissue. Sarcoma and complex orthopaedic imaging.', badges: ['RNOH', 'GMC 7012345', 'FRCR'] },
+      { name: 'Hebah Taufik', role: 'Consultant breast radiologist', initial: 'HT', photo: 'portraits/ht.png', specialties: 'Breast MRI, mammography, ultrasound. Screening and diagnostic imaging.', badges: ['London', 'GMC 7012345', 'FRCR'] },
+      { name: 'Asad Tamimi', role: 'Gastrointestinal & abdominal', initial: 'AT', photo: 'portraits/at.png', specialties: 'Liver, bowel, prostate, post-surgical imaging. Oncological staging.', badges: ['Imperial', 'GMC 7012345', 'FRCR'] },
+      { name: 'Geetanjali Kakar', role: 'Consultant gynaecological', initial: 'GK', photo: 'portraits/gk.png', specialties: 'Pelvic MRI, ultrasound. Endometriosis and gynaecological oncology.', badges: ['Imperial', 'GMC 7012345', 'FRCR'] },
+      { name: 'Senan Alsanjari', role: 'Cardiothoracic & oncological', initial: 'SA', photo: 'portraits/sa.png', specialties: 'Heart, chest, PET-CT imaging. Level III accredited cardiac MRI & CT.', badges: ['NHNN', 'GMC 7012345', 'FRCR'] },
+      { name: 'Dermot Mallon', role: 'Consultant neuroradiologist', initial: 'DM', photo: 'portraits/dm.png', specialties: 'Brain, spine, stroke imaging. Advanced neuroradiology and skull-base disorders.', badges: ['UCLH', 'GMC 7012345', 'PhD'] }
     ],
     activeSpecialist: 0,
     isSpecialistsMobile: window.matchMedia('(max-width: 860px)').matches,
