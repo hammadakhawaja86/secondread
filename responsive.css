@@ -1,0 +1,131 @@
+/* SecondRead — responsive layer.
+   Inline styles win on specificity, so structural overrides are !important.
+   Keyed off the exact inline grid declarations plus data-r hooks. */
+
+img, svg, video { max-width: 100%; }
+* { -webkit-text-size-adjust: 100%; }
+
+/* Nav labels must never wrap mid-label at any width */
+[data-r="navlinks"] > a { white-space: nowrap; }
+[data-r="navlinks"] { min-width: 0; }
+
+/* ---------- Narrow desktop / tablet (<= 1180px) ---------- */
+@media (max-width: 1180px) {
+  /* header stays ONE line: tighten gaps, shrink the mark, drop the phone number */
+  [data-r="nav"] { flex-wrap: nowrap !important; gap: 20px !important; }
+  [data-r="nav"] > a:first-child img { height: 40px !important; width: auto !important; }
+  [data-r="navlinks"] {
+    gap: 18px !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  [data-r="navlinks"]::-webkit-scrollbar { display: none; }
+  [data-r="navlinks"] > a { font-size: 13.5px !important; }
+  [data-r="navcta"] { margin-left: auto !important; flex-shrink: 0; gap: 10px !important; }
+  [data-r="navcta"] > a[href^="tel:"] { display: none !important; }
+}
+
+/* ---------- Tablet and below (<= 1024px) ---------- */
+@media (max-width: 1024px) {
+  [style*="max-width: 1200px"] { padding-left: 24px !important; padding-right: 24px !important; }
+  section { padding-left: 24px !important; padding-right: 24px !important; }
+
+  /* content + sticky rail layouts stack */
+  [style*="grid-template-columns: 268px 1fr"],
+  [style*="grid-template-columns: 1fr 340px"],
+  [style*="grid-template-columns: 1.35fr 1fr"],
+  [style*="grid-template-columns: 1.5fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  [style*="position: sticky"][style*="top: 96px"],
+  aside[style*="position: sticky"] { position: static !important; }
+
+  /* bento: 3 -> 2 columns, no row spans */
+  [style*="grid-auto-rows: minmax(232px"] { grid-template-columns: repeat(2, 1fr) !important; }
+  [style*="grid-auto-rows: minmax(232px"] > div { grid-column: span 1 !important; grid-row: span 1 !important; }
+
+  [style*="grid-template-columns: 1.4fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; gap: 36px !important; }
+
+  /* pricing comparison table scrolls rather than crushes */
+  [data-r="pricetable"] { overflow-x: auto !important; }
+  [data-r="pricetable"] > div { min-width: 720px; }
+}
+
+/* ---------- Small tablet / large phone (<= 860px) ---------- */
+@media (max-width: 860px) {
+  [style*="grid-template-columns: minmax(320px, 1.05fr) 0.95fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    min-height: 0 !important;
+    padding-bottom: 40px !important;
+  }
+  [style*="grid-template-columns: 240px 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns: 132px 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* specialist list cards: portrait above the text */
+  [style*="grid-template-columns: 132px 1fr"] > div:first-child { width: 132px !important; }
+
+  [style*="grid-auto-rows: minmax(232px"] { grid-template-columns: 1fr !important; }
+
+  /* below 860 the bar wraps deliberately: links become their own scrolling row */
+  [data-r="nav"] { flex-wrap: wrap !important; gap: 12px 20px !important; }
+  [data-r="navlinks"] {
+    order: 3;
+    width: 100%;
+    padding-bottom: 4px;
+    gap: 20px !important;
+  }
+
+  [data-r="stepper"] { overflow-x: auto !important; scrollbar-width: none; }
+  [data-r="stepper"]::-webkit-scrollbar { display: none; }
+  [data-r="stepper"] > button { min-width: 168px; }
+
+  /* stat strip and 3-up button grids */
+  [style*="grid-template-columns: repeat(3, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ---------- Phone (<= 620px) ---------- */
+@media (max-width: 620px) {
+  [style*="max-width: 1200px"] { padding-left: 18px !important; padding-right: 18px !important; }
+  section { padding-left: 18px !important; padding-right: 18px !important; }
+  section[style*="padding: 80px"], section[style*="padding: 72px"], section[style*="padding: 76px"] {
+    padding-top: 52px !important; padding-bottom: 52px !important;
+  }
+
+  h1 { font-size: clamp(28px, 8.4vw, 36px) !important; line-height: 1.14 !important; }
+  h2 { font-size: clamp(23px, 6.6vw, 28px) !important; line-height: 1.2 !important; }
+  h3 { font-size: clamp(17px, 4.8vw, 20px) !important; }
+
+  [style*="grid-template-columns: repeat(3, 1fr)"],
+  [style*="grid-template-columns: 1.4fr 1fr 1fr"] { grid-template-columns: 1fr !important; }
+
+  /* every card / panel loses its wide padding */
+  [style*="padding: 44px 48px"] { padding: 26px 22px !important; }
+  [style*="padding: 40px 36px"], [style*="padding: 34px 36px"], [style*="padding: 32px 36px"] { padding: 26px 22px !important; }
+  [style*="padding: 32px 40px"], [style*="padding: 30px 32px"], [style*="padding: 30px 36px"] { padding: 24px 20px !important; }
+  [style*="padding: 0 40px"] { padding-left: 20px !important; padding-right: 20px !important; }
+  [style*="padding: 26px 40px"], [style*="padding: 22px 40px"], [style*="padding: 20px 40px"] { padding-left: 20px !important; padding-right: 20px !important; }
+  [style*="margin: 0 40px"] { margin-left: 20px !important; margin-right: 20px !important; }
+  [style*="padding: 32px 34px"], [style*="padding: 34px"], [style*="padding: 32px"] { padding: 24px 20px !important; }
+
+  /* full-width CTAs so nothing overflows */
+  a[style*="border-radius: 999px"][style*="min-height: 50px"],
+  a[style*="border-radius: 999px"][style*="min-height: 52px"],
+  button[style*="border-radius: 999px"][style*="min-height: 50px"],
+  button[style*="border-radius: 999px"][style*="min-height: 52px"] {
+    width: 100%; justify-content: center;
+  }
+
+  /* footer + bottom bar stack */
+  [style*="justify-content: space-between"][style*="flex-wrap: wrap"] { justify-content: flex-start !important; }
+
+  /* hero photo crops to the scanner, not empty wall */
+  img[alt="Consultant reviewing MRI images beside a scanner"] { object-position: 68% center !important; }
+
+  /* specialist portraits + big step numerals scale down */
+  [style*="width: 128px; height: 128px"] { width: 104px !important; height: 104px !important; }
+  [style*="font-size: 50px; font-weight: 700; line-height: 0.9"] { font-size: 40px !important; }
+}

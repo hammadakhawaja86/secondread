@@ -1,0 +1,58 @@
+:root {
+  /* ---- Brand core ---- */
+  --navy-900: #0E2236;   /* deepest — logo outline */
+  --navy-800: #122B45;
+  --navy-700: #16304D;   /* PRIMARY navy — wordmark, headings */
+  --navy-600: #214467;
+  --navy-500: #355C83;
+
+  --green-700: #0C6E4C;  /* deep teal-green — gradient start */
+  --green-600: #109657;
+  --green-500: #14A85F;  /* PRIMARY brand green */
+  --green-400: #21BC68;
+  --green-300: #2FCB6E;  /* bright accent — gradient end */
+  --green-100: #DBF4E6;  /* tint surface */
+  --green-50:  #EEFAF2;
+
+  /* ---- Neutrals ---- */
+  --ink-900: #0E1A26;
+  --ink-700: #34465A;    /* body text */
+  --ink-500: #5C6B7A;    /* secondary text */
+  --ink-400: #8A98A6;
+  --ink-300: #AEB9C4;
+  --line-200: #DCE3EA;   /* borders / dividers */
+  --line-100: #EAEEF2;
+  --paper-50: #F5F8FA;   /* page background */
+  --white: #FFFFFF;
+
+  /* ---- Semantic ---- */
+  --color-success: #14A85F;
+  --color-warning: #E0A437;
+  --color-danger:  #D8473B;
+  --color-info:    #2C7BD6;
+
+  /* ---- Brand gradient ---- */
+  --gradient-brand: linear-gradient(135deg, #0C6E4C 0%, #14A85F 55%, #2FCB6E 100%); /* @kind color */
+  --gradient-brand-soft: linear-gradient(135deg, #EEFAF2 0%, #DBF4E6 100%); /* @kind color */
+
+  /* ---- Semantic aliases ---- */
+  --text-heading: var(--navy-700);
+  --text-body: var(--ink-700);
+  --text-muted: var(--ink-500);
+  --text-on-dark: #FFFFFF;
+  --text-accent: var(--green-600);
+
+  --surface-page: var(--paper-50);
+  --surface-card: var(--white);
+  --surface-dark: var(--navy-700);
+  --surface-tint: var(--green-50);
+
+  --border-default: var(--line-200);
+  --border-strong: var(--ink-300);
+
+  --action-primary: var(--green-500);
+  --action-primary-hover: var(--green-600);
+  --action-primary-press: var(--green-700);
+  --action-dark: var(--navy-700);
+  --action-dark-hover: var(--navy-800);
+}

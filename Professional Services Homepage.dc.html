@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
+  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; padding: 0; background: var(--paper-50); }
+    a { color: var(--green-500); text-decoration: none; }
+    a:hover { color: var(--green-300); text-decoration: underline; }
+  </style>
+</helmet>
+
+<!-- Header / Nav -->
+<header style="position: sticky; top: 0; z-index: 100; background: white; border-bottom: 1px solid var(--line-100); box-shadow: 0 2px 8px rgba(14,34,54,0.06); backdrop-filter: blur(12px);">
+  <nav style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;">
+    <div style="font-size: 20px; font-weight: 700; color: var(--navy-700);">Your Service</div>
+    <div style="display: flex; gap: 24px; align-items: center;">
+      <a href="#services" style="color: var(--navy-700); font-size: 14px;">Services</a>
+      <a href="#team" style="color: var(--navy-700); font-size: 14px;">Team</a>
+      <a href="#pricing" style="color: var(--navy-700); font-size: 14px;">Pricing</a>
+      <a href="#contact" style="color: var(--navy-700); font-size: 14px;">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section style="background: linear-gradient(135deg, var(--navy-700) 0%, var(--green-500) 100%); color: white; padding: 96px 32px; text-align: center;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 56px; font-weight: 700; margin: 0 0 24px; letter-spacing: -1px;">Expert Solutions Tailored to Your Needs</h1>
+    <p style="font-size: 20px; margin: 0 0 40px; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto;">Partner with our specialist team to transform your business challenges into opportunities.</p>
+    <div style="display: flex; gap: 16px; justify-content: center;">
+      <x-import component-from-global-scope="Ds31GDesignSystem_5eefac.Button" hint-size="auto,40px" style="background: white; color: var(--green-500);">Get Started</x-import>
+      <x-import component-from-global-scope="Ds31GDesignSystem_5eefac.Button" hint-size="auto,40px" style="background: transparent; border: 2px solid white; color: white;">Learn More</x-import>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" style="padding: 96px 32px; background: white;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; color: var(--navy-700); margin: 0 0 16px;">Our Services</h2>
+      <p style="font-size: 18px; color: var(--navy-500); margin: 0;">Comprehensive expertise across multiple domains</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+      <sc-for list="{{ services }}" as="service" hint-placeholder-count="3">
+        <div style="background: white; border: 1px solid var(--line-100); border-radius: var(--radius-lg); padding: 32px; transition: all var(--duration-base) var(--ease-out); box-shadow: var(--shadow-sm);" style-hover="transform: translateY(-4px); box-shadow: var(--shadow-lg);">
+          <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--green-500), var(--green-300)); border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: white; font-weight: 700; font-size: 24px;">{{ service.icon }}</div>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--navy-700); margin: 0 0 12px;">{{ service.name }}</h3>
+          <p style="font-size: 14px; color: var(--navy-500); line-height: 1.65; margin: 0;">{{ service.description }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section id="team" style="padding: 96px 32px; background: var(--paper-50);">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; color: var(--navy-700); margin: 0 0 16px;">Meet Our Experts</h2>
+      <p style="font-size: 18px; color: var(--navy-500); margin: 0;">Award-winning professionals with decades of experience</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+      <sc-for list="{{ team }}" as="member" hint-placeholder-count="4">
+        <div style="background: white; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: all var(--duration-base) var(--ease-out);" style-hover="box-shadow: var(--shadow-lg); transform: translateY(-4px);">
+          <div style="height: 240px; background: linear-gradient(135deg, var(--green-500), var(--green-300)); display: flex; align-items: center; justify-content: center; color: white; font-size: 64px; overflow: hidden;">{{ member.initial }}</div>
+          <div style="padding: 24px;">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; color: var(--navy-700); margin: 0 0 8px;">{{ member.name }}</h3>
+            <p style="font-size: 13px; color: var(--green-500); font-weight: 600; margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.5px;">{{ member.role }}</p>
+            <p style="font-size: 13px; color: var(--navy-500); line-height: 1.6; margin: 0;">{{ member.bio }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" style="padding: 96px 32px; background: white;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; color: var(--navy-700); margin: 0 0 16px;">Simple, Transparent Pricing</h2>
+      <p style="font-size: 18px; color: var(--navy-500); margin: 0;">Choose the plan that fits your needs</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px;">
+      <sc-for list="{{ pricing }}" as="plan" hint-placeholder-count="3">
+        <div style="background: white; border: 2px solid {{ plan.highlighted ? 'var(--green-500)' : 'var(--line-100)' }}; border-radius: var(--radius-lg); padding: 40px; text-align: center; position: relative; {{ plan.highlighted ? 'transform: scale(1.05);' : '' }}">
+          <sc-if value="{{ plan.highlighted }}" hint-placeholder-val="{{ true }}">
+            <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--green-500); color: white; padding: 6px 16px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Popular</div>
+          </sc-if>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 600; color: var(--navy-700); margin: 0 0 12px;">{{ plan.name }}</h3>
+          <p style="font-size: 14px; color: var(--navy-500); margin: 0 0 24px;">{{ plan.description }}</p>
+          <div style="margin: 32px 0; padding: 24px 0; border-top: 1px solid var(--line-100); border-bottom: 1px solid var(--line-100);">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; color: var(--green-500); margin: 0;">{{ plan.price }}</div>
+            <p style="font-size: 13px; color: var(--navy-500); margin: 8px 0 0;">{{ plan.frequency }}</p>
+          </div>
+          <ul style="list-style: none; padding: 24px 0; margin: 0; text-align: left;">
+            <sc-for list="{{ plan.features }}" as="feature" hint-placeholder-count="3">
+              <li style="font-size: 14px; color: var(--navy-600); margin: 12px 0; display: flex; align-items: flex-start; gap: 8px;">
+                <span style="color: var(--green-500); font-weight: 700; flex-shrink: 0;">✓</span>
+                <span>{{ feature }}</span>
+              </li>
+            </sc-for>
+          </ul>
+          <x-import component-from-global-scope="Ds31GDesignSystem_5eefac.Button" hint-size="100%,40px" style="width: 100%; {{ plan.highlighted ? 'background: var(--green-500); color: white;' : '' }}">Get Started</x-import>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section style="padding: 96px 32px; background: var(--paper-50);">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; color: var(--navy-700); margin: 0 0 16px;">What Our Clients Say</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+      <sc-for list="{{ testimonials }}" as="testimonial" hint-placeholder-count="3">
+        <div style="background: white; border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm);">
+          <div style="display: flex; gap: 4px; margin-bottom: 16px;">
+            <sc-for list="{{ testimonial.stars }}" as="star" hint-placeholder-count="1">
+              <span style="color: var(--green-500); font-size: 18px;">★</span>
+            </sc-for>
+          </div>
+          <p style="font-size: 15px; color: var(--navy-600); line-height: 1.7; margin: 0 0 20px; font-style: italic;">{{ testimonial.quote }}</p>
+          <div style="border-top: 1px solid var(--line-100); padding-top: 16px;">
+            <p style="font-size: 14px; font-weight: 600; color: var(--navy-700); margin: 0;">{{ testimonial.author }}</p>
+            <p style="font-size: 13px; color: var(--navy-500); margin: 4px 0 0;">{{ testimonial.role }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" style="padding: 96px 32px; background: linear-gradient(135deg, var(--navy-700) 0%, var(--green-500) 100%); color: white;">
+  <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+    <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; margin: 0 0 24px;">Ready to Get Started?</h2>
+    <p style="font-size: 18px; margin: 0 0 40px; opacity: 0.95;">Reach out to our team to discuss how we can help you achieve your goals.</p>
+    <form style="display: flex; flex-direction: column; gap: 16px;">
+      <input type="text" placeholder="Your Name" style="padding: 12px 16px; border: none; border-radius: var(--radius-lg); font-size: 14px; font-family: inherit;" required>
+      <input type="email" placeholder="Your Email" style="padding: 12px 16px; border: none; border-radius: var(--radius-lg); font-size: 14px; font-family: inherit;" required>
+      <textarea placeholder="Your Message" rows="4" style="padding: 12px 16px; border: none; border-radius: var(--radius-lg); font-size: 14px; font-family: inherit; resize: vertical;" required></textarea>
+      <x-import component-from-global-scope="Ds31GDesignSystem_5eefac.Button" hint-size="100%,40px" style="width: 100%; background: white; color: var(--green-500); font-weight: 600;">Send Message</x-import>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="background: var(--navy-700); color: white; padding: 64px 32px 32px; margin-top: 0;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 48px; margin-bottom: 48px;">
+      <div>
+        <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; margin: 0 0 16px;">About Us</h4>
+        <p style="font-size: 14px; line-height: 1.6; margin: 0; opacity: 0.85;">Your expert partner in professional services, dedicated to delivering excellence.</p>
+      </div>
+      <div>
+        <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Services</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <sc-for list="{{ footerServices }}" as="svc" hint-placeholder-count="3">
+            <li style="margin: 8px 0;"><a href="#" style="color: white; opacity: 0.85; font-size: 14px;">{{ svc }}</a></li>
+          </sc-for>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Contact</h4>
+        <p style="font-size: 14px; margin: 0 0 8px; opacity: 0.85;">Email: <a href="mailto:info@company.com" style="color: white;">info@company.com</a></p>
+        <p style="font-size: 14px; margin: 0; opacity: 0.85;">Phone: <a href="tel:+441234567890" style="color: white;">+44 (0)123 456 7890</a></p>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center;">
+      <p style="font-size: 13px; opacity: 0.75; margin: 0;">© 2026 Your Service. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1920px&quot;,&quot;height&quot;:&quot;1080px&quot;},&quot;companyName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Your Service&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Expert Solutions Tailored to Your Needs&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroDescription&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Partner with our specialist team to transform your business challenges into opportunities.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#14A85F&quot;,&quot;options&quot;:[&quot;#14A85F&quot;,&quot;#2FCB6E&quot;,&quot;#16304D&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = {
+    services: [
+      { icon: '📋', name: 'Consulting', description: 'Expert guidance to transform your business strategy and operations.' },
+      { icon: '🔧', name: 'Implementation', description: 'End-to-end execution of solutions tailored to your needs.' },
+      { icon: '📊', name: 'Analytics', description: 'Data-driven insights to optimize performance and growth.' },
+      { icon: '👥', name: 'Training', description: 'Empower your team with specialized knowledge and skills.' },
+      { icon: '🛡️', name: 'Support', description: '24/7 expert support to ensure smooth operations.' },
+      { icon: '🚀', name: 'Innovation', description: 'Cutting-edge solutions to stay ahead of the competition.' }
+    ],
+    team: [
+      { name: 'Sarah Mitchell', role: 'Lead Consultant', bio: 'Expert in digital transformation with 15+ years in enterprise solutions.', initial: '👩' },
+      { name: 'James Chen', role: 'Technical Director', bio: 'Architect specializing in cloud infrastructure and scalability.', initial: '👨' },
+      { name: 'Emma Rodriguez', role: 'Strategy Lead', bio: 'Business strategist focused on sustainable growth initiatives.', initial: '👩' },
+      { name: 'Michael Adams', role: 'Delivery Manager', bio: 'Agile expert ensuring seamless project execution.', initial: '👨' }
+    ],
+    pricing: [
+      {
+        name: 'Starter',
+        description: 'Perfect for small teams',
+        price: '£99',
+        frequency: 'per month',
+        highlighted: false,
+        features: ['Up to 3 projects', 'Email support', 'Monthly reviews', 'Basic reporting']
+      },
+      {
+        name: 'Professional',
+        description: 'For growing organizations',
+        price: '£299',
+        frequency: 'per month',
+        highlighted: true,
+        features: ['Unlimited projects', 'Priority support', 'Weekly reviews', 'Advanced analytics', 'Custom integrations']
+      },
+      {
+        name: 'Enterprise',
+        description: 'For large-scale needs',
+        price: 'Custom',
+        frequency: 'contact us',
+        highlighted: false,
+        features: ['Dedicated account manager', '24/7 phone support', 'Custom solutions', 'SLA guarantees', 'Training included']
+      }
+    ],
+    testimonials: [
+      {
+        quote: 'This team transformed our entire operation. The results exceeded our expectations by 40%.',
+        author: 'Victoria Thompson',
+        role: 'CEO, Tech Innovations Ltd',
+        stars: [1, 2, 3, 4, 5]
+      },
+      {
+        quote: 'Professional, responsive, and truly committed to our success. Highly recommended.',
+        author: 'David Park',
+        role: 'Operations Director, Global Solutions',
+        stars: [1, 2, 3, 4, 5]
+      },
+      {
+        quote: 'The best investment we made for our business transformation journey.',
+        author: 'Laura Bennett',
+        role: 'Founder, Digital First Co',
+        stars: [1, 2, 3, 4, 5]
+      }
+    ],
+    footerServices: ['Consulting', 'Implementation', 'Analytics', 'Training', 'Support']
+  };
+
+  renderVals() {
+    return {
+      services: this.state.services,
+      team: this.state.team,
+      pricing: this.state.pricing,
+      testimonials: this.state.testimonials,
+      footerServices: this.state.footerServices
+    };
+  }
+}
+
+</script>
+</body>
+</html>
