@@ -129,3 +129,136 @@ img, svg, video { max-width: 100%; }
   [style*="width: 128px; height: 128px"] { width: 104px !important; height: 104px !important; }
   [style*="font-size: 50px; font-weight: 700; line-height: 0.9"] { font-size: 40px !important; }
 }
+
+/* ---------- Specialists: mobile/tablet swipe carousel (<= 860px) ---------- */
+@media (max-width: 860px) {
+  /* the desktop grid becomes a horizontal, snap-scrolling row: one full
+     card plus a peek of the next, matching the pattern of [data-r="stepper"] */
+  [data-r="specialists"] {
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px !important;
+    padding: 4px 2px 12px !important;
+    margin: 0 -2px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  [data-r="specialists"]::-webkit-scrollbar { display: none; }
+  [data-r="specialists"]:focus-visible {
+    outline: 2px solid #0D6E70;
+    outline-offset: 6px;
+    border-radius: 20px;
+  }
+
+  /* card becomes a self-contained, bordered profile panel */
+  [data-r="specialists"] > [role="listitem"] {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    flex: 0 0 82%;
+    max-width: 82%;
+    box-sizing: border-box;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    gap: 16px !important;
+    background: #FFFFFF;
+    border: 1px solid #E7EDEF;
+    border-radius: 20px;
+    padding: 26px 22px !important;
+    box-shadow: 0 2px 8px rgba(10,31,44,0.05);
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: opacity 280ms ease-out, transform 280ms cubic-bezier(0.16,1,0.3,1), box-shadow 280ms ease-out;
+  }
+  [data-r="specialists"] > [role="listitem"]:hover { transform: scale(1) translateY(0) !important; }
+  [data-r="specialists"] > [role="listitem"][data-specialist-active="true"] {
+    box-shadow: 0 12px 28px rgba(10,31,44,0.10);
+    border-color: #CFE3E2;
+  }
+  [data-r="specialists"] > [role="listitem"][data-specialist-active="false"] {
+    opacity: 0.5;
+    transform: scale(0.96) translateY(0);
+  }
+
+  /* profile header runs photo + name/role side by side, editorial-style */
+  [data-r="specialists"] [data-r="specialist-avatar"] {
+    width: 72px !important;
+    height: 72px !important;
+    flex-shrink: 0;
+  }
+  [data-r="specialists"] [data-r="specialist-body"] {
+    align-items: flex-start !important;
+    text-align: left !important;
+    gap: 5px !important;
+    flex: 1;
+    min-width: 0;
+  }
+  [data-r="specialists"] [data-r="specialist-body"] h3 {
+    min-height: 0 !important;
+    padding-top: 0 !important;
+    text-align: left !important;
+    font-size: 18px !important;
+  }
+  [data-r="specialists"] [data-r="specialist-body"] > span {
+    min-height: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    justify-content: flex-start !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #0D6E70 !important;
+  }
+  [data-r="specialists"] [data-r="specialist-body"] p {
+    max-width: none !important;
+    min-height: 0 !important;
+    text-align: left !important;
+    margin-top: 6px !important;
+  }
+  [data-r="specialists"] [data-r="specialist-badges"] {
+    justify-content: flex-start !important;
+    margin-top: 8px !important;
+  }
+  [data-r="specialists"] [data-r="specialist-badges"] > span:not(:first-child) {
+    position: relative;
+    padding-left: 10px;
+  }
+  [data-r="specialists"] [data-r="specialist-badges"] > span:not(:first-child)::before {
+    content: '·';
+    position: absolute;
+    left: 3px;
+    color: #B7C2C8;
+  }
+
+  /* soft edge cue that more specialists continue past the viewport */
+  [data-r="specialists-wrap"]::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 12px; width: 14px;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.75));
+    pointer-events: none;
+  }
+
+  /* position / progress indicator, hidden on desktop by default */
+  [data-r="specialists-progress"] { display: flex !important; }
+}
+
+@media (max-width: 620px) {
+  [data-r="specialists"] > [role="listitem"] {
+    flex-basis: 84%;
+    max-width: 84%;
+    padding: 22px 20px !important;
+  }
+  [data-r="specialists"] [data-r="specialist-avatar"] { width: 64px !important; height: 64px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-r="specialists"] { scroll-behavior: auto !important; }
+  [data-r="specialists"] > [role="listitem"] { transition: none !important; }
+}

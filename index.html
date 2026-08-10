@@ -180,24 +180,32 @@
       <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Fourteen consultants. One will read yours.</h2>
       <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">Every report is signed by a named, GMC-registered subspecialist — you see who before you pay.</p>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px 24px;">
-      <sc-for list="{{ specialists }}" as="specialist" hint-placeholder-count="6">
-        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 8px; cursor: pointer; transition: transform 220ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: translateY(-6px);">
-          <div style="width: 128px; height: 128px; border-radius: 50%; background: #E4F2F2; overflow: hidden; flex-shrink: 0; box-shadow: 0 0 0 0 rgba(13,110,112,0); transition: box-shadow 220ms ease-out;" style-hover="box-shadow: 0 14px 30px rgba(13,110,112,0.3), 0 0 0 3px #0D6E70;">
-            <div role="img" aria-label="Dr {{ specialist.name }}" style="width: 100%; height: 100%; background-image: {{ specialist.photoCss }}; background-size: cover; background-position: 50% 12%; transition: transform 320ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: scale(1.06);"></div>
-          </div>
-          <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: #0A1F2C; line-height: 1.3; min-height: 44px; text-align: center; padding-top: 4px;">Dr {{ specialist.name }}</h3>
-            <span style="display: inline-flex; align-items: center; justify-content: center; text-align: center; min-height: 44px; box-sizing: border-box; background: #FFFFFF; border: 1px solid #D4DDE0; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 600; color: #095458; box-shadow: 0 1px 3px rgba(10,31,44,0.06); transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; border-color: #0D6E70;">{{ specialist.role }}</span>
-            <p style="margin: 4px 0 0; font-size: 13px; color: #4A5C68; line-height: 1.55; max-width: 190px; min-height: 84px;">{{ specialist.specialties }}</p>
-            <div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 4px;">
-              <sc-for list="{{ specialist.badges }}" as="badge" hint-placeholder-count="3">
-                <span style="font-size: 11px; color: #5A6B77; letter-spacing: 0.2px;">{{ badge }}</span>
-              </sc-for>
+    <div data-r="specialists-wrap" style="position: relative;">
+      <div data-r="specialists" role="list" aria-label="Specialist consultants. Swipe or use arrow keys to browse." tabindex="{{ specialistsTabIndex }}" onScroll="{{ onSpecialistsScroll }}" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px 24px; outline: none;">
+        <sc-for list="{{ specialists }}" as="specialist" hint-placeholder-count="6">
+          <div role="listitem" data-specialist-active="{{ specialist.active }}" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 8px; cursor: pointer; transition: transform 220ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: translateY(-6px);">
+            <div data-r="specialist-avatar" style="width: 128px; height: 128px; border-radius: 50%; background: #E4F2F2; overflow: hidden; flex-shrink: 0; box-shadow: 0 0 0 0 rgba(13,110,112,0); transition: box-shadow 220ms ease-out;" style-hover="box-shadow: 0 14px 30px rgba(13,110,112,0.3), 0 0 0 3px #0D6E70;">
+              <div role="img" aria-label="Dr {{ specialist.name }}" style="width: 100%; height: 100%; background-image: {{ specialist.photoCss }}; background-size: cover; background-position: 50% 12%; transition: transform 320ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: scale(1.06);"></div>
+            </div>
+            <div data-r="specialist-body" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: #0A1F2C; line-height: 1.3; min-height: 44px; text-align: center; padding-top: 4px;">Dr {{ specialist.name }}</h3>
+              <span style="display: inline-flex; align-items: center; justify-content: center; text-align: center; min-height: 44px; box-sizing: border-box; background: #FFFFFF; border: 1px solid #D4DDE0; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 600; color: #095458; box-shadow: 0 1px 3px rgba(10,31,44,0.06); transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; border-color: #0D6E70;">{{ specialist.role }}</span>
+              <p style="margin: 4px 0 0; font-size: 13px; color: #4A5C68; line-height: 1.55; max-width: 190px; min-height: 84px;">{{ specialist.specialties }}</p>
+              <div data-r="specialist-badges" style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 4px;">
+                <sc-for list="{{ specialist.badges }}" as="badge" hint-placeholder-count="3">
+                  <span style="font-size: 11px; color: #5A6B77; letter-spacing: 0.2px;">{{ badge }}</span>
+                </sc-for>
+              </div>
             </div>
           </div>
-        </div>
-      </sc-for>
+        </sc-for>
+      </div>
+    </div>
+    <div data-r="specialists-progress" aria-hidden="true" style="display: none; align-items: center; gap: 12px; margin-top: 20px;">
+      <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #4A5C68; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; white-space: nowrap;">{{ specialistPosition }}</span>
+      <div style="flex: 1; height: 2px; background: #E2E9EC; border-radius: 999px; overflow: hidden;">
+        <div style="height: 100%; width: {{ specialistProgressPct }}; background: #0D6E70; border-radius: 999px; transition: width 260ms cubic-bezier(0.16,1,0.3,1);"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -434,6 +442,8 @@ class Component extends DCLogic {
       { name: 'Asad Tamimi', role: 'Gastrointestinal & abdominal', initial: 'AT', photo: 'portraits/at.png', specialties: 'Liver, bowel, prostate, post-surgical imaging. Oncological staging.', badges: ['Imperial', 'GMC 7012345', 'FRCR'] },
       { name: 'Geetanjali Kakar', role: 'Consultant gynaecological', initial: 'GK', photo: 'portraits/gk.png', specialties: 'Pelvic MRI, ultrasound. Endometriosis and gynaecological oncology.', badges: ['Imperial', 'GMC 7012345', 'FRCR'] }
     ],
+    activeSpecialist: 0,
+    isSpecialistsMobile: window.matchMedia('(max-width: 860px)').matches,
     pricingCards: [
       { speed: '48 hours', deadline: 'Report by Wed 5 Aug, 4pm', price: '249', highlighted: false, ...PLAIN },
       { speed: '24 hours', deadline: 'Report by Tue 4 Aug, 4pm', price: '299', highlighted: true, ...FEATURED },
@@ -472,9 +482,19 @@ class Component extends DCLogic {
       if (this.state.paused) return;
       this.setState(s => ({ slide: (s.slide + 1) % 2 }));
     }, 7000);
+    this.specialistsMql = window.matchMedia('(max-width: 860px)');
+    this.onSpecialistsMqlChange = e => this.setState({ isSpecialistsMobile: e.matches });
+    if (this.specialistsMql.addEventListener) this.specialistsMql.addEventListener('change', this.onSpecialistsMqlChange);
+    else this.specialistsMql.addListener(this.onSpecialistsMqlChange);
   }
 
-  componentWillUnmount() { clearInterval(this.heroTimer); }
+  componentWillUnmount() {
+    clearInterval(this.heroTimer);
+    if (this.specialistsMql) {
+      if (this.specialistsMql.removeEventListener) this.specialistsMql.removeEventListener('change', this.onSpecialistsMqlChange);
+      else this.specialistsMql.removeListener(this.onSpecialistsMqlChange);
+    }
+  }
 
   renderVals() {
     return {
@@ -520,10 +540,27 @@ class Component extends DCLogic {
       heroGlyph: this.icon('Zap', 21),
       checkGlyph: this.icon('Check', 14),
       howSteps: this.state.howSteps.map(s => ({ ...s, glyph: this.icon(s.icon, 24) })),
-      specialists: this.state.specialists.map(sp => {
+      specialists: this.state.specialists.map((sp, i) => {
         const src = (window.SR_PORTRAITS || {})[sp.initial.toLowerCase()] || sp.photo;
-        return { ...sp, photo: src, photoCss: 'url("' + src + '")' };
+        return { ...sp, photo: src, photoCss: 'url("' + src + '")', active: i === this.state.activeSpecialist ? 'true' : 'false' };
       }),
+      specialistsTabIndex: this.state.isSpecialistsMobile ? '0' : '-1',
+      onSpecialistsScroll: e => {
+        const el = e.currentTarget;
+        if (this._specialistScrollRaf) return;
+        this._specialistScrollRaf = requestAnimationFrame(() => {
+          this._specialistScrollRaf = null;
+          const kids = el.children;
+          let idx = 0, min = Infinity;
+          for (let i = 0; i < kids.length; i++) {
+            const d = Math.abs(kids[i].offsetLeft - el.scrollLeft);
+            if (d < min) { min = d; idx = i; }
+          }
+          if (idx !== this.state.activeSpecialist) this.setState({ activeSpecialist: idx });
+        });
+      },
+      specialistPosition: String(this.state.activeSpecialist + 1).padStart(2, '0') + ' / ' + String(this.state.specialists.length).padStart(2, '0'),
+      specialistProgressPct: (((this.state.activeSpecialist + 1) / this.state.specialists.length) * 100).toFixed(2) + '%',
       pricingCards: this.state.pricingCards,
       pricingRows: this.state.pricingRows,
       testimonials: this.state.testimonials,
