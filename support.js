@@ -388,9 +388,30 @@
   function kebabToCamel(s) {
     return s.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
   }
+  function splitCssDecls(css) {
+    const decls = [];
+    let depth = 0, quote = null, start = 0;
+    for (let i = 0; i < css.length; i++) {
+      const c = css[i];
+      if (quote) {
+        if (c === quote) quote = null;
+      } else if (c === '"' || c === "'") {
+        quote = c;
+      } else if (c === "(") {
+        depth++;
+      } else if (c === ")") {
+        depth--;
+      } else if (c === ";" && depth === 0) {
+        decls.push(css.slice(start, i));
+        start = i + 1;
+      }
+    }
+    decls.push(css.slice(start));
+    return decls;
+  }
   function cssToObj(css) {
     const o = {};
-    for (const decl of css.split(";")) {
+    for (const decl of splitCssDecls(css)) {
       const i = decl.indexOf(":");
       if (i < 0) continue;
       const prop = decl.slice(0, i).trim();
