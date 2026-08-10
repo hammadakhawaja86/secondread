@@ -201,6 +201,11 @@
         </sc-for>
       </div>
     </div>
+    <div data-r="specialists-dots" role="tablist" aria-label="Specialist page navigation" style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 28px;">
+      <sc-for list="{{ desktopSpecialistDots }}" as="dot" hint-placeholder-count="3">
+        <button type="button" role="tab" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" aria-selected="{{ dot.current }}" style="appearance: none; border: none; padding: 0; height: 6px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
+      </sc-for>
+    </div>
     <div data-r="specialists-progress" aria-hidden="true" style="display: none; align-items: center; gap: 12px; margin-top: 20px;">
       <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #4A5C68; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; white-space: nowrap;">{{ specialistPosition }}</span>
       <div style="flex: 1; height: 2px; background: #E2E9EC; border-radius: 999px; overflow: hidden;">
@@ -593,6 +598,23 @@ class Component extends DCLogic {
       })(),
       specialistsTabIndex: this.state.isSpecialistsMobile ? '0' : '-1',
       specialistsRef: el => { this.specialistsEl = el; },
+      desktopSpecialistDots: (() => {
+        const raw = this.state.specialists;
+        const perPage = 6;
+        const pageCount = Math.ceil(raw.length / perPage);
+        const current = this.state.desktopSpecialistPage % pageCount;
+        return Array.from({ length: pageCount }, (_, i) => ({
+          aria: 'Show consultants ' + (i * perPage + 1) + ' to ' + Math.min((i + 1) * perPage, raw.length),
+          current: i === current ? 'true' : 'false',
+          width: i === current ? '34px' : '10px',
+          bg: i === current ? '#0D6E70' : 'rgba(10,31,44,0.22)',
+          go: () => {
+            clearTimeout(this._specialistsResumeTimeout);
+            this.setState({ desktopSpecialistPage: i, specialistsPaused: true });
+            this._specialistsResumeTimeout = setTimeout(() => this.setState({ specialistsPaused: false }), 4500);
+          }
+        }));
+      })(),
       pauseSpecialistsCarousel: () => {
         clearTimeout(this._specialistsResumeTimeout);
         this.setState({ specialistsPaused: true });

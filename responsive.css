@@ -201,6 +201,8 @@ img, svg, video { max-width: 100%; }
 
   /* position / progress indicator, hidden on desktop by default */
   [data-r="specialists-progress"] { display: flex !important; }
+  /* desktop pagination dots make no sense once it's a swipe carousel */
+  [data-r="specialists-dots"] { display: none !important; }
 }
 
 @media (max-width: 620px) {
