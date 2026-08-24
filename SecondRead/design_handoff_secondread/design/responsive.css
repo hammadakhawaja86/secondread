@@ -196,6 +196,25 @@ section[data-r="svcsection"] { padding-left: 0 !important; padding-right: 0 !imp
   [data-r="svccard"] > span:last-child > span:first-child { font-size: 25px !important; }
 }
 
+/* ------------------------------------------------ 4c. specialist cards
+
+   Text block on top, portrait filling the card's foot. The photo well is a
+   flex child so every card in a row ends at the same height regardless of how
+   many lines the name and credentials take.                                   */
+
+@media (max-width: 1024px) {
+  [data-r="specgrid"] { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+}
+
+@media (max-width: 620px) {
+  [data-r="specgrid"] { grid-template-columns: 1fr !important; gap: 18px !important; }
+  /* One card per row is much wider than it is tall, so the portrait would crop
+     to a letterbox. Cap it and let the photo sit higher in frame. */
+  [data-r="specphoto"] { min-height: 320px !important; }
+  [data-r="speccard"] > span:first-child { padding: 22px 20px 18px !important; }
+  [data-r="speccard"] > span:first-child > span:first-child { min-height: 0 !important; font-size: 21px !important; }
+}
+
 /* ------------------------------------------- 5. narrow desktop (<= 1180px) */
 
 @media (max-width: 1180px) {
