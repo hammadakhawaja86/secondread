@@ -173,6 +173,31 @@
   </div>
 </section>
 
+<section id="services" style="background: #F4F7F8; padding: 80px 32px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="text-align: center; max-width: 640px; margin: 0 auto 44px;">
+      <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Our services</div>
+      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">A second opinion for every kind of scan.</h2>
+      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">Subspecialist review, matched to the imaging and the body area — not a general read.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px;">
+      <sc-for list="{{ services }}" as="service" hint-placeholder-count="6">
+        <a href="{{ service.href }}" style="display: block; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 28px; box-shadow: 0 1px 3px rgba(10,31,44,0.06); height: 100%; box-sizing: border-box; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out, border-color 220ms ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 34px rgba(10,31,44,0.14); border-color: #C3E0DE; text-decoration: none;">
+          <span style="width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, #0D6E70 0%, #12938F 55%, #6FE3C5 100%); display: flex; align-items: center; justify-content: center; color: #FFFFFF; box-shadow: 0 6px 16px rgba(13,110,112,0.28); margin-bottom: 18px;">{{ service.glyph }}</span>
+          <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 19px; color: #0A1F2C;">{{ service.title }}</h3>
+          <p style="margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ service.description }}</p>
+          <sc-if value="{{ service.ledBy }}" hint-placeholder-val="{{ true }}">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: #F4F7F8; border: 1px solid #E2E9EC; border-radius: 999px; padding: 6px 14px 6px 6px; font-size: 12.5px; color: #173B4F;">
+              <span style="width: 22px; height: 22px; border-radius: 50%; background: #E4F2F2; color: #095458; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{{ service.initial }}</span>
+              Led by Dr {{ service.ledBy }}
+            </div>
+          </sc-if>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
 <section id="specialists" style="background: #FFFFFF; padding: 80px 32px;">
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="text-align: center; max-width: 640px; margin: 0 auto 48px;">
@@ -386,7 +411,13 @@ const PATHS = {
   UserSearch: ['M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z', 'M2 21v-1a6 6 0 0 1 6-6h2', 'M17.5 17.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z', 'm22 22-2.1-2.1'],
   FileText: ['M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z', 'M15 2v5h5', 'M9 13h6', 'M9 17h6'],
   Zap: ['M4 14h7l-1 8 10-12h-7l1-8z'],
-  Check: ['M20 6 9 17l-5-5']
+  Check: ['M20 6 9 17l-5-5'],
+  Layers: ['M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z', 'm22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65', 'm22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65'],
+  ScanLine: ['M3 7V5a2 2 0 0 1 2-2h2', 'M17 3h2a2 2 0 0 1 2 2v2', 'M21 17v2a2 2 0 0 1-2 2h-2', 'M7 21H5a2 2 0 0 1-2-2v-2', 'M3 12h18'],
+  Bone: ['M17 10c.7-.7 1.69-1 2.5-1a3.5 3.5 0 1 1 0 7c-.81 0-1.8-.3-2.5-1L7 15c-.7.7-1.69 1-2.5 1a3.5 3.5 0 1 1 0-7c.81 0 1.8.3 2.5 1L17 10Z'],
+  Activity: ['M22 12h-4l-3 9L9 3l-3 9H2'],
+  Brain: ['M12 3a4 4 0 0 0-4 4v1a3 3 0 0 0-2 5v1a3 3 0 0 0 2 2.83V18a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-1.17A3 3 0 0 0 18 14v-1a3 3 0 0 0-2-5V7a4 4 0 0 0-4-4Z'],
+  Target: ['M12 3v3', 'M12 18v3', 'M3 12h3', 'M18 12h3', 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z']
 };
 
 const PLAIN = {
@@ -425,6 +456,14 @@ class Component extends DCLogic {
       { number: '01', icon: 'UploadCloud', title: 'Upload your scans', description: 'Drag in a DICOM folder, a zip, or the whole CD. No images yet? We will request them from the hospital for you.' },
       { number: '02', icon: 'UserSearch', title: 'Choose a specialist', description: 'You tell us the body area and your question. We name the consultant — with their hospital and GMC number — before you pay, and you pick your deadline: 12, 24 or 48 hours.' },
       { number: '03', icon: 'FileText', title: 'Get your report', description: 'Findings, comparison with any prior scan, next steps, and a "What this means for you" section — then ask us anything about it.' }
+    ],
+    services: [
+      { icon: 'Layers', title: 'MRI/CT Second Opinion', description: 'Independent expert review of MRI or CT scans for clarity, confirmation, or an alternative perspective.', ledBy: null, initial: null, href: 'Pricing.dc.html' },
+      { icon: 'ScanLine', title: 'X-Ray Report Review', description: 'A clear explanation or reassessment of X-ray findings, especially when a result is unclear or disputed.', ledBy: null, initial: null, href: 'Pricing.dc.html' },
+      { icon: 'Bone', title: 'Musculoskeletal Second Opinion', description: 'Detailed assessment of bones, joints and soft tissue, including sarcoma evaluation.', ledBy: 'Ramanan Rajakulasingam', initial: 'RR', href: 'Specialists.dc.html' },
+      { icon: 'Activity', title: 'Cardiac Imaging Second Opinion', description: 'Level III-accredited review of cardiac CT and MRI studies, including structural and ischaemic disease.', ledBy: 'Senan Alsanjari', initial: 'SA', href: 'Specialists.dc.html' },
+      { icon: 'Brain', title: 'Neuroradiology Second Opinion', description: 'A specialist review service for brain, spine, or nerve-related scans.', ledBy: 'Dermot Mallon', initial: 'DM', href: 'Specialist Profile.dc.html' },
+      { icon: 'Target', title: 'Abdominal & Pelvic Imaging Review', description: 'Second opinions on CT/MRI covering bowel, liver, pancreas, urology and post-surgical concerns.', ledBy: 'Asad Tamimi', initial: 'AT', href: 'Specialists.dc.html' }
     ],
     specialists: [
       { name: 'Senan Alsanjari', role: 'Cardiothoracic & oncological', initial: 'SA', photo: 'portraits/sa.png', specialties: 'Heart, chest, PET-CT imaging. Level III accredited cardiac MRI & CT.', badges: ['NHNN', 'GMC 7012345', 'FRCR'] },
@@ -520,6 +559,7 @@ class Component extends DCLogic {
       heroGlyph: this.icon('Zap', 21),
       checkGlyph: this.icon('Check', 14),
       howSteps: this.state.howSteps.map(s => ({ ...s, glyph: this.icon(s.icon, 24) })),
+      services: this.state.services.map(s => ({ ...s, glyph: this.icon(s.icon, 24) })),
       specialists: this.state.specialists.map(sp => {
         const src = (window.SR_PORTRAITS || {})[sp.initial.toLowerCase()] || sp.photo;
         return { ...sp, photo: src, photoCss: 'url("' + src + '")' };
