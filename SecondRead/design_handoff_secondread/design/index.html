@@ -244,7 +244,7 @@
             <span style="margin-top: 3px; font-size: 14.5px; color: #095458; text-decoration: underline; text-underline-offset: 3px;">GMC: {{ specialist.gmc }}</span>
           </span>
           <span data-r="specphoto" style="position: relative; display: block; flex: 1; min-height: 336px; background: #E4F2F2; overflow: hidden;">
-            <img src="{{ specialist.photo }}" alt="Dr {{ specialist.name }}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 8%; display: block; transition: transform 420ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: scale(1.05);">
+            <img src="{{ specialist.photo }}" alt="Dr {{ specialist.name }}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{ specialist.focus }}; display: block; transition: transform 420ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: scale(1.05);">
           </span>
         </a>
       </sc-for>
@@ -526,22 +526,22 @@ class Component extends DCLogic {
     specialists: [
       { name: 'Senan Alsanjari', role: 'Consultant cardiothoracic radiologist',
         quals: 'FRCR \u00b7 Level III cardiac MRI & CT \u00b7 NHNN', gmc: '7012345',
-        initial: 'SA', photo: 'portraits/sa.png' },
+        initial: 'SA', photo: 'portraits/senan-alsanjari.png', focus: '50% 8%' },
       { name: 'Dermot Mallon', role: 'Consultant neuroradiologist',
         quals: 'FRCR \u00b7 PhD Cambridge \u00b7 UCLH', gmc: '7012345',
-        initial: 'DM', photo: 'portraits/ht.png' },
+        initial: 'DM', photo: 'portraits/dermot-mallon.png', focus: '50% 8%' },
       { name: 'Ramanan Rajakulasingam', role: 'Musculoskeletal and sarcoma radiologist',
         quals: 'FRCR \u00b7 RNOH Stanmore', gmc: '7012345',
-        initial: 'RR', photo: 'portraits/gk.png' },
+        initial: 'RR', photo: 'portraits/ramanan-rajakulasingam.png', focus: '50% 8%' },
       { name: 'Hebah Taufik', role: 'Consultant breast radiologist',
         quals: 'FRCR \u00b7 Screening and diagnostic imaging', gmc: '7012345',
-        initial: 'HT', photo: 'portraits/rr.png' },
+        initial: 'HT', photo: 'portraits/hebah-taufik.png', focus: '50% 8%' },
       { name: 'Asad Tamimi', role: 'Gastrointestinal and abdominal radiologist',
         quals: 'FRCR \u00b7 Imperial College', gmc: '7012345',
-        initial: 'AT', photo: 'portraits/at.png' },
+        initial: 'AT', photo: 'portraits/asad-tamimi.png', focus: '50% 8%' },
       { name: 'Geetanjali Kakar', role: 'Consultant gynaecological radiologist',
         quals: 'FRCR \u00b7 Imperial College', gmc: '7012345',
-        initial: 'GK', photo: 'portraits/dm.png' }
+        initial: 'GK', photo: 'portraits/geetanjali-kakar.png', focus: '50% 8%' }
     ],
     pricingCards: [
       { speed: '48 hours', deadline: 'Report by Wed 5 Aug, 4pm', price: '249', highlighted: false, ...PLAIN },
