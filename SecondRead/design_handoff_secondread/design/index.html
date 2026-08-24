@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=6">
+  <link rel="stylesheet" href="responsive.css?v=8">
   <script src="portraits/data.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -176,26 +176,44 @@
   </div>
 </section>
 
-<section id="services" style="background: #F4F7F8; padding: 80px 32px;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <div style="text-align: center; max-width: 640px; margin: 0 auto 44px;">
-      <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Our services</div>
-      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">A second opinion for every kind of scan.</h2>
-      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">Subspecialist review, matched to the imaging and the body area — not a general read.</p>
+<section id="services" data-r="svcsection" style="background: #0A1F2C; padding: 84px 0;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+    <div data-r="svchead" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 34px;">
+      <div style="max-width: 620px;">
+        <span style="display: inline-flex; align-items: center; background: #6FE3C5; color: #06313A; border-radius: 6px; padding: 6px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">Our services</span>
+        <h2 style="margin: 16px 0 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; color: #FFFFFF;">A second read for every kind of scan</h2>
+        <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.72);">Tell us which scan you have. We match the subspecialist who reads it.</p>
+      </div>
+      <div data-r="svcnav" style="display: flex; gap: 12px; flex-shrink: 0; padding-bottom: 4px;">
+        <button type="button" onClick="{{ svcPrev }}" aria-label="Previous services" style="appearance: none; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3); background: none; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: {{ svcPrevCursor }}; opacity: {{ svcPrevOpacity }}; transition: background 140ms ease-out, border-color 140ms ease-out, opacity 200ms ease-out, transform 140ms ease-out;" style-hover="background: rgba(255,255,255,0.12); border-color: #FFFFFF;" style-active="transform: scale(0.94);">{{ arrowLeftGlyph }}</button>
+        <button type="button" onClick="{{ svcNext }}" aria-label="Next services" style="appearance: none; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3); background: none; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: {{ svcNextCursor }}; opacity: {{ svcNextOpacity }}; transition: background 140ms ease-out, border-color 140ms ease-out, opacity 200ms ease-out, transform 140ms ease-out;" style-hover="background: rgba(255,255,255,0.12); border-color: #FFFFFF;" style-active="transform: scale(0.94);">{{ arrowRightGlyph }}</button>
+      </div>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px;">
-      <sc-for list="{{ services }}" as="service" hint-placeholder-count="6">
-        <a href="{{ service.href }}" style="display: block; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 28px; box-shadow: 0 1px 3px rgba(10,31,44,0.06); height: 100%; box-sizing: border-box; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out, border-color 220ms ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 34px rgba(10,31,44,0.14); border-color: #C3E0DE; text-decoration: none;">
-          <span style="width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, #0D6E70 0%, #12938F 55%, #6FE3C5 100%); display: flex; align-items: center; justify-content: center; color: #FFFFFF; box-shadow: 0 6px 16px rgba(13,110,112,0.28); margin-bottom: 18px;">{{ service.glyph }}</span>
-          <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 19px; color: #0A1F2C;">{{ service.title }}</h3>
-          <p style="margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ service.description }}</p>
-          <sc-if value="{{ service.ledBy }}" hint-placeholder-val="{{ true }}">
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: #F4F7F8; border: 1px solid #E2E9EC; border-radius: 999px; padding: 6px 14px 6px 6px; font-size: 12.5px; color: #173B4F;">
-              <span style="width: 22px; height: 22px; border-radius: 50%; background: #E4F2F2; color: #095458; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{{ service.initial }}</span>
-              Led by Dr {{ service.ledBy }}
-            </div>
-          </sc-if>
+  </div>
+
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+    <div id="svc-track" data-r="svctrack" onScroll="{{ onSvcScroll }}" role="region" aria-label="Radiology services" tabIndex="0" style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: calc(50% - 50vw); padding: 4px 32px 10px 0;">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
+        <a href="{{ s.href }}" data-r="svccard" style="position: relative; flex: 0 0 372px; min-height: 424px; border-radius: 20px; overflow: hidden; background: {{ s.gradient }}; display: flex; flex-direction: column; justify-content: flex-end; scroll-snap-align: start; box-shadow: 0 12px 30px rgba(6,19,28,0.3); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 26px 50px rgba(6,19,28,0.44); text-decoration: none;">
+          <span aria-hidden="true" style="position: absolute; top: 52px; right: -38px; color: #FFFFFF; opacity: 0.14; transform: rotate(-8deg); pointer-events: none;">{{ s.watermark }}</span>
+          <span aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,19,28,0) 54%, rgba(6,19,28,0.26) 100%); pointer-events: none;"></span>
+          <span style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.94); color: #06313A; border-radius: 999px; padding: 6px 13px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;">{{ s.tag }}</span>
+          <span style="position: relative; display: flex; flex-direction: column; gap: 10px; padding: 24px;">
+            <span style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 29px; line-height: 1.08; letter-spacing: -0.02em; color: #FFFFFF;">{{ s.title }}</span>
+            <!-- Always rendered, even when empty: the reserved line keeps every
+                 headline on the same baseline across the row. -->
+            <span style="min-height: 18px; font-size: 12.5px; line-height: 1.4; color: rgba(255,255,255,0.82);">{{ s.credit }}</span>
+            <span style="margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 12px 20px; border-radius: 12px; background: #FFFFFF; color: #06313A; font-size: 15px; font-weight: 600; transition: background 140ms ease-out;" style-hover="background: #E4F2F2;">Get started {{ arrowSmallGlyph }}</span>
+          </span>
         </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+    <div data-r="svcdots" style="display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 26px;">
+      <sc-for list="{{ svcDots }}" as="dot" hint-placeholder-count="6">
+        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; padding: 0; height: 7px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
       </sc-for>
     </div>
   </div>
@@ -420,8 +438,12 @@ const PATHS = {
   Bone: ['M17 10c.7-.7 1.69-1 2.5-1a3.5 3.5 0 1 1 0 7c-.81 0-1.8-.3-2.5-1L7 15c-.7.7-1.69 1-2.5 1a3.5 3.5 0 1 1 0-7c.81 0 1.8.3 2.5 1L17 10Z'],
   Activity: ['M22 12h-4l-3 9L9 3l-3 9H2'],
   Brain: ['M12 3a4 4 0 0 0-4 4v1a3 3 0 0 0-2 5v1a3 3 0 0 0 2 2.83V18a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-1.17A3 3 0 0 0 18 14v-1a3 3 0 0 0-2-5V7a4 4 0 0 0-4-4Z'],
-  Target: ['M12 3v3', 'M12 18v3', 'M3 12h3', 'M18 12h3', 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z']
+  Target: ['M12 3v3', 'M12 18v3', 'M3 12h3', 'M18 12h3', 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z'],
+  ArrowLeft: ['M19 12H5', 'm12 19-7-7 7-7'],
+  ArrowRight: ['M5 12h14', 'm12 5 7 7-7 7']
 };
+
+const SVC_DOTS = 6;
 
 const PLAIN = {
   cardBg: '#FFFFFF', panelBg: '#F4F7F8',
@@ -460,13 +482,25 @@ class Component extends DCLogic {
       { number: '02', icon: 'UserSearch', title: 'Choose a specialist', description: 'You tell us the body area and your question. We name the consultant — with their hospital and GMC number — before you pay, and you pick your deadline: 12, 24 or 48 hours.' },
       { number: '03', icon: 'FileText', title: 'Get your report', description: 'Findings, comparison with any prior scan, next steps, and a "What this means for you" section — then ask us anything about it.' }
     ],
+    svcIndex: 0,
+    svcAtStart: true,
+    svcAtEnd: false,
     services: [
-      { icon: 'Layers', title: 'MRI/CT Second Opinion', description: 'Independent expert review of MRI or CT scans for clarity, confirmation, or an alternative perspective.', ledBy: null, initial: null, href: 'Pricing.dc.html' },
-      { icon: 'ScanLine', title: 'X-Ray Report Review', description: 'A clear explanation or reassessment of X-ray findings, especially when a result is unclear or disputed.', ledBy: null, initial: null, href: 'Pricing.dc.html' },
-      { icon: 'Bone', title: 'Musculoskeletal Second Opinion', description: 'Detailed assessment of bones, joints and soft tissue, including sarcoma evaluation.', ledBy: 'Ramanan Rajakulasingam', initial: 'RR', href: 'Specialists.dc.html' },
-      { icon: 'Activity', title: 'Cardiac Imaging Second Opinion', description: 'Level III-accredited review of cardiac CT and MRI studies, including structural and ischaemic disease.', ledBy: 'Senan Alsanjari', initial: 'SA', href: 'Specialists.dc.html' },
-      { icon: 'Brain', title: 'Neuroradiology Second Opinion', description: 'A specialist review service for brain, spine, or nerve-related scans.', ledBy: 'Dermot Mallon', initial: 'DM', href: 'Specialist Profile.dc.html' },
-      { icon: 'Target', title: 'Abdominal & Pelvic Imaging Review', description: 'Second opinions on CT/MRI covering bowel, liver, pancreas, urology and post-surgical concerns.', ledBy: 'Asad Tamimi', initial: 'AT', href: 'Specialists.dc.html' }
+      // Each card runs bright at the top, where the category chip sits, to near
+      // navy at the bottom, so the headline and white button land on their own
+      // contrast without a heavy scrim doing the work.
+      { icon: 'Layers', tag: 'MRI & CT', title: 'A second read of your scan', credit: '', href: 'Pricing.dc.html',
+        gradient: 'linear-gradient(158deg, #12938F 0%, #0D6E70 44%, #06313A 100%)' },
+      { icon: 'ScanLine', tag: 'X-ray', title: 'Clear answers on your X-ray', credit: '', href: 'Pricing.dc.html',
+        gradient: 'linear-gradient(158deg, #6FE3C5 -12%, #12938F 40%, #095458 100%)' },
+      { icon: 'Bone', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Specialists.dc.html',
+        gradient: 'linear-gradient(158deg, #0D6E70 0%, #12938F 38%, #06313A 100%)' },
+      { icon: 'Activity', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Specialists.dc.html',
+        gradient: 'linear-gradient(158deg, #12938F -8%, #095458 46%, #0A1F2C 100%)' },
+      { icon: 'Brain', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Specialist Profile.dc.html',
+        gradient: 'linear-gradient(158deg, #6FE3C5 -16%, #0D6E70 42%, #06313A 100%)' },
+      { icon: 'Target', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Specialists.dc.html',
+        gradient: 'linear-gradient(158deg, #095458 0%, #12938F 42%, #06313A 100%)' }
     ],
     specialists: [
       { name: 'Senan Alsanjari', role: 'Cardiothoracic & oncological', initial: 'SA', photo: 'portraits/sa.png', specialties: 'Heart, chest, PET-CT imaging. Level III accredited cardiac MRI & CT.', badges: ['NHNN', 'GMC 7012345', 'FRCR'] },
@@ -507,6 +541,51 @@ class Component extends DCLogic {
       key: name, width: size || 24, height: size || 24, viewBox: '0 0 24 24', fill: 'none',
       stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round'
     }, (PATHS[name] || []).map((d, i) => React.createElement('path', { key: i, d })));
+  }
+
+  // ---- services carousel -------------------------------------------------
+  // Native overflow scrolling does the hard parts for free: momentum, velocity
+  // handoff and interruptibility on touch, all off the main thread. The arrows
+  // and dots only nudge scrollLeft; they never own the position.
+
+  svcTrack() { return document.getElementById('svc-track'); }
+
+  svcStep() {
+    const t = this.svcTrack();
+    const card = t && t.firstElementChild;
+    if (!card) return 0;
+    const gap = parseFloat(getComputedStyle(t).columnGap) || 20;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  svcBehavior() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  }
+
+  svcNudge(dir) {
+    const t = this.svcTrack();
+    if (t) t.scrollBy({ left: dir * this.svcStep(), behavior: this.svcBehavior() });
+  }
+
+  // Dots map the whole scroll range, not one-per-card: with three cards in view
+  // the last cards are never a scroll target, so per-card dots would strand the
+  // final two permanently inactive.
+  svcSeek(i) {
+    const t = this.svcTrack();
+    if (!t) return;
+    const max = t.scrollWidth - t.clientWidth;
+    t.scrollTo({ left: (i / (SVC_DOTS - 1)) * max, behavior: this.svcBehavior() });
+  }
+
+  onSvcScroll(e) {
+    const t = e.currentTarget;
+    const max = t.scrollWidth - t.clientWidth;
+    const index = max > 0 ? Math.round((t.scrollLeft / max) * (SVC_DOTS - 1)) : 0;
+    const atStart = t.scrollLeft <= 2;
+    const atEnd = t.scrollLeft >= max - 2;
+    if (index !== this.state.svcIndex || atStart !== this.state.svcAtStart || atEnd !== this.state.svcAtEnd) {
+      this.setState({ svcIndex: index, svcAtStart: atStart, svcAtEnd: atEnd });
+    }
   }
 
   componentDidMount() {
@@ -566,7 +645,23 @@ class Component extends DCLogic {
       heroGlyph: this.icon('Zap', 21),
       checkGlyph: this.icon('Check', 14),
       howSteps: this.state.howSteps.map(s => ({ ...s, glyph: this.icon(s.icon, 24) })),
-      services: this.state.services.map(s => ({ ...s, glyph: this.icon(s.icon, 24) })),
+      services: this.state.services.map(s => ({ ...s, watermark: this.icon(s.icon, 210) })),
+      arrowLeftGlyph: this.icon('ArrowLeft', 19),
+      arrowRightGlyph: this.icon('ArrowRight', 19),
+      arrowSmallGlyph: this.icon('ArrowRight', 16),
+      svcPrev: () => this.svcNudge(-1),
+      svcNext: () => this.svcNudge(1),
+      onSvcScroll: e => this.onSvcScroll(e),
+      svcPrevOpacity: this.state.svcAtStart ? '0.34' : '1',
+      svcNextOpacity: this.state.svcAtEnd ? '0.34' : '1',
+      svcPrevCursor: this.state.svcAtStart ? 'default' : 'pointer',
+      svcNextCursor: this.state.svcAtEnd ? 'default' : 'pointer',
+      svcDots: Array.from({ length: SVC_DOTS }, (_, i) => ({
+        aria: 'Show services ' + (i + 1) + ' of ' + SVC_DOTS,
+        width: this.state.svcIndex === i ? '30px' : '7px',
+        bg: this.state.svcIndex === i ? '#6FE3C5' : 'rgba(255,255,255,0.3)',
+        go: () => this.svcSeek(i)
+      })),
       specialists: this.state.specialists.map(sp => {
         const src = (window.SR_PORTRAITS || {})[sp.initial.toLowerCase()] || sp.photo;
         return { ...sp, photo: src, photoCss: 'url("' + src + '")' };
