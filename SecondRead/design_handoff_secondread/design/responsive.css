@@ -202,17 +202,36 @@ section[data-r="svcsection"] { padding-left: 0 !important; padding-right: 0 !imp
    flex child so every card in a row ends at the same height regardless of how
    many lines the name and credentials take.                                   */
 
+section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !important; }
+
+[data-r="spectrack"] {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+[data-r="spectrack"]::-webkit-scrollbar { display: none; }
+[data-r="spectrack"]:focus-visible { outline: 2px solid #0D6E70; outline-offset: 4px; border-radius: 22px; }
+[data-r="specnav"] > button:focus-visible { outline: 2px solid #0D6E70; outline-offset: 3px; }
+
 @media (max-width: 1024px) {
-  [data-r="specgrid"] { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+  [data-r="speccard"] { flex-basis: 316px !important; }
+  [data-r="spectrack"] { padding-right: 24px !important; }
+}
+
+@media (max-width: 860px) {
+  [data-r="spechead"] { flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
+  [data-r="specnav"] { display: none !important; }
+  [data-r="speccard"] { flex-basis: 300px !important; }
 }
 
 @media (max-width: 620px) {
-  [data-r="specgrid"] { grid-template-columns: 1fr !important; gap: 18px !important; }
-  /* One card per row is much wider than it is tall, so the portrait would crop
-     to a letterbox. Cap it and let the photo sit higher in frame. */
-  [data-r="specphoto"] { min-height: 320px !important; }
+  [data-r="speccard"] { flex-basis: 79vw !important; }
+  [data-r="spectrack"] { gap: 14px !important; padding-right: 18px !important; }
+  [data-r="specphoto"] { min-height: 300px !important; }
   [data-r="speccard"] > span:first-child { padding: 22px 20px 18px !important; }
   [data-r="speccard"] > span:first-child > span:first-child { min-height: 0 !important; font-size: 21px !important; }
+  [data-r="speccard"] > span:first-child > span:nth-child(3) { min-height: 0 !important; }
 }
 
 /* ------------------------------------------- 5. narrow desktop (<= 1180px) */

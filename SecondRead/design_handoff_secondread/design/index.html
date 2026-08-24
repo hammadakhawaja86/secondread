@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=10">
+  <link rel="stylesheet" href="responsive.css?v=11">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -191,7 +191,7 @@
   </div>
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
-    <div id="svc-track" data-r="svctrack" onScroll="{{ onSvcScroll }}" role="region" aria-label="Radiology services" tabIndex="0" style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: calc(50% - 50vw); padding: 4px 32px 10px 0;">
+    <div id="svc-track" data-r="svctrack" onScroll="{{ svcOnScroll }}" role="region" aria-label="Radiology services" tabIndex="0" style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: calc(50% - 50vw); padding: 4px 32px 10px 0;">
       <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
         <a href="{{ s.href }}" data-r="svccard" style="position: relative; flex: 0 0 372px; min-height: 424px; border-radius: 20px; overflow: hidden; background: {{ s.gradient }}; display: flex; flex-direction: column; justify-content: flex-end; scroll-snap-align: start; box-shadow: 0 12px 30px rgba(6,19,28,0.3); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 26px 50px rgba(6,19,28,0.44); text-decoration: none;">
           <span aria-hidden="true" style="position: absolute; top: 52px; right: -38px; color: #FFFFFF; opacity: 0.14; transform: rotate(-8deg); pointer-events: none;">{{ s.watermark }}</span>
@@ -218,26 +218,43 @@
   </div>
 </section>
 
-<section id="specialists" style="background: #FFFFFF; padding: 80px 32px;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <div style="text-align: center; max-width: 640px; margin: 0 auto 48px;">
-      <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">The specialists</div>
-      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Fourteen consultants. One will read yours.</h2>
-      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">Every report is signed by a named, GMC-registered subspecialist — you see who before you pay.</p>
+<section id="specialists" data-r="specsection" style="background: #FFFFFF; padding: 84px 0;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+    <div data-r="spechead" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 34px;">
+      <div style="max-width: 620px;">
+        <span style="display: inline-flex; align-items: center; background: #E4F2F2; color: #06313A; border-radius: 6px; padding: 6px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">The specialists</span>
+        <h2 style="margin: 16px 0 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; color: #0A1F2C;">Fourteen consultants. One will read yours.</h2>
+        <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: #4A5C68;">Every report is signed by a named, GMC-registered subspecialist — you see who before you pay.</p>
+      </div>
+      <div data-r="specnav" style="display: flex; gap: 12px; flex-shrink: 0; padding-bottom: 4px;">
+        <button type="button" onClick="{{ specPrev }}" aria-label="Previous consultants" style="appearance: none; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid #D4DDE0; background: none; color: #0A1F2C; display: flex; align-items: center; justify-content: center; cursor: {{ specPrevCursor }}; opacity: {{ specPrevOpacity }}; transition: background 140ms ease-out, border-color 140ms ease-out, opacity 200ms ease-out, transform 140ms ease-out;" style-hover="background: #E4F2F2; border-color: #0D6E70;" style-active="transform: scale(0.94);">{{ arrowLeftGlyph }}</button>
+        <button type="button" onClick="{{ specNext }}" aria-label="Next consultants" style="appearance: none; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid #D4DDE0; background: none; color: #0A1F2C; display: flex; align-items: center; justify-content: center; cursor: {{ specNextCursor }}; opacity: {{ specNextOpacity }}; transition: background 140ms ease-out, border-color 140ms ease-out, opacity 200ms ease-out, transform 140ms ease-out;" style-hover="background: #E4F2F2; border-color: #0D6E70;" style-active="transform: scale(0.94);">{{ arrowRightGlyph }}</button>
+      </div>
     </div>
-    <div data-r="specgrid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+  </div>
+
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+    <div id="spec-track" data-r="spectrack" onScroll="{{ specOnScroll }}" role="region" aria-label="Our consultants" tabIndex="0" style="display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: calc(50% - 50vw); padding: 4px 32px 10px 0;">
       <sc-for list="{{ specialists }}" as="specialist" hint-placeholder-count="6">
-        <a href="Specialist Profile.dc.html" data-r="speccard" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 8px rgba(10,31,44,0.06); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out, border-color 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 22px 44px rgba(10,31,44,0.16); border-color: #C3E0DE; text-decoration: none;">
+        <a href="Specialist Profile.dc.html" data-r="speccard" style="flex: 0 0 340px; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; overflow: hidden; scroll-snap-align: start; box-shadow: 0 2px 8px rgba(10,31,44,0.06); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out, border-color 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 22px 44px rgba(10,31,44,0.16); border-color: #C3E0DE; text-decoration: none;">
           <span style="display: flex; flex-direction: column; gap: 5px; padding: 28px 28px 22px;">
             <span style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.2; letter-spacing: -0.015em; color: #0A1F2C; min-height: 56px;">Dr {{ specialist.name }}</span>
             <span style="font-size: 15px; line-height: 1.45; color: #173B4F;">{{ specialist.role }}</span>
-            <span style="font-size: 14.5px; line-height: 1.45; color: #4A5C68;">{{ specialist.quals }}</span>
+            <span style="font-size: 14.5px; line-height: 1.45; color: #4A5C68; min-height: 42px;">{{ specialist.quals }}</span>
             <span style="margin-top: 3px; font-size: 14.5px; color: #095458; text-decoration: underline; text-underline-offset: 3px;">GMC: {{ specialist.gmc }}</span>
           </span>
           <span data-r="specphoto" style="position: relative; display: block; flex: 1; min-height: 336px; background: #E4F2F2; overflow: hidden;">
             <img src="{{ specialist.photo }}" alt="Dr {{ specialist.name }}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 8%; display: block; transition: transform 420ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: scale(1.05);">
           </span>
         </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+    <div data-r="specdots" style="display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 26px;">
+      <sc-for list="{{ specDots }}" as="dot" hint-placeholder-count="6">
+        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; padding: 0; height: 7px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
       </sc-for>
     </div>
   </div>
@@ -438,7 +455,10 @@ const PATHS = {
   ArrowRight: ['M5 12h14', 'm12 5 7 7-7 7']
 };
 
-const SVC_DOTS = 6;
+const CAROUSELS = {
+  svc:  { trackId: 'svc-track',  dots: 6, label: 'services',    activeDot: '#6FE3C5', idleDot: 'rgba(255,255,255,0.3)' },
+  spec: { trackId: 'spec-track', dots: 6, label: 'consultants', activeDot: '#0D6E70', idleDot: '#D4DDE0' }
+};
 
 const PLAIN = {
   cardBg: '#FFFFFF', panelBg: '#F4F7F8',
@@ -480,6 +500,9 @@ class Component extends DCLogic {
     svcIndex: 0,
     svcAtStart: true,
     svcAtEnd: false,
+    specIndex: 0,
+    specAtStart: true,
+    specAtEnd: false,
     services: [
       // Each card runs bright at the top, where the category chip sits, to near
       // navy at the bottom, so the headline and white button land on their own
@@ -553,49 +576,72 @@ class Component extends DCLogic {
     }, (PATHS[name] || []).map((d, i) => React.createElement('path', { key: i, d })));
   }
 
-  // ---- services carousel -------------------------------------------------
-  // Native overflow scrolling does the hard parts for free: momentum, velocity
-  // handoff and interruptibility on touch, all off the main thread. The arrows
-  // and dots only nudge scrollLeft; they never own the position.
+  // ---- horizontal card carousels ------------------------------------------
+  // Shared by the services row and the specialists row. Native overflow
+  // scrolling does the hard parts for free: momentum, velocity handoff and
+  // interruptibility on touch, all off the main thread. The arrows and dots
+  // only nudge scrollLeft; they never own the position.
 
-  svcTrack() { return document.getElementById('svc-track'); }
+  carTrack(key) { return document.getElementById(CAROUSELS[key].trackId); }
 
-  svcStep() {
-    const t = this.svcTrack();
+  carStep(key) {
+    const t = this.carTrack(key);
     const card = t && t.firstElementChild;
     if (!card) return 0;
     const gap = parseFloat(getComputedStyle(t).columnGap) || 20;
     return card.getBoundingClientRect().width + gap;
   }
 
-  svcBehavior() {
+  carBehavior() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
   }
 
-  svcNudge(dir) {
-    const t = this.svcTrack();
-    if (t) t.scrollBy({ left: dir * this.svcStep(), behavior: this.svcBehavior() });
+  carNudge(key, dir) {
+    const t = this.carTrack(key);
+    if (t) t.scrollBy({ left: dir * this.carStep(key), behavior: this.carBehavior() });
   }
 
   // Dots map the whole scroll range, not one-per-card: with three cards in view
   // the last cards are never a scroll target, so per-card dots would strand the
   // final two permanently inactive.
-  svcSeek(i) {
-    const t = this.svcTrack();
+  carSeek(key, i) {
+    const t = this.carTrack(key);
     if (!t) return;
     const max = t.scrollWidth - t.clientWidth;
-    t.scrollTo({ left: (i / (SVC_DOTS - 1)) * max, behavior: this.svcBehavior() });
+    t.scrollTo({ left: (i / (CAROUSELS[key].dots - 1)) * max, behavior: this.carBehavior() });
   }
 
-  onSvcScroll(e) {
+  onCarScroll(key, e) {
     const t = e.currentTarget;
     const max = t.scrollWidth - t.clientWidth;
-    const index = max > 0 ? Math.round((t.scrollLeft / max) * (SVC_DOTS - 1)) : 0;
+    const index = max > 0 ? Math.round((t.scrollLeft / max) * (CAROUSELS[key].dots - 1)) : 0;
     const atStart = t.scrollLeft <= 2;
     const atEnd = t.scrollLeft >= max - 2;
-    if (index !== this.state.svcIndex || atStart !== this.state.svcAtStart || atEnd !== this.state.svcAtEnd) {
-      this.setState({ svcIndex: index, svcAtStart: atStart, svcAtEnd: atEnd });
+    if (index !== this.state[key + 'Index'] || atStart !== this.state[key + 'AtStart'] || atEnd !== this.state[key + 'AtEnd']) {
+      this.setState({ [key + 'Index']: index, [key + 'AtStart']: atStart, [key + 'AtEnd']: atEnd });
     }
+  }
+
+  // Flattened into renderVals as svcPrev / svcDots / specPrev / specDots ...
+  carouselVals(key) {
+    const cfg = CAROUSELS[key];
+    const atStart = this.state[key + 'AtStart'];
+    const atEnd = this.state[key + 'AtEnd'];
+    return {
+      [key + 'Prev']: () => this.carNudge(key, -1),
+      [key + 'Next']: () => this.carNudge(key, 1),
+      [key + 'OnScroll']: e => this.onCarScroll(key, e),
+      [key + 'PrevOpacity']: atStart ? '0.34' : '1',
+      [key + 'NextOpacity']: atEnd ? '0.34' : '1',
+      [key + 'PrevCursor']: atStart ? 'default' : 'pointer',
+      [key + 'NextCursor']: atEnd ? 'default' : 'pointer',
+      [key + 'Dots']: Array.from({ length: cfg.dots }, (_, i) => ({
+        aria: 'Show ' + cfg.label + ' ' + (i + 1) + ' of ' + cfg.dots,
+        width: this.state[key + 'Index'] === i ? '30px' : '7px',
+        bg: this.state[key + 'Index'] === i ? cfg.activeDot : cfg.idleDot,
+        go: () => this.carSeek(key, i)
+      }))
+    };
   }
 
   componentDidMount() {
@@ -659,19 +705,8 @@ class Component extends DCLogic {
       arrowLeftGlyph: this.icon('ArrowLeft', 19),
       arrowRightGlyph: this.icon('ArrowRight', 19),
       arrowSmallGlyph: this.icon('ArrowRight', 16),
-      svcPrev: () => this.svcNudge(-1),
-      svcNext: () => this.svcNudge(1),
-      onSvcScroll: e => this.onSvcScroll(e),
-      svcPrevOpacity: this.state.svcAtStart ? '0.34' : '1',
-      svcNextOpacity: this.state.svcAtEnd ? '0.34' : '1',
-      svcPrevCursor: this.state.svcAtStart ? 'default' : 'pointer',
-      svcNextCursor: this.state.svcAtEnd ? 'default' : 'pointer',
-      svcDots: Array.from({ length: SVC_DOTS }, (_, i) => ({
-        aria: 'Show services ' + (i + 1) + ' of ' + SVC_DOTS,
-        width: this.state.svcIndex === i ? '30px' : '7px',
-        bg: this.state.svcIndex === i ? '#6FE3C5' : 'rgba(255,255,255,0.3)',
-        go: () => this.svcSeek(i)
-      })),
+      ...this.carouselVals('svc'),
+      ...this.carouselVals('spec'),
       specialists: this.state.specialists,
       pricingCards: this.state.pricingCards,
       pricingRows: this.state.pricingRows,
