@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<script src="./support.js?v=3"></script>
 </head>
 <body>
 <x-dc>
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="responsive.css?v=6">
   <script src="./image-slot.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +32,9 @@
 <header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
   <nav data-r="nav" style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
     <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="secondread" style="height: 55px; width: 202px; display: block"></a>
+    <details data-r="navmenu">
+      <summary data-r="navburger" aria-label="Menu"><span></span><span></span><span></span></summary>
+    </details>
     <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;">
       <a href="How It Works.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">How it works</a>
       <a href="Specialists.dc.html" style="color: #0D6E70; font-size: 14px; font-weight: 600;">Specialists</a>
@@ -62,12 +65,12 @@
 
 <section style="background: #F4F7F8; padding: 48px 32px 88px;">
   <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 268px 1fr; gap: 32px; align-items: start;">
-    <aside style="position: sticky; top: 96px; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 26px 24px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+    <aside data-r="filterrail" style="position: sticky; top: 96px; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 26px 24px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
       <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
         <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #0A1F2C;">Body area</h2>
         <button type="button" onClick="{{ clearFilters }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #5A6B77; cursor: pointer; transition: color 140ms ease-out;" style-hover="color: #0D6E70;">Reset</button>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px;">
+      <div data-r="arealist" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px;">
         <sc-for list="{{ areaOptions }}" as="area" hint-placeholder-count="7">
           <button type="button" onClick="{{ area.select }}" style="appearance: none; width: 100%; display: flex; align-items: center; gap: 10px; padding: 9px 10px; border: none; border-radius: 10px; background: {{ area.rowBg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: background 140ms ease-out;" style-hover="background: #EEF7F7;">
             <span style="flex-shrink: 0; width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid {{ area.boxBorder }}; background: {{ area.boxBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ area.tick }}</span>

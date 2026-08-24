@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<script src="./support.js?v=3"></script>
 </head>
 <body>
 <x-dc>
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="responsive.css?v=6">
   <script src="portraits/data.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +33,9 @@
 <header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
   <nav data-r="nav" style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
     <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="secondread" style="height: 55px; width: 202px; display: block"></a>
+    <details data-r="navmenu">
+      <summary data-r="navburger" aria-label="Menu"><span></span><span></span><span></span></summary>
+    </details>
     <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;">
       <a href="How It Works.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">How it works</a>
       <a href="Specialists.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Specialists</a>
@@ -51,7 +54,7 @@
   <img src="uploads/Generated image 1 (5).png" alt="Consultant reviewing MRI images beside a scanner" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% center; opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;">
   <div style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(216,238,234,0.97) 0%, rgba(216,238,234,0.92) 34%, rgba(216,238,234,0.55) 52%, rgba(216,238,234,0.08) 68%, rgba(216,238,234,0) 100%); opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;"></div>
   <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 72px 32px 0;">
-    <div onMouseEnter="{{ pauseCarousel }}" onMouseLeave="{{ resumeCarousel }}" style="display: grid; align-items: stretch;">
+    <div onMouseEnter="{{ pauseCarousel }}" onMouseLeave="{{ resumeCarousel }}" onFocus="{{ pauseCarousel }}" onBlur="{{ resumeCarousel }}" style="display: grid; align-items: stretch;">
     <div style="grid-area: 1 / 1; display: grid; grid-template-columns: minmax(320px, 1.05fr) 0.95fr; gap: 56px; align-items: center; padding-bottom: 56px; min-height: 520px; opacity: {{ slide1Opacity }}; pointer-events: {{ slide1Events }}; transform: translateY({{ slide1Shift }}); transition: opacity 620ms ease-out, transform 620ms cubic-bezier(0.16,1,0.3,1);">
       <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
         <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Reports today from 14 UK consultants</span>
@@ -507,6 +510,10 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    // Auto-advancing carousels are vestibular triggers, so honour the OS setting
+    // and leave the visitor on slide 1 with the dots still operable by hand.
+    this.reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (this.reduceMotion.matches) return;
     this.heroTimer = setInterval(() => {
       if (this.state.paused) return;
       this.setState(s => ({ slide: (s.slide + 1) % 2 }));

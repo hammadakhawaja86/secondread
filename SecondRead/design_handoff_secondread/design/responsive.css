@@ -1,131 +1,531 @@
-/* SecondRead — responsive layer.
-   Inline styles win on specificity, so structural overrides are !important.
-   Keyed off the exact inline grid declarations plus data-r hooks. */
+/* ============================================================================
+   SecondRead — responsive layer
+   ----------------------------------------------------------------------------
+   The prototypes are authored with inline style= attributes, so every
+   structural override here needs !important to win specificity. Selectors are
+   keyed off data-r hooks where a stable handle exists, and off the exact
+   inline declaration where one does not.
+
+   Breakpoints (why each exists, not round numbers for their own sake):
+     <= 1180   narrow desktop — the 1200px container loses its side gutters
+     <= 1024   tablet landscape — two-column page shells stack
+     <=  900   the five nav links no longer fit one line -> drawer nav
+     <=  860   tablet portrait — hero, bento and card shells go single column
+     <=  620   phone — type, padding and CTAs go to their compact scale
+     <=  400   small phone — last squeeze on the header
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- 1. base */
+
+/* Safety net only — real overflow is fixed at the source below. `clip` does
+   not create a scroll container, so the sticky header keeps working. */
+html { overflow-x: clip; }
 
 img, svg, video { max-width: 100%; }
 * { -webkit-text-size-adjust: 100%; }
 
-/* Nav labels must never wrap mid-label at any width */
+/* Form controls inherit the box model they were laid out with */
+input, select, textarea, button { font-family: inherit; max-width: 100%; box-sizing: border-box; }
+textarea { resize: vertical; }
+
+/* Long unbreakable strings (emails, GMC refs) must not push the page wide */
+a[href^="mailto:"], a[href^="tel:"] { overflow-wrap: anywhere; }
+
+/* Nav labels never wrap mid-label at any width */
 [data-r="navlinks"] > a { white-space: nowrap; }
 [data-r="navlinks"] { min-width: 0; }
 
-/* ---------- Narrow desktop / tablet (<= 1180px) ---------- */
-@media (max-width: 1180px) {
-  /* header stays ONE line: tighten gaps, shrink the mark, drop the phone number */
-  [data-r="nav"] { flex-wrap: nowrap !important; gap: 20px !important; }
-  [data-r="nav"] > a:first-child img { height: 40px !important; width: auto !important; }
-  [data-r="navlinks"] {
-    gap: 18px !important;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+/* A 14px text link is a 17px hit target. Padding lifts it to ~37px without
+   changing the header's height, which the 42px CTA already sets. */
+[data-r="navlinks"] > a { padding: 10px 0; }
+
+/* NOTE ON SELECTORS
+   These pages render through React, which re-serialises every inline style:
+   `#E2E9EC` becomes `rgb(226, 233, 236)`, `rgba(0,0,0,.5)` gains spaces, and a
+   leading unitless `0` becomes `0px`. Attribute selectors below therefore match
+   the *serialised* form — colours as rgb(), and `padding: 0px 40px`, never
+   `padding: 0 40px`. A trailing `0` still matches by prefix, so
+   `padding: 72px 32px 0` is safe. Verify new selectors in the browser. */
+
+/* ----------------------------------------------------- 2. fluid typography
+
+   Display sizes scale continuously with the viewport instead of stepping at
+   each breakpoint. Tracking loosens as the type shrinks (tight tracking is a
+   large-size affordance; at 30px it just looks cramped) and leading opens up,
+   because short measures need more air between lines.                        */
+
+h1[style*="font-size: 48px"] { font-size: clamp(31px, 6.2vw, 48px) !important; }
+h2[style*="font-size: 44px"] { font-size: clamp(27px, 5.6vw, 44px) !important; }
+h1[style*="font-size: 42px"] { font-size: clamp(29px, 5.6vw, 42px) !important; }
+h1[style*="font-size: 40px"] { font-size: clamp(28px, 5.4vw, 40px) !important; }
+h1[style*="font-size: 34px"],
+h2[style*="font-size: 34px"] { font-size: clamp(24px, 4.2vw, 34px) !important; }
+h2[style*="font-size: 32px"] { font-size: clamp(23px, 4.0vw, 32px) !important; }
+h2[style*="font-size: 31px"],
+h2[style*="font-size: 30px"] { font-size: clamp(22px, 3.8vw, 30px) !important; }
+h2[style*="font-size: 28px"] { font-size: clamp(21px, 3.6vw, 28px) !important; }
+
+/* Price figures and the oversized numerals (bento steps, the "1 in 5" stat) */
+span[style*="font-size: 46px"] { font-size: clamp(34px, 4.8vw, 46px) !important; }
+span[style*="font-size: 42px"] { font-size: clamp(32px, 4.6vw, 42px) !important; }
+span[style*="font-size: 50px"],
+div[style*="font-size: 50px"] { font-size: clamp(36px, 5.2vw, 50px) !important; }
+
+@media (max-width: 860px) {
+  h1, h2 { line-height: 1.1 !important; letter-spacing: -0.015em !important; }
+  /* Lead paragraphs tighten from 18px so they stop competing with the H1 */
+  p[style*="font-size: 18px"] { font-size: 16.5px !important; }
+}
+
+@media (max-width: 620px) {
+  h1, h2 { line-height: 1.14 !important; letter-spacing: -0.01em !important; }
+  h3 { font-size: clamp(16.5px, 4.6vw, 20px) !important; }
+  p[style*="font-size: 18px"] { font-size: 16px !important; line-height: 1.6 !important; }
+  p[style*="font-size: 17.5px"] { font-size: 16px !important; }
+  p[style*="font-size: 16.5px"] { font-size: 15.5px !important; }
+}
+
+/* ------------------------------------------------ 3. press & hover feedback
+
+   support.js now emits :hover rules inside @media (hover: hover), so hover
+   lifts no longer latch on after a tap. What touch needs instead is a press
+   state — instant, on pointer-down, which is what :active gives us.          */
+
+@media (hover: none) {
+  a[href], button, summary, [role="button"] { -webkit-tap-highlight-color: transparent; }
+  a[style*="border-radius: 999px"]:active,
+  button[style*="border-radius: 999px"]:active,
+  button[style*="border-radius: 14px"]:active,
+  button[style*="border-radius: 12px"]:active,
+  a[style*="border-radius: 14px"]:active {
+    transform: scale(0.975);
+    transition: transform 100ms ease-out;
   }
-  [data-r="navlinks"]::-webkit-scrollbar { display: none; }
+}
+
+/* Every interactive target clears 44px, including the carousel dots, whose
+   6px pill is the visual, not the hit area. */
+button[style*="height: 6px"][style*="border-radius: 999px"] { position: relative; }
+button[style*="height: 6px"][style*="border-radius: 999px"]::after {
+  content: ""; position: absolute; inset: -19px -8px;
+}
+
+/* ------------------------------------------------------- 4. drawer nav base
+
+   The mobile menu reuses the existing [data-r="navlinks"] row as its panel —
+   revealed by the <details> sibling — so there is one set of links in the DOM
+   and the current-page highlight keeps working for free.                     */
+
+[data-r="navmenu"] { display: none; }
+
+[data-r="navburger"] {
+  list-style: none;
+  width: 44px; height: 44px;
+  box-sizing: border-box;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  border: 1px solid #D4DDE0;
+  border-radius: 12px;
+  background: #FFFFFF;
+  transition: transform 140ms ease-out, border-color 140ms ease-out;
+  -webkit-tap-highlight-color: transparent;
+}
+[data-r="navburger"]::-webkit-details-marker { display: none; }
+[data-r="navburger"]::marker { content: ""; }
+[data-r="navburger"]:active { transform: scale(0.94); }
+[data-r="navburger"]:focus-visible {
+  outline: none;
+  border-color: #0D6E70;
+  box-shadow: 0 0 0 3px rgba(13,110,112,0.18);
+}
+[data-r="navburger"] > span {
+  display: block; width: 18px; height: 2px;
+  border-radius: 2px; background: #0A1F2C;
+  transition: transform 260ms cubic-bezier(0.23,1,0.32,1), opacity 160ms ease-out;
+}
+/* Bars fold into a cross. Transitions (not keyframes) so a fast double-tap
+   retargets from the current position instead of restarting. */
+[open] > [data-r="navburger"] > span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+[open] > [data-r="navburger"] > span:nth-child(2) { opacity: 0; transform: scaleX(0.4); }
+[open] > [data-r="navburger"] > span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ------------------------------------------- 5. narrow desktop (<= 1180px) */
+
+@media (max-width: 1180px) {
+  [data-r="nav"] { flex-wrap: nowrap !important; gap: 20px !important; }
+  [data-r="nav"] > a:first-child img { height: 42px !important; width: auto !important; }
+  [data-r="navlinks"] { gap: 18px !important; }
   [data-r="navlinks"] > a { font-size: 13.5px !important; }
   [data-r="navcta"] { margin-left: auto !important; flex-shrink: 0; gap: 10px !important; }
   [data-r="navcta"] > a[href^="tel:"] { display: none !important; }
 }
 
-/* ---------- Tablet and below (<= 1024px) ---------- */
+/* -------------------------------------------------- 6. tablet (<= 1024px) */
+
 @media (max-width: 1024px) {
   [style*="max-width: 1200px"] { padding-left: 24px !important; padding-right: 24px !important; }
   section { padding-left: 24px !important; padding-right: 24px !important; }
 
-  /* content + sticky rail layouts stack */
+  /* Page shells built as content + rail collapse to one column */
   [style*="grid-template-columns: 268px 1fr"],
   [style*="grid-template-columns: 1fr 340px"],
   [style*="grid-template-columns: 1.35fr 1fr"],
   [style*="grid-template-columns: 1.5fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
-  [style*="position: sticky"][style*="top: 96px"],
-  aside[style*="position: sticky"] { position: static !important; }
+  [data-r="filterrail"],
+  [style*="position: sticky"][style*="top: 96px"] { position: static !important; }
 
-  /* bento: 3 -> 2 columns, no row spans */
+  /* Bento: 3 -> 2 columns, spans released */
   [style*="grid-auto-rows: minmax(232px"] { grid-template-columns: repeat(2, 1fr) !important; }
-  [style*="grid-auto-rows: minmax(232px"] > div { grid-column: span 1 !important; grid-row: span 1 !important; }
+  [style*="grid-auto-rows: minmax(232px"] > div {
+    grid-column: span 1 !important; grid-row: span 1 !important;
+  }
 
-  [style*="grid-template-columns: 1.4fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; gap: 36px !important; }
+  /* Footer: brand column keeps its width, the two link columns pair up */
+  [style*="grid-template-columns: 1.4fr 1fr 1fr"] {
+    grid-template-columns: 1fr 1fr !important; gap: 36px !important;
+  }
 
-  /* pricing comparison table scrolls rather than crushes */
-  [data-r="pricetable"] { overflow-x: auto !important; }
-  [data-r="pricetable"] > div { min-width: 720px; }
+  /* The pricing matrix scrolls as a unit rather than crushing four columns */
+  [data-r="pricetable"] {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  [data-r="pricetable"] > div { min-width: 700px; }
+
+  /* Sample-report facsimile loses its widest gutters early */
+  [style*="padding: 26px 40px"],
+  [style*="padding: 32px 40px"],
+  [style*="padding: 22px 40px"],
+  [style*="padding: 0px 40px"] { padding-left: 28px !important; padding-right: 28px !important; }
+  [style*="margin: 0px 40px"] { margin-left: 28px !important; margin-right: 28px !important; }
 }
 
-/* ---------- Small tablet / large phone (<= 860px) ---------- */
+/* The filter rail only earns two columns once it spans the full page width and
+   still has room for a 150px label. On a phone it stays a single tap list. */
+@media (min-width: 621px) and (max-width: 1024px) {
+  [data-r="arealist"] {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)) !important;
+    gap: 4px 16px !important;
+  }
+}
+
+/* ---------------------------------------- 7. drawer nav active (<= 900px)
+
+   Below this the five links stop fitting on one line with the logo and CTA.  */
+
+@media (max-width: 900px) {
+  [data-r="nav"] {
+    flex-wrap: wrap !important;
+    gap: 0 12px !important;
+    padding: 10px 24px !important;
+    row-gap: 0 !important;
+  }
+  [data-r="nav"] > a:first-child { flex-shrink: 1; min-width: 0; min-height: 44px; }
+  [data-r="nav"] > a:first-child img { height: 38px !important; width: auto !important; }
+
+  [data-r="navcta"] { order: 2; margin-left: auto !important; flex-shrink: 0; gap: 8px !important; }
+  [data-r="navcta"] > a[href^="tel:"] { display: none !important; }
+  [data-r="navcta"] > a:last-child {
+    min-height: 42px !important; padding: 10px 16px !important; font-size: 13.5px !important;
+  }
+
+  [data-r="navmenu"] { display: block; order: 3; flex-shrink: 0; }
+
+  /* Closed: the link row is the drawer's content, parked */
+  [data-r="navlinks"] { display: none !important; }
+
+  /* Open: it becomes a full-width sheet under the bar. Opaque, not another
+     translucent layer on top of the header's — that would kill legibility. */
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] {
+    display: flex !important;
+    order: 4;
+    width: 100%;
+    flex-direction: column !important;
+    /* the row's inline align-items: center would centre the links in the sheet */
+    align-items: stretch !important;
+    gap: 0 !important;
+    margin: 10px -24px 0 !important;
+    padding: 4px 24px 8px !important;
+    border-top: 1px solid #E2E9EC;
+    background: #FFFFFF;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > a {
+    display: flex; align-items: center;
+    min-height: 52px;
+    /* min-height already sets the target; the base row padding would stack on top */
+    padding: 0 !important;
+    font-size: 16px !important;
+    border-bottom: 1px solid #EEF2F4;
+  }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > a:last-child { border-bottom: none; }
+
+  /* Start Flow chrome: the reassurance line is the first thing to go */
+  [data-r="flowbar"] { gap: 12px !important; padding: 12px 24px !important; }
+  [data-r="flowbar"] > a:first-child img { height: 38px !important; width: auto !important; }
+  [data-r="flowassure"] { display: none !important; }
+}
+
+/* ------------------------------------------ 8. tablet portrait (<= 860px) */
+
 @media (max-width: 860px) {
+  /* Hero: two columns become one, and the 520px floor is released so the
+     section is only as tall as its content */
   [style*="grid-template-columns: minmax(320px, 1.05fr) 0.95fr"] {
     grid-template-columns: 1fr !important;
-    gap: 32px !important;
+    gap: 28px !important;
     min-height: 0 !important;
-    padding-bottom: 40px !important;
+    padding-bottom: 36px !important;
+    /* Both slides share one grid cell so the stage is as tall as the taller of
+       the two. Centred, the shorter slide floats with dead space above its
+       headline — so anchor both to the top. */
+    align-items: start !important;
   }
+  /* The reassurance card no longer needs to hug a 260px column floor */
+  [style*="min-height: 260px"] {
+    min-height: 0 !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  /* Hero top padding was sized for a 520px stage */
+  [style*="padding: 72px 32px 0"] { padding-top: 36px !important; }
+
+  /* The scrim fades left-to-right, which only protects a two-column hero.
+     Stacked, the headline sits over the middle of the photo — so the scrim
+     turns vertical and keeps the type legible. */
+  [style*="linear-gradient(100deg"] {
+    background: linear-gradient(180deg,
+      rgba(216,238,234,0.97) 0%,
+      rgba(216,238,234,0.93) 46%,
+      rgba(216,238,234,0.70) 78%,
+      rgba(216,238,234,0.45) 100%) !important;
+  }
+
   [style*="grid-template-columns: 240px 1fr"],
   [style*="grid-template-columns: 1fr 1fr"],
   [style*="grid-template-columns: 132px 1fr"] {
     grid-template-columns: 1fr !important;
   }
-  /* specialist list cards: portrait above the text */
   [style*="grid-template-columns: 132px 1fr"] > div:first-child { width: 132px !important; }
 
   [style*="grid-auto-rows: minmax(232px"] { grid-template-columns: 1fr !important; }
 
-  /* below 860 the bar wraps deliberately: links become their own scrolling row */
-  [data-r="nav"] { flex-wrap: wrap !important; gap: 12px 20px !important; }
-  [data-r="navlinks"] {
-    order: 3;
-    width: 100%;
-    padding-bottom: 4px;
-    gap: 20px !important;
+  /* Stepper: three labels fit if they may wrap — better than a scrolling
+     progress indicator, which hides where you are in the flow */
+  [data-r="stepper"] { padding-left: 16px !important; padding-right: 16px !important; gap: 4px !important; }
+  [data-r="stepper"] > button {
+    flex-direction: column !important;
+    gap: 7px !important;
+    padding: 12px 4px !important;
+    text-align: center;
   }
+  [data-r="stepper"] > button > span:last-child { font-size: 12.5px !important; line-height: 1.25; }
 
-  [data-r="stepper"] { overflow-x: auto !important; scrollbar-width: none; }
-  [data-r="stepper"]::-webkit-scrollbar { display: none; }
-  [data-r="stepper"] > button { min-width: 168px; }
-
-  /* stat strip and 3-up button grids */
-  [style*="grid-template-columns: repeat(3, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  /* Stat strip and other hard 3-ups drop to two */
+  [style*="repeat(3, 1fr)"][style*="gap: 1px"] { grid-template-columns: repeat(3, 1fr) !important; }
 }
 
-/* ---------- Phone (<= 620px) ---------- */
+/* -------------------------------------------------- 9. phone (<= 620px) */
+
 @media (max-width: 620px) {
   [style*="max-width: 1200px"] { padding-left: 18px !important; padding-right: 18px !important; }
   section { padding-left: 18px !important; padding-right: 18px !important; }
-  section[style*="padding: 80px"], section[style*="padding: 72px"], section[style*="padding: 76px"] {
-    padding-top: 52px !important; padding-bottom: 52px !important;
-  }
 
-  h1 { font-size: clamp(28px, 8.4vw, 36px) !important; line-height: 1.14 !important; }
-  h2 { font-size: clamp(23px, 6.6vw, 28px) !important; line-height: 1.2 !important; }
-  h3 { font-size: clamp(17px, 4.8vw, 20px) !important; }
+  /* Vertical rhythm compresses ~35% so the page does not become a corridor */
+  section[style*="padding: 80px"],
+  section[style*="padding: 76px"],
+  section[style*="padding: 72px"] { padding-top: 52px !important; padding-bottom: 52px !important; }
+  [style*="padding: 80px 32px"] { padding-top: 52px !important; padding-bottom: 52px !important; }
+  [style*="padding: 60px 32px"] { padding-top: 44px !important; padding-bottom: 44px !important; }
+  [style*="padding: 64px 32px"] { padding-top: 44px !important; padding-bottom: 44px !important; }
 
-  [style*="grid-template-columns: repeat(3, 1fr)"],
+  /* Hard 3-up and 4-up grids go single column */
+  [style*="grid-template-columns: repeat(3, 1fr)"][style*="gap: 1px"],
   [style*="grid-template-columns: 1.4fr 1fr 1fr"] { grid-template-columns: 1fr !important; }
 
-  /* every card / panel loses its wide padding */
-  [style*="padding: 44px 48px"] { padding: 26px 22px !important; }
-  [style*="padding: 40px 36px"], [style*="padding: 34px 36px"], [style*="padding: 32px 36px"] { padding: 26px 22px !important; }
-  [style*="padding: 32px 40px"], [style*="padding: 30px 32px"], [style*="padding: 30px 36px"] { padding: 24px 20px !important; }
-  [style*="padding: 0 40px"] { padding-left: 20px !important; padding-right: 20px !important; }
-  [style*="padding: 26px 40px"], [style*="padding: 22px 40px"], [style*="padding: 20px 40px"] { padding-left: 20px !important; padding-right: 20px !important; }
-  [style*="margin: 0 40px"] { margin-left: 20px !important; margin-right: 20px !important; }
-  [style*="padding: 32px 34px"], [style*="padding: 34px"], [style*="padding: 32px"] { padding: 24px 20px !important; }
+  /* ...except the scan-type picker, which reads far better as a 2x3 block of
+     short labels than as six full-width bars */
+  [style*="grid-template-columns: repeat(3, 1fr)"][style*="gap: 10px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 
-  /* full-width CTAs so nothing overflows */
+  /* Card and panel padding steps down to a phone scale */
+  [style*="padding: 44px 48px"] { padding: 26px 22px !important; }
+  [style*="padding: 40px 36px"],
+  [style*="padding: 34px 36px"],
+  [style*="padding: 32px 36px"],
+  [style*="padding: 32px 34px"] { padding: 24px 20px !important; }
+  [style*="padding: 30px 32px"],
+  [style*="padding: 30px 36px"],
+  [style*="padding: 28px 30px"],
+  [style*="padding: 30px 34px"] { padding: 22px 18px !important; }
+  [style*="padding: 34px"], [style*="padding: 32px"], [style*="padding: 30px"] { padding: 22px 18px !important; }
+  [style*="padding: 28px"] { padding: 20px 18px !important; }
+  [style*="padding: 26px 24px"] { padding: 20px 18px !important; }
+
+  /* Report facsimile gutters */
+  [style*="padding: 26px 40px"],
+  [style*="padding: 32px 40px"],
+  [style*="padding: 22px 40px"],
+  [style*="padding: 20px 40px"],
+  [style*="padding: 0px 40px"] { padding-left: 18px !important; padding-right: 18px !important; }
+  [style*="margin: 0px 40px"] { margin-left: 18px !important; margin-right: 18px !important; }
+
+  /* Dropzone was sized for a desktop column */
+  [style*="padding: 48px 32px"] { padding: 32px 18px !important; }
+
+  /* Primary CTAs go full width — a 300px pill next to a 339px column reads
+     as an accident, and thumb targets want the whole row */
   a[style*="border-radius: 999px"][style*="min-height: 50px"],
   a[style*="border-radius: 999px"][style*="min-height: 52px"],
+  a[style*="border-radius: 999px"][style*="min-height: 48px"],
   button[style*="border-radius: 999px"][style*="min-height: 50px"],
-  button[style*="border-radius: 999px"][style*="min-height: 52px"] {
+  button[style*="border-radius: 999px"][style*="min-height: 52px"],
+  button[style*="border-radius: 999px"][style*="min-height: 48px"] {
+    width: 100%; justify-content: center;
+  }
+  /* Card action rows (Request Dr X / Profile) hold 44px pills. Side by side
+     they wrap to two mismatched widths, so give each the full row. */
+  a[style*="min-height: 44px"][style*="border-radius: 999px"],
+  button[style*="min-height: 44px"][style*="border-radius: 999px"] {
     width: 100%; justify-content: center;
   }
 
-  /* footer + bottom bar stack */
-  [style*="justify-content: space-between"][style*="flex-wrap: wrap"] { justify-content: flex-start !important; }
+  /* ...but never the compact ones in the header */
+  [data-r="navcta"] > a, [data-r="nav"] a { width: auto !important; }
 
-  /* hero photo crops to the scanner, not empty wall */
-  img[alt="Consultant reviewing MRI images beside a scanner"] { object-position: 68% center !important; }
+  /* Rows that were space-between at desktop stack instead of squeezing */
+  [style*="justify-content: space-between"][style*="flex-wrap: wrap"] {
+    justify-content: flex-start !important;
+  }
 
-  /* specialist portraits + big step numerals scale down */
+  /* Trust bar: the 1px rules read as debris once the row wraps */
+  span[style*="width: 1px"][style*="height: 18px"] { display: none !important; }
+  [style*="gap: 28px"][style*="justify-content: center"] { gap: 10px 18px !important; }
+
+  /* Hero reassurance row: wrapped, its middot separators orphan onto their own
+     line. Three short stacked lines read cleanly and drop the dots. */
+  [style*="gap: 22px"][style*="font-size: 13px"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 7px !important;
+  }
+  [style*="gap: 22px"][style*="font-size: 13px"] > span[style*="color: rgb(108, 124, 135)"] {
+    display: none !important;
+  }
+
+  /* Pricing matrix: the feature label sticks so a row keeps its meaning while
+     the tiers scroll past it. Without this you scroll away the only column
+     that says what the ticks refer to. */
+  [data-r="pricetable"] > div {
+    min-width: 545px;
+    grid-template-columns: 148px 1fr 1fr 1fr !important;
+  }
+  [data-r="pricetable"] > div > div:first-child {
+    position: sticky; left: 0; z-index: 2;
+    background: #FFFFFF;
+    border-right: 1px solid #E2E9EC;
+    padding: 14px 14px !important;
+    font-size: 13.5px !important;
+  }
+  [data-r="pricetable"] > div[style*="rgb(244, 247, 248)"] > div:first-child {
+    background: #F4F7F8;
+  }
+
+  /* Hero photo crops to the scanner rather than empty wall */
+  img[alt="Consultant reviewing MRI images beside a scanner"] { object-position: 66% center !important; }
+
+  /* Avatars and oversized numerals scale with the column */
   [style*="width: 128px; height: 128px"] { width: 104px !important; height: 104px !important; }
-  [style*="font-size: 50px; font-weight: 700; line-height: 0.9"] { font-size: 40px !important; }
+  [style*="width: 240px"][style*="height: 292px"] { width: 100% !important; max-width: 240px; height: 268px !important; }
+
+  /* Specialist directory: portrait and text share the row again, smaller */
+  [style*="grid-template-columns: 132px 1fr"] { gap: 16px !important; }
+}
+
+/* ------------------------------------- 10. safe areas (notch / home bar) */
+
+@supports (padding: max(0px)) {
+  @media (max-width: 620px) {
+    section, [style*="max-width: 1200px"] {
+      padding-left: max(18px, env(safe-area-inset-left)) !important;
+      padding-right: max(18px, env(safe-area-inset-right)) !important;
+    }
+    footer { padding-bottom: calc(28px + env(safe-area-inset-bottom)) !important; }
+  }
+}
+
+/* -------------------------------------------- 11. small phone (<= 400px) */
+
+@media (max-width: 400px) {
+  [data-r="nav"] { gap: 0 8px !important; padding: 9px 16px !important; }
+  [data-r="nav"] > a:first-child img { height: 32px !important; }
+  [data-r="navcta"] > a:last-child {
+    min-height: 40px !important; padding: 9px 13px !important; font-size: 12.5px !important;
+  }
+  [data-r="navburger"] { width: 44px; height: 44px; }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] { margin-left: -16px !important; margin-right: -16px !important; padding-left: 16px !important; padding-right: 16px !important; }
+
+  [data-r="flowbar"] { padding: 10px 16px !important; }
+  [data-r="flowbar"] > a:first-child img { height: 32px !important; }
+
+  /* Below this the 2x3 picker labels start truncating */
+  [style*="grid-template-columns: repeat(3, 1fr)"][style*="gap: 10px"] { gap: 8px !important; }
+  [data-r="stepper"] > button > span:last-child { font-size: 11.5px !important; }
+}
+
+/* ------------------------------------ 12. short viewports / phone landscape */
+
+@media (max-height: 460px) and (orientation: landscape) {
+  header[style*="position: sticky"] { position: static !important; }
+  [style*="grid-template-columns: minmax(320px, 1.05fr) 0.95fr"] { min-height: 0 !important; }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] { max-height: 56vh; }
+}
+
+/* ------------------------------------------- 13. user motion & contrast
+
+   Reduced motion means gentler, not absent: colour and opacity changes that
+   aid comprehension stay, movement goes. The hero carousel also stops
+   auto-advancing (handled in index.html's mount).                            */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 120ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Kill positional/scale motion, keep the fades */
+  [style*="transition"]:hover { transform: none !important; }
+  [data-r="navburger"] > span { transition-duration: 0.01ms !important; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  header[style*="backdrop-filter"] {
+    background: #FFFFFF !important;
+    backdrop-filter: none !important;
+  }
+  [style*="rgba(255, 255, 255, 0.96)"] { background: #FFFFFF !important; }
+  [style*="rgba(255, 255, 255, 0.88)"] { background: #FFFFFF !important; }
+}
+
+@media (prefers-contrast: more) {
+  [style*="rgb(226, 233, 236)"] { border-color: #9AA9B2 !important; }
+  [style*="color: rgb(90, 107, 119)"],
+  [style*="color: rgb(108, 124, 135)"] { color: #3C4A54 !important; }
+}
+
+/* Visible focus for keyboard users on every interactive element */
+a:focus-visible, button:focus-visible, select:focus-visible,
+input:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 2px solid #0D6E70;
+  outline-offset: 2px;
+  border-radius: 6px;
 }
