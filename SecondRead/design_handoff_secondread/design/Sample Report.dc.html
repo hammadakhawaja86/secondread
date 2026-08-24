@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
+  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
+  <style>
+    body { margin: 0; padding: 0; background: #F4F7F8; font-family: 'Inter', sans-serif; }
+    a { color: #095458; text-decoration: none; }
+    a:hover { color: #0D6E70; text-decoration: underline; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+  </style>
+</helmet>
+
+<header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
+  <nav data-r="nav" style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
+    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="secondread" style="height: 55px; width: 202px; display: block"></a>
+    <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;">
+      <a href="How It Works.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">How it works</a>
+      <a href="Specialists.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Specialists</a>
+      <a href="Pricing.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Pricing</a>
+      <a href="Sample Report.dc.html" style="color: #0D6E70; font-size: 14px; font-weight: 600;">Sample report</a>
+      <a href="FAQs.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">FAQs</a>
+    </div>
+    <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;">
+      <a href="tel:+441438904272" style="font-size: 14px; font-weight: 600;">01438 904272</a>
+      <a href="Start Flow.dc.html" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 4px 14px rgba(13,110,112,0.28); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start my second read</a>
+    </div>
+  </nav>
+</header>
+
+<section style="background: linear-gradient(135deg, #E4F2F2 0%, #EEF7F7 55%, #F7FBFB 100%); border-bottom: 1px solid #E2E9EC;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 40px 32px 64px;">
+    <div style="display: flex; gap: 8px; align-items: center; font-size: 13px; color: #5A6B77; margin-bottom: 28px;">
+      <a href="index.html" style="color: #5A6B77;">Home</a>
+      <span>/</span>
+      <span style="color: #0A1F2C; font-weight: 600;">Sample report</span>
+    </div>
+    <div style="max-width: 820px;">
+      <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">This is exactly what you get</h1>
+      <p style="margin: 0 0 32px; font-size: 18px; line-height: 1.65; color: #173B4F;">A real report, anonymised with the patient's written consent. Two audiences, one document: the clinical section your doctor needs, then the section written for you.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px 28px; margin-bottom: 32px; max-width: 760px;">
+        <sc-for list="{{ guarantees }}" as="item" hint-placeholder-count="4">
+          <div style="display: flex; gap: 11px; align-items: flex-start;">
+            <span style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; display: flex; align-items: center; justify-content: center; color: #0D6E70; margin-top: 1px;">{{ checkGlyph }}</span>
+            <span style="font-size: 15px; line-height: 1.5; color: #173B4F;">{{ item.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <button type="button" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Download the full sample (PDF)</button>
+    </div>
+  </div>
+</section>
+
+<section style="background: #F4F7F8; padding: 72px 32px 88px;">
+  <div style="max-width: 900px; margin: 0 auto; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; box-shadow: 0 12px 36px rgba(10,31,44,0.1); overflow: hidden;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 26px 40px; border-bottom: 2px solid #0D6E70;">
+      <img src="logo-secondread.svg" alt="secondread" style="height: 55px; width: 202px; display: block">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5A6B77; letter-spacing: 0.02em;">SR-2026-0418 · 4 August 2026, 14:02</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #E2E9EC;">
+      <sc-for list="{{ meta }}" as="field" hint-placeholder-count="4">
+        <div style="background: #FFFFFF; padding: 20px 40px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 6px;">{{ field.label }}</div>
+          <div style="font-size: 15px; font-weight: 600; color: #0A1F2C; line-height: 1.45;">{{ field.value }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding: 32px 40px; border-top: 1px solid #E2E9EC;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 10px;">Clinical question</div>
+      <p style="margin: 0; font-size: 15.5px; line-height: 1.7; color: #173B4F;">Previous report raised a “possible left temporal lesion”. Patient asks whether this is a tumour and whether it has changed since 2024.</p>
+    </div>
+    <div style="padding: 0 40px 32px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 10px;">Findings</div>
+      <p style="margin: 0; font-size: 15.5px; line-height: 1.7; color: #173B4F;">The area described in the left temporal region corresponds to a prominent developmental venous anomaly, measuring 8mm, unchanged from the 2024 study (8mm). No mass effect, no restricted diffusion, no abnormal enhancement. Remaining brain parenchyma, ventricles and skull base are normal for age.</p>
+    </div>
+    <div style="margin: 0 40px 32px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 16px; padding: 28px 30px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 10px;">What this means for you</div>
+      <p style="margin: 0; font-size: 16px; line-height: 1.75; color: #06313A;">The thing seen on your scan is a normal variation in the way a small vein has formed. It is not a tumour and it has not grown since 2024. It does not need treatment and it is not the cause of your headaches. I would not repeat the scan unless your symptoms change.</p>
+    </div>
+    <div style="padding: 0 40px 32px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 14px;">Recommended next steps</div>
+      <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; counter-reset: step;">
+        <sc-for list="{{ nextSteps }}" as="step" hint-placeholder-count="3">
+          <li style="display: flex; gap: 12px; align-items: flex-start;">
+            <span style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: #E4F2F2; color: #095458; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px;">{{ step.n }}</span>
+            <span style="font-size: 15.5px; line-height: 1.6; color: #173B4F;">{{ step.text }}</span>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+    <div style="padding: 22px 40px 28px; border-top: 1px solid #E2E9EC; background: #FAFCFC;">
+      <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #5A6B77;">This report is a radiological opinion based on the images supplied and does not replace clinical assessment by your treating doctor.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="background: #06131C; color: #FFFFFF; padding: 60px 32px 28px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 44px;">
+      <div>
+        <img src="logo-secondread-light.svg" alt="secondread" style="height: 61px; width: 176px; display: block; margin-bottom: 14px">
+        <p style="margin: 0; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.72); max-width: 340px;">Independent subspecialist radiology reporting for patients, families and clinics across the UK and internationally.</p>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Service</h4>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+          <li><a href="How It Works.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">How it works</a></li>
+          <li><a href="Specialists.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Specialists</a></li>
+          <li><a href="Pricing.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Pricing</a></li>
+          <li><a href="Sample Report.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Sample report</a></li>
+          <li><a href="FAQs.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Contact</h4>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85);">
+          <a href="mailto:info@secondread.co.uk" style="color: rgba(255,255,255,0.85);">info@secondread.co.uk</a>
+          <a href="tel:+441438904272" style="color: rgba(255,255,255,0.85);">01438 904272</a>
+          <span style="color: rgba(255,255,255,0.72);">Mon–Sun, 09:00–20:00</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
+      <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <div style="display: flex; gap: 18px;">
+        <a href="#" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="#" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="#" style="color: rgba(255,255,255,0.72);">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+class Component extends DCLogic {
+  state = {
+    guarantees: [
+      { text: 'Named consultant, GMC number, date and time signed' },
+      { text: 'Comparison with prior imaging, with measurements' },
+      { text: 'Direct answers to the questions you asked' },
+      { text: 'Recommended next steps, in order' }
+    ],
+    meta: [
+      { label: 'Patient', value: 'A. A., DOB 12/04/1974' },
+      { label: 'Reporting consultant', value: 'Dr D. Mallon, FRCR, GMC 7012345' },
+      { label: 'Study', value: 'MRI brain with contrast, 18/01/2026' },
+      { label: 'Compared with', value: 'MRI brain, 03/2024' }
+    ],
+    nextSteps: [
+      { n: '1', text: 'Share this report with your GP.' },
+      { n: '2', text: 'Ask your GP to review headache causes unrelated to imaging.' },
+      { n: '3', text: 'No further imaging required on radiological grounds.' }
+    ]
+  };
+
+  renderVals() {
+    return {
+      guarantees: this.state.guarantees,
+      meta: this.state.meta,
+      nextSteps: this.state.nextSteps,
+      checkGlyph: React.createElement('svg', {
+        width: 13, height: 13, viewBox: '0 0 24 24', fill: 'none',
+        stroke: 'currentColor', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round'
+      }, React.createElement('path', { d: 'M20 6 9 17l-5-5' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

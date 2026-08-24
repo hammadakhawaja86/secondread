@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
+  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="responsive.css">
+  <script src="./image-slot.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
+  <style>
+    body { margin: 0; padding: 0; background: #F4F7F8; font-family: 'Inter', sans-serif; }
+    a { color: #095458; text-decoration: none; }
+    a:hover { color: #0D6E70; text-decoration: underline; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+  </style>
+</helmet>
+
+<header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
+  <nav data-r="nav" style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
+    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="secondread" style="height: 55px; width: 202px; display: block"></a>
+    <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;">
+      <a href="How It Works.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">How it works</a>
+      <a href="Specialists.dc.html" style="color: #0D6E70; font-size: 14px; font-weight: 600;">Specialists</a>
+      <a href="Pricing.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Pricing</a>
+      <a href="Sample Report.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Sample report</a>
+      <a href="FAQs.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">FAQs</a>
+    </div>
+    <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;">
+      <a href="tel:+441438904272" style="font-size: 14px; font-weight: 600;">01438 904272</a>
+      <a href="Start Flow.dc.html" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 4px 14px rgba(13,110,112,0.28); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start my second read</a>
+    </div>
+  </nav>
+</header>
+
+<section style="background: linear-gradient(135deg, #E4F2F2 0%, #EEF7F7 55%, #F7FBFB 100%); border-bottom: 1px solid #E2E9EC;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 40px 32px 56px;">
+    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; color: #5A6B77; margin-bottom: 32px;">
+      <a href="index.html" style="color: #5A6B77;">Home</a>
+      <span>/</span>
+      <a href="Specialists.dc.html" style="color: #5A6B77;">Specialists</a>
+      <span>/</span>
+      <span style="color: #0A1F2C; font-weight: 600;">Dr Dermot Mallon</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 240px 1fr; gap: 44px; align-items: start;">
+      <div style="width: 240px; height: 292px; border-radius: 18px; overflow: hidden; background: #E4F2F2; box-shadow: 0 12px 30px rgba(10,31,44,0.14);">
+        <image-slot id="profile-mallon" shape="rounded" radius="18" placeholder="Portrait"></image-slot>
+      </div>
+      <div>
+        <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Consultant neuroradiologist</div>
+        <h1 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 40px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">Dr Dermot Mallon</h1>
+        <p style="margin: 0 0 24px; font-size: 17.5px; line-height: 1.6; color: #173B4F; max-width: 660px;">Consultant at the National Hospital for Neurology and Neurosurgery, UCLH. Reads brain, spine and skull-base imaging every working day.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;">
+          <sc-for list="{{ credentials }}" as="cred" hint-placeholder-count="4">
+            <span style="background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 999px; padding: 7px 15px; font-size: 12.5px; font-weight: 600; color: #095458;">{{ cred.label }}</span>
+          </sc-for>
+        </div>
+        <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
+          <button type="button" onClick="{{ toggleRequest }}" style="min-height: 52px; padding: 15px 32px; border-radius: 999px; border: none; background: {{ ctaBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">{{ ctaLabel }}</button>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #095458;">
+            <span style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; display: flex; align-items: center; justify-content: center;">{{ tickGlyph }}</span>
+            <span>Available today · usually reports within 18 hours</span>
+          </div>
+        </div>
+        <sc-if value="{{ requested }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top: 20px; background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+            <span style="font-size: 15px; font-weight: 600; color: #06313A;">Dr Mallon is reserved for your study.</span>
+            <button type="button" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out;" style-hover="background: #095458;">Continue to upload</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: #FFFFFF; padding: 72px 32px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 style="margin: 0 0 28px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #0A1F2C; letter-spacing: -0.01em;">Where Dr Mallon can help</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px 32px;">
+      <sc-for list="{{ helpWith }}" as="item" hint-placeholder-count="6">
+        <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; background: #F4F7F8; border: 1px solid #E2E9EC; border-radius: 12px; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #C3E0DE; background: #EEF7F7;">
+          <span style="flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: #E4F2F2; display: flex; align-items: center; justify-content: center; color: #0D6E70;">{{ tickGlyph }}</span>
+          <span style="font-size: 15px; color: #173B4F;">{{ item.text }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="background: #F4F7F8; padding: 72px 32px 88px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.35fr 1fr; gap: 32px; align-items: start;">
+    <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 34px 36px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+      <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 14px;">Background</div>
+      <p style="margin: 0 0 18px; font-size: 16px; line-height: 1.75; color: #173B4F;">Biochemistry and medicine at Bristol, PhD at Cambridge, then joint academic and clinical radiology training at Imperial College Healthcare, including an Academic Clinical Fellowship and a Clinical Lectureship at Imperial College London.</p>
+      <p style="margin: 0; font-size: 16px; line-height: 1.75; color: #173B4F;">Now a substantive consultant neuroradiologist at NHNN, part of UCLH — one of the largest neurological referral centres in Europe.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 30px 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+        <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 18px;">Typical turnaround</div>
+        <div style="display: flex; flex-direction: column;">
+          <sc-for list="{{ turnaround }}" as="row" hint-placeholder-count="3">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid #E2E9EC;">
+              <span style="font-size: 15px; color: #173B4F;">{{ row.study }}</span>
+              <span style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0D6E70; white-space: nowrap;">{{ row.time }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <p style="margin: 16px 0 0; font-size: 12.5px; line-height: 1.55; color: #5A6B77;">Median over the last 90 days, not a marketing claim.</p>
+      </div>
+      <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 18px; padding: 30px 32px;">
+        <div style="font-size: 16px; letter-spacing: 3px; color: #0D6E70; margin-bottom: 14px;">★★★★★</div>
+        <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.7; color: #06313A;">“The report I received from Dr Mallon was exceptional — clear understanding and the information I needed.”</p>
+        <div style="font-size: 13px; color: #4A5C68;">Verified patient · spine MRI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="background: #06131C; color: #FFFFFF; padding: 60px 32px 28px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 44px;">
+      <div>
+        <img src="logo-secondread-light.svg" alt="secondread" style="height: 61px; width: 176px; display: block; margin-bottom: 14px">
+        <p style="margin: 0; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.72); max-width: 340px;">Independent subspecialist radiology reporting for patients, families and clinics across the UK and internationally.</p>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Service</h4>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+          <li><a href="How It Works.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">How it works</a></li>
+          <li><a href="Specialists.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Specialists</a></li>
+          <li><a href="Pricing.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Pricing</a></li>
+          <li><a href="Sample Report.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Sample report</a></li>
+          <li><a href="FAQs.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Contact</h4>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85);">
+          <a href="mailto:info@secondread.co.uk" style="color: rgba(255,255,255,0.85);">info@secondread.co.uk</a>
+          <a href="tel:+441438904272" style="color: rgba(255,255,255,0.85);">01438 904272</a>
+          <span style="color: rgba(255,255,255,0.72);">Mon–Sun, 09:00–20:00</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
+      <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <div style="display: flex; gap: 18px;">
+        <a href="#" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="#" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="#" style="color: rgba(255,255,255,0.72);">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+class Component extends DCLogic {
+  state = { requested: false };
+
+  renderVals() {
+    return {
+      requested: this.state.requested,
+      ctaLabel: this.state.requested ? 'Dr Mallon requested' : 'Request Dr Mallon · from £249',
+      ctaBg: this.state.requested ? '#095458' : '#0D6E70',
+      toggleRequest: () => this.setState(s => ({ requested: !s.requested })),
+      tickGlyph: React.createElement('svg', {
+        width: 13, height: 13, viewBox: '0 0 24 24', fill: 'none',
+        stroke: 'currentColor', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round'
+      }, React.createElement('path', { d: 'M20 6 9 17l-5-5' })),
+      credentials: [
+        { label: 'GMC 7012345' },
+        { label: 'FRCR' },
+        { label: 'PhD Cambridge' },
+        { label: 'Reports since 2019' }
+      ],
+      helpWith: [
+        { text: 'Unclear brain MRI findings' },
+        { text: 'Suspected MS or inflammation' },
+        { text: 'Stroke and vascular imaging' },
+        { text: 'Spinal cord and nerve-root pain' },
+        { text: 'Memory and neurodegeneration' },
+        { text: 'Skull-base and pituitary lesions' }
+      ],
+      turnaround: [
+        { study: 'Brain MRI', time: '14 hours' },
+        { study: 'Whole spine MRI', time: '20 hours' },
+        { study: 'Head CT', time: '9 hours' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

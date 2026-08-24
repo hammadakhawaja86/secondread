@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "4173", "--directory", "nester-app"],
       "port": 4173
+    },
+    {
+      "name": "SecondRead",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4174", "--directory", "SecondRead/design_handoff_secondread/design"],
+      "port": 4174
     }
   ]
 }

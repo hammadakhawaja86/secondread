@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
+  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
+  <style>
+    body { margin: 0; padding: 0; background: #F4F7F8; font-family: 'Inter', sans-serif; }
+    a { color: #095458; text-decoration: none; }
+    a:hover { color: #0D6E70; text-decoration: underline; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    input::placeholder, textarea::placeholder { color: #6C7C87; }
+  </style>
+</helmet>
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #E2E9EC;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="secondread" style="height: 55px; width: 202px; display: block"></a>
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #4A5C68;">
+      <span style="display: flex; color: #0D6E70;">{{ lockGlyph }}</span>
+      <span>Encrypted · UK data centres · you can leave and return</span>
+    </div>
+    <button type="button" style="margin-left: auto; min-height: 40px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Save and finish later</button>
+  </div>
+  <div style="border-top: 1px solid #E2E9EC; background: #FAFCFC;">
+    <div data-r="stepper" style="max-width: 1200px; margin: 0 auto; padding: 0 32px; display: flex; gap: 8px; align-items: stretch;">
+      <sc-for list="{{ stepper }}" as="s" hint-placeholder-count="3">
+        <button type="button" onClick="{{ s.go }}" style="appearance: none; flex: 1; background: none; border: none; border-bottom: 3px solid {{ s.rule }}; padding: 16px 8px; display: flex; align-items: center; gap: 12px; cursor: {{ s.cursor }}; font-family: 'Inter', sans-serif; text-align: left; transition: border-color 180ms ease-out;">
+          <span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: {{ s.badgeBg }}; border: 1.5px solid {{ s.badgeBorder }}; color: {{ s.badgeColor }}; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ s.badge }}</span>
+          <span style="font-size: 14px; font-weight: {{ s.weight }}; color: {{ s.labelColor }};">{{ s.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</header>
+
+<section style="padding: 40px 32px 88px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start;">
+    <div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">{{ eyebrow }}</div>
+      <h1 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.15; letter-spacing: -0.02em; color: #0A1F2C;">{{ stepTitle }}</h1>
+      <p style="margin: 0 0 30px; font-size: 16.5px; line-height: 1.6; color: #4A5C68; max-width: 640px;">{{ stepSubtitle }}</p>
+
+      <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <div onClick="{{ addFile }}" style="background: #FFFFFF; border: 2px dashed #C3E0DE; border-radius: 18px; padding: 48px 32px; text-align: center; cursor: pointer; transition: border-color 180ms ease-out, background 180ms ease-out;" style-hover="border-color: #0D6E70; background: #F7FBFB;">
+            <span style="display: inline-flex; width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, #0D6E70 0%, #12938F 55%, #6FE3C5 100%); color: #FFFFFF; align-items: center; justify-content: center; margin-bottom: 18px; box-shadow: 0 8px 20px rgba(13,110,112,0.28);">{{ uploadGlyph }}</span>
+            <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Drag files or a folder here</h3>
+            <p style="margin: 0 0 20px; font-size: 14px; color: #5A6B77;">DICOM (.dcm), .zip, ISO or images from your phone · up to 4GB</p>
+            <span style="display: inline-flex; min-height: 46px; padding: 12px 26px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-size: 14.5px; font-weight: 600; align-items: center;">Choose files</span>
+          </div>
+
+          <sc-for list="{{ files }}" as="file" hint-placeholder-count="2">
+            <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 14px; padding: 20px 22px; box-shadow: 0 2px 6px rgba(10,31,44,0.05);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 10px;">
+                <div style="min-width: 0;">
+                  <div style="font-size: 15px; font-weight: 600; color: #0A1F2C; margin-bottom: 4px;">{{ file.name }}</div>
+                  <div style="font-size: 13px; color: #5A6B77;">{{ file.meta }}</div>
+                </div>
+                <span style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px; background: {{ file.pillBg }}; border: 1px solid {{ file.pillBorder }}; border-radius: 999px; padding: 5px 13px; font-size: 12px; font-weight: 600; color: {{ file.pillColor }};">{{ file.pillLabel }}</span>
+              </div>
+              <div style="height: 6px; border-radius: 999px; background: #EEF2F4; overflow: hidden;">
+                <div style="height: 100%; width: {{ file.width }}; border-radius: 999px; background: linear-gradient(90deg, #0D6E70, #6FE3C5); transition: width 300ms ease-out;"></div>
+              </div>
+            </div>
+          </sc-for>
+
+          <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 14px; padding: 20px 22px; display: flex; gap: 14px; align-items: flex-start;">
+            <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #0D6E70; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;">i</span>
+            <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #06313A;">Do not have your images? Skip this step. We will send you a request letter and collect them from the hospital with your consent — usually 3–5 working days, at no extra cost.</p>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 26px;">
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Scan type</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <sc-for list="{{ scanTypes }}" as="opt" hint-placeholder-count="5">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 46px; padding: 12px 22px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Body area</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; color: #5A6B77;">This is how we pick your subspecialist. You do not have to know the medical term.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+              <sc-for list="{{ bodyAreas }}" as="opt" hint-placeholder-count="6">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; display: flex; align-items: center; gap: 11px; padding: 14px 16px; border-radius: 12px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
+                  <span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid {{ opt.dotBorder }}; background: {{ opt.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ opt.tick }}</span>
+                  <span style="font-size: 14.5px; font-weight: 500; color: #173B4F;">{{ opt.label }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What do you want answered?</h3>
+            <p style="margin: 0 0 16px; font-size: 14px; color: #5A6B77;">One or two sentences is plenty. The consultant answers this directly in your report.</p>
+            <textarea value="{{ question }}" onChange="{{ onQuestion }}" placeholder="For example: my report mentioned a possible lesion — is it a tumour, and has it changed since my last scan?" style="width: 100%; min-height: 108px; padding: 16px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Your consultant</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; color: #5A6B77;">Matched from your body area. You can change this or let us decide.</p>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 14px; padding: 18px 20px;">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <span style="width: 46px; height: 46px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; color: #095458; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ consultantInitials }}</span>
+                <div>
+                  <div style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #06313A;">{{ consultantName }}</div>
+                  <div style="font-size: 13px; color: #4A5C68;">{{ consultantRole }}</div>
+                </div>
+              </div>
+              <a href="Specialists.dc.html" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Choose someone else</a>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 26px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
+            <sc-for list="{{ speeds }}" as="speed" hint-placeholder-count="3">
+              <button type="button" onClick="{{ speed.select }}" style="appearance: none; text-align: left; background: #FFFFFF; border: 2px solid {{ speed.border }}; border-radius: 18px; padding: 26px 24px; cursor: pointer; box-shadow: {{ speed.shadow }}; font-family: 'Inter', sans-serif; position: relative; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out, border-color 180ms ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 34px rgba(10,31,44,0.14);">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+                  <span style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">{{ speed.label }}</span>
+                  <span style="width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid {{ speed.dotBorder }}; background: {{ speed.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ speed.tick }}</span>
+                </div>
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; color: #0D6E70; letter-spacing: -0.02em; line-height: 1; margin-bottom: 10px;">£{{ speed.price }}</div>
+                <div style="font-size: 13.5px; line-height: 1.5; color: #4A5C68;">{{ speed.deadline }}</div>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Add anything else?</h3>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <sc-for list="{{ addons }}" as="addon" hint-placeholder-count="2">
+                <button type="button" onClick="{{ addon.toggle }}" style="appearance: none; display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 12px; border: 1.5px solid {{ addon.border }}; background: {{ addon.bg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
+                  <span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid {{ addon.dotBorder }}; background: {{ addon.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ addon.tick }}</span>
+                  <span style="flex: 1;">
+                    <span style="display: block; font-size: 15px; font-weight: 600; color: #0A1F2C;">{{ addon.title }}</span>
+                    <span style="display: block; margin-top: 3px; font-size: 13.5px; color: #4A5C68;">{{ addon.note }}</span>
+                  </span>
+                  <span style="flex-shrink: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0D6E70;">+£{{ addon.price }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Where the report goes</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Your email</span>
+                <input type="email" placeholder="you@example.com" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Your GP's email (optional)</span>
+                <input type="email" placeholder="surgery@nhs.net" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+              </label>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 30px;">
+        <sc-if value="{{ canGoBack }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ back }}" style="min-height: 52px; padding: 15px 28px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Back</button>
+        </sc-if>
+        <button type="button" onClick="{{ next }}" style="min-height: 52px; padding: 15px 34px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">{{ nextLabel }}</button>
+        <span style="font-size: 13.5px; color: #5A6B77;">{{ nextNote }}</span>
+      </div>
+
+      <p style="margin: 26px 0 0; font-size: 14px; color: #5A6B77;">Questions while you are here? Call <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>, 09:00–20:00, seven days.</p>
+    </div>
+
+    <aside style="position: sticky; top: 24px; display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 26px 24px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+        <h2 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Your order so far</h2>
+        <div style="display: flex; flex-direction: column;">
+          <sc-for list="{{ summary }}" as="row" hint-placeholder-count="4">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding: 11px 0; border-bottom: 1px solid #E2E9EC;">
+              <span style="font-size: 14px; color: #5A6B77;">{{ row.label }}</span>
+              <span style="font-size: 14.5px; font-weight: 600; color: {{ row.color }}; text-align: right;">{{ row.value }}</span>
+            </div>
+          </sc-for>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding-top: 18px;">
+            <span style="font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #0A1F2C;">Total</span>
+            <span style="font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; color: #0D6E70; letter-spacing: -0.02em;">{{ total }}</span>
+          </div>
+        </div>
+      </div>
+      <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 18px; padding: 22px 24px;">
+        <div style="font-size: 14px; line-height: 1.6; color: #06313A; margin-bottom: 14px;">Rather do this with someone on the phone? We can take the whole order for you.</div>
+        <a href="tel:+441438904272" style="display: inline-flex; align-items: center; min-height: 44px; padding: 11px 22px; border-radius: 999px; background: #FFFFFF; border: 1.5px solid #0D6E70; color: #095458; font-size: 14.5px; font-weight: 600; box-sizing: border-box;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Call us instead</a>
+      </div>
+    </aside>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+const SCAN_TYPES = ['MRI', 'CT', 'Ultrasound', 'X-ray', 'PET-CT'];
+
+const BODY_AREAS = [
+  { id: 'brain', label: 'Brain or spine', consultant: 'Dr Dermot Mallon', initials: 'DM', role: 'Consultant neuroradiologist' },
+  { id: 'chest', label: 'Chest or heart', consultant: 'Dr Senan Alsanjari', initials: 'SA', role: 'Cardiothoracic radiologist' },
+  { id: 'bones', label: 'Bones or joints', consultant: 'Dr Ramanan Rajakulasingam', initials: 'RR', role: 'Musculoskeletal radiologist' },
+  { id: 'abdomen', label: 'Abdomen or pelvis', consultant: 'Dr Asad Tamimi', initials: 'AT', role: 'Abdominal radiologist' },
+  { id: 'breast', label: 'Breast', consultant: 'Dr Hebah Taufik', initials: 'HT', role: 'Consultant breast radiologist' },
+  { id: 'headneck', label: 'Head or neck', consultant: 'Dr Husam Wassati', initials: 'HW', role: 'Head & neck radiologist' }
+];
+
+const SPEEDS = [
+  { id: '48', label: '48 hours', price: 249, deadline: 'Report by Thu 6 Aug, 4pm' },
+  { id: '24', label: '24 hours', price: 299, deadline: 'Report by Wed 5 Aug, 4pm' },
+  { id: '12', label: '12 hours', price: 349, deadline: 'Report by tonight, 9pm' }
+];
+
+const ADDONS = [
+  { id: 'questions', title: 'Three written questions', note: 'Answered by the same consultant', price: 50 },
+  { id: 'call', title: '10-minute video call', note: 'Book a slot within 48 hours of your report', price: 150 }
+];
+
+const STEPS = [
+  { n: 1, label: 'Your images', title: 'Send us the scan', subtitle: 'Drop in everything you have — the whole CD folder is fine. We work out which series matter.' },
+  { n: 2, label: 'What was scanned?', title: 'Tell us what we are looking at', subtitle: 'This is how we match your subspecialist. Plain words are fine — you do not need the medical term.' },
+  { n: 3, label: 'When do you need it', title: 'Choose your deadline, then pay', subtitle: 'The date you see is the date the signed report lands. Miss it and we refund you in full.' }
+];
+
+class Component extends DCLogic {
+  state = {
+    step: 1,
+    files: [
+      { name: 'MRI_Brain_Jan2026.zip', meta: '2.1GB · 480 images · uploaded', progress: 100 },
+      { name: 'Prior_MRI_2024.zip', meta: '68% · 1.4GB of 2.1GB · 2 min left', progress: 68 }
+    ],
+    scanType: 'MRI',
+    area: 'brain',
+    question: '',
+    speed: '',
+    addons: []
+  };
+
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState(s => {
+        const pending = s.files.some(f => f.progress < 100);
+        if (!pending) { clearInterval(this.timer); return null; }
+        return {
+          files: s.files.map(f => {
+            if (f.progress >= 100) return f;
+            const p = Math.min(100, f.progress + 4);
+            const done = (2.1 * p / 100).toFixed(1);
+            const mins = Math.max(1, Math.ceil((100 - p) / 20));
+            return { ...f, progress: p, meta: p >= 100 ? '2.1GB · 480 images · uploaded' : p + '% · ' + done + 'GB of 2.1GB · ' + mins + ' min left' };
+          })
+        };
+      });
+    }, 900);
+  }
+
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  tick(size) {
+    return React.createElement('svg', {
+      width: size, height: size, viewBox: '0 0 24 24', fill: 'none',
+      stroke: 'currentColor', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round'
+    }, React.createElement('path', { d: 'M20 6 9 17l-5-5' }));
+  }
+
+  svg(size, paths, width) {
+    return React.createElement('svg', {
+      width: size, height: size, viewBox: '0 0 24 24', fill: 'none',
+      stroke: 'currentColor', strokeWidth: width || 2, strokeLinecap: 'round', strokeLinejoin: 'round'
+    }, paths.map((d, i) => React.createElement('path', { key: i, d })));
+  }
+
+  total() {
+    const speed = SPEEDS.find(s => s.id === this.state.speed);
+    const base = speed ? speed.price : 249;
+    const extra = this.state.addons.reduce((sum, id) => sum + (ADDONS.find(a => a.id === id) || {}).price, 0);
+    return { amount: base + extra, isFrom: !speed };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const step = STEPS[s.step - 1];
+    const area = BODY_AREAS.find(a => a.id === s.area);
+    const speed = SPEEDS.find(x => x.id === s.speed);
+    const total = this.total();
+
+    return {
+      lockGlyph: this.svg(15, ['M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2Z', 'M8 11V7a4 4 0 0 1 8 0v4']),
+      uploadGlyph: this.svg(24, ['M12 15V3', 'm7 8 5-5 5 5', 'M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4'], 2.2),
+      eyebrow: 'Step ' + s.step + ' of 3 · ' + step.label,
+      stepTitle: step.title,
+      stepSubtitle: step.subtitle,
+      isStep1: s.step === 1,
+      isStep2: s.step === 2,
+      isStep3: s.step === 3,
+      canGoBack: s.step > 1,
+      back: () => this.setState(st => ({ step: Math.max(1, st.step - 1) })),
+      next: () => this.setState(st => ({ step: Math.min(3, st.step + 1) })),
+      nextLabel: s.step === 1 ? 'Continue to step 2' : (s.step === 2 ? 'Continue to step 3' : 'Pay ' + '£' + total.amount + ' and start the clock'),
+      nextNote: s.step === 3 ? 'Card or Apple Pay · refunded in full if we miss the deadline' : 'Nothing is charged yet',
+
+      stepper: STEPS.map(st => {
+        const done = s.step > st.n;
+        const active = s.step === st.n;
+        return {
+          label: st.label,
+          badge: done ? this.tick(12) : String(st.n),
+          badgeBg: active || done ? '#0D6E70' : '#FFFFFF',
+          badgeBorder: active || done ? '#0D6E70' : '#D4DDE0',
+          badgeColor: active || done ? '#FFFFFF' : '#6F818C',
+          rule: active ? '#0D6E70' : 'transparent',
+          labelColor: active ? '#0A1F2C' : '#6F818C',
+          weight: active ? 700 : 500,
+          cursor: st.n <= s.step ? 'pointer' : 'default',
+          go: () => { if (st.n <= s.step) this.setState({ step: st.n }); }
+        };
+      }),
+
+      files: s.files.map(f => ({
+        name: f.name,
+        meta: f.meta,
+        width: f.progress + '%',
+        pillLabel: f.progress >= 100 ? 'Ready' : f.progress + '%',
+        pillBg: f.progress >= 100 ? '#E4F2F2' : '#F4F7F8',
+        pillBorder: f.progress >= 100 ? '#C3E0DE' : '#E2E9EC',
+        pillColor: f.progress >= 100 ? '#095458' : '#4A5C68'
+      })),
+      addFile: () => this.setState(st => ({
+        files: st.files.concat({ name: 'CD_Import_' + (st.files.length + 1) + '.zip', meta: 'Starting upload…', progress: 4 })
+      })),
+
+      scanTypes: SCAN_TYPES.map(t => {
+        const on = s.scanType === t;
+        return {
+          label: t,
+          bg: on ? '#0D6E70' : '#FFFFFF',
+          color: on ? '#FFFFFF' : '#173B4F',
+          border: on ? '#0D6E70' : '#D4DDE0',
+          select: () => this.setState({ scanType: t })
+        };
+      }),
+      bodyAreas: BODY_AREAS.map(a => {
+        const on = s.area === a.id;
+        return {
+          label: a.label,
+          bg: on ? '#E4F2F2' : '#FFFFFF',
+          border: on ? '#0D6E70' : '#E2E9EC',
+          dotBg: on ? '#0D6E70' : '#FFFFFF',
+          dotBorder: on ? '#0D6E70' : '#D4DDE0',
+          tick: on ? this.tick(11) : null,
+          select: () => this.setState({ area: a.id })
+        };
+      }),
+      question: s.question,
+      onQuestion: e => this.setState({ question: e.target.value }),
+      consultantName: area ? area.consultant : '',
+      consultantInitials: area ? area.initials : '',
+      consultantRole: area ? area.role : '',
+
+      speeds: SPEEDS.map(x => {
+        const on = s.speed === x.id;
+        return {
+          label: x.label,
+          price: x.price,
+          deadline: x.deadline,
+          border: on ? '#0D6E70' : '#E2E9EC',
+          shadow: on ? '0 12px 30px rgba(13,110,112,0.2)' : '0 2px 8px rgba(10,31,44,0.06)',
+          dotBg: on ? '#0D6E70' : '#FFFFFF',
+          dotBorder: on ? '#0D6E70' : '#D4DDE0',
+          tick: on ? this.tick(11) : null,
+          select: () => this.setState({ speed: x.id })
+        };
+      }),
+      addons: ADDONS.map(a => {
+        const on = s.addons.includes(a.id);
+        return {
+          title: a.title,
+          note: a.note,
+          price: a.price,
+          bg: on ? '#E4F2F2' : '#FFFFFF',
+          border: on ? '#0D6E70' : '#E2E9EC',
+          dotBg: on ? '#0D6E70' : '#FFFFFF',
+          dotBorder: on ? '#0D6E70' : '#D4DDE0',
+          tick: on ? this.tick(11) : null,
+          toggle: () => this.setState(st => ({
+            addons: st.addons.includes(a.id) ? st.addons.filter(x => x !== a.id) : st.addons.concat(a.id)
+          }))
+        };
+      }),
+
+      summary: [
+        { label: 'Scan type', value: s.scanType, color: '#0A1F2C' },
+        { label: 'Body area', value: area ? area.label : 'Step 2', color: area ? '#0A1F2C' : '#A3B0B8' },
+        { label: 'Consultant', value: area ? area.consultant.replace('Dr ', 'Dr ') : 'Step 2', color: area ? '#0A1F2C' : '#A3B0B8' },
+        { label: 'Speed', value: speed ? speed.label : 'Step 3', color: speed ? '#0A1F2C' : '#A3B0B8' }
+      ],
+      total: (total.isFrom ? 'From £' : '£') + total.amount
+    };
+  }
+}
+</script>
+</body>
+</html>

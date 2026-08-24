@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
+  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
+  <style>
+    body { margin: 0; padding: 0; background: #F4F7F8; font-family: 'Inter', sans-serif; }
+    a { color: #095458; text-decoration: none; }
+    a:hover { color: #0D6E70; text-decoration: underline; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    input::placeholder { color: #6C7C87; }
+  </style>
+</helmet>
+
+<header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
+  <nav data-r="nav" style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
+    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="secondread" style="height: 55px; width: 202px; display: block"></a>
+    <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;">
+      <a href="How It Works.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">How it works</a>
+      <a href="Specialists.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Specialists</a>
+      <a href="Pricing.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Pricing</a>
+      <a href="Sample Report.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Sample report</a>
+      <a href="FAQs.dc.html" style="color: #0D6E70; font-size: 14px; font-weight: 600;">FAQs</a>
+    </div>
+    <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;">
+      <a href="tel:+441438904272" style="font-size: 14px; font-weight: 600;">01438 904272</a>
+      <a href="Start Flow.dc.html" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 4px 14px rgba(13,110,112,0.28); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start my second read</a>
+    </div>
+  </nav>
+</header>
+
+<section style="background: linear-gradient(135deg, #E4F2F2 0%, #EEF7F7 55%, #F7FBFB 100%); border-bottom: 1px solid #E2E9EC;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 40px 32px 56px;">
+    <div style="display: flex; gap: 8px; align-items: center; font-size: 13px; color: #5A6B77; margin-bottom: 28px;">
+      <a href="index.html" style="color: #5A6B77;">Home</a>
+      <span>/</span>
+      <span style="color: #0A1F2C; font-weight: 600;">FAQs</span>
+    </div>
+    <div style="max-width: 780px;">
+      <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">Questions people ask us</h1>
+      <p style="margin: 0 0 30px; font-size: 18px; line-height: 1.65; color: #173B4F;">Grouped, searchable, and each one is its own linkable heading.</p>
+      <div style="position: relative; max-width: 480px;">
+        <span style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #5A6B77; display: flex;">{{ searchGlyph }}</span>
+        <input type="text" value="{{ query }}" onChange="{{ onSearch }}" placeholder="Search the questions" style="width: 100%; min-height: 52px; padding: 14px 18px 14px 48px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.18);">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background: #F4F7F8; padding: 44px 32px 80px;">
+  <div style="max-width: 880px; margin: 0 auto;">
+    <div style="display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 28px;">
+      <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="5">
+        <button type="button" onClick="{{ cat.select }}" style="appearance: none; padding: 9px 18px; border-radius: 999px; border: 1.5px solid {{ cat.border }}; background: {{ cat.bg }}; color: {{ cat.color }}; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ cat.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <sc-for list="{{ visibleFaqs }}" as="faq" hint-placeholder-count="6">
+        <div id="{{ faq.anchor }}" style="background: #FFFFFF; border: 1px solid {{ faq.border }}; border-radius: 14px; box-shadow: 0 2px 6px rgba(10,31,44,0.05); overflow: hidden; transition: border-color 180ms ease-out, box-shadow 180ms ease-out;" style-hover="box-shadow: 0 10px 24px rgba(10,31,44,0.1);">
+          <button type="button" onClick="{{ faq.toggle }}" style="appearance: none; width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 22px 24px; text-align: left; font-family: 'Inter', sans-serif; transition: background 140ms ease-out;" style-hover="background: #FAFCFC;">
+            <span style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6B77;">{{ faq.category }}</span>
+              <span style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 17px; color: #0A1F2C; line-height: 1.35;">{{ faq.q }}</span>
+            </span>
+            <span style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: {{ faq.iconBg }}; color: {{ faq.iconColor }}; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 400; line-height: 1; transition: background 140ms ease-out, color 140ms ease-out;">{{ faq.sign }}</span>
+          </button>
+          <sc-if value="{{ faq.open }}" hint-placeholder-val="{{ true }}">
+            <div style="padding: 0 24px 24px; font-size: 15.5px; line-height: 1.7; color: #4A5C68; max-width: 720px;">{{ faq.a }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+      <div style="background: #FFFFFF; border: 1px dashed #D4DDE0; border-radius: 16px; padding: 44px 32px; text-align: center;">
+        <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">Nothing matches that</h3>
+        <p style="margin: 0 0 20px; font-size: 14.5px; color: #4A5C68;">Try a different word, or just call us — we answer in about 40 seconds.</p>
+        <button type="button" onClick="{{ clearAll }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF;">Clear search</button>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section style="background: #FFFFFF; padding: 76px 32px 84px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="max-width: 640px; margin-bottom: 36px;">
+      <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Still stuck</div>
+      <h2 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; color: #0A1F2C; letter-spacing: -0.01em;">Talk to a person</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #4A5C68;">A member of our team answers, not a call centre. Mon–Sun, 09:00–20:00.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 28px;">
+      <sc-for list="{{ contacts }}" as="contact" hint-placeholder-count="3">
+        <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); height: 100%; box-sizing: border-box; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 34px rgba(10,31,44,0.13);">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6B77; margin-bottom: 12px;">{{ contact.label }}</div>
+          <div style="font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 700; color: #0A1F2C; line-height: 1.4; margin-bottom: 8px;">{{ contact.value }}</div>
+          <div style="font-size: 13.5px; line-height: 1.55; color: #4A5C68;">{{ contact.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background: #FFF6E9; border: 1px solid #F0DCC0; border-radius: 14px; padding: 20px 24px; display: flex; gap: 14px; align-items: flex-start;">
+      <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #E8A33D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;">!</span>
+      <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #6B4A18;">We are not an emergency service. If you are seriously unwell, contact NHS 111 or 999.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="background: #06131C; color: #FFFFFF; padding: 60px 32px 28px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 44px;">
+      <div>
+        <img src="logo-secondread-light.svg" alt="secondread" style="height: 61px; width: 176px; display: block; margin-bottom: 14px">
+        <p style="margin: 0; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.72); max-width: 340px;">Independent subspecialist radiology reporting for patients, families and clinics across the UK and internationally.</p>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Service</h4>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+          <li><a href="How It Works.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">How it works</a></li>
+          <li><a href="Specialists.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Specialists</a></li>
+          <li><a href="Pricing.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Pricing</a></li>
+          <li><a href="Sample Report.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Sample report</a></li>
+          <li><a href="FAQs.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Contact</h4>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85);">
+          <a href="mailto:info@secondread.co.uk" style="color: rgba(255,255,255,0.85);">info@secondread.co.uk</a>
+          <a href="tel:+441438904272" style="color: rgba(255,255,255,0.85);">01438 904272</a>
+          <span style="color: rgba(255,255,255,0.72);">Mon–Sun, 09:00–20:00</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
+      <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <div style="display: flex; gap: 18px;">
+        <a href="#" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="#" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="#" style="color: rgba(255,255,255,0.72);">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+const CATEGORIES = ['Before you order', 'Getting your images', 'Your report', 'Privacy'];
+
+const FAQS = [
+  { id: 'gp-referral', category: 'Before you order', q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly and order without seeing anyone first. If you would like your GP or consultant copied into the report, give us their email at upload and we send it to them at the same time as you.' },
+  { id: 'nhs-scan', category: 'Getting your images', q: 'Can I use a scan done on the NHS?', a: 'Yes. The images belong to you under your right of access, and a second opinion on an NHS scan is entirely legitimate. Reporting on NHS imaging is routine for us and does not affect your NHS care in any way.' },
+  { id: 'no-images', category: 'Getting your images', q: 'What if I do not have the images?', a: 'Tell us where the scan was done and we request them for you: we send you a one-page request letter and, with your consent, chase the radiology department through the Image Exchange Portal. This usually takes two to five working days and does not change the price.' },
+  { id: 'bad-news', category: 'Your report', q: 'Will you tell me I have cancer over email?', a: 'Never as a surprise line in a PDF. If the consultant finds something serious or urgent, we call you before the report is released and offer a video call with the reporting consultant at no extra cost, so you hear it from a doctor who can answer your questions.' },
+  { id: 'who-sees', category: 'Privacy', q: 'Who can see my images?', a: 'Only the reporting consultant and our clinical governance lead. Images are stored encrypted on UK servers under UK GDPR and we are ICO registered. We never share your study with insurers, employers or third parties, and you can ask us to delete it at any time.' },
+  { id: 'outside-uk', category: 'Before you order', q: 'I am outside the UK — can you still help?', a: 'Yes. We accept images from any country and report in English. Payment is in pounds sterling and the deadline you see at checkout is shown in your local time as well as UK time.' }
+];
+
+class Component extends DCLogic {
+  state = { category: '', query: '', open: '' };
+
+  renderVals() {
+    const s = this.state;
+    const q = s.query.trim().toLowerCase();
+    const visible = FAQS.filter(f => {
+      const catOk = !s.category || f.category === s.category;
+      const textOk = !q || (f.q + ' ' + f.a + ' ' + f.category).toLowerCase().includes(q);
+      return catOk && textOk;
+    });
+
+    return {
+      query: s.query,
+      onSearch: e => this.setState({ query: e.target.value }),
+      clearAll: () => this.setState({ query: '', category: '' }),
+      searchGlyph: React.createElement('svg', {
+        width: 17, height: 17, viewBox: '0 0 24 24', fill: 'none',
+        stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round'
+      }, [
+        React.createElement('circle', { key: 'c', cx: 11, cy: 11, r: 7 }),
+        React.createElement('path', { key: 'l', d: 'm21 21-4.3-4.3' })
+      ]),
+      categories: [{ id: '', label: 'All questions' }].concat(CATEGORIES.map(c => ({ id: c, label: c }))).map(c => {
+        const on = s.category === c.id;
+        return {
+          label: c.label,
+          bg: on ? '#0D6E70' : '#FFFFFF',
+          color: on ? '#FFFFFF' : '#173B4F',
+          border: on ? '#0D6E70' : '#D4DDE0',
+          select: () => this.setState({ category: c.id, open: '' })
+        };
+      }),
+      noResults: visible.length === 0,
+      visibleFaqs: visible.map(f => {
+        const open = s.open === f.id;
+        return {
+          q: f.q,
+          a: f.a,
+          category: f.category,
+          anchor: 'faq-' + f.id,
+          open: open,
+          sign: open ? '−' : '+',
+          border: open ? '#C3E0DE' : '#E2E9EC',
+          iconBg: open ? '#0D6E70' : '#E4F2F2',
+          iconColor: open ? '#FFFFFF' : '#095458',
+          toggle: () => this.setState(st => ({ open: st.open === f.id ? '' : f.id }))
+        };
+      }),
+      contacts: [
+        { label: 'Phone', value: '01438 904272', note: 'Average answer time 40 seconds' },
+        { label: 'Email', value: 'info@secondread.co.uk', note: 'Replies within 3 working hours' },
+        { label: 'Registered office', value: 'Venture House, 2 Arlington Square', note: 'Downshire Way, Bracknell RG12 1WA' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
