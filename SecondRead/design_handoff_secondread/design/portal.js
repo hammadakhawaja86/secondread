@@ -18,7 +18,7 @@
 (function (root) {
   'use strict';
 
-  var KEY = 'secondread:portal:v1';
+  var KEY = 'secondread:portal:v2';
   var HOUR = 3600 * 1000;
 
   /* ---------------------------------------------------------------- statuses
@@ -127,9 +127,12 @@
     return {
       signedIn: false,
       user: {
-        firstName: 'Sarah',
-        lastName: 'Mitchell',
-        email: 'sarah.mitchell@example.com',
+        // "Hammad A." is the first-name field so that the full display name
+        // reads "Hammad A. Khawaja" while the greeting still shortens to
+        // "Hammad" and the avatar still reads HK.
+        firstName: 'Hammad A.',
+        lastName: 'Khawaja',
+        email: 'hammad.khawaja@31g.co.uk',
         dob: '4 September 1971',
         phone: '07700 900412',
         country: 'United Kingdom'
@@ -501,14 +504,7 @@
   function signIn(email) {
     var s = load();
     s.signedIn = true;
-    if (email) {
-      s.user.email = email;
-      // Demo nicety: make the greeting match whatever address was typed.
-      var local = String(email).split('@')[0].replace(/[._-]+/g, ' ').trim();
-      if (local) {
-        s.user.firstName = local.split(' ')[0].replace(/^./, function (ch) { return ch.toUpperCase(); });
-      }
-    }
+    if (email) s.user.email = email;
     return save(s);
   }
 
@@ -525,7 +521,6 @@
   function addCase(order) {
     var s = load();
     s.signedIn = true;
-    if (order.email) s.user.email = order.email;
     s.cases.unshift({
       ref: order.ref,
       status: 'submitted',

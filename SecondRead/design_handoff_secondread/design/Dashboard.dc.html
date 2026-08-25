@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=2"></script>
-<script src="./portal.js?v=5"></script>
+<script src="./portal.js?v=6"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -341,7 +341,9 @@ class Component extends DCLogic {
   greeting() {
     const h = new Date().getHours();
     const part = h < 12 ? 'Good morning' : (h < 18 ? 'Good afternoon' : 'Good evening');
-    return part + ', ' + (this.state.store.user.firstName || 'there');
+    // Greet on the first name alone — "Good afternoon, Hammad A." reads oddly.
+    const first = (this.state.store.user.firstName || 'there').split(' ')[0];
+    return part + ', ' + first;
   }
 
   renderVals() {
@@ -477,7 +479,7 @@ class Component extends DCLogic {
     const first = s.user.firstName || 'You';
     const last = s.user.lastName || '';
     return {
-      userShort: first + (last ? ' ' + last.charAt(0) : ''),
+      userShort: (first + ' ' + last).trim(),
       userInitials: (first.charAt(0) + (last.charAt(0) || '')).toUpperCase(),
       userEmail: s.user.email || '',
       notifCount: count > 9 ? '9+' : String(count),
