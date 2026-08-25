@@ -241,9 +241,15 @@
       <sc-for list="{{ specialists }}" as="specialist" hint-placeholder-count="6">
         <a href="{{ specialist.profileHref }}" data-r="speccard" style="flex: 0 0 340px; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; overflow: hidden; scroll-snap-align: start; box-shadow: 0 2px 8px rgba(10,31,44,0.06); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out, border-color 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 22px 44px rgba(10,31,44,0.16); border-color: #C3E0DE; text-decoration: none;">
           <span style="display: flex; flex-direction: column; gap: 5px; padding: 28px 28px 22px;">
-            <span style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.2; letter-spacing: -0.015em; color: #0A1F2C; min-height: 56px;">Dr {{ specialist.name }}</span>
-            <span style="font-size: 15px; line-height: 1.45; color: #173B4F;">{{ specialist.role }}</span>
-            <span style="font-size: 14.5px; line-height: 1.45; color: #4A5C68; min-height: 42px;">{{ specialist.quals }}</span>
+            <!-- Fixed height, not min-height, and always two lines: a name that
+                 happens to fit on one line still reserves the same box as one
+                 that wraps, so every card's photo starts at the same y. -->
+            <span style="display: flex; flex-direction: column; height: 56px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.2; letter-spacing: -0.015em; color: #0A1F2C;">
+              <span>Dr {{ specialist.nameFirst }}</span>
+              <span>{{ specialist.nameLast }}</span>
+            </span>
+            <span style="height: 44px; font-size: 15px; line-height: 1.45; color: #173B4F; overflow: hidden;">{{ specialist.role }}</span>
+            <span style="height: 42px; font-size: 14.5px; line-height: 1.45; color: #4A5C68; overflow: hidden;">{{ specialist.quals }}</span>
             <span style="margin-top: 3px; font-size: 14.5px; color: #095458; text-decoration: underline; text-underline-offset: 3px;">GMC: {{ specialist.gmc }}</span>
           </span>
           <span data-r="specphoto" style="position: relative; display: block; flex: 1; min-height: 336px; background: #D7F2F3; overflow: hidden;">
@@ -810,11 +816,16 @@ class Component extends DCLogic {
       ...this.carouselVals('spec'),
       // Each card links to its own consultant. Every card used to carry the
       // same hardcoded href, so all seven opened Dr Mallon's profile.
-      specialists: this.state.specialists.map(c => ({
-        ...c,
-        focus: c.focus || '50% 50%',
-        profileHref: 'Specialist Profile.dc.html?id=' + encodeURIComponent(c.id)
-      })),
+      specialists: this.state.specialists.map(c => {
+        var sp = c.name.indexOf(' ');
+        return {
+          ...c,
+          focus: c.focus || '50% 50%',
+          profileHref: 'Specialist Profile.dc.html?id=' + encodeURIComponent(c.id),
+          nameFirst: sp === -1 ? c.name : c.name.slice(0, sp),
+          nameLast: sp === -1 ? '' : c.name.slice(sp + 1)
+        };
+      }),
       // "Select this deadline" now carries the tier into checkout.
       pricingCards: this.state.pricingCards.map(c => ({
         ...c,
