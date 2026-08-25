@@ -4,10 +4,11 @@
  * reports. Loaded as a plain synchronous script BEFORE support.js so that
  * window.PORTAL exists by the time any component renders.
  *
- * DEMO BUILD. There is no server and no real authentication: any email and a
- * password of six characters or more signs you in, and everything lives in
- * localStorage on this device. Every portal page carries a visible notice
- * saying so. Nothing here is a security boundary.
+ * DEMO BUILD. There is no server and no real authentication. Accounts are
+ * passwordless: a six-digit code stands in for the emailed one, and it is
+ * generated here and shown on screen because there is no mail server.
+ * Everything lives in localStorage on this device, and every portal page
+ * carries a visible notice saying so. Nothing here is a security boundary.
  *
  * CONTENT STATUS — for the client:
  *   · The two delivered reports are written demonstration content. They are
@@ -18,7 +19,7 @@
 (function (root) {
   'use strict';
 
-  var KEY = 'secondread:portal:v2';
+  var KEY = 'secondread:portal:v3';
   var HOUR = 3600 * 1000;
 
   /* ---------------------------------------------------------------- statuses
@@ -59,7 +60,7 @@
     },
     review: {
       id: 'review',
-      chip: 'Under review',
+      chip: 'Under expert review',
       title: 'Your consultant is reviewing your scan',
       support: 'They are reading your images in full.',
       position: 3,
@@ -79,7 +80,7 @@
     },
     followup: {
       id: 'followup',
-      chip: 'Follow-up',
+      chip: 'Follow-up available',
       title: 'Questions about your report?',
       support: 'You can send written questions to your consultant, or book a call.',
       position: 4,
@@ -89,7 +90,12 @@
     }
   };
 
-  var TIMELINE = ['Got it', 'Matched', 'Reviewing', 'Report'];
+  /* The four tracked stages, named exactly as they are named on the website,
+   * in the confirmation screen and in the emails. "Action needed" sits outside
+   * the rail because it is a pause, not a stage — the case keeps the position
+   * it had when it stopped. "Follow-up available" sits after the rail is full.
+   */
+  var TIMELINE = ['Submitted', 'Being matched', 'Under expert review', 'Report ready'];
 
   /* -------------------------------------------------------- comparison keys
    * A closed clinical vocabulary. The consultant picks one; the label they
@@ -126,6 +132,10 @@
   function seed() {
     return {
       signedIn: false,
+      // Emails that already belong to an account. Starting a case with one of
+      // these is not an error to recover from — it is a sign-in.
+      accounts: ['hammad.khawaja@31g.co.uk'],
+      pending: null,
       user: {
         // "Hammad A." is the first-name field so that the full display name
         // reads "Hammad A. Khawaja" while the greeting still shortens to
@@ -360,6 +370,8 @@
     try {
       var parsed = JSON.parse(raw);
       if (!parsed || !Array.isArray(parsed.cases)) return seed();
+      if (!Array.isArray(parsed.accounts)) parsed.accounts = [];
+      if (typeof parsed.pending === 'undefined') parsed.pending = null;
       return parsed;
     } catch (e) {
       return seed();
@@ -484,6 +496,15 @@
       deliveredShort: deliveredAt ? fmtShort(deliveredAt) : '',
       deliveredLong: deliveredAt ? fmtLong(deliveredAt) : '',
       deliveredAgo: deliveredAt ? fmtAgo(deliveredAt) : '',
+      scanDate: c.scanDate || '',
+      provider: c.provider || '',
+      symptoms: c.symptoms || '',
+      symptomsOnset: c.symptomsOnset || '',
+      symptomsChange: c.symptomsChange || '',
+      history: c.history || '',
+      hasOriginalReport: c.hasOriginalReport !== false,
+      priorStudy: c.priorStudy || null,
+      clinician: c.clinician || null,
       tasks: c.tasks || [],
       messages: (c.messages || []).map(function (m) {
         var when = typeof m.offsetH === 'number' ? at(m.offsetH) : new Date(m.ts);
@@ -499,12 +520,102 @@
     };
   }
 
+  /* -------------------------------------------------------- account journey
+   * A patient never chooses a password. Starting a case creates a *pending*
+   * account from a name and an email address; we send a six-digit code to that
+   * address; the account becomes real only once the code comes back. The draft
+   * case is held against the pending account from that moment, so closing the
+   * tab halfway through an upload never loses it.
+   *
+   * DEMO BUILD: the code is generated here and shown on screen because there is
+   * no mail server. A real build sends it and never returns it to the browser.
+   */
+  function normaliseEmail(email) {
+    return String(email || '').trim().toLowerCase();
+  }
+
+  function hasAccount(email) {
+    var e = normaliseEmail(email);
+    if (!e) return false;
+    return load().accounts.indexOf(e) !== -1;
+  }
+
+  // { ok: true, code } — or { ok: false, reason: 'exists' } when the address is
+  // already an account, which the caller turns into a sign-in prompt.
+  function startPending(first, last, email) {
+    var e = normaliseEmail(email);
+    var s = load();
+    if (s.accounts.indexOf(e) !== -1) return { ok: false, reason: 'exists' };
+    var code = String(Math.floor(Math.random() * 900000) + 100000);
+    s.pending = {
+      firstName: String(first || '').trim(),
+      lastName: String(last || '').trim(),
+      email: e,
+      code: code,
+      sentISO: new Date().toISOString()
+    };
+    save(s);
+    return { ok: true, code: code };
+  }
+
+  // Signing in uses the same one-time code, so there is one mechanism and one
+  // set of screens rather than a password path bolted alongside.
+  function startSignIn(email) {
+    var e = normaliseEmail(email);
+    var s = load();
+    if (s.accounts.indexOf(e) === -1) return { ok: false, reason: 'unknown' };
+    var code = String(Math.floor(Math.random() * 900000) + 100000);
+    s.pending = { mode: 'signin', email: e, code: code, sentISO: new Date().toISOString() };
+    save(s);
+    return { ok: true, code: code };
+  }
+
+  function pending() { return load().pending; }
+
+  // Re-issues the code without disturbing the draft case behind it.
+  function resendCode() {
+    var s = load();
+    if (!s.pending) return null;
+    s.pending.code = String(Math.floor(Math.random() * 900000) + 100000);
+    s.pending.sentISO = new Date().toISOString();
+    save(s);
+    return s.pending.code;
+  }
+
+  function verifyPending(code) {
+    var s = load();
+    if (!s.pending) return { ok: false, reason: 'none' };
+    if (String(code || '').replace(/\s/g, '') !== s.pending.code) {
+      return { ok: false, reason: 'code' };
+    }
+    if (s.pending.mode !== 'signin') {
+      s.user.firstName = s.pending.firstName || s.user.firstName;
+      s.user.lastName = s.pending.lastName || s.user.lastName;
+    }
+    s.user.email = s.pending.email;
+    if (s.accounts.indexOf(s.pending.email) === -1) s.accounts.push(s.pending.email);
+    s.pending = null;
+    s.signedIn = true;
+    save(s);
+    return { ok: true };
+  }
+
+  function cancelPending() {
+    var s = load();
+    s.pending = null;
+    return save(s);
+  }
+
   /* ----------------------------------------------------------------- actions */
 
   function signIn(email) {
     var s = load();
     s.signedIn = true;
-    if (email) s.user.email = email;
+    if (email) {
+      var e = normaliseEmail(email);
+      s.user.email = e;
+      if (s.accounts.indexOf(e) === -1) s.accounts.push(e);
+    }
     return save(s);
   }
 
@@ -521,6 +632,23 @@
   function addCase(order) {
     var s = load();
     s.signedIn = true;
+    var messages = [{
+      from: 'SecondRead clinical team',
+      role: 'team',
+      ts: new Date().toISOString(),
+      text: 'Thanks — we have everything we need. We are checking your images are complete and readable, then matching your case to a consultant.'
+    }];
+    // An invited clinician is a real dependency, not a nicety: the case does
+    // not move to matching until their section is in, so say so here.
+    if (order.clinician && order.clinician.mode !== 'self' && order.clinician.email) {
+      messages.push({
+        from: 'SecondRead clinical team',
+        role: 'team',
+        ts: new Date().toISOString(),
+        text: 'We have sent a secure, single-case link to ' + order.clinician.email +
+              '. It is valid for seven days and gives access to this case only.'
+      });
+    }
     s.cases.unshift({
       ref: order.ref,
       status: 'submitted',
@@ -530,18 +658,19 @@
       speed: order.speed || '48',
       createdISO: new Date().toISOString(),
       scanDate: order.scanDate || '',
-      provider: '',
+      provider: order.provider || '',
       question: order.question || '',
-      hasOriginalReport: true,
-      priorStudy: null,
+      symptoms: order.symptoms || '',
+      symptomsOnset: order.symptomsOnset || '',
+      symptomsChange: order.symptomsChange || '',
+      history: order.history || '',
+      hasOriginalReport: order.hasOriginalReport !== false,
+      priorStudy: order.priorStudy || null,
+      // 'self' | 'invite' | 'both' — see the clinician invite in the case flow.
+      clinician: order.clinician || null,
       demo: false,
       tasks: [],
-      messages: [{
-        from: 'SecondRead clinical team',
-        role: 'team',
-        ts: new Date().toISOString(),
-        text: 'Thanks — we have everything we need. We are checking your images are complete and readable, then matching your case to a consultant.'
-      }],
+      messages: messages,
       report: null,
       comparison: null
     });
@@ -733,6 +862,13 @@
     save: save,
     reset: reset,
     seed: seed,
+    hasAccount: hasAccount,
+    startPending: startPending,
+    startSignIn: startSignIn,
+    pending: pending,
+    resendCode: resendCode,
+    verifyPending: verifyPending,
+    cancelPending: cancelPending,
     signIn: signIn,
     signOut: signOut,
     isSignedIn: isSignedIn,

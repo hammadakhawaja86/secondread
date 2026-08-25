@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=2"></script>
-<script src="./portal.js?v=6"></script>
+<script src="./portal.js?v=7"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=14">
+  <link rel="stylesheet" href="responsive.css?v=15">
   <script src="./image-slot.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -300,9 +300,9 @@ class Component extends DCLogic {
       ctaBg: this.state.requested ? '#095458' : '#0D6E70',
       toggleRequest: () => this.setState(s => ({ requested: !s.requested })),
 
-      // Carries the choice into checkout so step 2 opens on this consultant
-      // instead of resetting to whoever the default body area matches.
-      startHref: 'Start Flow.dc.html?consultant=' + encodeURIComponent(c.id)
+      // Carries the body area, not the name. Patients are not asked to pick a
+      // radiologist: we match the case ourselves and confirm it before payment.
+      startHref: 'Start Flow.dc.html' + (c.areas && c.areas.length ? '?area=' + encodeURIComponent(c.areas[0]) : '')
     };
   }
 }

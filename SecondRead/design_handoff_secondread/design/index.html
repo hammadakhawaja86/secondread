@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=2"></script>
-<script src="./portal.js?v=6"></script>
+<script src="./portal.js?v=7"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=14">
+  <link rel="stylesheet" href="responsive.css?v=15">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -156,8 +156,8 @@
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="text-align: center; max-width: 640px; margin: 0 auto 44px;">
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">How it works</div>
-      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Three steps. You only do the first one.</h2>
-      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">From upload to a signed consultant report, with no appointment and no referral in between.</p>
+      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Three steps, and we do the matching.</h2>
+      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">You are never asked to choose a radiologist. Tell us about your case and we match it to the right consultant subspecialist — confirmed before you pay.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-bottom: 44px;">
       <sc-for list="{{ howSteps }}" as="step" hint-placeholder-count="3">
@@ -167,7 +167,8 @@
             <span style="font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; color: #D4DDE0; line-height: 1;">{{ step.number }}</span>
           </div>
           <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 19px; color: #0A1F2C;">{{ step.title }}</h3>
-          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ step.description }}</p>
+          <p style="margin: 0 0 14px; font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ step.description }}</p>
+          <p style="margin: 0; padding-top: 14px; border-top: 1px solid #EEF2F4; font-size: 13.5px; line-height: 1.6; color: #5A6B77;">{{ step.note }}</p>
         </div>
       </sc-for>
     </div>
@@ -483,6 +484,7 @@
 const PATHS = {
   UploadCloud: ['M12 13v8', 'm8 17 4-4 4 4', 'M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29'],
   UserSearch: ['M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z', 'M2 21v-1a6 6 0 0 1 6-6h2', 'M17.5 17.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z', 'm22 22-2.1-2.1'],
+  ClipboardList: ['M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2', 'M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z', 'M8 12h8', 'M8 16h5'],
   FileText: ['M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z', 'M15 2v5h5', 'M9 13h6', 'M9 17h6'],
   Zap: ['M4 14h7l-1 8 10-12h-7l1-8z'],
   Check: ['M20 6 9 17l-5-5'],
@@ -544,9 +546,15 @@ class Component extends DCLogic {
     enquirySent: false,
     openFaq: 0,
     howSteps: [
-      { number: '01', icon: 'UploadCloud', title: 'Upload your scans', description: 'Drag in a DICOM folder, a zip, or the whole CD. No images yet? We will request them from the hospital for you.' },
-      { number: '02', icon: 'UserSearch', title: 'Choose a specialist', description: 'You tell us the body area and your question. We name the consultant — with their hospital and GMC number — before you pay, and you pick your deadline: 12, 24 or 48 hours.' },
-      { number: '03', icon: 'FileText', title: 'Get your report', description: 'Findings, comparison with any prior scan, next steps, and a "What this means for you" section — then ask us anything about it.' }
+      { number: '01', icon: 'UploadCloud', title: 'Upload your scans',
+        description: 'Upload your original scan images, ideally as a DICOM folder or ZIP file, along with your original radiology report and any earlier related scans. DICOM is simply the format hospitals store scan images in.',
+        note: 'Do not have your images yet? We show you exactly how to request them from the hospital or imaging provider.' },
+      { number: '02', icon: 'ClipboardList', title: 'Tell us about your case',
+        description: 'We read the scan type and body area from your images, then ask about your symptoms, relevant history, and what you would like our consultant to review. You can also invite your GP or treating clinician to add clinical information.',
+        note: 'We use this to match your case with the appropriate consultant subspecialist. Before payment, we confirm who will review your case, their relevant expertise, and your report delivery timeframe.' },
+      { number: '03', icon: 'FileText', title: 'Get your expert report',
+        description: 'An independent consultant report with the findings, a plain-English "What this means for you" explanation, comparison with any prior scan where available, and recommended next steps.',
+        note: 'Your report is securely available in your patient dashboard, where you can download it, share it with your GP or treating clinician, and arrange available follow-up support.' }
     ],
     svcIndex: 0,
     svcAtStart: true,
@@ -596,7 +604,7 @@ class Component extends DCLogic {
     ],
     faqData: [
       { q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly. If you would like your GP or consultant copied into the report, tell us their email at upload and we will send it to them at the same time as you.' },
-      { q: 'What if I do not have my images?', a: 'Tell us where the scan was done and we will request the images from the hospital on your behalf under your right of access. This usually takes two to five working days and does not change the price.' },
+      { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report — they can usually supply a disc or a secure download. Start your case now and add the images when they arrive; nothing is charged until the last step. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
       { q: 'Which scans can you review?', a: 'MRI, CT, ultrasound, X-ray, PET-CT and mammography, across neuro, musculoskeletal, breast, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
       { q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we are ICO registered. Only the reporting consultant and our clinical governance lead can access your study.' },
       { q: 'What happens if you miss the deadline?', a: 'You get a full refund and the report anyway. The deadline you see at checkout is a real date and time, not an estimate.' }
@@ -745,7 +753,7 @@ class Component extends DCLogic {
       quickAssurances: [
         { text: 'No card needed yet — nothing is charged until step three' },
         { text: 'You see the consultant’s name and GMC number before you pay' },
-        { text: 'Do not have the images? We collect them from the hospital' }
+        { text: 'Do not have the images? We show you how to request them' }
       ],
       quickScans: ['MRI', 'CT', 'X-ray', 'Ultrasound', 'PET-CT', 'Not sure'].map(t => {
         const on = this.state.quickScan === t;

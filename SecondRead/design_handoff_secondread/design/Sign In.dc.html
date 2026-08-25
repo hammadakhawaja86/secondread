@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=2"></script>
-<script src="./portal.js?v=6"></script>
+<script src="./portal.js?v=7"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=14">
+  <link rel="stylesheet" href="responsive.css?v=15">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -59,54 +59,70 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: anything you type is accepted, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <section data-r="portalwrap" style="padding: 56px 32px 80px;">
   <div style="max-width: 452px; margin: 0 auto;">
-    <div style="margin-bottom: 26px;">
-      <h1 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.14; letter-spacing: -0.02em; color: #0A1F2C;">Sign in to your dashboard</h1>
-      <p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">Track your case, read your report, and message the team.</p>
-    </div>
 
-    <div data-r="authcard" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-      <div style="display: flex; flex-direction: column; gap: 18px;">
+    <sc-if value="{{ atEmail }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-bottom: 26px;">
+        <h1 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.14; letter-spacing: -0.02em; color: #0A1F2C;">Sign in to your dashboard</h1>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">Track your case, read your report, and message the team. There is no password &mdash; we email you a six-digit code.</p>
+      </div>
+
+      <div data-r="authcard" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
 
           <sc-if value="{{ hasError }}" hint-placeholder-val="{{ true }}">
-            <div role="alert" style="background: #FBEEEC; border: 1px solid #E7BDB8; border-radius: 11px; padding: 13px 15px; font-size: 14px; line-height: 1.55; color: #7E2B26;">{{ error }}</div>
+            <div role="alert" style="background: #FBEEEC; border: 1px solid #E7BDB8; border-radius: 11px; padding: 13px 15px; font-size: 14px; line-height: 1.55; color: #7E2B26;">{{ error }}<sc-if value="{{ errorCreate }}" hint-placeholder-val="{{ false }}"> <a href="{{ createHref }}" style="font-weight: 600; color: #7E2B26; text-decoration: underline;">Create an account and start your case</a>.</sc-if></div>
           </sc-if>
 
           <label style="display: flex; flex-direction: column; gap: 7px;">
             <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Email address</span>
             <input type="email" value="{{ email }}" onChange="{{ onEmail }}" placeholder="you@example.com" autocomplete="email" style="min-height: 50px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ emailBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
-            
+            <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">The address you used when you started your case.</span>
           </label>
-
-          <label style="display: flex; flex-direction: column; gap: 7px;">
-            <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Password</span>
-            <input type="password" value="{{ password }}" onChange="{{ onPassword }}" placeholder="" autocomplete="current-password" style="min-height: 50px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ passwordBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
-            
-          </label>
-
-        <label style="display: flex; align-items: flex-start; gap: 11px; cursor: pointer;">
-          <input type="checkbox" checked="{{ remember }}" onChange="{{ onRemember }}" style="width: 19px; height: 19px; margin: 2px 0 0; accent-color: #0D6E70; cursor: pointer; flex-shrink: 0;">
-          <span style="font-size: 14px; line-height: 1.55; color: #173B4F;">Stay signed in on this device<span style="display: block; font-size: 12.5px; color: #5A6B77; margin-top: 2px;">Only on a device that is yours. Leave this off on a shared or public computer.</span></span>
-        </label>
-
-        <button type="button" onClick="{{ submit }}" style="min-height: 52px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Sign in</button>
-
-        <div style="display: flex; justify-content: center;">
-          <a href="Sign In.dc.html" style="font-size: 14px; font-weight: 600;">Forgotten your password?</a>
+          <button type="button" onClick="{{ sendCode }}" style="min-height: 52px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Email me a sign-in code</button>
         </div>
       </div>
-    </div>
 
-    <div style="margin-top: 22px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 16px; padding: 22px 24px; text-align: center;">
-      <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.6; color: #06313A;">First time here? Create an account and we will take you straight to your upload.</p>
-      <a href="{{ createHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 48px; padding: 13px 26px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: background 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Create an account</a>
-    </div>
+      <div style="margin-top: 22px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 16px; padding: 22px 24px; text-align: center;">
+        <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.6; color: #06313A;">First time here? Start a case and we will set your account up as you go.</p>
+        <a href="{{ createHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 48px; padding: 13px 26px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: background 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Start a new case</a>
+      </div>
+    </sc-if>
 
-    <p style="margin: 24px 0 0; font-size: 13px; line-height: 1.65; color: #5A6B77; text-align: center;">Your images and reports are held in the UK, encrypted, and never shown in an email or a notification. <a href="Privacy.dc.html" style="font-weight: 600;">How we look after your data</a></p>
+    <sc-if value="{{ atCode }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-bottom: 26px;">
+        <h1 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.14; letter-spacing: -0.02em; color: #0A1F2C;">Check your email</h1>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">We have sent a six-digit code to <strong style="color: #0A1F2C;">{{ pendingEmail }}</strong>. It is good for fifteen minutes.</p>
+      </div>
+
+      <div data-r="authcard" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+            <div role="alert" style="background: #FBEEEC; border: 1px solid #E7BDB8; border-radius: 11px; padding: 13px 15px; font-size: 14px; line-height: 1.55; color: #7E2B26;">{{ error }}</div>
+          </sc-if>
+          <label style="display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Six-digit code</span>
+            <input type="text" inputmode="numeric" autocomplete="one-time-code" value="{{ code }}" onChange="{{ onCode }}" placeholder="000000" style="min-height: 56px; padding: 14px 16px; border-radius: 11px; border: 1.5px solid {{ codeBorder }}; background: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+          </label>
+          <button type="button" onClick="{{ verify }}" style="min-height: 52px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Verify and open my dashboard</button>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+            <button type="button" onClick="{{ resend }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #095458; cursor: pointer; text-decoration: underline;">Send it again</button>
+            <button type="button" onClick="{{ changeEmail }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #5A6B77; cursor: pointer; text-decoration: underline;">Use a different email</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; background: #FDF2E2; border: 1px solid #E7CB97; border-radius: 14px; padding: 18px 20px;">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #8A5712; margin-bottom: 7px;">Demonstration</div>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #6B4310;">Nothing is emailed in this prototype. Your code is <strong style="font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.1em;">{{ demoCode }}</strong>. In the real service this is sent to your inbox and never shown on screen.</p>
+      </div>
+    </sc-if>
+
+    <p style="margin: 26px 0 0; font-size: 13px; line-height: 1.65; color: #5A6B77; text-align: center;">Your images and reports are held in the UK, encrypted, and never shown in an email or on a lock screen. <a href="Privacy.dc.html" style="font-weight: 600;">How we look after your data</a></p>
   </div>
 </section>
 <footer style="background: #06131C; color: #FFFFFF; padding: 44px 32px 26px; margin-top: 24px;">
@@ -142,46 +158,65 @@ function icon(d, size, width) {
 }
 
 
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+/* Passwordless throughout: an account never has a password to choose, forget
+   or leak, and the same six-digit code screen serves signing in and creating
+   an account. DEMO BUILD — the code is shown on screen instead of emailed. */
 class Component extends DCLogic {
   state = {
     email: '',
-    password: '',
-    remember: false,
-    error: ''
+    code: '',
+    stage: (window.PORTAL && PORTAL.pending()) ? 'code' : 'email',
+    error: '',
+    errorCreate: false,
+    demoCode: ''
   };
 
-  // Demo build: there is no account to check against. Anything shaped like an
-  // email plus six characters is accepted. The shape checks still run, because
-  // they are the messages the real build needs.
-  submit() {
+  sendCode() {
     const email = this.state.email.trim();
-    if (!email) return this.setState({ error: 'Enter the email address you used when you created your account.' });
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      return this.setState({ error: 'That does not look like an email address. Check for a missing @ or a typo in the domain.' });
+    if (!email) return this.setState({ error: 'Enter the email address you used when you started your case.', errorCreate: false });
+    if (!EMAIL_RE.test(email)) {
+      return this.setState({ error: 'That does not look like an email address. Check for a missing @ or a typo in the domain.', errorCreate: false });
     }
-    if (this.state.password.length < 6) {
-      return this.setState({ error: 'Enter your password. It is at least six characters long.' });
+    const res = PORTAL.startSignIn(email);
+    if (!res.ok) {
+      return this.setState({ error: 'We could not find an account for that email.', errorCreate: true });
     }
-    PORTAL.signIn(email);
+    this.setState({ stage: 'code', error: '', errorCreate: false, code: '', demoCode: res.code });
+  }
+
+  verify() {
+    const res = PORTAL.verifyPending(this.state.code);
+    if (!res.ok) {
+      return this.setState({ error: 'That code did not match. Check the six digits, or send yourself a new one.' });
+    }
     window.location.href = PORTAL.safeNext(PORTAL.param('next'));
   }
 
   renderVals() {
-    const err = this.state.error;
+    const s = this.state;
     const next = PORTAL.param('next');
+    const pend = PORTAL.pending();
     return {
-      email: this.state.email,
-      password: this.state.password,
-      remember: this.state.remember,
-      error: err,
-      hasError: !!err,
-      emailBorder: err && !this.state.email ? '#C97D76' : '#D4DDE0',
-      passwordBorder: err && this.state.password.length < 6 ? '#C97D76' : '#D4DDE0',
+      atEmail: s.stage === 'email',
+      atCode: s.stage === 'code',
+      email: s.email,
+      code: s.code,
+      error: s.error,
+      hasError: !!s.error,
+      errorCreate: s.errorCreate,
+      emailBorder: s.error && s.stage === 'email' ? '#C97D76' : '#D4DDE0',
+      codeBorder: s.error && s.stage === 'code' ? '#C97D76' : '#D4DDE0',
+      pendingEmail: pend ? pend.email : s.email,
+      demoCode: pend ? pend.code : s.demoCode,
       createHref: 'Create Account.dc.html' + (next ? '?next=' + encodeURIComponent(next) : ''),
-      onEmail: e => this.setState({ email: e.target.value, error: '' }),
-      onPassword: e => this.setState({ password: e.target.value, error: '' }),
-      onRemember: e => this.setState({ remember: e.target.checked }),
-      submit: () => this.submit()
+      onEmail: e => this.setState({ email: e.target.value, error: '', errorCreate: false }),
+      onCode: e => this.setState({ code: e.target.value, error: '' }),
+      sendCode: () => this.sendCode(),
+      verify: () => this.verify(),
+      resend: () => this.setState({ demoCode: PORTAL.resendCode(), code: '', error: '' }),
+      changeEmail: () => { PORTAL.cancelPending(); this.setState({ stage: 'email', code: '', error: '' }); }
     };
   }
 }

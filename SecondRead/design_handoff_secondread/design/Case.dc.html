@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=2"></script>
-<script src="./portal.js?v=6"></script>
+<script src="./portal.js?v=7"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=14">
+  <link rel="stylesheet" href="responsive.css?v=15">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -78,7 +78,7 @@
           <a href="Dashboard.dc.html" data-r="acctmobileonly" style="display: none; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Dashboard</a>
           <a href="Dashboard.dc.html#reports" data-r="acctmobileonly" style="display: none; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">My reports</a>
           <a href="Account.dc.html" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Personal details</a>
-          <a href="Account.dc.html#security" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Password &amp; sign-in</a>
+          <a href="Account.dc.html#security" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Sign-in &amp; security</a>
           <a href="Account.dc.html#privacy" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Privacy &amp; your data</a>
           <a href="Account.dc.html#support" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Help &amp; support</a>
           <div style="border-top: 1px solid #E2E9EC; margin: 6px 0 0; padding-top: 6px;">
@@ -92,7 +92,7 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: anything you type is accepted, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <div data-r="portalwrap" style="max-width: 1180px; margin: 0 auto; padding: 28px 32px 40px;">
@@ -187,6 +187,16 @@
               </div>
             </sc-for>
           </div>
+          <sc-if value="{{ hasContext }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 14px;">
+              <sc-for list="{{ context }}" as="ctx" hint-placeholder-count="4">
+                <div>
+                  <div style="font-size: 14px; color: #5A6B77; margin-bottom: 6px;">{{ ctx.label }}</div>
+                  <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #0A1F2C;">{{ ctx.value }}</p>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
           <div style="margin-top: 18px;">
             <div style="font-size: 14px; color: #5A6B77; margin-bottom: 7px;">The question you asked</div>
             <p style="margin: 0; background: #F7FBFB; border: 1px solid #C3E0DE; border-radius: 12px; padding: 16px 18px; font-size: 15px; line-height: 1.65; color: #0A1F2C;">{{ question }}</p>
@@ -293,14 +303,17 @@ const CLOCK = 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 6v6l4 2';
 const ALERT = 'M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z';
 const TICK = 'M20 6 9 17l-5-5';
 
-// The four phases, with the sentence the patient reads at each one. Clinical
-// quality check is deliberately folded into "Reviewing" — splitting it out
-// only invites "why is it stuck in checking?".
+// The four tracked stages, named exactly as PORTAL.TIMELINE names them and as
+// the website, the confirmation screen and the emails name them. Clinical
+// quality check is deliberately folded into "Under expert review" — splitting
+// it out only invites "why is it stuck in checking?". "Action needed" and
+// "Follow-up available" are not stages on this rail: the first is a pause,
+// shown as the amber panel above, and the second appears once a report lands.
 const PHASES = [
-  { title: 'We have your scan', body: 'Your images and report arrived and passed our checks for completeness and readability.' },
-  { title: 'Matched to a specialist', body: 'Your case went to a consultant who subspecialises in this part of the body.' },
+  { title: 'Submitted', body: 'Your images and report arrived and passed our checks for completeness and readability.' },
+  { title: 'Being matched', body: 'Your case goes to a consultant who subspecialises in this part of the body. You are not asked to choose them.' },
   { title: 'Under expert review', body: 'Your consultant reads every image, writes the report, and it passes a clinical check before release.' },
-  { title: 'Report delivered', body: 'Your report arrives in your account, with a plain-English explanation and a comparison against your original report.' }
+  { title: 'Report ready', body: 'Your report arrives in your account, with a plain-English explanation and a comparison against your original report.' }
 ];
 
 class Component extends DCLogic {
@@ -342,7 +355,7 @@ class Component extends DCLogic {
         notFound: true, found: false,
         ref: '', chip: '', chipBg: '', chipFg: '', chipBorder: '',
         heading: '', subheading: '', speedLabel: '', clockGlyph: null,
-        tasks: [], steps: [], summary: [], messages: [], noMessages: true,
+        tasks: [], steps: [], summary: [], context: [], hasContext: false, messages: [], noMessages: true,
         isDelivered: false, question: '', draft: '',
         dueLabel: '', dueValue: '', dueBg: '#F7FBFB', dueBorder: '#C3E0DE',
         consultantName: '', consultantRole: '', docPortrait: null, docBlurb: '',
@@ -384,6 +397,19 @@ class Component extends DCLogic {
       { label: 'Earlier scans', value: c.raw.priorStudy ? 'Uploaded' : 'None supplied' },
       { label: 'Turnaround', value: c.speedLabel + ' \u00B7 \u00A3' + c.price }
     ];
+    const clin = c.raw.clinician;
+    if (clin && clin.mode && clin.mode !== 'self' && clin.email) {
+      summary.push({ label: 'Clinician invited', value: clin.name || clin.email });
+    }
+
+    // Free text the patient wrote, shown back to them so they can see exactly
+    // what their consultant is working from.
+    const context = [
+      { label: 'Your symptoms', value: c.raw.symptoms },
+      { label: 'When they began', value: c.raw.symptomsOnset },
+      { label: 'How they have changed', value: c.raw.symptomsChange },
+      { label: 'Relevant history', value: c.raw.history }
+    ].filter(r => r.value);
 
     return Object.assign(this.chromeVals(), {
       notFound: false,
@@ -432,6 +458,8 @@ class Component extends DCLogic {
 
       steps: steps,
       summary: summary,
+      context: context,
+      hasContext: context.length > 0,
       question: c.raw.question || 'No specific question was recorded for this case.',
 
       dueLabel: paused ? 'Delivery time paused' : (c.isDelivered ? 'Delivered' : 'Expected by'),

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=2"></script>
-<script src="./portal.js?v=6"></script>
+<script src="./portal.js?v=7"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=14">
+  <link rel="stylesheet" href="responsive.css?v=15">
   <script src="./image-slot.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -194,7 +194,7 @@ const MODALITIES = ['MRI', 'CT', 'PET-CT', 'Ultrasound'];
    the profile pages can never drift apart. */
 const DOCTORS = CONSULTANTS;
 
-// Carried in from checkout by "Choose someone else", and handed straight back
+// Carried in from checkout, and handed straight back
 // so picking a different consultant does not reset the order.
 function inboundOrder() {
   var out = {};

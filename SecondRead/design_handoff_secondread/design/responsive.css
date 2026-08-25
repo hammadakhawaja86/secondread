@@ -727,3 +727,30 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
   [data-r="reportactions"] > a, [data-r="reportactions"] > button { justify-content: center !important; }
   [data-r="reportmeta"] { grid-template-columns: minmax(0, 1fr) !important; }
 }
+
+/* --- three-step flow ---------------------------------------------------- */
+
+@media (max-width: 900px) {
+  /* The order summary drops under the step rather than sitting beside it. */
+  [data-r="flowbar"] { gap: 14px !important; }
+}
+
+@media (max-width: 620px) {
+  /* Logo on its own row, then the two header actions side by side, rather
+     than the save button stranded alone on a second line. */
+  [data-r="flowbar"] > a:first-child { flex: 1 0 100% !important; }
+  [data-r="flowbar"] [data-r="flowdash"],
+  [data-r="flowbar"] > button { flex: 1 1 0 !important; margin-left: 0 !important; justify-content: center !important; }
+
+  /* The step names are the model, so they wrap rather than truncate. Three
+     across still beats a vertical list here: it keeps the whole model on
+     screen above the fold. */
+  [data-r="stepper"] > button > span:last-child { hyphens: auto; overflow-wrap: break-word; }
+
+  /* The notification table: label above the words rather than beside them. */
+  [data-r="noticerow"] { flex-direction: column !important; gap: 6px !important; }
+  [data-r="noticerow"] > span:first-child { width: auto !important; }
+
+  /* Check results and detected values go to a single column. */
+  [data-r="checkgrid"], [data-r="detected"], [data-r="readjump"] { grid-template-columns: minmax(0, 1fr) !important; }
+}

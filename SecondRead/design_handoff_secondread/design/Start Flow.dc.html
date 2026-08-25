@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=2"></script>
-<script src="./portal.js?v=6"></script>
+<script src="./portal.js?v=7"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=14">
+  <link rel="stylesheet" href="responsive.css?v=15">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -57,6 +57,82 @@
   </sc-if>
 </header>
 
+<sc-if value="{{ isGate }}" hint-placeholder-val="{{ false }}">
+<section style="padding: 52px 32px 88px;">
+  <div style="max-width: 520px; margin: 0 auto;">
+
+    <sc-if value="{{ gateDetails }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-bottom: 24px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Before you start</div>
+        <h1 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.14; letter-spacing: -0.02em; color: #0A1F2C;">Let us save your place</h1>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #4A5C68;">Two details, and everything you do from here is saved as you go. Uploading a scan takes a while and we would rather you could close the tab and come back.</p>
+      </div>
+
+      <div data-r="authcard" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <sc-if value="{{ hasGateError }}" hint-placeholder-val="{{ false }}">
+            <div role="alert" style="background: #FBEEEC; border: 1px solid #E7BDB8; border-radius: 11px; padding: 13px 15px; font-size: 14px; line-height: 1.55; color: #7E2B26;">{{ gateError }}<sc-if value="{{ gateErrorSignIn }}" hint-placeholder-val="{{ false }}"> <a href="{{ signInHref }}" style="font-weight: 600; color: #7E2B26; text-decoration: underline;">Sign in to continue your saved case</a>.</sc-if></div>
+          </sc-if>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">First name</span>
+                <input type="text" value="{{ first }}" onChange="{{ onFirst }}" placeholder="" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Last name</span>
+                <input type="text" value="{{ last }}" onChange="{{ onLast }}" placeholder="" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+          </div>
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Email address</span>
+                <input type="text" value="{{ email }}" onChange="{{ onEmail }}" placeholder="you@example.com" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">Where we send your code, and where we tell you your report is ready. We never put clinical details in an email.</span>
+              </label>
+          <button type="button" onClick="{{ sendCode }}" style="min-height: 52px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Email me a sign-in code</button>
+          <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #5A6B77;">No password to choose or forget. We email you a six-digit code each time you sign in. By continuing you agree to the <a href="Terms.dc.html" style="font-weight: 600;">terms</a> and the <a href="Privacy.dc.html" style="font-weight: 600;">privacy notice</a>.</p>
+        </div>
+      </div>
+
+      <p style="margin: 22px 0 0; font-size: 14.5px; color: #4A5C68; text-align: center;">Already have an account? <a href="{{ signInHref }}" style="font-weight: 600;">Sign in</a></p>
+    </sc-if>
+
+    <sc-if value="{{ gateCode }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-bottom: 24px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Step 2 of 2</div>
+        <h1 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.14; letter-spacing: -0.02em; color: #0A1F2C;">Check your email</h1>
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #4A5C68;">We have sent a six-digit code to <strong style="color: #0A1F2C;">{{ pendingEmail }}</strong>. It is good for fifteen minutes.</p>
+      </div>
+
+      <div data-r="authcard" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <sc-if value="{{ hasGateError }}" hint-placeholder-val="{{ false }}">
+            <div role="alert" style="background: #FBEEEC; border: 1px solid #E7BDB8; border-radius: 11px; padding: 13px 15px; font-size: 14px; line-height: 1.55; color: #7E2B26;">{{ gateError }}</div>
+          </sc-if>
+          <label style="display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Six-digit code</span>
+            <input type="text" inputmode="numeric" autocomplete="one-time-code" value="{{ code }}" onChange="{{ onCode }}" placeholder="000000" style="min-height: 56px; padding: 14px 16px; border-radius: 11px; border: 1.5px solid {{ codeBorder }}; background: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+          </label>
+          <button type="button" onClick="{{ verify }}" style="min-height: 52px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Verify and start uploading</button>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+            <button type="button" onClick="{{ resend }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #095458; cursor: pointer; text-decoration: underline;">Send it again</button>
+            <button type="button" onClick="{{ changeEmail }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #5A6B77; cursor: pointer; text-decoration: underline;">Use a different email</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; background: #FDF2E2; border: 1px solid #E7CB97; border-radius: 14px; padding: 18px 20px;">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #8A5712; margin-bottom: 7px;">Demonstration</div>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #6B4310;">Nothing is emailed in this prototype. Your code is <strong style="font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.1em;">{{ demoCode }}</strong>. In the real service this is sent to your inbox and never shown on screen.</p>
+      </div>
+    </sc-if>
+
+    <p style="margin: 26px 0 0; font-size: 13px; line-height: 1.65; color: #5A6B77; text-align: center;">Your images and reports are held in the UK, encrypted, and never shown in an email or on a lock screen. <a href="Privacy.dc.html" style="font-weight: 600;">How we look after your data</a></p>
+  </div>
+</section>
+</sc-if>
+
 <sc-if value="{{ isOrdering }}" hint-placeholder-val="{{ true }}">
 <section style="padding: 40px 32px 88px;">
   <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start;">
@@ -67,11 +143,30 @@
 
       <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
         <div style="display: flex; flex-direction: column; gap: 18px;">
-          <div onClick="{{ addFile }}" style="background: #FFFFFF; border: 2px dashed #C3E0DE; border-radius: 18px; padding: 48px 32px; text-align: center; cursor: pointer; transition: border-color 180ms ease-out, background 180ms ease-out;" style-hover="border-color: #0D6E70; background: #F7FBFB;">
+          <div onClick="{{ addFile }}" style="background: #FFFFFF; border: 2px dashed #C3E0DE; border-radius: 18px; padding: 44px 32px; text-align: center; cursor: pointer; transition: border-color 180ms ease-out, background 180ms ease-out;" style-hover="border-color: #0D6E70; background: #F7FBFB;">
             <span style="display: inline-flex; width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, #0D6E70 0%, #12938F 55%, #6FE3C5 100%); color: #FFFFFF; align-items: center; justify-content: center; margin-bottom: 18px; box-shadow: 0 8px 20px rgba(13,110,112,0.28);">{{ uploadGlyph }}</span>
-            <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Drag files or a folder here</h3>
-            <p style="margin: 0 0 20px; font-size: 14px; color: #5A6B77;">DICOM (.dcm), .zip, ISO or images from your phone · up to 4GB</p>
+            <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Drag your DICOM folder or ZIP file here</h3>
+            <p style="margin: 0 0 20px; font-size: 14px; color: #5A6B77;">The whole folder or CD is fine &middot; up to 4GB</p>
             <span style="display: inline-flex; min-height: 46px; padding: 12px 26px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-size: 14.5px; font-weight: 600; align-items: center;">Choose files</span>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What to send us</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Three things, in order of importance. You can add the last two later if you need to.</p>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <sc-for list="{{ needList }}" as="n" hint-placeholder-count="3">
+                <div style="display: flex; gap: 13px; align-items: flex-start;">
+                  <span style="flex-shrink: 0; display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; background: {{ n.tagBg }}; border: 1px solid {{ n.tagBorder }}; color: {{ n.tagColor }}; font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; margin-top: 2px;">{{ n.tag }}</span>
+                  <div style="min-width: 0;">
+                    <div style="font-size: 15px; font-weight: 600; color: #0A1F2C; margin-bottom: 3px;">{{ n.title }}</div>
+                    <div style="font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ n.body }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #E2E9EC;">
+              <div style="font-size: 14px; line-height: 1.65; color: #4A5C68;"><strong style="color: #0A1F2C;">DICOM</strong> is the format hospitals store scan images in. On a CD or a download it usually looks like a folder full of files ending <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">.dcm</span>, sometimes with no obvious file names at all. Send the whole folder &mdash; you do not need to work out which files matter.</div>
+            </div>
           </div>
 
           <sc-for list="{{ files }}" as="file" hint-placeholder-count="2">
@@ -86,77 +181,276 @@
               <div style="height: 6px; border-radius: 999px; background: #EEF2F4; overflow: hidden;">
                 <div style="height: 100%; width: {{ file.width }}; border-radius: 999px; background: linear-gradient(90deg, #0D6E70, #6FE3C5); transition: width 300ms ease-out;"></div>
               </div>
+              <sc-if value="{{ file.showChecks }}" hint-placeholder-val="{{ true }}">
+                <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #EEF2F4;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 10px;">Checks on this study</div>
+                  <div data-r="checkgrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px 18px;">
+                    <sc-for list="{{ file.checks }}" as="chk" hint-placeholder-count="6">
+                      <div style="display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #4A5C68;">
+                        <span style="flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%; background: {{ chk.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ chk.glyph }}</span>
+                        <span>{{ chk.label }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
             </div>
           </sc-for>
 
-          <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 14px; padding: 20px 22px; display: flex; gap: 14px; align-items: flex-start;">
-            <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #0D6E70; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;">i</span>
-            <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #06313A;">Do not have your images? Skip this step. We will send you a request letter and collect them from the hospital with your consent — usually 3–5 working days, at no extra cost.</p>
+          <div style="background: #FDF2E2; border: 1px solid #E7CB97; border-radius: 14px; padding: 20px 22px; display: flex; gap: 14px; align-items: flex-start;">
+            <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #C68A2E; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ alertGlyph }}</span>
+            <div>
+              <div style="font-size: 15px; font-weight: 600; color: #6B4310; margin-bottom: 5px;">Screenshots and PDFs are not enough on their own</div>
+              <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #6B4310;">A photograph of a screen, a screenshot from a viewing app, or the written report as a PDF cannot be re-read as images. Your consultant needs the original image data to give you a genuine second opinion. Send the report as well &mdash; just not instead.</p>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Do not have your images yet?</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">You have a right to a copy of your own scan images. Here is how to ask for them. You can start your case now and add the images when they arrive &mdash; nothing is charged until the last step.</p>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <sc-for list="{{ getImages }}" as="g" hint-placeholder-count="3">
+                <div style="display: flex; gap: 14px; align-items: flex-start;">
+                  <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #E4F2F2; border: 1px solid #C3E0DE; color: #095458; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ g.n }}</span>
+                  <div>
+                    <div style="font-size: 15px; font-weight: 600; color: #0A1F2C; margin-bottom: 3px;">{{ g.title }}</div>
+                    <div style="font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ g.body }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <p style="margin: 18px 0 0; padding-top: 16px; border-top: 1px solid #E2E9EC; font-size: 13.5px; line-height: 1.6; color: #5A6B77;">To be straight with you: we cannot request your images from the hospital for you. The request has to come from you, because it is your record. If you get stuck, call us on <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a> and we will talk you through it.</p>
           </div>
         </div>
       </sc-if>
 
       <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
-        <div style="display: flex; flex-direction: column; gap: 26px;">
+        <div style="display: flex; flex-direction: column; gap: 22px;">
+
           <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Scan type</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-              <sc-for list="{{ scanTypes }}" as="opt" hint-placeholder-count="5">
-                <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 46px; padding: 12px 22px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What we read from your images</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Taken from the study you uploaded. Have a look, and correct anything that is wrong.</p>
+            <div data-r="detected" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 18px;">
+              <sc-for list="{{ detected }}" as="d" hint-placeholder-count="2">
+                <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 12px; padding: 14px 16px;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 5px;">{{ d.label }}</div>
+                  <div style="font-size: 16px; font-weight: 600; color: #06313A;">{{ d.value }}</div>
+                </div>
               </sc-for>
             </div>
+            <button type="button" onClick="{{ toggleDetected }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #095458; cursor: pointer; text-decoration: underline;">{{ detectedToggleLabel }}</button>
+            <sc-if value="{{ editingDetected }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #E2E9EC; display: flex; flex-direction: column; gap: 20px;">
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 10px;">Scan type</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <sc-for list="{{ scanTypes }}" as="opt" hint-placeholder-count="6">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+                </div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 4px;">Body area</div>
+                  <p style="margin: 0 0 12px; font-size: 13.5px; color: #5A6B77;">You do not have to know the medical term.</p>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                    <sc-for list="{{ bodyAreas }}" as="opt" hint-placeholder-count="6">
+                      <button type="button" onClick="{{ opt.select }}" style="appearance: none; display: flex; align-items: center; gap: 11px; padding: 14px 16px; border-radius: 12px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
+                        <span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid {{ opt.dotBorder }}; background: {{ opt.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ opt.tick }}</span>
+                        <span style="font-size: 14.5px; font-weight: 500; color: #173B4F;">{{ opt.label }}</span>
+                      </button>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
           </div>
+
           <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Body area</h3>
-            <p style="margin: 0 0 18px; font-size: 14px; color: #5A6B77;">This is how we pick your subspecialist. You do not have to know the medical term.</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
-              <sc-for list="{{ bodyAreas }}" as="opt" hint-placeholder-count="6">
-                <button type="button" onClick="{{ opt.select }}" style="appearance: none; display: flex; align-items: center; gap: 11px; padding: 14px 16px; border-radius: 12px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
-                  <span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid {{ opt.dotBorder }}; background: {{ opt.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ opt.tick }}</span>
-                  <span style="font-size: 14.5px; font-weight: 500; color: #173B4F;">{{ opt.label }}</span>
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">When and where the scan was done</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">This helps us tell your study apart from any earlier ones, and tells your consultant which machine and protocol to expect.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Date of the scan</span>
+                <input type="text" value="{{ scanDate }}" onChange="{{ onScanDate }}" placeholder="For example: March 2026" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">Roughly is fine if you cannot remember the day.</span>
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Hospital or imaging provider</span>
+                <input type="text" value="{{ provider }}" onChange="{{ onProvider }}" placeholder="For example: Royal Free Hospital" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Your symptoms</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">In your own words. There is no wrong way to describe this.</p>
+            <div style="display: flex; flex-direction: column; gap: 18px;">
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">What are your main symptoms?</span>
+            <textarea value="{{ symptoms }}" onChange="{{ onSymptoms }}" placeholder="For example: a dull ache on the outside of my right knee, worse going downstairs." style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 92px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+              </label>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">When did they begin?</span>
+                <input type="text" value="{{ symptomsOnset }}" onChange="{{ onOnset }}" placeholder="For example: around November" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">How have they changed since?</span>
+                <input type="text" value="{{ symptomsChange }}" onChange="{{ onSymptomsChange }}" placeholder="For example: slowly getting worse" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Anything in your medical history we should know</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Previous diagnoses, operations, injuries, any cancer history, and any treatment you are having or have had. If none of that applies, say so &mdash; that is useful too.</p>
+            <textarea value="{{ history }}" onChange="{{ onHistory }}" placeholder="For example: knee arthroscopy in 2019. No cancer history. No other operations." style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 92px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What you already have</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Your original report lets your consultant compare directly with what was said before. An earlier scan lets them tell you what has changed.</p>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 10px;">Do you have the original radiology report?</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <sc-for list="{{ reportOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+              </div>
+              <div>
+                <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 10px;">Do you have an earlier scan of the same area?</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <sc-for list="{{ priorOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); border-color: #C3E0DE;">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What would you like the consultant radiologist to review or clarify?</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">This is the one thing we ask you not to skip. Your consultant answers it directly, in plain English, in your report.</p>
+            <textarea value="{{ question }}" onChange="{{ onQuestion }}" placeholder="For example: my report mentioned a possible lesion — is it a tumour, and has it changed since my last scan?" style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 108px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 600; color: #5A6B77; margin-bottom: 9px;">Not sure how to put it? Start from one of these.</div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ ex.use }}" style="appearance: none; text-align: left; background: #F7FBFB; border: 1px solid #D6E6E6; border-radius: 11px; padding: 12px 15px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.55; color: #173B4F; cursor: pointer; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #EFF7F7;">&ldquo;{{ ex.text }}&rdquo;</button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Would you like your GP or treating clinician to add clinical information for the radiologist?</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Not required. It helps most when your history is long, or when someone else has been managing your care.</p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <sc-for list="{{ clinicianOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; display: flex; align-items: flex-start; gap: 13px; padding: 16px 18px; border-radius: 12px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
+                  <span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid {{ opt.dotBorder }}; background: {{ opt.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; margin-top: 1px;">{{ opt.tick }}</span>
+                  <span>
+                    <span style="display: block; font-size: 15px; font-weight: 600; color: #0A1F2C;">{{ opt.label }}</span>
+                    <span style="display: block; margin-top: 3px; font-size: 13.5px; line-height: 1.55; color: #4A5C68;">{{ opt.note }}</span>
+                  </span>
                 </button>
               </sc-for>
             </div>
-          </div>
-          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What do you want answered?</h3>
-            <p style="margin: 0 0 16px; font-size: 14px; color: #5A6B77;">One or two sentences is plenty. The consultant answers this directly in your report.</p>
-            <textarea value="{{ question }}" onChange="{{ onQuestion }}" placeholder="For example: my report mentioned a possible lesion — is it a tumour, and has it changed since my last scan?" style="width: 100%; min-height: 108px; padding: 16px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
-          </div>
-          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Your consultant</h3>
-            <p style="margin: 0 0 18px; font-size: 14px; color: #5A6B77;">Matched from your body area. You can change this or let us decide.</p>
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 14px; padding: 18px 20px;">
-              <div style="display: flex; align-items: center; gap: 14px;">
-                <span style="width: 46px; height: 46px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; color: #095458; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ consultantInitials }}</span>
-                <div>
-                  <div style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #06313A;">{{ consultantName }}</div>
-                  <div style="font-size: 13px; color: #4A5C68;">{{ consultantRole }}</div>
+            <sc-if value="{{ wantsClinician }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #E2E9EC; display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Your clinician's name</span>
+                <input type="text" value="{{ clinicianName }}" onChange="{{ onClinicianName }}" placeholder="For example: Dr Sarah Patel" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Their email address</span>
+                <input type="text" value="{{ clinicianEmail }}" onChange="{{ onClinicianEmail }}" placeholder="surgery@nhs.net" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">We only ever use this to send the single-case link.</span>
+              </label>
                 </div>
+                <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 12px; padding: 16px 18px; font-size: 14px; line-height: 1.65; color: #06313A;">We send them a secure link that opens this case and nothing else, valid for seven days. They verify who they are before they can see anything, and no account is created for them. Keep uploading in the meantime &mdash; but your case will not go to a consultant until their section is complete.</div>
               </div>
-              <a href="{{ chooseHref }}" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Choose someone else</a>
+            </sc-if>
+          </div>
+
+          <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 18px; padding: 26px 28px;">
+            <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #06313A;">How your consultant is chosen</h3>
+            <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.65; color: #06313A;">We use everything on this page to match your case with the appropriate consultant subspecialist &mdash; you are not expected to pick a radiologist yourself. Before you pay, we confirm who will review your case, their relevant expertise, and when your report will land.</p>
+            <div style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 14px; padding: 18px 20px;">
+              <span style="flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; background: #E4F2F2; border: 1px solid #C3E0DE; color: #095458; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ consultantInitials }}</span>
+              <div style="min-width: 0;">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #06313A;">{{ consultantName }}</div>
+                <div style="font-size: 13.5px; line-height: 1.5; color: #4A5C68;">{{ consultantRole }}</div>
+              </div>
             </div>
           </div>
         </div>
       </sc-if>
 
       <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
-        <div style="display: flex; flex-direction: column; gap: 26px;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
-            <sc-for list="{{ speeds }}" as="speed" hint-placeholder-count="3">
-              <button type="button" onClick="{{ speed.select }}" style="appearance: none; text-align: left; background: #FFFFFF; border: 2px solid {{ speed.border }}; border-radius: 18px; padding: 26px 24px; cursor: pointer; box-shadow: {{ speed.shadow }}; font-family: 'Inter', sans-serif; position: relative; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out, border-color 180ms ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 34px rgba(10,31,44,0.14);">
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
-                  <span style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">{{ speed.label }}</span>
-                  <span style="width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid {{ speed.dotBorder }}; background: {{ speed.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ speed.tick }}</span>
+        <div style="display: flex; flex-direction: column; gap: 22px;">
+
+          <div style="background: #FFFFFF; border: 1.5px solid #C3E0DE; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Confirmed before you pay</div>
+            <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px;">
+              <span style="flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; background: #E4F2F2; border: 1px solid #C3E0DE; color: #095458; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ consultantInitials }}</span>
+              <div style="min-width: 0;">
+                <h3 style="margin: 0 0 4px; font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 700; color: #0A1F2C;">{{ consultantName }}</h3>
+                <div style="font-size: 14.5px; line-height: 1.55; color: #4A5C68;">{{ consultantRole }}</div>
+                <div style="font-size: 13.5px; line-height: 1.55; color: #5A6B77; margin-top: 4px;">{{ consultantWhy }}</div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px;">
+              <sc-for list="{{ confirmRows }}" as="r" hint-placeholder-count="3">
+                <div style="background: #F7FBFB; border: 1px solid #E2E9EC; border-radius: 12px; padding: 13px 15px;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 5px;">{{ r.label }}</div>
+                  <div style="font-size: 15px; font-weight: 600; color: #0A1F2C;">{{ r.value }}</div>
                 </div>
-                <div style="font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; color: #0D6E70; letter-spacing: -0.02em; line-height: 1; margin-bottom: 10px;">£{{ speed.price }}</div>
-                <div style="font-size: 13.5px; line-height: 1.5; color: #4A5C68;">{{ speed.deadline }}</div>
-              </button>
-            </sc-for>
+              </sc-for>
+            </div>
+          </div>
+
+          <div>
+            <h3 style="margin: 0 0 4px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">When would you like your report?</h3>
+            <p style="margin: 0 0 16px; font-size: 14px; color: #5A6B77;">The date you see is the date the signed report lands. Miss it and we refund you in full.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
+              <sc-for list="{{ speeds }}" as="speed" hint-placeholder-count="3">
+                <button type="button" onClick="{{ speed.select }}" style="appearance: none; text-align: left; background: #FFFFFF; border: 2px solid {{ speed.border }}; border-radius: 18px; padding: 26px 24px; cursor: pointer; box-shadow: {{ speed.shadow }}; font-family: 'Inter', sans-serif; position: relative; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out, border-color 180ms ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 34px rgba(10,31,44,0.14);">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+                    <span style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">{{ speed.label }}</span>
+                    <span style="width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid {{ speed.dotBorder }}; background: {{ speed.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ speed.tick }}</span>
+                  </div>
+                  <div style="font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; color: #0D6E70; letter-spacing: -0.02em; line-height: 1; margin-bottom: 10px;">&pound;{{ speed.price }}</div>
+                  <div style="font-size: 13.5px; line-height: 1.5; color: #4A5C68;">{{ speed.deadline }}</div>
+                </button>
+              </sc-for>
+            </div>
           </div>
 
           <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Add anything else?</h3>
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What is in your report</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Every report includes all of this. Nothing here is an extra.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 20px;">
+              <sc-for list="{{ included }}" as="inc" hint-placeholder-count="5">
+                <div style="display: flex; gap: 10px; align-items: flex-start;">
+                  <span style="flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: #0D6E70; color: #FFFFFF; display: flex; align-items: center; justify-content: center; margin-top: 2px;">{{ inc.tick }}</span>
+                  <span style="font-size: 14.5px; line-height: 1.55; color: #173B4F;">{{ inc.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Add anything else?</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Optional, and you can add either of these after your report arrives instead.</p>
             <div style="display: flex; flex-direction: column; gap: 12px;">
               <sc-for list="{{ addons }}" as="addon" hint-placeholder-count="2">
                 <button type="button" onClick="{{ addon.toggle }}" style="appearance: none; display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 12px; border: 1.5px solid {{ addon.border }}; background: {{ addon.bg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
@@ -165,22 +459,24 @@
                     <span style="display: block; font-size: 15px; font-weight: 600; color: #0A1F2C;">{{ addon.title }}</span>
                     <span style="display: block; margin-top: 3px; font-size: 13.5px; color: #4A5C68;">{{ addon.note }}</span>
                   </span>
-                  <span style="flex-shrink: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0D6E70;">+£{{ addon.price }}</span>
+                  <span style="flex-shrink: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0D6E70;">+&pound;{{ addon.price }}</span>
                 </button>
               </sc-for>
             </div>
           </div>
 
           <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Where the report goes</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
-              <label style="display: flex; flex-direction: column; gap: 7px;">
-                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Your email</span>
-                <input type="email" placeholder="you@example.com" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
-              </label>
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Where your report goes</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Your report lives in your dashboard. We email you to say it is there &mdash; never what it says.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+              <div style="background: #F7FBFB; border: 1px solid #E2E9EC; border-radius: 11px; padding: 13px 15px;">
+                <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 5px;">Your account</div>
+                <div style="font-size: 15px; font-weight: 600; color: #0A1F2C; word-break: break-word;">{{ accountEmail }}</div>
+              </div>
               <label style="display: flex; flex-direction: column; gap: 7px;">
                 <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Your GP's email (optional)</span>
-                <input type="email" placeholder="surgery@nhs.net" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <input type="text" value="{{ gpEmail }}" onChange="{{ onGpEmail }}" placeholder="surgery@nhs.net" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">We send them a link, not your findings.</span>
               </label>
             </div>
           </div>
@@ -191,7 +487,7 @@
         <sc-if value="{{ canGoBack }}" hint-placeholder-val="{{ false }}">
           <button type="button" onClick="{{ back }}" style="min-height: 52px; padding: 15px 28px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Back</button>
         </sc-if>
-        <button type="button" onClick="{{ next }}" aria-disabled="{{ nextBlocked }}" style="min-height: 52px; padding: 15px 34px; border-radius: 999px; border: none; background: {{ nextBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: {{ nextCursor }}; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">{{ nextLabel }}</button>
+        <button type="button" onClick="{{ next }}" aria-disabled="{{ nextBlocked }}" style="min-height: 52px; padding: 15px 34px; border-radius: 999px; border: none; background: {{ nextBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: {{ nextCursor }}; box-shadow: {{ nextShadow }}; transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: {{ nextHoverBg }};" style-active="transform: translateY(1px);">{{ nextLabel }}</button>
         <span style="font-size: 13.5px; color: {{ nextNoteColor }};">{{ nextNote }}</span>
       </div>
 
@@ -235,6 +531,25 @@
     </div>
     <p style="margin: 0 0 32px; font-size: 17px; line-height: 1.6; color: #4A5C68;">The clock started the moment you paid. Your signed report is due <strong style="color: #0A1F2C;">{{ doneDeadline }}</strong>. If we miss it, the fee comes back to you in full — you do not have to ask.</p>
 
+    <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px 30px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); margin-bottom: 24px;">
+      <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Where your case is now</h2>
+      <p style="margin: 0 0 22px; font-size: 14px; color: #5A6B77;">These are the same six states you will see on your dashboard.</p>
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        <sc-for list="{{ tracker }}" as="t" hint-placeholder-count="6">
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; align-self: stretch;">
+              <span style="width: 15px; height: 15px; border-radius: 50%; background: {{ t.dotBg }}; border: 2px solid {{ t.dotBorder }}; box-sizing: border-box; margin-top: 3px;"></span>
+              <span style="flex: 1; width: 2px; background: {{ t.railBg }}; display: {{ t.railDisplay }}; min-height: 18px;"></span>
+            </div>
+            <div style="padding-bottom: 16px; min-width: 0;">
+              <div style="font-size: 15px; font-weight: {{ t.weight }}; color: {{ t.color }};">{{ t.label }}</div>
+              <div style="font-size: 13.5px; line-height: 1.55; color: #5A6B77; margin-top: 2px;">{{ t.note }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
     <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 30px 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); margin-bottom: 24px;">
       <h2 style="margin: 0 0 20px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What happens next</h2>
       <div style="display: flex; flex-direction: column; gap: 18px;">
@@ -264,7 +579,7 @@
           <span style="font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; color: #0D6E70; letter-spacing: -0.02em;">{{ total }}</span>
         </div>
       </div>
-      <p style="margin: 18px 0 0; font-size: 13px; line-height: 1.6; color: #5A6B77;">A receipt is on its way to your email. Your case is now on your dashboard — that is where you follow it, and where your report arrives.</p>
+      <p style="margin: 18px 0 0; font-size: 13px; line-height: 1.6; color: #5A6B77;">A receipt is on its way to your email. Your case is now on your dashboard — that is where you follow it, and where your report arrives. Our emails and notifications never contain clinical details.</p>
     </div>
 
     <div data-r="doneactions" style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
@@ -291,6 +606,8 @@ const BODY_AREAS = [
 
 const DRAFT_KEY = 'secondread:draft:v1';
 
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
 /* The order is now seeded from the URL, so a choice made on the landing page,
    the pricing table or a consultant profile survives the click into checkout.
    Previously every entry point reset to MRI / brain and silently discarded
@@ -313,17 +630,11 @@ function orderFromQuery() {
   var speed = q.get('speed');
   if (speed && SPEEDS.some(function (x) { return x.id === speed; })) out.speed = speed;
 
-  var consultant = q.get('consultant');
-  if (consultant && CONSULTANT_BY_ID[consultant]) {
-    out.consultant = consultant;
-    // Keep the body area consistent with the consultant the visitor picked,
-    // otherwise step 2 would show a neuroradiologist under "Bones or joints".
-    var c = CONSULTANT_BY_ID[consultant];
-    if (!out.area && c.areas.length) {
-      var match = BODY_AREAS.find(function (a) { return c.areas.indexOf(a.id) !== -1; });
-      if (match) out.area = match.id;
-    }
-  }
+  /* `consultant` is deliberately not read. A patient choosing their own
+     radiologist from a directory is the model we moved away from: the match
+     is ours to make from the clinical context, and we confirm it before
+     payment. A link from a consultant profile carries their body area
+     instead, which is a clinical fact rather than a booking. */
 
   var addons = q.get('addons');
   if (addons) {
@@ -352,34 +663,126 @@ const ADDONS = [
   { id: 'call', title: '10-minute video call', note: 'Book a slot within 48 hours of your report', price: 150 }
 ];
 
+/* The three patient-facing steps, named exactly as they are named on the
+   website, in the emails and on the dashboard. There is deliberately no
+   "choose a specialist" step: matching a scan to the right subspecialist is
+   our job, not something to hand to an anxious patient. */
 const STEPS = [
-  { n: 1, label: 'Your images', title: 'Send us the scan', subtitle: 'Drop in everything you have — the whole CD folder is fine. We work out which series matter.' },
-  { n: 2, label: 'What was scanned?', title: 'Tell us what we are looking at', subtitle: 'This is how we match your subspecialist. Plain words are fine — you do not need the medical term.' },
-  { n: 3, label: 'When do you need it', title: 'Choose your deadline, then pay', subtitle: 'The date you see is the date the signed report lands. Miss it and we refund you in full.' }
+  { n: 1, label: 'Upload your scans', title: 'Upload your scans',
+    subtitle: 'Your scan images, your original radiology report, and any earlier scans of the same area. The whole folder is fine — we work out which series matter.' },
+  { n: 2, label: 'Tell us about your case', title: 'Tell us about your case',
+    subtitle: 'Your symptoms, anything relevant in your history, and what you would like our consultant to review. This is what we use to match your case.' },
+  { n: 3, label: 'Get your expert report', title: 'Get your expert report',
+    subtitle: 'Here is who will review your case and when your report lands. Nothing is charged until you press the button.' }
 ];
 
+const REPORT_OPTIONS = [
+  { id: 'have', label: 'Yes, I have it' },
+  { id: 'requested', label: 'I have asked for it' },
+  { id: 'none', label: 'No, I do not have it' }
+];
+
+const PRIOR_OPTIONS = [
+  { id: 'have', label: 'Yes, and I have it' },
+  { id: 'exists', label: 'Yes, but I do not have it' },
+  { id: 'none', label: 'No earlier scan' }
+];
+
+const CLINICIAN_OPTIONS = [
+  { id: 'self', label: "I'll provide the information myself",
+    note: 'Most people choose this. What you have written above is enough.' },
+  { id: 'invite', label: 'Invite my GP or clinician',
+    note: 'Best when your history is long, or someone else has been managing your care.' },
+  { id: 'both', label: "I'll provide it now and invite my clinician if more detail is needed",
+    note: 'We only contact them if your consultant asks for something you cannot supply.' }
+];
+
+const EXAMPLES = [
+  'Please review whether this scan explains my persistent knee pain.',
+  'Please compare this scan with my previous scan and explain any important change.',
+  'Please clarify the finding described in my original report.',
+  'Please provide an independent opinion on the reported abnormality.'
+];
+
+const INCLUDED = [
+  'The findings, written by a consultant radiologist',
+  'A plain-English "What this means for you" section',
+  'Comparison with your prior scan, where you have one',
+  'Recommended next steps',
+  'Secure sharing with your GP or treating clinician'
+];
+
+/* The six patient-facing states, in order. These are the same six the
+   dashboard shows; "Action needed" is a pause rather than a stage, which is
+   why it sits first and is drawn as an off-rail state. */
+const TRACKER_STAGES = [
+  { id: 'action', label: 'Action needed', note: 'Only if something is missing. We tell you exactly what and why.' },
+  { id: 'submitted', label: 'Submitted', note: 'Your images and your answers are safely with us.' },
+  { id: 'matching', label: 'Being matched', note: 'Assigned to the consultant subspecialist for this part of the body.' },
+  { id: 'review', label: 'Under expert review', note: 'Your consultant reads your images in full.' },
+  { id: 'ready', label: 'Report ready', note: 'In your dashboard, with the plain-English section.' },
+  { id: 'followup', label: 'Follow-up available', note: 'Written questions or a call, if you want them.' }
+];
+
+/* Base order, then any saved draft, then the URL. The URL wins because it
+   represents a choice the visitor made a moment ago.
+
+   Step 0 is the account gate. Anyone not signed in starts there: we take a
+   name and an email, create a pending account, and only unlock the upload
+   once the emailed code comes back. Everything after that point is held
+   against that account, so closing the tab mid-upload loses nothing. */
+function initialState() {
+  const base = {
+    step: 1,
+    files: [
+      { name: 'MRI_Brain_Jan2026.zip', meta: '2.1GB · 480 images · uploaded', progress: 100 },
+      { name: 'Prior_MRI_2024.zip', meta: '68% · 1.4GB of 2.1GB · 2 min left', progress: 68 }
+    ],
+    scanType: 'MRI',
+    area: 'brain',
+    editingDetected: false,
+    scanDate: '',
+    provider: '',
+    symptoms: '',
+    symptomsOnset: '',
+    symptomsChange: '',
+    history: '',
+    hasReport: 'have',
+    prior: '',
+    question: '',
+    clinicianMode: 'self',
+    clinicianName: '',
+    clinicianEmail: '',
+    gpEmail: '',
+    speed: '',
+    addons: [],
+    saved: false,
+    orderRef: '',
+    // Account gate
+    first: '',
+    last: '',
+    email: '',
+    code: '',
+    gateStage: 'details',
+    gateError: '',
+    gateErrorSignIn: false,
+    demoCode: ''
+  };
+  const st = Object.assign(base, loadDraft() || {}, orderFromQuery());
+  const signedIn = !!(window.PORTAL && PORTAL.isSignedIn());
+  const waiting = !!(window.PORTAL && PORTAL.pending());
+  if (!signedIn) {
+    // A half-finished verification is resumable; anything else starts at the top.
+    st.step = 0;
+    st.gateStage = waiting ? 'code' : 'details';
+  } else if (st.step < 1) {
+    st.step = 1;
+  }
+  return st;
+}
+
 class Component extends DCLogic {
-  // Base order, then any saved draft, then the URL. The URL wins because it
-  // represents a choice the visitor made a moment ago.
-  state = Object.assign(
-    {
-      step: 1,
-      files: [
-        { name: 'MRI_Brain_Jan2026.zip', meta: '2.1GB · 480 images · uploaded', progress: 100 },
-        { name: 'Prior_MRI_2024.zip', meta: '68% · 1.4GB of 2.1GB · 2 min left', progress: 68 }
-      ],
-      scanType: 'MRI',
-      area: 'brain',
-      question: '',
-      speed: '',
-      addons: [],
-      consultant: '',
-      saved: false,
-      orderRef: ''
-    },
-    loadDraft() || {},
-    orderFromQuery()
-  );
+  state = initialState();
 
   componentDidMount() {
     this.timer = setInterval(() => {
@@ -429,8 +832,42 @@ class Component extends DCLogic {
     const s = this.state;
     if (step === 1 && s.files.some(f => f.progress < 100)) return 'Waiting for your upload to finish';
     if (step === 2 && !s.area) return 'Tell us which part of the body was scanned';
-    if (step === 3 && !s.speed) return 'Choose a deadline to see your price';
+    // The consultant answers this question directly in the report, so a case
+    // without one is a case we cannot match or write to.
+    if (step === 2 && !s.question.trim()) return 'Tell us what you would like the consultant to review';
+    if (step === 2 && s.clinicianMode !== 'self' && !EMAIL_RE.test(s.clinicianEmail.trim())) {
+      return "Add your clinician's email address, or choose to provide the information yourself";
+    }
+    if (step === 3 && !s.speed) return 'Choose when you need your report';
     return '';
+  }
+
+  /* ------------------------------------------------------- account gate --- */
+
+  sendCode() {
+    const s = this.state;
+    if (!s.first.trim()) return this.setState({ gateError: 'We need your first name so your case is labelled correctly.', gateErrorSignIn: false });
+    if (!s.last.trim()) return this.setState({ gateError: 'We need your last name so we can match your scan to your report.', gateErrorSignIn: false });
+    if (!EMAIL_RE.test(s.email.trim())) {
+      return this.setState({ gateError: 'That does not look like an email address. Check for a missing @ or a typo in the domain.', gateErrorSignIn: false });
+    }
+    const res = PORTAL.startPending(s.first, s.last, s.email);
+    if (!res.ok) {
+      return this.setState({
+        gateError: 'An account already exists for this email.',
+        gateErrorSignIn: true
+      });
+    }
+    this.setState({ gateStage: 'code', gateError: '', gateErrorSignIn: false, code: '', demoCode: res.code });
+  }
+
+  verify() {
+    const res = PORTAL.verifyPending(this.state.code);
+    if (!res.ok) {
+      return this.setState({ gateError: 'That code did not match. Check the six digits, or send yourself a new one.', gateErrorSignIn: false });
+    }
+    this.setState({ step: 1, gateError: '', gateErrorSignIn: false });
+    if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
   }
 
   saveDraft() {
@@ -438,8 +875,14 @@ class Component extends DCLogic {
     try {
       window.localStorage.setItem(DRAFT_KEY, JSON.stringify({
         step: s.step, scanType: s.scanType, area: s.area,
-        question: s.question, speed: s.speed, addons: s.addons,
-        consultant: s.consultant
+        scanDate: s.scanDate, provider: s.provider,
+        symptoms: s.symptoms, symptomsOnset: s.symptomsOnset,
+        symptomsChange: s.symptomsChange, history: s.history,
+        hasReport: s.hasReport, prior: s.prior,
+        question: s.question,
+        clinicianMode: s.clinicianMode, clinicianName: s.clinicianName,
+        clinicianEmail: s.clinicianEmail, gpEmail: s.gpEmail,
+        speed: s.speed, addons: s.addons
       }));
       this.setState({ saved: true });
     } catch (e) {
@@ -465,26 +908,41 @@ class Component extends DCLogic {
         area: s.area,
         consultant: doc ? doc.id : '',
         speed: s.speed,
-        question: s.question
+        question: s.question,
+        scanDate: s.scanDate,
+        provider: s.provider,
+        symptoms: s.symptoms,
+        symptomsOnset: s.symptomsOnset,
+        symptomsChange: s.symptomsChange,
+        history: s.history,
+        hasOriginalReport: s.hasReport === 'have',
+        priorStudy: s.prior === 'have' ? 'Supplied with this case'
+          : (s.prior === 'exists' ? 'Exists but not supplied' : null),
+        clinician: s.clinicianMode === 'self' ? { mode: 'self' } : {
+          mode: s.clinicianMode,
+          name: s.clinicianName.trim(),
+          email: s.clinicianEmail.trim()
+        }
       });
     }
     this.setState({ step: 4, orderRef: ref });
     if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
   }
 
-  // The consultant actually assigned: an explicit choice if one was made,
-  // otherwise the default for the selected body area.
+  // The consultant assigned to this case. Matched from the body area, which
+  // is the only input a patient gives us towards it — they never pick a name.
   assignedConsultant() {
-    const s = this.state;
-    if (s.consultant && CONSULTANT_BY_ID[s.consultant]) return CONSULTANT_BY_ID[s.consultant];
-    const area = BODY_AREAS.find(a => a.id === s.area);
+    const area = BODY_AREAS.find(a => a.id === this.state.area);
     return area ? CONSULTANT_BY_ID[area.defaultConsultant] : null;
   }
 
   renderVals() {
     const s = this.state;
-    const ordering = s.step <= 3;
-    const step = STEPS[Math.min(s.step, 3) - 1];
+    const ordering = s.step >= 1 && s.step <= 3;
+    const step = STEPS[Math.min(Math.max(s.step, 1), 3) - 1];
+    const doc = this.assignedConsultant();
+    const pend = (window.PORTAL && PORTAL.pending()) || null;
+    const areaLabel = (BODY_AREAS.find(a => a.id === s.area) || {}).label || 'Not yet set';
     const area = BODY_AREAS.find(a => a.id === s.area);
     const speed = SPEEDS.find(x => x.id === s.speed);
     const total = this.total();
@@ -501,14 +959,41 @@ class Component extends DCLogic {
       isDone: s.step === 4,
       orderRef: s.orderRef,
 
-      eyebrow: 'Step ' + Math.min(s.step, 3) + ' of 3 · ' + step.label,
+      /* ------------------------------------------------------ account gate */
+      isGate: s.step === 0,
+      gateDetails: s.step === 0 && s.gateStage === 'details',
+      gateCode: s.step === 0 && s.gateStage === 'code',
+      gateError: s.gateError,
+      hasGateError: !!s.gateError,
+      gateErrorSignIn: s.gateErrorSignIn,
+      signInHref: 'Sign In.dc.html?next=' + encodeURIComponent('Start Flow.dc.html'),
+      first: s.first,
+      last: s.last,
+      email: s.email,
+      code: s.code,
+      codeBorder: s.gateError && s.gateStage === 'code' ? '#C97D76' : '#D4DDE0',
+      pendingEmail: pend ? pend.email : s.email,
+      demoCode: pend ? pend.code : s.demoCode,
+      onFirst: e => this.setState({ first: e.target.value, gateError: '' }),
+      onLast: e => this.setState({ last: e.target.value, gateError: '' }),
+      onEmail: e => this.setState({ email: e.target.value, gateError: '', gateErrorSignIn: false }),
+      onCode: e => this.setState({ code: e.target.value, gateError: '' }),
+      sendCode: () => this.sendCode(),
+      verify: () => this.verify(),
+      resend: () => this.setState({ demoCode: PORTAL.resendCode(), code: '', gateError: '' }),
+      changeEmail: () => { PORTAL.cancelPending(); this.setState({ gateStage: 'details', code: '', gateError: '' }); },
+
+      eyebrow: 'Step ' + Math.min(Math.max(s.step, 1), 3) + ' of 3',
       stepTitle: step.title,
       stepSubtitle: step.subtitle,
       isStep1: s.step === 1,
       isStep2: s.step === 2,
       isStep3: s.step === 3,
       canGoBack: s.step > 1 && ordering,
-      back: () => this.setState(st => ({ step: Math.max(1, st.step - 1) })),
+      back: () => {
+        this.setState(st => ({ step: Math.max(1, st.step - 1) }));
+        if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
+      },
 
       // Step 3's CTA now completes the order instead of clamping at 3 and
       // leaving the visitor on a button that appears broken.
@@ -516,13 +1001,16 @@ class Component extends DCLogic {
         if (this.blockerFor(this.state.step)) return;
         if (this.state.step === 3) { this.placeOrder(); return; }
         this.setState(st => ({ step: Math.min(3, st.step + 1), saved: false }));
+        if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
       },
       nextLabel: s.step === 1
-        ? 'Continue to step 2'
-        : (s.step === 2 ? 'Continue to step 3' : 'Pay ' + priceText + ' and start the clock'),
+        ? 'Next: tell us about your case'
+        : (s.step === 2 ? 'Next: get your expert report' : 'Pay ' + priceText + ' and start the clock'),
       nextBlocked: blocker ? 'true' : 'false',
       nextBg: blocker ? '#9BB3B4' : '#0D6E70',
       nextCursor: blocker ? 'not-allowed' : 'pointer',
+      nextHoverBg: blocker ? '#9BB3B4' : '#095458',
+      nextShadow: blocker ? 'none' : '0 6px 20px rgba(13,110,112,0.3)',
       nextNote: blocker || (s.step === 3
         ? 'Card or Apple Pay · refunded in full if we miss the deadline'
         : 'Nothing is charged yet'),
@@ -533,20 +1021,24 @@ class Component extends DCLogic {
       saveBorder: s.saved ? '#0D6E70' : '#D4DDE0',
       saveColor: s.saved ? '#095458' : '#0A1F2C',
 
-      // Carries the order out to the directory and back, so picking a different
-      // consultant no longer means starting the whole thing again.
-      chooseHref: 'Specialists.dc.html?' + new URLSearchParams({
-        scan: s.scanType, area: s.area || '', speed: s.speed || '',
-        addons: s.addons.join(',')
-      }).toString(),
-
       doneConsultant: (() => { const c = this.assignedConsultant(); return c ? 'Dr ' + c.name : 'your consultant'; })(),
       doneDeadline: speed ? speed.deadline.replace(/^Report by /, '') : 'within your chosen window',
-      doneSteps: [
-        { n: 1, title: 'We check the images open cleanly', body: 'Within the hour. If a series is missing or unreadable we call you before the clock runs down.' },
-        { n: 2, title: (() => { const c = this.assignedConsultant(); return c ? 'Dr ' + consultantSurname(c) + ' reads the study' : 'Your consultant reads the study'; })(), body: 'Against your original report, and against any prior imaging you sent.' },
-        { n: 3, title: 'The signed report reaches you', body: 'By secure link to your email, and to your GP if you gave us their address.' }
-      ],
+      doneSteps: (() => {
+        const steps = [
+          { n: 1, title: 'We check the images open cleanly',
+            body: 'Within the hour. If a series is missing, or the name on the images does not match your account, we move your case to Action needed and tell you exactly what to do. We never edit the identity details on your images.' }
+        ];
+        if (s.clinicianMode !== 'self' && s.clinicianEmail.trim()) {
+          steps.push({ n: steps.length + 1, title: 'Your clinician adds their section',
+            body: 'We have sent a secure, single-case link to ' + s.clinicianEmail.trim() + ', valid for seven days. Your case waits here until it is complete.' });
+        }
+        steps.push({ n: steps.length + 1,
+          title: doc ? 'Dr ' + consultantSurname(doc) + ' reads the study' : 'Your consultant reads the study',
+          body: 'Against your original report, and against any earlier imaging you sent.' });
+        steps.push({ n: steps.length + 1, title: 'Your report arrives in your dashboard',
+          body: 'We email you to say it is ready — never what it says. You can download it there and share it with your GP in one click.' });
+        return steps;
+      })(),
 
       stepper: STEPS.map(st => {
         const done = s.step > st.n;
@@ -561,22 +1053,44 @@ class Component extends DCLogic {
           labelColor: active ? '#0A1F2C' : '#6F818C',
           weight: active ? 700 : 500,
           cursor: st.n <= s.step ? 'pointer' : 'default',
-          go: () => { if (st.n <= s.step && s.step <= 3) this.setState({ step: st.n }); }
+          go: () => {
+          if (st.n > s.step || s.step > 3) return;
+          this.setState({ step: st.n });
+          if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
+        }
         };
       }),
 
-      files: s.files.map(f => ({
-        name: f.name,
-        meta: f.meta,
-        width: f.progress + '%',
-        pillLabel: f.progress >= 100 ? 'Ready' : f.progress + '%',
-        pillBg: f.progress >= 100 ? '#E4F2F2' : '#F4F7F8',
-        pillBorder: f.progress >= 100 ? '#C3E0DE' : '#E2E9EC',
-        pillColor: f.progress >= 100 ? '#095458' : '#4A5C68'
-      })),
-      addFile: () => this.setState(st => ({
-        files: st.files.concat({ name: 'CD_Import_' + (st.files.length + 1) + '.zip', meta: 'Starting upload…', progress: 4 })
-      })),
+      /* --------------------------------------------------- step 1: upload */
+      alertGlyph: this.svg(15, ['M12 9v4', 'M12 17h.01', 'M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z'], 2.2),
+      needList: [
+        { tag: 'Required', tagBg: '#E4F2F2', tagBorder: '#C3E0DE', tagColor: '#095458',
+          title: 'Your original scan images',
+          body: 'A DICOM folder or a ZIP file is ideal. If you were given a CD, copy the whole disc across.' },
+        { tag: 'Important', tagBg: '#FDF2E2', tagBorder: '#E7CB97', tagColor: '#8A5712',
+          title: 'Your original radiology report',
+          body: 'A PDF, a photograph of the letter, or a scan of it. This is what your second opinion is compared against.' },
+        { tag: 'If you have it', tagBg: '#EEF2F4', tagBorder: '#D4DDE0', tagColor: '#4A5C68',
+          title: 'Any earlier scan of the same area',
+          body: 'An earlier study is what lets your consultant tell you what has actually changed.' }
+      ],
+      getImages: [
+        { n: '1', title: 'Ask the radiology department directly',
+          body: 'Ring the hospital where the scan was done and ask radiology, or medical records, for a copy of your images. Ask for the images themselves, not just the report.' },
+        { n: '2', title: 'Say you want them on a disc or a download link',
+          body: 'Most departments will burn a CD or send you a secure download. Give them your full name, date of birth, NHS number if you have it, and roughly when the scan was done.' },
+        { n: '3', title: 'Allow a couple of weeks, and chase if you need to',
+          body: 'Under UK data protection law they should respond within one month. If it was a private scan or one done abroad, ask the clinic for the download link they issued you.' }
+      ],
+
+      /* ---------------------------------------------- step 2: your case */
+      detected: [
+        { label: 'Scan type', value: s.scanType },
+        { label: 'Body area', value: areaLabel }
+      ],
+      editingDetected: s.editingDetected,
+      detectedToggleLabel: s.editingDetected ? 'Done — hide these options' : 'Something here is wrong. Let me correct it',
+      toggleDetected: () => this.setState(st => ({ editingDetected: !st.editingDetected })),
 
       scanTypes: SCAN_TYPES.map(t => {
         const on = s.scanType === t;
@@ -600,11 +1114,130 @@ class Component extends DCLogic {
           select: () => this.setState({ area: a.id })
         };
       }),
+
+      scanDate: s.scanDate,
+      onScanDate: e => this.setState({ scanDate: e.target.value }),
+      provider: s.provider,
+      onProvider: e => this.setState({ provider: e.target.value }),
+      symptoms: s.symptoms,
+      onSymptoms: e => this.setState({ symptoms: e.target.value }),
+      symptomsOnset: s.symptomsOnset,
+      onOnset: e => this.setState({ symptomsOnset: e.target.value }),
+      symptomsChange: s.symptomsChange,
+      onSymptomsChange: e => this.setState({ symptomsChange: e.target.value }),
+      history: s.history,
+      onHistory: e => this.setState({ history: e.target.value }),
+
+      reportOptions: REPORT_OPTIONS.map(o => {
+        const on = s.hasReport === o.id;
+        return {
+          label: o.label,
+          bg: on ? '#0D6E70' : '#FFFFFF',
+          color: on ? '#FFFFFF' : '#173B4F',
+          border: on ? '#0D6E70' : '#D4DDE0',
+          select: () => this.setState({ hasReport: o.id })
+        };
+      }),
+      priorOptions: PRIOR_OPTIONS.map(o => {
+        const on = s.prior === o.id;
+        return {
+          label: o.label,
+          bg: on ? '#0D6E70' : '#FFFFFF',
+          color: on ? '#FFFFFF' : '#173B4F',
+          border: on ? '#0D6E70' : '#D4DDE0',
+          select: () => this.setState({ prior: o.id })
+        };
+      }),
+
       question: s.question,
       onQuestion: e => this.setState({ question: e.target.value }),
-      consultantName: (() => { const c = this.assignedConsultant(); return c ? 'Dr ' + c.name : 'Matched at checkout'; })(),
-      consultantInitials: (() => { const c = this.assignedConsultant(); return c ? c.initials : '—'; })(),
-      consultantRole: (() => { const c = this.assignedConsultant(); return c ? c.role : 'We match your subspecialist once we see the study'; })(),
+      examples: EXAMPLES.map(text => ({
+        text: text,
+        use: () => this.setState({ question: text })
+      })),
+
+      clinicianOptions: CLINICIAN_OPTIONS.map(o => {
+        const on = s.clinicianMode === o.id;
+        return {
+          label: o.label,
+          note: o.note,
+          bg: on ? '#E4F2F2' : '#FFFFFF',
+          border: on ? '#0D6E70' : '#E2E9EC',
+          dotBg: on ? '#0D6E70' : '#FFFFFF',
+          dotBorder: on ? '#0D6E70' : '#D4DDE0',
+          tick: on ? this.tick(11) : null,
+          select: () => this.setState({ clinicianMode: o.id })
+        };
+      }),
+      wantsClinician: s.clinicianMode !== 'self',
+      clinicianName: s.clinicianName,
+      onClinicianName: e => this.setState({ clinicianName: e.target.value }),
+      clinicianEmail: s.clinicianEmail,
+      onClinicianEmail: e => this.setState({ clinicianEmail: e.target.value }),
+
+      consultantName: doc ? 'Dr ' + doc.name : 'Matched once we have your details',
+      consultantInitials: doc ? doc.initials : '—',
+      consultantRole: doc ? doc.role : 'We match your subspecialist from the body area and your answers',
+      consultantWhy: doc ? 'Matched to your case because your scan covers ' + areaLabel.toLowerCase() + '.' : '',
+
+      /* -------------------------------------------- step 3: your report */
+      confirmRows: [
+        { label: 'Your case', value: s.scanType + ' · ' + areaLabel },
+        { label: 'Report due', value: speed ? speed.deadline.replace(/^Report by /, '') : 'Choose a timeframe below' },
+        { label: 'Delivered to', value: 'Your patient dashboard' }
+      ],
+      included: INCLUDED.map(text => ({ text: text, tick: this.tick(10) })),
+      accountEmail: (window.PORTAL ? (PORTAL.load().user.email || s.email) : s.email) || 'your account email',
+      gpEmail: s.gpEmail,
+      onGpEmail: e => this.setState({ gpEmail: e.target.value }),
+
+      /* ----------------------------------------- confirmation: tracker */
+      tracker: (() => {
+        // A brand new case sits at "Submitted". "Action needed" is drawn above
+        // it because it is a pause that can interrupt any stage, not a stage
+        // the case has already passed through.
+        const at = TRACKER_STAGES.map(t => t.id).indexOf('submitted');
+        return TRACKER_STAGES.map((t, i) => {
+          const now = i === at;
+          // "Action needed" is never "passed": it is a pause that can
+          // interrupt any stage, so it is drawn as a waiting state whatever
+          // the case is doing.
+          const pause = t.id === 'action';
+          const done = i < at && !pause;
+          return {
+            label: t.label,
+            note: t.note,
+            dotBg: now || done ? '#0D6E70' : '#FFFFFF',
+            dotBorder: pause ? '#E7CB97' : (now || done ? '#0D6E70' : '#D4DDE0'),
+            color: now ? '#0A1F2C' : '#4A5C68',
+            weight: now ? '700' : '500',
+            railBg: i < at && !pause ? '#0D6E70' : '#D4DDE0',
+            railDisplay: i === TRACKER_STAGES.length - 1 ? 'none' : 'block'
+          };
+        });
+      })(),
+
+      files: s.files.map(f => ({
+        name: f.name,
+        meta: f.meta,
+        width: f.progress + '%',
+        pillLabel: f.progress >= 100 ? 'Checked' : f.progress + '%',
+        pillBg: f.progress >= 100 ? '#E4F2F2' : '#F4F7F8',
+        pillBorder: f.progress >= 100 ? '#C3E0DE' : '#E2E9EC',
+        pillColor: f.progress >= 100 ? '#095458' : '#4A5C68',
+        showChecks: f.progress >= 100,
+        checks: [
+          'Files open and are complete',
+          'Name and date of birth match your account',
+          'Scan date present',
+          'Scan type readable',
+          'Body area readable',
+          'All image series present'
+        ].map(label => ({ label: label, glyph: this.tick(9), dotBg: '#0D6E70' }))
+      })),
+      addFile: () => this.setState(st => ({
+        files: st.files.concat({ name: 'CD_Import_' + (st.files.length + 1) + '.zip', meta: 'Starting upload…', progress: 4 })
+      })),
 
       speeds: SPEEDS.map(x => {
         const on = s.speed === x.id;
@@ -639,9 +1272,9 @@ class Component extends DCLogic {
 
       summary: [
         { label: 'Scan type', value: s.scanType, color: '#0A1F2C' },
-        { label: 'Body area', value: area ? area.label : 'Step 2', color: area ? '#0A1F2C' : '#A3B0B8' },
-        { label: 'Consultant', value: (() => { const c = this.assignedConsultant(); return c ? 'Dr ' + c.name : 'Step 2'; })(), color: this.assignedConsultant() ? '#0A1F2C' : '#A3B0B8' },
-        { label: 'Speed', value: speed ? speed.label : 'Step 3', color: speed ? '#0A1F2C' : '#A3B0B8' }
+        { label: 'Body area', value: area ? area.label : 'From step 2', color: area ? '#0A1F2C' : '#A3B0B8' },
+        { label: 'Matched to', value: doc ? 'Dr ' + doc.name : 'From step 2', color: doc ? '#0A1F2C' : '#A3B0B8' },
+        { label: 'Report in', value: speed ? speed.label : 'From step 3', color: speed ? '#0A1F2C' : '#A3B0B8' }
       ],
       total: (total.isFrom ? 'From £' : '£') + total.amount
     };

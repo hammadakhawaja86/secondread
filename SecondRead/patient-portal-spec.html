@@ -296,11 +296,14 @@ footer p{max-width:70ch}
   <h2 class="sec">Product decisions taken up front</h2>
   <p class="lede">These are the calls that shape everything downstream. They are decisions, not options — if any of them is wrong for the business, changing it changes the spec.</p>
 
-  <h3>Account before upload, not after</h3>
-  <p>Patients create an account at the start of the case, not after paying. Medical images and reports must never sit in an anonymous session that cannot be recovered, and a half-finished case with a real account behind it is a case the clinical team can chase. The account is created with email, a password and a verification link; nothing beyond an email address is asked for before the patient can see the upload screen.</p>
+  <h3>Account before upload, not after — and passwordless</h3>
+  <p>Patients create an account at the start of the case, not after paying. Medical images and reports must never sit in an anonymous session that cannot be recovered, and a half-finished case with a real account behind it is a case the clinical team can chase. The account is created from a name and an email address alone: a <strong>pending</strong> account is written immediately, a six-digit code is emailed, and the account activates when the code comes back. <strong>There is no password anywhere in the product</strong> — nothing to choose badly, nothing to reuse from a breached site, nothing to reset. The same code screen serves signing in. Nothing about the patient's health is asked before the account exists.</p>
 
   <h3>Pay last, upload first</h3>
-  <p>Payment sits at step five, after the images are in and validated. Taking money before knowing whether the imaging is usable creates refunds, and refunds on a health service create complaints. The price is shown from step four onwards and never changes after submission without an explicit conversation.</p>
+  <p>Payment sits at the end of step three, after the images are in and validated and the clinical context is complete. Taking money before knowing whether the imaging is usable creates refunds, and refunds on a health service create complaints. An indicative price is visible in the order summary throughout; the firm price appears once a turnaround is chosen, and never changes after submission without an explicit conversation.</p>
+
+  <h3>The patient never picks a radiologist</h3>
+  <p>There is no "choose a specialist" step, and no consultant is pinned into the flow by a link from a profile page. Matching a scan to the right subspecialist is a triage decision made from the clinical context, and handing it to an anxious patient both overstates what they can judge and makes the service look like a marketplace. Consultant profiles stay public as evidence of who does the work; a link from one carries the <em>body area</em> that consultant covers, never their identity. The named consultant, their subspecialty and the delivery timeframe are all confirmed on screen before any payment is taken.</p>
 
   <h3>The patient sees a service, not a workflow</h3>
   <p>Internally a case moves through triage, allocation, reporting, quality review and release. The patient sees six states. Internal sub-states never leak into patient-facing copy, and no status ever hints at a clinical finding — <em>"Under expert review"</em> means the same thing whether the scan is normal or not.</p>
@@ -328,18 +331,22 @@ footer p{max-width:70ch}
 <pre class="wire">PUBLIC SITE                          AUTH                               PORTAL (signed in)
 ─────────────────────────            ─────────────────────────          ─────────────────────────────────
 /                Home                /sign-in                           /dashboard        Dashboard
-/how-it-works    How it works        /create-account                    /cases/new        New case (5 steps)
-/specialists     Our consultants     /verify-email                      /cases/:id        Case detail
-/pricing         Pricing &amp; turnaround/forgot-password                   /cases/:id/report Report viewer
-/sample-report   Sample report       /reset-password                    /cases/:id/report/comparison
-/faq             Questions           /check-your-email                  /cases/:id/messages  Secure messages
-/contact         Contact &amp; enquiry   /session-expired                   /cases/:id/follow-up Follow-up options
+/how-it-works    How it works        /create-account                    /cases/new        New case (account gate + 3 steps)
+/specialists     Our consultants     /verify-code                       /cases/:id        Case detail
+/pricing         Pricing &amp; turnaround                                   /cases/:id/report Report viewer
+/sample-report   Sample report                                          /cases/:id/report/comparison
+/faq             Questions                                              /cases/:id/messages  Secure messages
+/contact         Contact &amp; enquiry                                      /cases/:id/follow-up Follow-up options
 /about           About us                                               /reports          All my reports
                                                                         /profile          Personal details
-LEGAL                                                                   /profile/security Password, 2FA, devices
+LEGAL                                                                   /profile/security Sign-in &amp; security
 /privacy   /terms   /accessibility                                      /profile/privacy  Data, consent, deletion
 /cookies   /complaints                                                  /support          Help &amp; contact
 </pre>
+
+  <div class="note">
+    <p>There is no <code>/forgot-password</code>, <code>/reset-password</code> or <code>/check-your-email</code> route, and no password field anywhere in the sitemap. Sign-in and account creation are both passwordless: a six-digit code sent to the patient's email is the only credential, so <code>/verify-code</code> is the single shared destination for entering it, whichever route sent it.</p>
+  </div>
 
   <h3>Sitemap rules</h3>
   <ul>
@@ -348,6 +355,7 @@ LEGAL                                                                   /profile
     <li><strong>Deep links survive sign-out.</strong> Any portal URL hit while signed out goes to <code>/sign-in?next=…</code> and returns the patient to where they were aiming. The <code>next</code> parameter is validated against an allow-list of portal routes — never an open redirect, and never carrying a case ID into a page title or a browser history entry a shared device can read.</li>
     <li><strong>No case data in URLs beyond the opaque ID.</strong> No scan type, no body area, no name.</li>
     <li><strong>Support is global, messages are per-case.</strong> "How do I download my report?" is <code>/support</code>. "Can you clarify the finding on my L4?" is <code>/cases/:id/messages</code>, because it needs to reach the reporting consultant with the case attached.</li>
+    <li><strong><code>/specialists</code> is a directory, not a picker.</strong> It exists for trust and transparency — patients can see who might review a case like theirs — but nothing on it lets a patient choose their own reviewer. Its links into the flow carry a body area, never a consultant identity (§1, "The patient never picks a radiologist").</li>
   </ul>
 
   <h3>Navigation model inside the portal</h3>
@@ -363,22 +371,30 @@ LEGAL                                                                   /profile
 <pre class="mermaid">
 flowchart TD
     A["Website visit"] --> B["Get a second opinion"]
-    B --> C{"Have an account?"}
-    C -->|"Yes"| D["Sign in"]
-    C -->|"No"| E["Create account: email + password"]
-    E --> F["Verify email"]
-    F --> G["Step 1 — About you"]
-    D --> H{"Case in progress?"}
+    B --> C{"Signed in?"}
+    C -->|"Yes"| H{"Case in progress?"}
+    C -->|"No"| E["Name and email"]
+    E --> E2{"Email already an account?"}
+    E2 -->|"Yes"| D["Sign in to continue your saved case"]
+    E2 -->|"No"| F["Pending account + six-digit code"]
+    F --> F2["Draft case saved"]
+    F2 --> F3["Code verified: account activated"]
+    F3 --> K
+    D --> H
     H -->|"Yes"| I["Dashboard"]
-    H -->|"No"| G
-    I --> G
-    G --> J["Step 2 — Your scan and clinical question"]
-    J --> K["Step 3 — Upload images, report, prior studies"]
-    K --> L["File validation"]
-    L -->|"Unsupported or incomplete"| M["Fix uploads"]
+    H -->|"No"| K
+    I --> K
+    K["Step 1 — Upload your scans"] --> L["File and identity validation"]
+    L -->|"Incomplete or identity mismatch"| M["Action needed: fix uploads"]
     M --> K
-    L -->|"Passed"| N["Step 4 — Turnaround and price"]
-    N --> O["Step 5 — Consent, payment, submit"]
+    L -->|"Passed"| J["Step 2 — Tell us about your case"]
+    J --> J2{"Invite a GP or clinician?"}
+    J2 -->|"Yes"| J3["Secure single-case link, 7 days"]
+    J3 --> J4["Clinician completes their section"]
+    J2 -->|"No"| N
+    J4 --> N
+    N["Step 3 — Get your expert report"] --> N2["Consultant, expertise and timeframe confirmed"]
+    N2 --> O["Consent and payment"]
     O -->|"Payment declined"| P["Retry or change method"]
     P --> O
     O -->|"Paid"| Q["Submitted"]
@@ -422,18 +438,18 @@ flowchart TD
   <p class="lede">Each exception is specified as: what triggers it, what the patient sees, what unblocks it, and what the clock does. Every one of them resolves into the dashboard's <span class="chip act">Action needed</span> queue rather than into an email the patient has to go find.</p>
 
   <h3>4.1 Existing patient signs in</h3>
-  <p><strong>Trigger:</strong> a returning patient clicks <em>Get a second opinion</em> or <em>Patient dashboard</em>.</p>
-  <p><strong>Behaviour:</strong> they land on the dashboard, not on step 1. If they have a case in flight, the new-case CTA carries a quieter label — <em>Start another case</em> — and the confirmation step re-asks consent for the new case only. Personal details (name, date of birth, contact) are pre-filled from the profile and shown as a read-only summary with an <em>Edit</em> link, so step 1 becomes a five-second confirmation rather than a re-typing exercise.</p>
+  <p><strong>Trigger:</strong> a returning patient clicks <em>Get a second opinion</em> or <em>Patient dashboard</em>, or types an email into the account gate that already belongs to an account.</p>
+  <p><strong>Behaviour:</strong> sign-in is passwordless throughout — a six-digit code sent to the patient's email, entered at <code>/verify-code</code>, is the only credential. If they have a case in flight, they land on the dashboard, not on step 1 of a new one; the new-case CTA carries a quieter label, <em>Start another case</em>. Starting a new case from scratch begins at the step 0 account gate (§7.2); a signed-in patient skips straight past it into step 1, and their name, date of birth and contact details are pre-filled from the profile as a read-only summary with an <em>Edit</em> link, so step 1 opens on the upload zone rather than a re-typing exercise. If the email entered at the gate already belongs to an account, the gate shows exactly: <em>An account already exists for this email. Please sign in to continue your saved case.</em>, with a direct link into the sign-in code flow — never a password prompt.</p>
   <p><strong>Clock:</strong> unaffected. Cases are independent; a second case does not queue behind the first.</p>
 
   <h3>4.2 Incomplete or unsupported upload</h3>
-  <p><strong>Trigger:</strong> validation at step 3 finds a file that is not DICOM, PDF or a supported image; a ZIP that unpacks to nothing readable; a study with too few images to be a full series; or a file that fails a virus scan.</p>
+  <p><strong>Trigger:</strong> validation at step 1 (Upload your scans) finds a file that is not DICOM, PDF or a supported image; a ZIP that unpacks to nothing readable; a study with too few images to be a full series; a mismatch between the DICOM patient identity and the account; or a file that fails a virus scan.</p>
   <p><strong>Behaviour:</strong> the file row turns to an error state <em>in place</em>, alongside the files that succeeded. The patient is never bounced out of the step or shown a modal. Copy names the specific problem and the specific fix (§7.4). If the patient cannot resolve it, <em>Send me my files by post or WeTransfer instead</em> opens a support thread and the case is held as a draft.</p>
   <p><strong>Clock:</strong> not started. Nothing has been paid for.</p>
 
   <h3>4.3 Missing original report</h3>
-  <p><strong>Trigger:</strong> the patient reaches step 4 without uploading a radiology report.</p>
-  <p><strong>Behaviour:</strong> not a blocker. A single, plainly worded choice: <em>I don't have the original report</em> — which reveals a short field asking what the patient was told and by whom, plus a checkbox to let the team request the report from their provider on their behalf. The patient is told once, without drama, that the comparison module is only produced when an original report exists.</p>
+  <p><strong>Trigger:</strong> the patient reaches the end of step 1 without uploading a radiology report.</p>
+  <p><strong>Behaviour:</strong> not a blocker. A single, plainly worded choice: <em>I don't have the original report</em> — which reveals a short field asking what the patient was told and by whom. This does not offer to request the report from the provider on the patient's behalf; that is not an active operational service, so the flow instead points to the same self-service guidance shown at step 1 for missing images (contact the hospital or imaging provider's records or PACS department directly). The patient is told once, without drama, that the comparison module is only produced when an original report exists.</p>
   <div class="copy">
     <dl>
       <dt>Inline note</dt><dd>Without the original report, your consultant will still give you a full independent read — but we won't be able to include the side-by-side comparison, because there is nothing to compare against.</dd>
@@ -442,13 +458,13 @@ flowchart TD
   <p><strong>Clock:</strong> normal. The case proceeds as an independent read.</p>
 
   <h3>4.4 Prior scan available for comparison</h3>
-  <p><strong>Trigger:</strong> the patient indicates at step 3 that they have earlier imaging of the same body area.</p>
+  <p><strong>Trigger:</strong> the patient indicates at step 1 that they have earlier imaging of the same body area.</p>
   <p><strong>Behaviour:</strong> an optional <em>Prior studies</em> upload zone appears, with its own date field per study. Prior imaging is labelled distinctly throughout the case and in the report viewer, and never merged with the current study. The report gains an <em>Interval change</em> line in the comparison module. Copy tells the patient why this is worth the extra effort: <em>Earlier scans let your consultant say whether something has changed, not just what is there now.</em></p>
   <p><strong>Clock:</strong> normal. Prior studies do not extend the window.</p>
 
   <h3>4.5 Payment failure</h3>
-  <p><strong>Trigger:</strong> card declined, 3-D Secure abandoned, or the payment provider errors.</p>
-  <p><strong>Behaviour:</strong> the patient stays on step 5 with everything intact — uploads, answers, consent. The case is saved as a draft immediately on failure, so a closed tab loses nothing. The error distinguishes the three cases, because the fix differs.</p>
+  <p><strong>Trigger:</strong> card declined, 3-D Secure abandoned, or the payment provider errors, at the consent-and-payment action inside step 3.</p>
+  <p><strong>Behaviour:</strong> the patient stays on step 3 with everything intact — uploads, answers, consent, and the confirmed consultant and timeframe. The case is saved as a draft immediately on failure, so a closed tab loses nothing. The error distinguishes the three cases, because the fix differs.</p>
   <div class="copy">
     <dl>
       <dt>Declined</dt><dd>Your bank declined this payment. Nothing has been charged. Try another card, or contact your bank and try again — your case is saved.</dd>
@@ -512,32 +528,32 @@ flowchart TD
         <td><span class="chip sub">Submitted</span></td>
         <td><b>We've got everything</b></td>
         <td>Your scan and details are safely with us. We're getting your case ready for a consultant.</td>
-        <td class="num">Step 1 of 4</td>
+        <td class="num">Stage 1 of 4</td>
         <td><em>View your case</em></td>
       </tr>
       <tr>
         <td><span class="chip mat">Being matched</span></td>
         <td><b>Finding the right specialist</b></td>
         <td>We're matching your scan to a consultant who specialises in this part of the body.</td>
-        <td class="num">Step 2 of 4</td>
+        <td class="num">Stage 2 of 4</td>
         <td><em>View your case</em></td>
       </tr>
       <tr>
-        <td><span class="chip rev">Under review</span></td>
+        <td><span class="chip rev">Under expert review</span></td>
         <td><b>Your consultant is reviewing your scan</b></td>
         <td>Dr [Name] is reading your images in full. Your report is expected by [day, time].</td>
-        <td class="num">Step 3 of 4</td>
+        <td class="num">Stage 3 of 4</td>
         <td><em>View your case</em></td>
       </tr>
       <tr>
         <td><span class="chip rdy">Report ready</span></td>
         <td><b>Your second opinion is ready</b></td>
         <td>Your consultant's full report is here, with a plain-English explanation of what it means.</td>
-        <td class="num">Step 4 of 4 — complete</td>
+        <td class="num">Stage 4 of 4 — complete</td>
         <td><em>Read my report</em></td>
       </tr>
       <tr>
-        <td><span class="chip fol">Follow-up</span></td>
+        <td><span class="chip fol">Follow-up available</span></td>
         <td><b>Questions about your report?</b></td>
         <td>You can send written questions to your consultant, or book a 15-minute call, until [date].</td>
         <td class="num">After delivery</td>
@@ -566,7 +582,7 @@ flowchart TD
         <td>We're matching your case to a specialist.</td>
       </tr>
       <tr>
-        <td><b>Under review</b></td>
+        <td><b>Under expert review</b></td>
         <td>A consultant is now reviewing your case — [REF]</td>
         <td>Your case has been assigned to a consultant radiologist. Sign in to see who, and when to expect your report.</td>
         <td>Dr [Name] is reviewing your scan. Expected by [day, time].</td>
@@ -584,7 +600,7 @@ flowchart TD
         <td>Your report is ready.</td>
       </tr>
       <tr>
-        <td><b>Follow-up</b></td>
+        <td><b>Follow-up available</b></td>
         <td>Your follow-up window closes on [date] — [REF]</td>
         <td>You can still send written questions to your consultant until [date]. Sign in to ask.</td>
         <td>Follow-up available until [date].</td>
@@ -628,7 +644,7 @@ flowchart TD
 ┌───────────────────────────────────────────────────────────┐ ┌──────────────────────────┐
 │  CASE SR-2026-4417                    ⏱ 24-hour           │ │  YOUR DETAILS            │  G
 │                                                           │ │  Personal details      → │
-│  Your consultant is reviewing your scan                   │ │  Password & sign-in    → │
+│  Your consultant is reviewing your scan                   │ │  Sign-in & security    → │
 │  Dr [Name] · Consultant Neuroradiologist                  │ │  Privacy & your data   → │
 │                                                           │ └──────────────────────────┘
 │  MRI · Brain and spine · Uploaded 14 Mar                  │
@@ -657,7 +673,7 @@ flowchart TD
   <table>
     <thead><tr><th>Ref</th><th>Region</th><th>Contents and rules</th></tr></thead>
     <tbody>
-      <tr><td class="num"><b>A</b></td><td><b>Header</b></td><td>Wordmark (links to dashboard), three nav items, notification bell with unread count, account menu containing the patient's first name and initial only — never a full name, because the header persists on a screen someone else may glance at. The menu holds Personal details, Password &amp; sign-in, Privacy &amp; your data, Support, and Sign out. Sign out is visually separated and always the last item.</td></tr>
+      <tr><td class="num"><b>A</b></td><td><b>Header</b></td><td>Wordmark (links to dashboard), three nav items, notification bell with unread count, account menu containing the patient's first name and initial only — never a full name, because the header persists on a screen someone else may glance at. The menu holds Personal details, Sign-in &amp; security, Privacy &amp; your data, Support, and Sign out. Sign out is visually separated and always the last item.</td></tr>
       <tr><td class="num"><b>B</b></td><td><b>Primary CTA</b></td><td><em>Start a new case</em> — the only filled accent button on the page when no case needs attention. When a case is in flight it keeps the same label but drops to a secondary treatment, so the action-needed card and the active case card own the visual hierarchy. Never removed: a patient with a case in progress may legitimately need a second opinion on different imaging.</td></tr>
       <tr><td class="num"><b>C</b></td><td><b>Action needed</b></td><td>Rendered only when tasks exist, always first in the column, always with the warning accent. One card per task, each with the specific question and a direct action. Answering a task removes the card with a short cross-fade — no confetti, no success modal; the case card below simply updates its status and its expected delivery time.</td></tr>
       <tr><td class="num"><b>D</b></td><td><b>Active case card</b></td><td>Case reference, turnaround badge, status title, assigned consultant (name and subspecialty once matched, "Being matched" until then), scan type · body area · upload date, four-node progress timeline, expected delivery as an absolute date and time in the patient's local timezone, and two actions. Multiple active cases stack newest first, each a full card — never collapsed into a list.</td></tr>
@@ -687,56 +703,79 @@ flowchart TD
 <section id="s7">
   <span class="sec-num">07</span>
   <h2 class="sec">New case and upload flow</h2>
-  <p class="lede">Five steps, one question-set per screen, with a persistent stepper and a saved draft after every field blur. The patient can leave at any point and come back to exactly where they were, on any device.</p>
+  <p class="lede">Three steps, named the same way here, on the public website, in the stepper, on the dashboard and in every email. A short account gate sits in front of them, before the numbering starts, so a draft exists from the first keystroke. The patient can leave at any point and come back to exactly where they were, on any device.</p>
+
+  <p><strong>There is no "choose a specialist" step.</strong> Asking an anxious patient to pick a radiologist from a directory transfers a clinical judgement to the person least equipped to make it, and makes the match look like a shopping choice rather than a triage decision. We collect the clinical context instead, match internally, and confirm the named consultant and their expertise before payment is taken. Consultant profiles remain public — as evidence of who does the work, not as a menu.</p>
 
   <h3>7.1 Step structure</h3>
   <div class="tw">
   <table>
     <thead><tr><th>Step</th><th>Title</th><th>Sub-line</th><th>Effort</th></tr></thead>
     <tbody>
-      <tr><td class="num">1</td><td><b>About you</b></td><td>So we can label your case correctly and reach you.</td><td class="num">~40 s</td></tr>
-      <tr><td class="num">2</td><td><b>Your scan and your question</b></td><td>What was scanned, and what you want answered.</td><td class="num">~90 s</td></tr>
-      <tr><td class="num">3</td><td><b>Upload your images and report</b></td><td>The part that takes longest. We'll wait.</td><td class="num">2–20 min</td></tr>
-      <tr><td class="num">4</td><td><b>How quickly do you need it?</b></td><td>Choose a deadline and see your price.</td><td class="num">~20 s</td></tr>
-      <tr><td class="num">5</td><td><b>Consent and payment</b></td><td>Read, agree, pay, and we start the clock.</td><td class="num">~60 s</td></tr>
+      <tr><td class="num">0</td><td><b>Account gate</b></td><td>Name, email, six-digit code. Not numbered in the stepper.</td><td class="num">~45 s</td></tr>
+      <tr><td class="num">1</td><td><b>Upload your scans</b></td><td>Your images, your original report, and any earlier related scans.</td><td class="num">2–20 min</td></tr>
+      <tr><td class="num">2</td><td><b>Tell us about your case</b></td><td>Your symptoms, your history, and what you would like our consultant to review.</td><td class="num">~3 min</td></tr>
+      <tr><td class="num">3</td><td><b>Get your expert report</b></td><td>Confirm who is reviewing your case and when it lands, then pay.</td><td class="num">~60 s</td></tr>
     </tbody>
   </table>
   </div>
 
   <h3>7.2 Fields</h3>
 
-  <h4>Step 1 — About you</h4>
+  <h4>Step 0 — Account gate</h4>
+  <p>Passwordless throughout. The patient never chooses a password, so there is nothing to forget, nothing to reuse from another site, and nothing to leak.</p>
   <ul>
-    <li>Full name — <em>required.</em> As it appears on your medical records, so we can match your scan to your report.</li>
-    <li>Date of birth — <em>required.</em> Three separate inputs (day / month / year), never a date picker; a picker is hostile for a birth year 60 scrolls back.</li>
-    <li>Mobile number — <em>optional.</em> Only used if we need to reach you urgently about your case.</li>
-    <li>Country of residence — <em>required.</em> Determines VAT treatment and which regulator applies.</li>
-    <li>Who is this for? — <em>required.</em> <code>Myself</code> / <code>Someone I care for</code>. Choosing the second reveals a relationship field and a short consent affirmation. This is asked at step 1 rather than at consent because it changes the pronouns in every subsequent screen and in the report itself.</li>
+    <li>First name and last name — <em>required.</em> As they appear on your medical records, so we can match your scan to your report.</li>
+    <li>Email address — <em>required.</em> A <strong>pending</strong> account is created against it and a six-digit code is emailed. The draft case is attached to the pending account immediately, before the code comes back, so nothing is lost if the patient closes the tab to go and find their CD.</li>
+    <li>Code entry — six digits, valid fifteen minutes, single use. <em>Send it again</em> and <em>Use a different email</em> both sit under the field.</li>
+    <li>If the address already belongs to an account, the flow stops with exactly this: <strong>"An account already exists for this email. Please sign in to continue your saved case."</strong> — with the sign-in link inside the message, not below it. It is never treated as a failed validation, because it is not one.</li>
+    <li>Date of birth, mobile number and country are collected in <em>Account &rarr; Personal details</em>, not here. Three fields is the most a patient will accept before they have seen anything happen.</li>
+    <li>Who is this for? — asked at step 2, alongside the clinical context, because that is where it belongs once the account exists.</li>
   </ul>
 
-  <h4>Step 2 — Your scan and your question</h4>
+  <h4>Step 1 — Upload your scans</h4>
+  <p>Three clearly separated zones, in this order and with this emphasis:</p>
   <ul>
-    <li>Type of scan — <em>required.</em> MRI, CT, X-ray, Ultrasound, PET-CT, Other, I'm not sure. "I'm not sure" is a real, respected answer, not a dead end; it routes to manual triage.</li>
-    <li>Part of the body — <em>required.</em> Brain or spine · Chest or heart · Abdomen or pelvis · Bones or joints · Breast · Head or neck · Whole body · Something else.</li>
+    <li><strong>Your scan images — required.</strong> DICOM (<code>.dcm</code>), a DICOM folder, or a ZIP of either. Also accepts the CD/USB folder structure hospitals hand out. Maximum 5&nbsp;GB per case. DICOM is glossed in plain English at first mention, every time: <em>the format hospitals store scan images in — usually a folder full of files ending .dcm, often with no obvious file names.</em></li>
+    <li><strong>Your original radiology report — strongly encouraged.</strong> PDF, DOCX, JPG, PNG, HEIC — including a photo of a printed report. Maximum 25&nbsp;MB per file.</li>
+    <li><strong>Earlier scans of the same area — optional.</strong> Each prior study carries its own date field. An earlier study is what makes the comparison module possible.</li>
+  </ul>
+  <p>A standing warning sits beneath the zones, in its own amber panel: <strong>screenshots, photographs of a scan viewer, and the report PDF on its own are not enough for a full image review.</strong> They cannot be re-read as images. Send the report as well — just not instead.</p>
+  <p><strong>Validation on every study:</strong> file integrity, patient name and date of birth against the account, scan date, modality, body area, and series completeness. Results are shown per file as a visible checklist, not a silent pass. If a study is incomplete, or the identity on the images does not match, the case moves to <em>Action needed</em> with a message naming exactly what to do. <strong>DICOM patient identity data is never silently altered or merged.</strong> Where a mismatch is legitimate — a patient uploading for someone they care for — the resolution is a declaration on the case, not an edit to the header.</p>
+  <p><strong>No images yet.</strong> The panel explains how to request them: ring the radiology department or medical records at the hospital where the scan was done, ask for the images rather than the report, expect a disc or a secure download, and allow up to the one month UK data protection law gives them. It states plainly that <strong>we do not make the request on the patient's behalf</strong>, because the request has to come from the patient, and offers the phone number instead. This replaces earlier copy across the site that promised to collect images from hospitals — a promise the operation does not currently deliver.</p>
+
+  <h4>Step 2 — Tell us about your case</h4>
+  <p>Scan type and body area are <strong>read from the uploaded study's metadata and shown back for confirmation</strong>, not asked cold. A single <em>Something here is wrong. Let me correct it</em> control reveals the pickers.</p>
+  <ul>
+    <li>Scan type and body area — <em>detected, confirmable.</em> MRI, CT, X-ray, Ultrasound, PET-CT, Not sure · Brain or spine · Chest or heart · Abdomen or pelvis · Bones or joints · Breast · Head or neck.</li>
     <li>Date of the scan — <em>required, month and year accepted.</em></li>
-    <li>Where was it done? — <em>optional.</em> Hospital or clinic name.</li>
-    <li>What would you like your consultant to answer? — <em>required, free text, 600 characters.</em> The single most valuable field in the flow, and the one most likely to be left thin. It gets a large textarea, three example prompts underneath, and no character counter until 500.</li>
-    <li>Relevant symptoms or history — <em>optional, 600 characters.</em></li>
-    <li>Have you had earlier scans of the same area? — <em>required, yes/no.</em> Drives the prior-studies zone at step 3.</li>
+    <li>Hospital or imaging provider — <em>optional.</em></li>
+    <li>Main symptoms — <em>free text.</em> When they began, and how they have changed since — two short fields beside it.</li>
+    <li>Relevant history — <em>free text.</em> Previous diagnoses, operations, injuries, any cancer history, treatment past or present. "None of that applies" is an explicitly welcomed answer.</li>
+    <li>Original report availability — <em>required.</em> <code>Yes, I have it</code> / <code>I have asked for it</code> / <code>No, I do not have it</code>.</li>
+    <li>Prior-study availability — <em>required.</em> <code>Yes, and I have it</code> / <code>Yes, but I do not have it</code> / <code>No earlier scan</code>.</li>
+    <li><strong>What would you like the consultant radiologist to review or clarify?</strong> — <em>required, free text.</em> The single most valuable field in the flow and the only hard blocker on this step. Large textarea, four one-tap example prompts underneath that write themselves into the field.</li>
+    <li>Clinician invitation — <em>required choice.</em> See below.</li>
   </ul>
   <div class="copy">
     <dl>
-      <dt>Prompt help</dt><dd>Not sure what to ask? Most people write something like: <em>"Is the lesion in my liver definitely benign?"</em> · <em>"Has the disc problem got worse since last year?"</em> · <em>"Is there anything the first report might have missed?"</em></dd>
+      <dt>Prompt help (the four examples, verbatim)</dt><dd><em>"Please review whether this scan explains my persistent knee pain."</em> · <em>"Please compare this scan with my previous scan and explain any important change."</em> · <em>"Please clarify the finding described in my original report."</em> · <em>"Please provide an independent opinion on the reported abnormality."</em></dd>
+      <dt>Trust statement (sits above the matched consultant, on this step)</dt><dd>We use this information to match your case with the appropriate consultant subspecialist. Before payment, we confirm who will review your case, their relevant expertise, and your report delivery timeframe.</dd>
     </dl>
   </div>
 
-  <h4>Step 3 — Uploads</h4>
-  <p>Three clearly separated zones, in this order and with this emphasis:</p>
+  <h5>Inviting a GP or treating clinician</h5>
+  <p>Asked as: <em>Would you like your GP or treating clinician to add clinical information for the radiologist?</em> Three options: <code>I'll provide the information myself</code> · <code>Invite my GP or clinician</code> · <code>I'll provide it now and invite my clinician if more detail is needed</code>.</p>
   <ul>
-    <li><strong>Your scan images — required.</strong> DICOM (<code>.dcm</code>), a DICOM folder, or a ZIP of either. Also accepts the CD/USB folder structure hospitals hand out. Maximum 5&nbsp;GB per case.</li>
-    <li><strong>Your original report — strongly encouraged.</strong> PDF, DOCX, JPG, PNG, HEIC — including a photo of a printed report. Maximum 25&nbsp;MB per file.</li>
-    <li><strong>Earlier scans — optional</strong>, shown only if the patient answered yes at step 2. Each prior study carries its own date field.</li>
+    <li>The invitation is a <strong>secure, time-limited, single-case link</strong> — seven days, this case and nothing else.</li>
+    <li><strong>No patient account is created from the clinician's email address.</strong> The clinician is not a portal user; they hold a scoped grant.</li>
+    <li>The clinician verifies their identity before any content is shown.</li>
+    <li>They supply: patient identifiers to confirm they have the right person, referrer details, relevant clinical history, the specific clinical question, scan context, prior imaging details, and any urgency context.</li>
+    <li>The patient can keep uploading while the clinician's section is outstanding. <strong>The case does not progress to specialist matching until every required section is complete</strong>, and the case card says so rather than showing a stalled clock.</li>
   </ul>
+
+  <h4>Step 3 — Get your expert report</h4>
+  <p>Opens with the confirmation panel the trust statement promised: the named consultant, their subspecialty, why they were matched, the case in one line, and the delivery moment. Then turnaround, then what every report includes, then optional extras, then where the report goes, then payment. Detail in §7.6.</p>
 
   <h3>7.3 Upload states</h3>
   <div class="tw">
@@ -784,12 +823,15 @@ flowchart TD
     <li>An unfinished draft triggers one email after 48 hours and one after 7 days. Then nothing. Uploaded images in an abandoned draft are deleted after 30 days, and the email says so.</li>
   </ul>
 
-  <h3>7.6 Steps 4 and 5</h3>
-  <p><strong>Step 4 — turnaround.</strong> Three cards: 48-hour, 24-hour, 12-hour, each with price, the exact delivery date and time that choice produces, and one line on who it suits. The delivery time is computed live from the current moment, so the patient chooses a date, not an abstraction. No card is pre-selected and no card is badged "most popular" — nudging a pricing choice on a health service is the wrong instinct.</p>
-  <p><strong>Step 5 — consent and payment.</strong> Three separate, individually-ticked consents, never bundled: (a) consent for consultant radiologists to access and report on the images, (b) agreement to the terms and privacy notice, (c) an <em>optional</em> consent to retain the images beyond the standard period for future comparison — clearly marked optional and refusable without consequence. Payment is card via a PCI-compliant provider in a hosted field; card details never touch the portal's own DOM.</p>
+  <h3>7.6 Step 3 in detail</h3>
+  <p><strong>Confirmation before payment.</strong> The first panel on the step names the consultant, their subspecialty, and one line on why they were matched — <em>"Matched to your case because your scan covers bones or joints."</em> Beside it: the case in one line, the delivery moment, and where the report will land. This panel is the promise made at step 2 being kept, and it is deliberately above the price.</p>
+  <p><strong>Turnaround.</strong> Three cards: 48-hour, 24-hour, 12-hour, each with price and the exact delivery date and time that choice produces, computed live from the current moment, so the patient chooses a date rather than an abstraction. No card is pre-selected and no card is badged "most popular" — nudging a pricing choice on a health service is the wrong instinct.</p>
+  <p><strong>What is included.</strong> A flat, unpriced list, so nothing in the core report reads as an upsell: the findings written by a consultant radiologist, the plain-English "What this means for you" section, comparison with a prior scan where one exists, recommended next steps, and secure sharing with a GP or treating clinician.</p>
+  <p><strong>Consent and payment.</strong> Three separate, individually-ticked consents, never bundled: (a) consent for consultant radiologists to access and report on the images, (b) agreement to the terms and privacy notice, (c) an <em>optional</em> consent to retain the images beyond the standard period for future comparison — clearly marked optional and refusable without consequence. Payment is card via a PCI-compliant provider in a hosted field; card details never touch the portal's own DOM.</p>
 
   <h3>7.7 Confirmation screen</h3>
-  <p>Full-page, calm, no celebratory animation. Contains, in order: case reference, the expected delivery date and time in large type, a three-item <em>what happens next</em> list, a summary of what was submitted, the emergency guidance block, and a single action — <em>Go to my dashboard</em>.</p>
+  <p>Full-page, calm, no celebratory animation. Contains, in order: case reference, the expected delivery date and time in large type, <strong>the six-status progress tracker with the case's current position marked</strong>, a <em>what happens next</em> list, a summary of what was submitted, the emergency guidance block, and a single primary action — <em>Go to my dashboard</em>.</p>
+  <p>The tracker here uses the same six names, in the same order, as the dashboard, the case page and the emails: <em>Action needed · Submitted · Being matched · Under expert review · Report ready · Follow-up available</em>. "Action needed" is drawn as a waiting state rather than a completed one, because it is a pause that can interrupt any stage, not a stage the case has already passed through. Where a clinician was invited, an extra item appears in <em>what happens next</em> naming the address the single-case link went to and stating that the case waits at that point.</p>
   <div class="copy">
     <dl>
       <dt>Heading</dt><dd>Your case is with us</dd>
@@ -886,20 +928,24 @@ flowchart TD
   <p class="lede">The module that justifies the service. Three clearly separated sections, a fixed clinical vocabulary, and language that never suggests the original clinician got it wrong.</p>
 
   <h3>9.1 Layout</h3>
-  <p>Desktop: three equal columns with visible dividers and a shared header row. Tablet and mobile: three stacked sections in the same order, each with its full heading and its source label repeated — the labels are the safety mechanism and must never be lost to responsive collapse.</p>
+  <p>Desktop: four equal columns with visible dividers and a shared header row. "What this means for you" is its own column, not a callout nested inside "What is different" — it carries the consultant's plain-English verdict and its own provenance line, and it is the column most patients read first. Tablet and mobile: four stacked sections in the same order, each with its full heading and its source label repeated — the labels are the safety mechanism and must never be lost to responsive collapse.</p>
 
-<pre class="wire">┌─────────────────────────────┬─────────────────────────────┬─────────────────────────────┐
-│ WHAT WAS REPORTED BEFORE    │ WHAT WE FOUND               │ WHAT IS DIFFERENT           │
-│ ─────────────────────────── │ ─────────────────────────── │ ─────────────────────────── │
-│ Supplied by you or your     │ Independent review by       │ Assessed by Dr [Name]       │
-│ imaging provider. We have   │ Dr [Name], Consultant       │                             │
-│ not altered this text.      │ [Subspecialty] Radiologist  │ ┌─────────────────────────┐ │
-│                             │                             │ │ ◆ Clarifies finding     │ │
-│ "…original report extract…" │ "…second-opinion finding…"  │ └─────────────────────────┘ │
-│                             │                             │ Plain-English explanation   │
-│ Source: [Hospital], 8 Mar   │ Reported 15 Mar 2026        │ of the difference and what  │
-│                             │                             │ it means for the patient.   │
-└─────────────────────────────┴─────────────────────────────┴─────────────────────────────┘
+<pre class="wire">┌───────────────────────┬───────────────────────┬───────────────────────┬───────────────────────┐
+│ WHAT WAS REPORTED     │ WHAT WE FOUND         │ WHAT IS DIFFERENT     │ WHAT THIS MEANS       │
+│ BEFORE                │                       │                       │ FOR YOU               │
+│ ───────────────────── │ ───────────────────── │ ───────────────────── │ ───────────────────── │
+│ Supplied by you or    │ Independent review by │ ┌───────────────────┐ │ Written in plain      │
+│ your imaging          │ Dr [Name], Consultant │ │ ◆ Clarifies       │ │ English by Dr [Name], │
+│ provider. We have     │ [Subspecialty]        │ │   finding         │ │ and approved by them  │
+│ not altered this      │ Radiologist           │ └───────────────────┘ │ before release.       │
+│ text.                 │                       │ Plain description     │                       │
+│                       │                       │ of what is different  │ "…what this finding   │
+│ "…original report     │ "…second-opinion      │ between the two       │ means, and what to    │
+│ extract…"             │ finding…"             │ reads.                │ do next…"             │
+│                       │                       │                       │                       │
+│ Source: [Hospital],   │ Reported 15 Mar 2026  │                       │                       │
+│ 8 Mar                 │                       │                       │                       │
+└───────────────────────┴───────────────────────┴───────────────────────┴───────────────────────┘
 </pre>
 
   <h3>9.2 Comparison categories</h3>
@@ -950,7 +996,7 @@ flowchart TD
     <ul>
       <li><strong>No inference.</strong> Nothing in this module may be produced by text comparison, diffing, or a model. Every field is typed or selected by the reporting radiologist and is subject to the same clinical sign-off as the report body.</li>
       <li><strong>Nothing renders before <code>approved_at</code>.</strong> A partially authored comparison is not shown in any state, including to the patient's shared clinician.</li>
-      <li><strong>Provenance is always visible.</strong> The original column carries "Supplied by you or your imaging provider. We have not altered this text." The second-opinion column carries the consultant's name, subspecialty and GMC number. These labels appear at every breakpoint and in the PDF.</li>
+      <li><strong>Provenance is always visible.</strong> The original column carries "Supplied by you or your imaging provider. We have not altered this text." The second-opinion column carries the consultant's name, subspecialty and GMC number. The "What this means for you" column carries its own line: "Written in plain English by [consultant], and approved by them before release" — it is not exempt from provenance just because it reads as a summary. These labels appear at every breakpoint and in the PDF.</li>
       <li><strong>Verbatim means verbatim.</strong> The original report text is displayed unedited. If it is long, it is truncated with an explicit <em>Show the full original report</em> control — never paraphrased.</li>
     </ul>
   </div>
@@ -994,12 +1040,26 @@ flowchart TD
     </div>
   </div>
 
+  <h3>Three-step section</h3>
+  <p>The home page and How it works both carry the same three-step section, word-for-word, as the single description of what happens: <strong>1. Upload your scans, 2. Tell us about your case, 3. Get your expert report.</strong> There is no "Choose a specialist" step and no fourth step for payment — payment is described as sitting inside step 3, not as a separate stage. Each step has a supportive note:</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Step</th><th>Supportive note</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Upload your scans</b></td><td>If you do not yet have your images, we show clear guidance on requesting them from the hospital or imaging provider. We do not request them on your behalf — this is not something we do for you today.</td></tr>
+      <tr><td><b>2. Tell us about your case</b></td><td>We use this information to match your case with the appropriate consultant subspecialist. Before payment, we confirm who will review your case, their relevant expertise, and your report delivery timeframe.</td></tr>
+      <tr><td><b>3. Get your expert report</b></td><td>Your report lives in your Patient dashboard. It is downloadable, shareable with your GP, and comes with follow-up support if you have questions.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
   <h3>Supporting changes</h3>
   <ul>
-    <li><strong>How it works</strong> gains a fourth step — "Follow your case and get your report in your account" — with a screenshot of the dashboard using placeholder data, never a real case.</li>
+    <li><strong>How it works</strong> carries the three-step section above as a distinct band, plus a screenshot of the dashboard using placeholder data, never a real case, showing the report living there after step 3.</li>
     <li><strong>Sample report</strong> gains the comparison module, so the thing patients are buying is visible before they buy it.</li>
-    <li><strong>Pricing</strong> tier CTAs carry the choice into the flow, landing the patient on step 1 with the turnaround pre-selected and confirmable at step 4.</li>
-    <li><strong>Sign-in</strong> is a plain, fast page: email, password, <em>Stay signed in on this device</em> (off by default), forgot-password, and a link to create an account. No marketing, no hero image, no testimonial.</li>
+    <li><strong>Pricing</strong> tier CTAs carry the choice into the flow, landing the patient at the step 0 account gate with the turnaround pre-selected and confirmable inside step 3.</li>
+    <li><strong>FAQ</strong> "What if I don't have my images?" is rewritten to the same honest, self-service answer as the step 1 supportive note — no promise that the service requests images on the patient's behalf.</li>
+    <li><strong>Sign-in and create account</strong> are both passwordless: email (plus name on create account), a six-digit code, <em>Stay signed in on this device</em> (off by default), and a cross-link between the two pages for the "wrong one" case. No password field, no forgot-password, no reset-password. No marketing, no hero image, no testimonial.</li>
   </ul>
 </section>
 
@@ -1017,10 +1077,10 @@ flowchart TD
       <tr><td>Footer</td><td><b>Already submitted a case? View your dashboard</b></td><td>Text link.</td></tr>
       <tr><td>Dashboard primary</td><td><b>Start a new case</b></td><td>Demotes to secondary when a case needs attention.</td></tr>
       <tr><td>Draft case</td><td><b>Finish your case</b></td><td>Not "Continue" — names the outcome.</td></tr>
-      <tr><td>Flow, steps 1–2</td><td><b>Continue</b></td><td>Plus a quiet <em>Back</em>.</td></tr>
-      <tr><td>Flow, step 3</td><td><b>Continue to pricing</b></td><td>Disabled with a visible reason until uploads are ready.</td></tr>
-      <tr><td>Flow, step 4</td><td><b>Continue to payment</b></td><td></td></tr>
-      <tr><td>Flow, step 5</td><td><b>Pay £[amount] and start my case</b></td><td>Names the amount. Never "Submit".</td></tr>
+      <tr><td>Account gate</td><td><b>Send my code</b></td><td>Step 0. Never "Sign up" or "Register" — there is no password to set.</td></tr>
+      <tr><td>Flow, step 1</td><td><b>Continue</b></td><td>Disabled with a visible reason until uploads pass validation. Plus a quiet <em>Back</em>.</td></tr>
+      <tr><td>Flow, step 2</td><td><b>Continue</b></td><td>Disabled until the consultant question and any required clinician details are filled in. Plus a quiet <em>Back</em>.</td></tr>
+      <tr><td>Flow, step 3</td><td><b>Pay £[amount] and start my case</b></td><td>Appears only after the matched consultant, expertise and timeframe are shown and confirmed. Names the amount. Never "Submit".</td></tr>
       <tr><td>Task</td><td><b>See what's needed</b></td><td></td></tr>
       <tr><td>Case in progress</td><td><b>View your case</b></td><td></td></tr>
       <tr><td>Report delivered</td><td><b>Read my report</b></td><td>The only filled button on a delivered card.</td></tr>
@@ -1056,10 +1116,10 @@ flowchart TD
     <li><strong>Data minimisation.</strong> No NHS number, no address, no next of kin, no GP details unless the patient chooses to share the report with them. Nothing is collected "in case it's useful later".</li>
     <li><strong>Notifications.</strong> Content-free, per §5. This is a design requirement and a testable one.</li>
     <li><strong>Storage and residency.</strong> UK or EEA only, encrypted at rest and in transit. Images and reports in object storage with per-object access control; no public URLs; signed URLs expire in minutes, not days.</li>
-    <li><strong>Retention.</strong> Stated numerically on the privacy page and echoed in the flow: images and reports retained for eight years by default, abandoned drafts deleted after 30 days, shared links expire after 30 days. Extended retention is the optional consent at step 5.</li>
+    <li><strong>Retention.</strong> Stated numerically on the privacy page and echoed in the flow: images and reports retained for eight years by default, abandoned drafts deleted after 30 days, shared links expire after 30 days. Extended retention is the optional consent at step 3, alongside payment.</li>
     <li><strong>Patient rights, self-serve.</strong> <code>/profile/privacy</code> offers a download of everything held, a correction request, a withdrawal of the optional consents, and a deletion request with a plainly stated caveat about the records the business must keep for medico-legal reasons.</li>
     <li><strong>Audit trail.</strong> Every access to a case — by staff, by consultant, by a shared clinician — is logged with actor, action and timestamp, and is disclosable to the patient on request.</li>
-    <li><strong>Access control.</strong> Session cookies <code>HttpOnly</code>, <code>Secure</code>, <code>SameSite=Lax</code>. Two-factor authentication offered at sign-up and required before a report can be shared externally. Re-authentication required to change email, password or bank details.</li>
+    <li><strong>Access control.</strong> Session cookies <code>HttpOnly</code>, <code>Secure</code>, <code>SameSite=Lax</code>. Two-factor authentication offered at sign-up and required before a report can be shared externally. Re-authentication (a fresh six-digit code) required to change email or bank details.</li>
     <li><strong>Shared devices.</strong> "Stay signed in" is off by default and labelled <em>Only on a device that's yours</em>. Sign out clears all local state including any cached report.</li>
   </ul>
 
@@ -1085,8 +1145,8 @@ flowchart TD
     <div class="card">
       <h4>MVP — build first</h4>
       <ul>
-        <li>Email + password accounts with verification and password reset</li>
-        <li>Five-step case flow with server-side drafts and resumable chunked upload</li>
+        <li>Passwordless accounts: name + email, pending account, six-digit email code, no password anywhere</li>
+        <li>Three-step case flow (Upload your scans / Tell us about your case / Get your expert report) behind a step 0 account gate, with server-side drafts and resumable chunked upload</li>
         <li>DICOM, ZIP, PDF and image validation with the error set in §7.4</li>
         <li>Card payment, with the failure handling in §4.5</li>
         <li>All six statuses, the dashboard, and the case-detail page</li>
@@ -1129,7 +1189,7 @@ flowchart TD
     <li>Named clinical safety officer and hazard log owner.</li>
     <li>Whether "someone I care for" needs formal proof of authority, and what that looks like operationally.</li>
     <li>Consultant availability data source for phase-two call booking.</li>
-    <li>Whether the current 12-hour turnaround is offered around the clock or within working hours — this changes the delivery-time calculation shown at step 4.</li>
+    <li>Whether the current 12-hour turnaround is offered around the clock or within working hours — this changes the delivery-time calculation shown at step 3.</li>
   </ul>
 </section>
 

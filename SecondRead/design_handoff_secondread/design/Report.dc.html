@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=2"></script>
-<script src="./portal.js?v=6"></script>
+<script src="./portal.js?v=7"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=14">
+  <link rel="stylesheet" href="responsive.css?v=15">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -78,7 +78,7 @@
           <a href="Dashboard.dc.html" data-r="acctmobileonly" style="display: none; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Dashboard</a>
           <a href="Dashboard.dc.html#reports" data-r="acctmobileonly" style="display: none; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">My reports</a>
           <a href="Account.dc.html" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Personal details</a>
-          <a href="Account.dc.html#security" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Password &amp; sign-in</a>
+          <a href="Account.dc.html#security" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Sign-in &amp; security</a>
           <a href="Account.dc.html#privacy" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Privacy &amp; your data</a>
           <a href="Account.dc.html#support" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Help &amp; support</a>
           <div style="border-top: 1px solid #E2E9EC; margin: 6px 0 0; padding-top: 6px;">
@@ -92,7 +92,7 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: anything you type is accepted, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <div data-r="portalwrap" style="max-width: 1180px; margin: 0 auto; padding: 28px 32px 40px;">
@@ -150,8 +150,8 @@
       </div>
 
       <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-        <div data-r="compare" style="display: grid; grid-template-columns: 1fr 1fr 1fr; background: #F4F7F8;">
-          <sc-for list="{{ columns }}" as="col" hint-placeholder-count="3">
+        <div data-r="compare" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; background: #F4F7F8;">
+          <sc-for list="{{ columns }}" as="col" hint-placeholder-count="4">
             <div data-r="comparecol" style="padding: 22px 24px; border-left: 1px solid #E2E9EC;">
               <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: -0.005em; color: #0A1F2C;">{{ col.title }}</h3>
               <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #5A6B77;">{{ col.source }}</p>
@@ -164,7 +164,7 @@
             <div style="padding: 14px 24px; background: #FAFCFC; border-bottom: 1px solid #E2E9EC;">
               <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77;">{{ it.region }}</span>
             </div>
-            <div data-r="compare" style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+            <div data-r="compare" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
               <div data-r="comparecol" style="padding: 20px 24px; border-left: 1px solid #E2E9EC;">
                 <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase; color: #8FA0A9; margin-bottom: 8px;">Reported before</div>
                 <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #4A5C68;">{{ it.before }}</p>
@@ -176,11 +176,11 @@
               <div data-r="comparecol" style="padding: 20px 24px; border-left: 1px solid #E2E9EC;">
                 <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase; color: #8FA0A9; margin-bottom: 8px;">What is different</div>
                 <span style="display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: {{ it.catFg }}; background: {{ it.catBg }}; border: 1px solid {{ it.catBorder }}; border-radius: 999px; padding: 3px 10px; margin-bottom: 10px;">{{ it.category }}</span>
-                <p style="margin: 0 0 10px; font-size: 14.5px; line-height: 1.65; color: #4A5C68; display: {{ it.noteDisplay }};">{{ it.note }}</p>
-                <div style="background: #F7FBFB; border-left: 2px solid #0D6E70; border-radius: 0 8px 8px 0; padding: 12px 14px;">
-                  <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #095458; margin-bottom: 5px;">What this means for you</div>
-                  <p style="margin: 0; font-size: 14px; line-height: 1.65; color: #0A1F2C;">{{ it.means }}</p>
-                </div>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #4A5C68; display: {{ it.noteDisplay }};">{{ it.note }}</p>
+              </div>
+              <div data-r="comparecol" style="padding: 20px 24px; border-left: 1px solid #E2E9EC; background: #F7FBFB;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase; color: #095458; margin-bottom: 8px;">What this means for you</div>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #0A1F2C;">{{ it.means }}</p>
               </div>
             </div>
           </div>
@@ -517,6 +517,10 @@ class Component extends DCLogic {
         {
           title: 'What is different',
           source: 'Assessed and written by ' + c.consultantName + '. Not generated automatically.'
+        },
+        {
+          title: 'What this means for you',
+          source: 'Written in plain English by ' + c.consultantName + ', and approved by them before release.'
         }
       ] : [],
 
