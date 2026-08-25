@@ -176,8 +176,12 @@ section[data-r="svcsection"] { padding-left: 0 !important; padding-right: 0 !imp
   outline: 2px solid #6FE3C5; outline-offset: 3px;
 }
 
+/* The card no longer carries a min-height: the scan window is an aspect-ratio
+   box, so the whole card sizes itself from whatever width the breakpoint gives
+   it, and the flex row stretches every sibling to match the tallest. */
+
 @media (max-width: 1024px) {
-  [data-r="svccard"] { flex-basis: 330px !important; min-height: 400px !important; }
+  [data-r="svccard"] { flex-basis: 330px !important; }
   [data-r="svctrack"] { padding-right: 24px !important; }
 }
 
@@ -185,15 +189,19 @@ section[data-r="svcsection"] { padding-left: 0 !important; padding-right: 0 !imp
   [data-r="svchead"] { flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
   /* Swiping is the primary gesture on touch, so the arrows stop earning space */
   [data-r="svcnav"] { display: none !important; }
-  [data-r="svccard"] { flex-basis: 300px !important; min-height: 384px !important; }
+  [data-r="svccard"] { flex-basis: 300px !important; }
 }
 
 @media (max-width: 620px) {
   /* A card plus a sliver of the next one, whatever the phone's width */
-  [data-r="svccard"] { flex-basis: 79vw !important; min-height: 360px !important; }
+  [data-r="svccard"] { flex-basis: 79vw !important; padding: 16px 16px 20px !important; }
   [data-r="svctrack"] { gap: 14px !important; padding-right: 18px !important; }
-  [data-r="svccard"] > span:last-child { padding: 20px !important; }
-  [data-r="svccard"] > span:last-child > span:first-child { font-size: 25px !important; }
+  /* The title drops a step but keeps its two reserved lines, so the buttons
+     stay level across the row at every width. */
+  [data-r="svccard"] > span:last-child > span:first-child {
+    font-size: 21px !important; min-height: 52px !important; max-width: 224px !important;
+  }
+  [data-r="svcphoto"] { border-radius: 24px !important; }
 }
 
 /* ------------------------------------------------ 4c. specialist cards

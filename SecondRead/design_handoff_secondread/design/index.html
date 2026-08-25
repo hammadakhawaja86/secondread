@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=16">
+  <link rel="stylesheet" href="responsive.css?v=17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -195,16 +195,24 @@
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
     <div id="svc-track" data-r="svctrack" onScroll="{{ svcOnScroll }}" role="region" aria-label="Radiology services" tabIndex="0" style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: calc(50% - 50vw); padding: 4px 32px 10px 0;">
       <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
-        <a href="{{ s.href }}" data-r="svccard" style="position: relative; flex: 0 0 372px; min-height: 424px; border-radius: 20px; overflow: hidden; background: {{ s.gradient }}; display: flex; flex-direction: column; justify-content: flex-end; scroll-snap-align: start; box-shadow: 0 12px 30px rgba(6,19,28,0.3); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 26px 50px rgba(6,19,28,0.44); text-decoration: none;">
-          <span aria-hidden="true" style="position: absolute; top: 52px; right: -38px; color: #FFFFFF; opacity: 0.14; transform: rotate(-8deg); pointer-events: none;">{{ s.watermark }}</span>
+        <a href="{{ s.href }}" data-r="svccard" style="position: relative; flex: 0 0 372px; border-radius: 20px; overflow: hidden; background: {{ s.gradient }}; display: flex; flex-direction: column; padding: 20px 20px 24px; box-sizing: border-box; scroll-snap-align: start; box-shadow: 0 12px 30px rgba(6,19,28,0.3); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 26px 50px rgba(6,19,28,0.44); text-decoration: none;">
+          <!-- The scan sits inside the card rather than bleeding to its edges,
+               so the gradient stays visible as a frame on all four sides. The
+               source files are square; the 332:244 window crops them centrally. -->
+          <span data-r="svcphoto" style="position: relative; display: block; margin-top: 8px; width: 100%; aspect-ratio: 332 / 244; border-radius: 30px; overflow: hidden; background: #06131C;">
+            <img src="{{ s.photo }}" alt="" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+          </span>
           <span aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,19,28,0) 54%, rgba(6,19,28,0.26) 100%); pointer-events: none;"></span>
+          <!-- Deliberately straddles the top edge of the scan: it reads as a
+               label pinned to the image, not as a chip floating above it. -->
           <span style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.94); color: #06313A; border-radius: 999px; padding: 6px 13px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;">{{ s.tag }}</span>
-          <span style="position: relative; display: flex; flex-direction: column; gap: 10px; padding: 24px;">
-            <span style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 29px; line-height: 1.08; letter-spacing: -0.02em; color: #FFFFFF;">{{ s.title }}</span>
-            <!-- Always rendered, even when empty: the reserved line keeps every
-                 headline on the same baseline across the row. -->
-            <span style="min-height: 18px; font-size: 12.5px; line-height: 1.4; color: rgba(255,255,255,0.82);">{{ s.credit }}</span>
-            <span style="margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 12px 20px; border-radius: 12px; background: #FFFFFF; color: #06313A; font-size: 15px; font-weight: 600; transition: background 140ms ease-out;" style-hover="background: #E4F2F2;">Get started {{ arrowSmallGlyph }}</span>
+          <span style="position: relative; display: flex; flex-direction: column; flex: 1; align-items: center; text-align: center;">
+            <!-- Both reserved heights — two title lines and one credit line —
+                 keep every card's button on the same baseline across the row,
+                 whether or not that service names a lead consultant. -->
+            <span style="min-height: 59px; max-width: 252px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.22; letter-spacing: -0.58px; color: #FFFFFF;">{{ s.title }}</span>
+            <span style="margin-top: 5px; margin-bottom: 14px; min-height: 18px; font-size: 12.5px; line-height: 1.4; color: rgba(255,255,255,0.82);">{{ s.credit }}</span>
+            <span style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 56px; border-radius: 12px; background: #FFFFFF; color: #06313A; font-size: 15px; font-weight: 600; transition: background 140ms ease-out;" style-hover="background: #E4F2F2;">Get started {{ arrowSmallGlyph }}</span>
           </span>
         </a>
       </sc-for>
@@ -493,12 +501,6 @@ const PATHS = {
   FileText: ['M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z', 'M15 2v5h5', 'M9 13h6', 'M9 17h6'],
   Zap: ['M4 14h7l-1 8 10-12h-7l1-8z'],
   Check: ['M20 6 9 17l-5-5'],
-  Layers: ['M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z', 'm22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65', 'm22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65'],
-  ScanLine: ['M3 7V5a2 2 0 0 1 2-2h2', 'M17 3h2a2 2 0 0 1 2 2v2', 'M21 17v2a2 2 0 0 1-2 2h-2', 'M7 21H5a2 2 0 0 1-2-2v-2', 'M3 12h18'],
-  Bone: ['M17 10c.7-.7 1.69-1 2.5-1a3.5 3.5 0 1 1 0 7c-.81 0-1.8-.3-2.5-1L7 15c-.7.7-1.69 1-2.5 1a3.5 3.5 0 1 1 0-7c.81 0 1.8.3 2.5 1L17 10Z'],
-  Activity: ['M22 12h-4l-3 9L9 3l-3 9H2'],
-  Brain: ['M12 3a4 4 0 0 0-4 4v1a3 3 0 0 0-2 5v1a3 3 0 0 0 2 2.83V18a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-1.17A3 3 0 0 0 18 14v-1a3 3 0 0 0-2-5V7a4 4 0 0 0-4-4Z'],
-  Target: ['M12 3v3', 'M12 18v3', 'M3 12h3', 'M18 12h3', 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z'],
   ArrowLeft: ['M19 12H5', 'm12 19-7-7 7-7'],
   ArrowRight: ['M5 12h14', 'm12 5 7 7-7 7']
 };
@@ -567,22 +569,24 @@ class Component extends DCLogic {
     specIndex: 0,
     specAtStart: true,
     specAtEnd: false,
+    // Each card runs bright at the top, where the category chip sits, to near
+    // navy at the bottom, so the headline and white button land on their own
+    // contrast without a heavy scrim doing the work. The angle and the three
+    // stop positions come straight from the Figma card; only the colours vary
+    // down the row, which is what gives the carousel its movement.
     services: [
-      // Each card runs bright at the top, where the category chip sits, to near
-      // navy at the bottom, so the headline and white button land on their own
-      // contrast without a heavy scrim doing the work.
-      { icon: 'Layers', tag: 'MRI & CT', title: 'A second read of your scan', credit: '', href: 'Pricing.dc.html',
-        gradient: 'linear-gradient(158deg, #12938F 0%, #0D6E70 44%, #06313A 100%)' },
-      { icon: 'ScanLine', tag: 'X-ray', title: 'Clear answers on your X-ray', credit: '', href: 'Pricing.dc.html',
-        gradient: 'linear-gradient(158deg, #6FE3C5 -12%, #12938F 40%, #095458 100%)' },
-      { icon: 'Bone', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Specialist Profile.dc.html?id=rajakulasingam',
-        gradient: 'linear-gradient(158deg, #0D6E70 0%, #12938F 38%, #06313A 100%)' },
-      { icon: 'Activity', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Specialist Profile.dc.html?id=alsanjari',
-        gradient: 'linear-gradient(158deg, #12938F -8%, #095458 46%, #0A1F2C 100%)' },
-      { icon: 'Brain', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Specialist Profile.dc.html?id=mallon',
-        gradient: 'linear-gradient(158deg, #6FE3C5 -16%, #0D6E70 42%, #06313A 100%)' },
-      { icon: 'Target', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Specialist Profile.dc.html?id=tamimi',
-        gradient: 'linear-gradient(158deg, #095458 0%, #12938F 42%, #06313A 100%)' }
+      { photo: 'services/mri-ct.jpg', tag: 'MRI & CT', title: 'A second read of your scan', credit: '', href: 'Pricing.dc.html',
+        gradient: 'linear-gradient(155deg, #12938F 9%, #0D6E70 45%, #06313A 91%)' },
+      { photo: 'services/xray.jpg', tag: 'X-ray', title: 'Clear answers on your X-ray', credit: '', href: 'Pricing.dc.html',
+        gradient: 'linear-gradient(155deg, #6FE3C5 -12%, #12938F 40%, #095458 100%)' },
+      { photo: 'services/musculoskeletal.jpg', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Specialist Profile.dc.html?id=rajakulasingam',
+        gradient: 'linear-gradient(155deg, #0D6E70 0%, #12938F 38%, #06313A 100%)' },
+      { photo: 'services/cardiac.jpg', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Specialist Profile.dc.html?id=alsanjari',
+        gradient: 'linear-gradient(155deg, #12938F -8%, #095458 46%, #0A1F2C 100%)' },
+      { photo: 'services/neuroradiology.jpg', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Specialist Profile.dc.html?id=mallon',
+        gradient: 'linear-gradient(155deg, #6FE3C5 -16%, #0D6E70 42%, #06313A 100%)' },
+      { photo: 'services/abdomen.jpg', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Specialist Profile.dc.html?id=tamimi',
+        gradient: 'linear-gradient(155deg, #095458 0%, #12938F 42%, #06313A 100%)' }
     ],
     // Portraits are ordinary files now, not the base64 blob in portraits/data.js —
     // swapping a headshot is a one-file drop-in. GMC numbers are placeholders and
@@ -807,7 +811,7 @@ class Component extends DCLogic {
       heroGlyph: this.icon('Zap', 21),
       checkGlyph: this.icon('Check', 14),
       howSteps: this.state.howSteps.map(s => ({ ...s, glyph: this.icon(s.icon, 24) })),
-      services: this.state.services.map(s => ({ ...s, watermark: this.icon(s.icon, 210) })),
+      services: this.state.services,
       arrowLeftGlyph: this.icon('ArrowLeft', 19),
       arrowRightGlyph: this.icon('ArrowRight', 19),
       arrowSmallGlyph: this.icon('ArrowRight', 16),
