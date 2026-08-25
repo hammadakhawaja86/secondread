@@ -630,3 +630,100 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
   [data-r="doneactions"] { flex-direction: column !important; align-items: stretch !important; }
   [data-r="doneactions"] > a { justify-content: center !important; }
 }
+
+/* ============================================================================
+   15. PATIENT PORTAL
+   Entry points on the marketing pages, plus the portal's own layouts.
+   New rules use [data-r] hooks rather than attribute selectors on inline
+   styles — see the NOTE ON SELECTORS above for why that matters here.
+   ========================================================================= */
+
+/* --- entry points ------------------------------------------------------- */
+
+/* The mobile copy of the dashboard link lives inside the burger panel and is
+   never shown on desktop; the desktop button is never shown inside the panel. */
+[data-r="navdashmobile"] { display: none !important; }
+
+@media (max-width: 900px) {
+  /* Two pill buttons plus a burger is too much for a 900px bar. The dashboard
+     link becomes the first item of the menu, per the spec. */
+  [data-r="navdash"] { display: none !important; }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > [data-r="navdashmobile"] {
+    display: block !important;
+  }
+}
+
+@media (max-width: 620px) {
+  [data-r="footdash"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 20px 22px !important;
+  }
+}
+
+/* --- portal chrome ------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  /* The bar keeps the logo, the bell and the account menu. The three nav
+     items move into the account menu rather than being lost. */
+  [data-r="portalnav"] { display: none !important; }
+  [data-r="acctmobileonly"] { display: block !important; }
+  [data-r="portalbar"] > div { gap: 14px !important; }
+  [data-r="portalgrid"] { grid-template-columns: minmax(0, 1fr) !important; }
+  /* Single column: the case the patient came to check outranks starting a
+     new one, so the primary CTA drops below it. */
+  [data-r="portalside"] { order: 2; }
+  [data-r="portalmain"] { order: 1; }
+}
+
+@media (max-width: 620px) {
+  [data-r="portalbar"] > div { padding: 11px 20px !important; }
+  [data-r="portalbar"] img { height: 38px !important; width: 140px !important; }
+  /* The account chip drops to the avatar alone — the name is redundant next
+     to it, and the bar is the wrong place to print a patient's name anyway. */
+  [data-r="acctmenu"] > summary > span:nth-child(2),
+  [data-r="acctmenu"] > summary > [data-r="chev"] { display: none !important; }
+  [data-r="acctmenu"] > summary { padding: 6px !important; }
+  [data-r="demobar"] > div { padding: 9px 20px !important; gap: 8px !important; }
+  [data-r="demobar"] p { font-size: 12.5px !important; }
+  [data-r="portalwrap"] { padding-left: 20px !important; padding-right: 20px !important; }
+  [data-r="greeting"] { flex-direction: column !important; align-items: flex-start !important; gap: 18px !important; }
+  [data-r="greeting"] > a { width: 100% !important; justify-content: center !important; }
+  [data-r="casehead"] { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
+  [data-r="caseactions"] { flex-direction: column !important; align-items: stretch !important; }
+  [data-r="caseactions"] > a, [data-r="caseactions"] > button { justify-content: center !important; }
+  [data-r="reportrow"] { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+  [data-r="reportrow"] > div:last-child { width: 100% !important; }
+  [data-r="authcard"] { padding: 28px 22px !important; }
+}
+
+/* --- timeline ----------------------------------------------------------- */
+
+@media (max-width: 620px) {
+  /* Horizontal rail becomes a vertical list, which reads better in a narrow
+     column and gives each label room to sit beside its own node. */
+  [data-r="timeline"] { flex-direction: column !important; align-items: stretch !important; gap: 0 !important; }
+  [data-r="timeline"] > div { flex-direction: row !important; align-items: flex-start !important; gap: 14px !important; }
+  [data-r="timeline"] [data-r="tlbar"] { display: none !important; }
+  [data-r="timeline"] [data-r="tlnode"] { flex-direction: row !important; gap: 12px !important; padding: 7px 0 !important; }
+}
+
+/* --- report viewer ------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  /* The three comparison columns stack. Each keeps its own heading and its
+     own source label — those labels are the safety mechanism and must never
+     be lost to a responsive collapse. */
+  [data-r="compare"] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-r="comparecol"] { border-left: none !important; border-top: 1px solid #E2E9EC !important; }
+  [data-r="comparecol"]:first-child { border-top: none !important; }
+  [data-r="reportgrid"] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-r="reportaside"] { position: static !important; }
+}
+
+@media (max-width: 620px) {
+  [data-r="reportactions"] { flex-direction: column !important; align-items: stretch !important; }
+  [data-r="reportactions"] > a, [data-r="reportactions"] > button { justify-content: center !important; }
+  [data-r="reportmeta"] { grid-template-columns: minmax(0, 1fr) !important; }
+}

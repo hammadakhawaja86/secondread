@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./consultants.js?v=2"></script>
+<script src="./portal.js?v=5"></script>
+<script src="./support.js?v=3"></script>
+</head>
+<body>
+<x-dc><helmet>
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
+  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="responsive.css?v=14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; padding: 0; background: #F4F7F8; font-family: 'Inter', sans-serif; }
+    a { color: #095458; text-decoration: none; }
+    a:hover { color: #0D6E70; text-decoration: underline; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+    /* Account menu. A <details> element so it works before hydration and
+       closes on Escape without a keydown handler of our own. */
+    [data-r="acctmenu"] { position: relative; }
+    [data-r="acctmenu"] > summary { list-style: none; cursor: pointer; }
+    [data-r="acctmenu"] > summary::-webkit-details-marker { display: none; }
+    [data-r="acctmenu"] > summary::marker { content: ""; }
+    [data-r="acctmenu"] > summary:focus-visible {
+      outline: 2px solid #0D6E70; outline-offset: 3px; border-radius: 999px;
+    }
+    [data-r="acctpanel"] {
+      position: absolute; right: 0; top: calc(100% + 10px); min-width: 244px; z-index: 200;
+    }
+    [data-r="acctmenu"][open] > summary > [data-r="chev"] { transform: rotate(180deg); }
+
+    /* Portal focus ring — visible on both the white cards and the mint washes. */
+    [data-r="portalwrap"] a:focus-visible,
+    [data-r="portalwrap"] button:focus-visible,
+    [data-r="portalwrap"] input:focus-visible,
+    [data-r="portalwrap"] textarea:focus-visible {
+      outline: 2px solid #0D6E70; outline-offset: 2px;
+    }
+  </style>
+</helmet>
+<header style="background: #FFFFFF; border-bottom: 1px solid #E2E9EC;">
+  <div style="max-width: 1180px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="secondread" style="height: 48px; width: 176px; display: block"></a>
+    <a href="index.html" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #173B4F;" style-hover="color: #0D6E70; text-decoration: none;"><span aria-hidden="true">&#8592;</span> Back to the site</a>
+  </div>
+</header>
+<div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
+  <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: anything you type is accepted, and everything is stored in this browser.</p>
+  </div>
+</div>
+<section data-r="portalwrap" style="padding: 56px 32px 80px;">
+  <div style="max-width: 452px; margin: 0 auto;">
+    <div style="margin-bottom: 26px;">
+      <h1 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.14; letter-spacing: -0.02em; color: #0A1F2C;">Sign in to your dashboard</h1>
+      <p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">Track your case, read your report, and message the team.</p>
+    </div>
+
+    <div data-r="authcard" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+
+          <sc-if value="{{ hasError }}" hint-placeholder-val="{{ true }}">
+            <div role="alert" style="background: #FBEEEC; border: 1px solid #E7BDB8; border-radius: 11px; padding: 13px 15px; font-size: 14px; line-height: 1.55; color: #7E2B26;">{{ error }}</div>
+          </sc-if>
+
+          <label style="display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Email address</span>
+            <input type="email" value="{{ email }}" onChange="{{ onEmail }}" placeholder="you@example.com" autocomplete="email" style="min-height: 50px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ emailBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+            
+          </label>
+
+          <label style="display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Password</span>
+            <input type="password" value="{{ password }}" onChange="{{ onPassword }}" placeholder="" autocomplete="current-password" style="min-height: 50px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ passwordBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+            
+          </label>
+
+        <label style="display: flex; align-items: flex-start; gap: 11px; cursor: pointer;">
+          <input type="checkbox" checked="{{ remember }}" onChange="{{ onRemember }}" style="width: 19px; height: 19px; margin: 2px 0 0; accent-color: #0D6E70; cursor: pointer; flex-shrink: 0;">
+          <span style="font-size: 14px; line-height: 1.55; color: #173B4F;">Stay signed in on this device<span style="display: block; font-size: 12.5px; color: #5A6B77; margin-top: 2px;">Only on a device that is yours. Leave this off on a shared or public computer.</span></span>
+        </label>
+
+        <button type="button" onClick="{{ submit }}" style="min-height: 52px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Sign in</button>
+
+        <div style="display: flex; justify-content: center;">
+          <a href="Sign In.dc.html" style="font-size: 14px; font-weight: 600;">Forgotten your password?</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 22px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 16px; padding: 22px 24px; text-align: center;">
+      <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.6; color: #06313A;">First time here? Create an account and we will take you straight to your upload.</p>
+      <a href="{{ createHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 48px; padding: 13px 26px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: background 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Create an account</a>
+    </div>
+
+    <p style="margin: 24px 0 0; font-size: 13px; line-height: 1.65; color: #5A6B77; text-align: center;">Your images and reports are held in the UK, encrypted, and never shown in an email or a notification. <a href="Privacy.dc.html" style="font-weight: 600;">How we look after your data</a></p>
+  </div>
+</section>
+<footer style="background: #06131C; color: #FFFFFF; padding: 44px 32px 26px; margin-top: 24px;">
+  <div style="max-width: 1180px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+      <img src="logo-secondread-light.svg" alt="secondread" style="height: 48px; width: 139px; display: block">
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px;">
+        <a href="index.html" style="color: rgba(255,255,255,0.85);">Main site</a>
+        <a href="How It Works.dc.html" style="color: rgba(255,255,255,0.85);">How it works</a>
+        <a href="FAQs.dc.html" style="color: rgba(255,255,255,0.85);">FAQs</a>
+        <a href="tel:+441438904272" style="color: rgba(255,255,255,0.85);">01438 904272</a>
+      </div>
+    </div>
+    <div style="padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
+      <span>&copy; 2026 SecondRead Ltd &middot; Registered in England &middot; Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <div style="display: flex; gap: 18px;">
+        <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+
+// Single-path stroke icon. Everything in the portal is one of these.
+function icon(d, size, width) {
+  return React.createElement('svg', {
+    width: size || 18, height: size || 18, viewBox: '0 0 24 24', fill: 'none',
+    stroke: 'currentColor', strokeWidth: width || 2,
+    strokeLinecap: 'round', strokeLinejoin: 'round'
+  }, React.createElement('path', { d: d }));
+}
+
+
+class Component extends DCLogic {
+  state = {
+    email: '',
+    password: '',
+    remember: false,
+    error: ''
+  };
+
+  // Demo build: there is no account to check against. Anything shaped like an
+  // email plus six characters is accepted. The shape checks still run, because
+  // they are the messages the real build needs.
+  submit() {
+    const email = this.state.email.trim();
+    if (!email) return this.setState({ error: 'Enter the email address you used when you created your account.' });
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      return this.setState({ error: 'That does not look like an email address. Check for a missing @ or a typo in the domain.' });
+    }
+    if (this.state.password.length < 6) {
+      return this.setState({ error: 'Enter your password. It is at least six characters long.' });
+    }
+    PORTAL.signIn(email);
+    window.location.href = PORTAL.safeNext(PORTAL.param('next'));
+  }
+
+  renderVals() {
+    const err = this.state.error;
+    const next = PORTAL.param('next');
+    return {
+      email: this.state.email,
+      password: this.state.password,
+      remember: this.state.remember,
+      error: err,
+      hasError: !!err,
+      emailBorder: err && !this.state.email ? '#C97D76' : '#D4DDE0',
+      passwordBorder: err && this.state.password.length < 6 ? '#C97D76' : '#D4DDE0',
+      createHref: 'Create Account.dc.html' + (next ? '?next=' + encodeURIComponent(next) : ''),
+      onEmail: e => this.setState({ email: e.target.value, error: '' }),
+      onPassword: e => this.setState({ password: e.target.value, error: '' }),
+      onRemember: e => this.setState({ remember: e.target.checked }),
+      submit: () => this.submit()
+    };
+  }
+}
+</script>
+</body>
+</html>
