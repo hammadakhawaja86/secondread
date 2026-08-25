@@ -242,7 +242,6 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
   [data-r="navlinks"] { gap: 18px !important; }
   [data-r="navlinks"] > a { font-size: 13.5px !important; }
   [data-r="navcta"] { margin-left: auto !important; flex-shrink: 0; gap: 10px !important; }
-  [data-r="navcta"] > a[href^="tel:"] { display: none !important; }
 }
 
 /* -------------------------------------------------- 6. tablet (<= 1024px) */
@@ -313,7 +312,6 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
   [data-r="nav"] > a:first-child img { height: 38px !important; width: auto !important; }
 
   [data-r="navcta"] { order: 2; margin-left: auto !important; flex-shrink: 0; gap: 8px !important; }
-  [data-r="navcta"] > a[href^="tel:"] { display: none !important; }
   [data-r="navcta"] > a:last-child {
     min-height: 42px !important; padding: 10px 16px !important; font-size: 13.5px !important;
   }
