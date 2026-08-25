@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=11">
+  <link rel="stylesheet" href="responsive.css?v=12">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -87,7 +87,7 @@
         <div style="padding: 22px 28px;"></div>
         <sc-for list="{{ tiers }}" as="tier" hint-placeholder-count="3">
           <div style="padding: 22px 20px; border-left: 1px solid #E2E9EC; background: {{ tier.footBg }};">
-            <button type="button" style="width: 100%; min-height: 46px; padding: 12px 18px; border-radius: 999px; border: 1.5px solid {{ tier.buttonBorder }}; background: {{ tier.buttonBg }}; color: {{ tier.buttonColor }}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF;" style-active="transform: translateY(1px);">Choose</button>
+            <a href="{{ tier.href }}" style="width: 100%; min-height: 46px; padding: 12px 18px; border-radius: 999px; border: 1.5px solid {{ tier.buttonBorder }}; background: {{ tier.buttonBg }}; color: {{ tier.buttonColor }}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Choose {{ tier.speed }}</a>
           </div>
         </sc-for>
       </div>
@@ -122,7 +122,7 @@
         <h2 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 28px; color: #0A1F2C; letter-spacing: -0.01em;">Something larger than one scan?</h2>
         <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #4A5C68;">Multiple scans, whole-body imaging, or a clinic contract? Tell us what you have and we return a fixed quote the same working day — never “request a personalised quote” with no number attached.</p>
       </div>
-      <button type="button" style="min-height: 50px; padding: 14px 32px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Get a fixed quote</button>
+      <a href="index.html#enquiry" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 50px; padding: 14px 32px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Get a fixed quote</a>
     </div>
   </div>
 </section>
@@ -156,9 +156,9 @@
     <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
       <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
       <div style="display: flex; gap: 18px;">
-        <a href="#" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Accessibility</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Terms</a>
+        <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
       </div>
     </div>
   </div>
@@ -180,9 +180,9 @@ const FEATURED_TIER = {
 class Component extends DCLogic {
   state = {
     tiers: [
-      { speed: '48 hours', price: '249', ...PLAIN_TIER },
-      { speed: '24 hours', price: '299', ...FEATURED_TIER },
-      { speed: '12 hours', price: '349', ...PLAIN_TIER }
+      { id: '48', speed: '48 hours', price: '249', ...PLAIN_TIER },
+      { id: '24', speed: '24 hours', price: '299', ...FEATURED_TIER },
+      { id: '12', speed: '12 hours', price: '349', ...PLAIN_TIER }
     ],
     rows: [
       { feature: 'Consultant subspecialist review' },
@@ -200,7 +200,7 @@ class Component extends DCLogic {
 
   renderVals() {
     return {
-      tiers: this.state.tiers,
+      tiers: this.state.tiers.map(t => ({ ...t, href: 'Start Flow.dc.html?speed=' + encodeURIComponent(t.id) })),
       rows: this.state.rows,
       addons: this.state.addons,
       checkGlyph: React.createElement('svg', {

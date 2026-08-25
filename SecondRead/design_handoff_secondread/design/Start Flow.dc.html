@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./consultants.js"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -16,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=11">
+  <link rel="stylesheet" href="responsive.css?v=12">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -36,8 +37,11 @@
       <span style="display: flex; color: #0D6E70;">{{ lockGlyph }}</span>
       <span>Encrypted · UK data centres · you can leave and return</span>
     </div>
-    <button type="button" style="margin-left: auto; min-height: 40px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Save and finish later</button>
+    <sc-if value="{{ isOrdering }}" hint-placeholder-val="{{ true }}">
+    <button type="button" onClick="{{ saveDraft }}" style="margin-left: auto; min-height: 40px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid {{ saveBorder }}; background: #FFFFFF; color: {{ saveColor }}; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">{{ saveLabel }}</button>
+    </sc-if>
   </div>
+  <sc-if value="{{ isOrdering }}" hint-placeholder-val="{{ true }}">
   <div style="border-top: 1px solid #E2E9EC; background: #FAFCFC;">
     <div data-r="stepper" style="max-width: 1200px; margin: 0 auto; padding: 0 32px; display: flex; gap: 8px; align-items: stretch;">
       <sc-for list="{{ stepper }}" as="s" hint-placeholder-count="3">
@@ -48,8 +52,10 @@
       </sc-for>
     </div>
   </div>
+  </sc-if>
 </header>
 
+<sc-if value="{{ isOrdering }}" hint-placeholder-val="{{ true }}">
 <section style="padding: 40px 32px 88px;">
   <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start;">
     <div>
@@ -126,7 +132,7 @@
                   <div style="font-size: 13px; color: #4A5C68;">{{ consultantRole }}</div>
                 </div>
               </div>
-              <a href="Specialists.dc.html" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Choose someone else</a>
+              <a href="{{ chooseHref }}" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Choose someone else</a>
             </div>
           </div>
         </div>
@@ -183,8 +189,8 @@
         <sc-if value="{{ canGoBack }}" hint-placeholder-val="{{ false }}">
           <button type="button" onClick="{{ back }}" style="min-height: 52px; padding: 15px 28px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Back</button>
         </sc-if>
-        <button type="button" onClick="{{ next }}" style="min-height: 52px; padding: 15px 34px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">{{ nextLabel }}</button>
-        <span style="font-size: 13.5px; color: #5A6B77;">{{ nextNote }}</span>
+        <button type="button" onClick="{{ next }}" aria-disabled="{{ nextBlocked }}" style="min-height: 52px; padding: 15px 34px; border-radius: 999px; border: none; background: {{ nextBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: {{ nextCursor }}; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">{{ nextLabel }}</button>
+        <span style="font-size: 13.5px; color: {{ nextNoteColor }};">{{ nextNote }}</span>
       </div>
 
       <p style="margin: 26px 0 0; font-size: 14px; color: #5A6B77;">Questions while you are here? Call <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>, 09:00–20:00, seven days.</p>
@@ -213,18 +219,125 @@
     </aside>
   </div>
 </section>
+</sc-if>
+
+<sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+<section style="padding: 64px 32px 96px;">
+  <div style="max-width: 760px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 26px;">
+      <span style="flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; background: #0D6E70; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ doneGlyph }}</span>
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 5px;">Order {{ orderRef }}</div>
+        <h1 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.15; letter-spacing: -0.02em; color: #0A1F2C;">Your scan is with {{ doneConsultant }}</h1>
+      </div>
+    </div>
+    <p style="margin: 0 0 32px; font-size: 17px; line-height: 1.6; color: #4A5C68;">The clock started the moment you paid. Your signed report is due <strong style="color: #0A1F2C;">{{ doneDeadline }}</strong>. If we miss it, the fee comes back to you in full — you do not have to ask.</p>
+
+    <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 30px 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); margin-bottom: 24px;">
+      <h2 style="margin: 0 0 20px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What happens next</h2>
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <sc-for list="{{ doneSteps }}" as="d" hint-placeholder-count="3">
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #E4F2F2; border: 1px solid #C3E0DE; color: #095458; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ d.n }}</span>
+            <div>
+              <div style="font-size: 15.5px; font-weight: 600; color: #0A1F2C; margin-bottom: 3px;">{{ d.title }}</div>
+              <div style="font-size: 14.5px; line-height: 1.6; color: #4A5C68;">{{ d.body }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 26px 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); margin-bottom: 30px;">
+      <h2 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Your order</h2>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ summary }}" as="row" hint-placeholder-count="4">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding: 11px 0; border-bottom: 1px solid #E2E9EC;">
+            <span style="font-size: 14px; color: #5A6B77;">{{ row.label }}</span>
+            <span style="font-size: 14.5px; font-weight: 600; color: {{ row.color }}; text-align: right;">{{ row.value }}</span>
+          </div>
+        </sc-for>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding-top: 18px;">
+          <span style="font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #0A1F2C;">Paid</span>
+          <span style="font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; color: #0D6E70; letter-spacing: -0.02em;">{{ total }}</span>
+        </div>
+      </div>
+      <p style="margin: 18px 0 0; font-size: 13px; line-height: 1.6; color: #5A6B77;">A receipt and a link to track your report are on their way to your email.</p>
+    </div>
+
+    <div data-r="doneactions" style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <a href="Sample Report.dc.html" style="min-height: 50px; padding: 14px 28px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">See what your report will look like</a>
+      <a href="index.html" style="min-height: 50px; padding: 14px 28px; border-radius: 999px; border: 1.5px solid #D4DDE0; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Back to home</a>
+    </div>
+
+    <p style="margin: 30px 0 0; font-size: 14px; color: #5A6B77;">Something not right? Call <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>, 09:00–20:00, seven days — quote {{ orderRef }}.</p>
+  </div>
+</section>
+</sc-if>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
-const SCAN_TYPES = ['MRI', 'CT', 'Ultrasound', 'X-ray', 'PET-CT'];
+const SCAN_TYPES = ['MRI', 'CT', 'Ultrasound', 'X-ray', 'PET-CT', 'Not sure'];
 
 const BODY_AREAS = [
-  { id: 'brain', label: 'Brain or spine', consultant: 'Dr Dermot Mallon', initials: 'DM', role: 'Consultant neuroradiologist' },
-  { id: 'chest', label: 'Chest or heart', consultant: 'Dr Senan Alsanjari', initials: 'SA', role: 'Cardiothoracic radiologist' },
-  { id: 'bones', label: 'Bones or joints', consultant: 'Dr Ramanan Rajakulasingam', initials: 'RR', role: 'Musculoskeletal radiologist' },
-  { id: 'abdomen', label: 'Abdomen or pelvis', consultant: 'Dr Asad Tamimi', initials: 'AT', role: 'Abdominal radiologist' },
-  { id: 'breast', label: 'Breast', consultant: 'Dr Hebah Taufik', initials: 'HT', role: 'Consultant breast radiologist' },
-  { id: 'headneck', label: 'Head or neck', consultant: 'Dr Husam Wassati', initials: 'HW', role: 'Head & neck radiologist' }
+  { id: 'brain',    label: 'Brain or spine',    defaultConsultant: 'mallon' },
+  { id: 'chest',    label: 'Chest or heart',    defaultConsultant: 'alsanjari' },
+  { id: 'bones',    label: 'Bones or joints',   defaultConsultant: 'rajakulasingam' },
+  { id: 'abdomen',  label: 'Abdomen or pelvis', defaultConsultant: 'tamimi' },
+  { id: 'breast',   label: 'Breast',            defaultConsultant: 'taufik' },
+  { id: 'headneck', label: 'Head or neck',      defaultConsultant: 'wassati' }
 ];
+
+const DRAFT_KEY = 'secondread:draft:v1';
+
+/* The order is now seeded from the URL, so a choice made on the landing page,
+   the pricing table or a consultant profile survives the click into checkout.
+   Previously every entry point reset to MRI / brain and silently discarded
+   whatever the visitor had just told us.
+
+     ?scan=MRI  &area=bones  &speed=24  &consultant=rajakulasingam  &addons=call
+
+   Anything unrecognised is ignored rather than trusted. */
+function orderFromQuery() {
+  var out = {};
+  var q;
+  try { q = new URLSearchParams(window.location.search); } catch (e) { return out; }
+
+  var scan = q.get('scan');
+  if (scan && SCAN_TYPES.indexOf(scan) !== -1) out.scanType = scan;
+
+  var area = q.get('area');
+  if (area && BODY_AREAS.some(function (a) { return a.id === area; })) out.area = area;
+
+  var speed = q.get('speed');
+  if (speed && SPEEDS.some(function (x) { return x.id === speed; })) out.speed = speed;
+
+  var consultant = q.get('consultant');
+  if (consultant && CONSULTANT_BY_ID[consultant]) {
+    out.consultant = consultant;
+    // Keep the body area consistent with the consultant the visitor picked,
+    // otherwise step 2 would show a neuroradiologist under "Bones or joints".
+    var c = CONSULTANT_BY_ID[consultant];
+    if (!out.area && c.areas.length) {
+      var match = BODY_AREAS.find(function (a) { return c.areas.indexOf(a.id) !== -1; });
+      if (match) out.area = match.id;
+    }
+  }
+
+  var addons = q.get('addons');
+  if (addons) {
+    out.addons = addons.split(',').filter(function (id) {
+      return ADDONS.some(function (a) { return a.id === id; });
+    });
+  }
+  return out;
+}
+
+function loadDraft() {
+  try {
+    var raw = window.localStorage.getItem(DRAFT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
 
 const SPEEDS = [
   { id: '48', label: '48 hours', price: 249, deadline: 'Report by Thu 6 Aug, 4pm' },
@@ -244,18 +357,27 @@ const STEPS = [
 ];
 
 class Component extends DCLogic {
-  state = {
-    step: 1,
-    files: [
-      { name: 'MRI_Brain_Jan2026.zip', meta: '2.1GB · 480 images · uploaded', progress: 100 },
-      { name: 'Prior_MRI_2024.zip', meta: '68% · 1.4GB of 2.1GB · 2 min left', progress: 68 }
-    ],
-    scanType: 'MRI',
-    area: 'brain',
-    question: '',
-    speed: '',
-    addons: []
-  };
+  // Base order, then any saved draft, then the URL. The URL wins because it
+  // represents a choice the visitor made a moment ago.
+  state = Object.assign(
+    {
+      step: 1,
+      files: [
+        { name: 'MRI_Brain_Jan2026.zip', meta: '2.1GB · 480 images · uploaded', progress: 100 },
+        { name: 'Prior_MRI_2024.zip', meta: '68% · 1.4GB of 2.1GB · 2 min left', progress: 68 }
+      ],
+      scanType: 'MRI',
+      area: 'brain',
+      question: '',
+      speed: '',
+      addons: [],
+      consultant: '',
+      saved: false,
+      orderRef: ''
+    },
+    loadDraft() || {},
+    orderFromQuery()
+  );
 
   componentDidMount() {
     this.timer = setInterval(() => {
@@ -298,27 +420,115 @@ class Component extends DCLogic {
     return { amount: base + extra, isFrom: !speed };
   }
 
+  // What stops the visitor moving on from `step`, or '' if nothing does.
+  // Previously `next` advanced unconditionally, so it was possible to reach the
+  // payment screen with no turnaround chosen and still be quoted a firm price.
+  blockerFor(step) {
+    const s = this.state;
+    if (step === 1 && s.files.some(f => f.progress < 100)) return 'Waiting for your upload to finish';
+    if (step === 2 && !s.area) return 'Tell us which part of the body was scanned';
+    if (step === 3 && !s.speed) return 'Choose a deadline to see your price';
+    return '';
+  }
+
+  saveDraft() {
+    const s = this.state;
+    try {
+      window.localStorage.setItem(DRAFT_KEY, JSON.stringify({
+        step: s.step, scanType: s.scanType, area: s.area,
+        question: s.question, speed: s.speed, addons: s.addons,
+        consultant: s.consultant
+      }));
+      this.setState({ saved: true });
+    } catch (e) {
+      // Private browsing, or storage full. Say nothing rather than claim a save.
+      this.setState({ saved: false });
+    }
+  }
+
+  placeOrder() {
+    // Human-readable reference the visitor can quote on the phone.
+    const n = Math.floor(Math.random() * 9000) + 1000;
+    const yr = new Date().getFullYear();
+    try { window.localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    this.setState({ step: 4, orderRef: 'SR-' + yr + '-' + n });
+    if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
+  }
+
+  // The consultant actually assigned: an explicit choice if one was made,
+  // otherwise the default for the selected body area.
+  assignedConsultant() {
+    const s = this.state;
+    if (s.consultant && CONSULTANT_BY_ID[s.consultant]) return CONSULTANT_BY_ID[s.consultant];
+    const area = BODY_AREAS.find(a => a.id === s.area);
+    return area ? CONSULTANT_BY_ID[area.defaultConsultant] : null;
+  }
+
   renderVals() {
     const s = this.state;
-    const step = STEPS[s.step - 1];
+    const ordering = s.step <= 3;
+    const step = STEPS[Math.min(s.step, 3) - 1];
     const area = BODY_AREAS.find(a => a.id === s.area);
     const speed = SPEEDS.find(x => x.id === s.speed);
     const total = this.total();
+    const blocker = this.blockerFor(s.step);
+    const priceText = (total.isFrom ? 'from £' : '£') + total.amount;
 
     return {
       lockGlyph: this.svg(15, ['M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2Z', 'M8 11V7a4 4 0 0 1 8 0v4']),
       uploadGlyph: this.svg(24, ['M12 15V3', 'm7 8 5-5 5 5', 'M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4'], 2.2),
-      eyebrow: 'Step ' + s.step + ' of 3 · ' + step.label,
+      doneGlyph: this.svg(26, ['M20 6 9 17l-5-5'], 3),
+
+      isOrdering: ordering,
+      isDone: s.step === 4,
+      orderRef: s.orderRef,
+
+      eyebrow: 'Step ' + Math.min(s.step, 3) + ' of 3 · ' + step.label,
       stepTitle: step.title,
       stepSubtitle: step.subtitle,
       isStep1: s.step === 1,
       isStep2: s.step === 2,
       isStep3: s.step === 3,
-      canGoBack: s.step > 1,
+      canGoBack: s.step > 1 && ordering,
       back: () => this.setState(st => ({ step: Math.max(1, st.step - 1) })),
-      next: () => this.setState(st => ({ step: Math.min(3, st.step + 1) })),
-      nextLabel: s.step === 1 ? 'Continue to step 2' : (s.step === 2 ? 'Continue to step 3' : 'Pay ' + '£' + total.amount + ' and start the clock'),
-      nextNote: s.step === 3 ? 'Card or Apple Pay · refunded in full if we miss the deadline' : 'Nothing is charged yet',
+
+      // Step 3's CTA now completes the order instead of clamping at 3 and
+      // leaving the visitor on a button that appears broken.
+      next: () => {
+        if (this.blockerFor(this.state.step)) return;
+        if (this.state.step === 3) { this.placeOrder(); return; }
+        this.setState(st => ({ step: Math.min(3, st.step + 1), saved: false }));
+      },
+      nextLabel: s.step === 1
+        ? 'Continue to step 2'
+        : (s.step === 2 ? 'Continue to step 3' : 'Pay ' + priceText + ' and start the clock'),
+      nextBlocked: blocker ? 'true' : 'false',
+      nextBg: blocker ? '#9BB3B4' : '#0D6E70',
+      nextCursor: blocker ? 'not-allowed' : 'pointer',
+      nextNote: blocker || (s.step === 3
+        ? 'Card or Apple Pay · refunded in full if we miss the deadline'
+        : 'Nothing is charged yet'),
+      nextNoteColor: blocker ? '#B4462F' : '#5A6B77',
+
+      saveDraft: () => this.saveDraft(),
+      saveLabel: s.saved ? 'Progress saved' : 'Save and finish later',
+      saveBorder: s.saved ? '#0D6E70' : '#D4DDE0',
+      saveColor: s.saved ? '#095458' : '#0A1F2C',
+
+      // Carries the order out to the directory and back, so picking a different
+      // consultant no longer means starting the whole thing again.
+      chooseHref: 'Specialists.dc.html?' + new URLSearchParams({
+        scan: s.scanType, area: s.area || '', speed: s.speed || '',
+        addons: s.addons.join(',')
+      }).toString(),
+
+      doneConsultant: (() => { const c = this.assignedConsultant(); return c ? 'Dr ' + c.name : 'your consultant'; })(),
+      doneDeadline: speed ? speed.deadline.replace(/^Report by /, '') : 'within your chosen window',
+      doneSteps: [
+        { n: 1, title: 'We check the images open cleanly', body: 'Within the hour. If a series is missing or unreadable we call you before the clock runs down.' },
+        { n: 2, title: (() => { const c = this.assignedConsultant(); return c ? 'Dr ' + consultantSurname(c) + ' reads the study' : 'Your consultant reads the study'; })(), body: 'Against your original report, and against any prior imaging you sent.' },
+        { n: 3, title: 'The signed report reaches you', body: 'By secure link to your email, and to your GP if you gave us their address.' }
+      ],
 
       stepper: STEPS.map(st => {
         const done = s.step > st.n;
@@ -333,7 +543,7 @@ class Component extends DCLogic {
           labelColor: active ? '#0A1F2C' : '#6F818C',
           weight: active ? 700 : 500,
           cursor: st.n <= s.step ? 'pointer' : 'default',
-          go: () => { if (st.n <= s.step) this.setState({ step: st.n }); }
+          go: () => { if (st.n <= s.step && s.step <= 3) this.setState({ step: st.n }); }
         };
       }),
 
@@ -374,9 +584,9 @@ class Component extends DCLogic {
       }),
       question: s.question,
       onQuestion: e => this.setState({ question: e.target.value }),
-      consultantName: area ? area.consultant : '',
-      consultantInitials: area ? area.initials : '',
-      consultantRole: area ? area.role : '',
+      consultantName: (() => { const c = this.assignedConsultant(); return c ? 'Dr ' + c.name : 'Matched at checkout'; })(),
+      consultantInitials: (() => { const c = this.assignedConsultant(); return c ? c.initials : '—'; })(),
+      consultantRole: (() => { const c = this.assignedConsultant(); return c ? c.role : 'We match your subspecialist once we see the study'; })(),
 
       speeds: SPEEDS.map(x => {
         const on = s.speed === x.id;
@@ -412,7 +622,7 @@ class Component extends DCLogic {
       summary: [
         { label: 'Scan type', value: s.scanType, color: '#0A1F2C' },
         { label: 'Body area', value: area ? area.label : 'Step 2', color: area ? '#0A1F2C' : '#A3B0B8' },
-        { label: 'Consultant', value: area ? area.consultant.replace('Dr ', 'Dr ') : 'Step 2', color: area ? '#0A1F2C' : '#A3B0B8' },
+        { label: 'Consultant', value: (() => { const c = this.assignedConsultant(); return c ? 'Dr ' + c.name : 'Step 2'; })(), color: this.assignedConsultant() ? '#0A1F2C' : '#A3B0B8' },
         { label: 'Speed', value: speed ? speed.label : 'Step 3', color: speed ? '#0A1F2C' : '#A3B0B8' }
       ],
       total: (total.isFrom ? 'From £' : '£') + total.amount

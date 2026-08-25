@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./consultants.js"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -17,7 +18,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=11">
+  <link rel="stylesheet" href="responsive.css?v=12">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -112,7 +113,7 @@
           <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 7px;">Matched</div>
           <div style="font-size: 15px; line-height: 1.6; color: #06313A;">{{ quickMatch }}</div>
         </div>
-        <a href="Start Flow.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 28px; border-radius: 14px; background: #0D6E70; color: #FFFFFF; font-size: 16px; font-weight: 600; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
+        <a href="{{ quickHref }}" style="display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 28px; border-radius: 14px; background: #0D6E70; color: #FFFFFF; font-size: 16px; font-weight: 600; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
       </div>
     </div>
     </div>
@@ -170,7 +171,7 @@
       </sc-for>
     </div>
     <div style="text-align: center;">
-      <button type="button" style="min-height: 48px; padding: 13px 28px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out, transform 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;" style-active="transform: translateY(1px);" onClick="{{ goHowItWorks }}">Read the detail on how it works</button>
+      <a href="How It Works.dc.html" style="min-height: 48px; padding: 13px 28px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out, transform 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;" style-active="transform: translateY(1px);">Read the detail on how it works</a>
     </div>
   </div>
 </section>
@@ -236,7 +237,7 @@
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
     <div id="spec-track" data-r="spectrack" onScroll="{{ specOnScroll }}" role="region" aria-label="Our consultants" tabIndex="0" style="display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: calc(50% - 50vw); padding: 4px 32px 10px 0;">
       <sc-for list="{{ specialists }}" as="specialist" hint-placeholder-count="6">
-        <a href="Specialist Profile.dc.html" data-r="speccard" style="flex: 0 0 340px; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; overflow: hidden; scroll-snap-align: start; box-shadow: 0 2px 8px rgba(10,31,44,0.06); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out, border-color 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 22px 44px rgba(10,31,44,0.16); border-color: #C3E0DE; text-decoration: none;">
+        <a href="{{ specialist.profileHref }}" data-r="speccard" style="flex: 0 0 340px; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; overflow: hidden; scroll-snap-align: start; box-shadow: 0 2px 8px rgba(10,31,44,0.06); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out, border-color 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 22px 44px rgba(10,31,44,0.16); border-color: #C3E0DE; text-decoration: none;">
           <span style="display: flex; flex-direction: column; gap: 5px; padding: 28px 28px 22px;">
             <span style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.2; letter-spacing: -0.015em; color: #0A1F2C; min-height: 56px;">Dr {{ specialist.name }}</span>
             <span style="font-size: 15px; line-height: 1.45; color: #173B4F;">{{ specialist.role }}</span>
@@ -278,7 +279,7 @@
               <span style="font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 700; color: {{ card.priceColor }}; letter-spacing: -0.03em; line-height: 1;">{{ card.price }}</span>
               <span style="font-size: 14px; color: {{ card.mutedColor }};">/ report</span>
             </div>
-            <button type="button" style="width: 100%; min-height: 46px; padding: 12px 24px; border-radius: 999px; border: 1px solid {{ card.buttonBorder }}; background: {{ card.buttonBg }}; color: {{ card.buttonColor }}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF;" style-active="transform: translateY(1px);">Select this deadline</button>
+            <a href="{{ card.href }}" style="width: 100%; min-height: 46px; padding: 12px 24px; border-radius: 999px; border: 1px solid {{ card.buttonBorder }}; background: {{ card.buttonBg }}; color: {{ card.buttonColor }}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Select this deadline</a>
           </div>
           <div style="background: {{ card.panelBg }}; border-radius: 16px; padding: 22px 20px; flex: 1;">
             <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px;">
@@ -391,13 +392,52 @@
   </div>
 </section>
 
-<section style="background: #0A1F2C;">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 60px 32px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
-    <div style="max-width: 680px;">
-      <h2 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #FFFFFF; letter-spacing: -0.01em;">Not sure whether a second read will help?</h2>
-      <p style="margin: 0; color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.55;">Send us your question and the report you already have. We will tell you honestly whether a review is worth your money — free, within one working day.</p>
+<section id="enquiry" style="background: #0A1F2C; scroll-margin-top: 92px;">
+  <div data-r="enquiry" style="max-width: 1200px; margin: 0 auto; padding: 72px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;">
+    <div>
+      <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #6FE3C5; margin-bottom: 12px;">Ask first, pay later</div>
+      <h2 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #FFFFFF; letter-spacing: -0.01em;">Not sure whether a second read will help?</h2>
+      <p style="margin: 0 0 26px; color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.6;">Tell us your question and what you already have. We will tell you honestly whether a review is worth your money — free, within one working day. If the answer is no, we will say so.</p>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <sc-for list="{{ enquiryPoints }}" as="pt" hint-placeholder-count="3">
+          <div style="display: flex; gap: 11px; align-items: flex-start;">
+            <span style="flex-shrink: 0; width: 21px; height: 21px; border-radius: 50%; background: rgba(111,227,197,0.16); color: #6FE3C5; display: flex; align-items: center; justify-content: center; margin-top: 1px;">{{ checkGlyph }}</span>
+            <span style="font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.82);">{{ pt.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin: 26px 0 0; font-size: 14.5px; color: rgba(255,255,255,0.66);">Would rather talk? Call <a href="tel:+441438904272" style="color: #6FE3C5; font-weight: 600;">01438 904272</a>, 09:00–20:00, seven days.</p>
     </div>
-    <button type="button" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.34); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Ask us first</button>
+
+    <div style="background: #FFFFFF; border-radius: 20px; padding: 32px; box-shadow: 0 22px 50px rgba(0,0,0,0.28);">
+      <sc-if value="{{ enquirySent }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align: center; padding: 24px 8px;">
+          <span style="display: inline-flex; width: 52px; height: 52px; border-radius: 50%; background: #0D6E70; color: #FFFFFF; align-items: center; justify-content: center; margin-bottom: 18px;">{{ sentGlyph }}</span>
+          <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Thank you — that is with us</h3>
+          <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.65; color: #4A5C68;">A consultant radiologist reads every enquiry personally. You will hear back by email within one working day, and there is nothing to pay either way.</p>
+          <button type="button" onClick="{{ resetEnquiry }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Send another</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ enquiryOpen }}" hint-placeholder-val="{{ true }}">
+        <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Ask us first</h3>
+        <p style="margin: 0 0 22px; font-size: 14.5px; line-height: 1.6; color: #5A6B77;">No card, no obligation. Two fields are all we need.</p>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <label style="display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Your email</span>
+            <input type="email" value="{{ enquiryEmail }}" onChange="{{ onEnquiryEmail }}" placeholder="you@example.com" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ emailBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">What would you like to know?</span>
+            <textarea rows="5" value="{{ enquiryMessage }}" onChange="{{ onEnquiryMessage }}" placeholder="I have an MRI of my knee and a report I do not understand…" style="padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ messageBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; outline: none; resize: vertical; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+          </label>
+          <sc-if value="{{ enquiryError }}" hint-placeholder-val="{{ false }}">
+            <div role="alert" style="font-size: 14px; line-height: 1.5; color: #B4462F;">{{ enquiryError }}</div>
+          </sc-if>
+          <button type="button" onClick="{{ sendEnquiry }}" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Send my question</button>
+          <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #6C7C87;">We use your email only to answer this question. Read how we handle your data in our <a href="Privacy.dc.html" style="font-weight: 600;">privacy notice</a>.</p>
+        </div>
+      </sc-if>
+    </div>
   </div>
 </section>
 
@@ -430,9 +470,9 @@
     <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
       <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
       <div style="display: flex; gap: 18px;">
-        <a href="#" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Accessibility</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Terms</a>
+        <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
       </div>
     </div>
   </div>
@@ -477,13 +517,19 @@ const FEATURED = {
 };
 
 const QUICK_AREAS = [
-  { id: 'brain', label: 'Brain or spine', match: 'Dr Dermot Mallon, consultant neuroradiologist, NHNN. Reports within 12–48 hours.' },
-  { id: 'chest', label: 'Chest or heart', match: 'Dr Senan Alsanjari, cardiothoracic radiologist, NHNN. Reports within 12–48 hours.' },
-  { id: 'bones', label: 'Bones or joints', match: 'Dr Ramanan Rajakulasingam, musculoskeletal radiologist, RNOH. Reports within 12–48 hours.' },
-  { id: 'abdomen', label: 'Abdomen or pelvis', match: 'Dr Asad Tamimi, abdominal radiologist, Imperial. Reports within 12–48 hours.' },
-  { id: 'breast', label: 'Breast', match: 'Dr Hebah Taufik, consultant breast radiologist, London. Reports within 12–48 hours.' },
-  { id: 'headneck', label: 'Head or neck', match: 'Dr Husam Wassati, head & neck radiologist, King’s College Hospital. Reports within 12–48 hours.' }
-];
+  { id: 'brain', label: 'Brain or spine', consultant: 'mallon' },
+  { id: 'chest', label: 'Chest or heart', consultant: 'alsanjari' },
+  { id: 'bones', label: 'Bones or joints', consultant: 'rajakulasingam' },
+  { id: 'abdomen', label: 'Abdomen or pelvis', consultant: 'tamimi' },
+  { id: 'breast', label: 'Breast', consultant: 'taufik' },
+  { id: 'headneck', label: 'Head or neck', consultant: 'wassati' }
+].map(function (a) {
+  var c = CONSULTANT_BY_ID[a.consultant];
+  a.match = c
+    ? 'Dr ' + c.name + ', ' + c.role.replace(/^Consultant /, '').toLowerCase() + ', ' + c.hospital + '. Reports within 12–48 hours.'
+    : 'We match your subspecialist once we see the study. Reports within 12–48 hours.';
+  return a;
+});
 
 class Component extends DCLogic {
   state = {
@@ -491,6 +537,10 @@ class Component extends DCLogic {
     paused: false,
     quickScan: 'MRI',
     quickArea: 'brain',
+    enquiryEmail: '',
+    enquiryMessage: '',
+    enquiryError: '',
+    enquirySent: false,
     openFaq: 0,
     howSteps: [
       { number: '01', icon: 'UploadCloud', title: 'Upload your scans', description: 'Drag in a DICOM folder, a zip, or the whole CD. No images yet? We will request them from the hospital for you.' },
@@ -511,45 +561,25 @@ class Component extends DCLogic {
         gradient: 'linear-gradient(158deg, #12938F 0%, #0D6E70 44%, #06313A 100%)' },
       { icon: 'ScanLine', tag: 'X-ray', title: 'Clear answers on your X-ray', credit: '', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(158deg, #6FE3C5 -12%, #12938F 40%, #095458 100%)' },
-      { icon: 'Bone', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Specialists.dc.html',
+      { icon: 'Bone', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Specialist Profile.dc.html?id=rajakulasingam',
         gradient: 'linear-gradient(158deg, #0D6E70 0%, #12938F 38%, #06313A 100%)' },
-      { icon: 'Activity', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Specialists.dc.html',
+      { icon: 'Activity', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Specialist Profile.dc.html?id=alsanjari',
         gradient: 'linear-gradient(158deg, #12938F -8%, #095458 46%, #0A1F2C 100%)' },
-      { icon: 'Brain', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Specialist Profile.dc.html',
+      { icon: 'Brain', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Specialist Profile.dc.html?id=mallon',
         gradient: 'linear-gradient(158deg, #6FE3C5 -16%, #0D6E70 42%, #06313A 100%)' },
-      { icon: 'Target', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Specialists.dc.html',
+      { icon: 'Target', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Specialist Profile.dc.html?id=tamimi',
         gradient: 'linear-gradient(158deg, #095458 0%, #12938F 42%, #06313A 100%)' }
     ],
     // Portraits are ordinary files now, not the base64 blob in portraits/data.js —
     // swapping a headshot is a one-file drop-in. GMC numbers are placeholders and
     // must be replaced with the real registrations before launch.
-    specialists: [
-      { name: 'Senan Alsanjari', role: 'Consultant cardiothoracic radiologist',
-        quals: 'FRCR \u00b7 Level III cardiac MRI & CT \u00b7 NHNN', gmc: '7012345',
-        initial: 'SA', photo: 'portraits/senan-alsanjari.jpg', focus: '50% 50%' },
-      { name: 'Dermot Mallon', role: 'Consultant neuroradiologist',
-        quals: 'FRCR \u00b7 PhD Cambridge \u00b7 UCLH', gmc: '7012345',
-        initial: 'DM', photo: 'portraits/dermot-mallon.jpg', focus: '50% 50%' },
-      { name: 'Ramanan Rajakulasingam', role: 'Musculoskeletal and sarcoma radiologist',
-        quals: 'FRCR \u00b7 RNOH Stanmore', gmc: '7012345',
-        initial: 'RR', photo: 'portraits/ramanan-rajakulasingam.jpg', focus: '50% 50%' },
-      { name: 'Hebah Taufik', role: 'Consultant breast radiologist',
-        quals: 'FRCR \u00b7 Screening and diagnostic imaging', gmc: '7012345',
-        initial: 'HT', photo: 'portraits/hebah-taufik.jpg', focus: '50% 50%' },
-      { name: 'Asad Tamimi', role: 'Gastrointestinal and abdominal radiologist',
-        quals: 'FRCR \u00b7 Imperial College', gmc: '7012345',
-        initial: 'AT', photo: 'portraits/asad-tamimi.jpg', focus: '50% 50%' },
-      { name: 'Gauraang Bhatnagar', role: 'Gastrointestinal and oncological radiologist',
-        quals: 'FRCR \u00b7 Oncological staging', gmc: '7012345',
-        initial: 'GB', photo: 'portraits/gauraang-bhatnagar.jpg', focus: '50% 50%' },
-      { name: 'Geetanjali Kakar', role: 'Consultant gynaecological radiologist',
-        quals: 'FRCR \u00b7 Imperial College', gmc: '7012345',
-        initial: 'GK', photo: 'portraits/geetanjali-kakar.jpg', focus: '50% 50%' }
-    ],
+    // Sourced from consultants.js — the same roster the directory and the
+    // profile pages read, so a card can never point at the wrong person.
+    specialists: FEATURED_CONSULTANTS,
     pricingCards: [
-      { speed: '48 hours', deadline: 'Report by Wed 5 Aug, 4pm', price: '249', highlighted: false, ...PLAIN },
-      { speed: '24 hours', deadline: 'Report by Tue 4 Aug, 4pm', price: '299', highlighted: true, ...FEATURED },
-      { speed: '12 hours', deadline: 'Report by tonight, 9pm', price: '349', highlighted: false, ...PLAIN }
+      { id: '48', speed: '48 hours', deadline: 'Report by Wed 5 Aug, 4pm', price: '249', highlighted: false, ...PLAIN },
+      { id: '24', speed: '24 hours', deadline: 'Report by Tue 4 Aug, 4pm', price: '299', highlighted: true, ...FEATURED },
+      { id: '12', speed: '12 hours', deadline: 'Report by tonight, 9pm', price: '349', highlighted: false, ...PLAIN }
     ],
     pricingRows: [
       { feature: 'Consultant subspecialist review, signed and named' },
@@ -648,6 +678,20 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    // The page body is rendered by the runtime, so a #hash in the URL points at
+    // an element the browser could not find at load time and the jump silently
+    // does nothing. Pricing links here as index.html#enquiry, so do it ourselves
+    // once the target exists.
+    if (window.location.hash) {
+      const id = window.location.hash.slice(1);
+      requestAnimationFrame(() => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      });
+    }
+
     // Auto-advancing carousels are vestibular triggers, so honour the OS setting
     // and leave the visitor on slide 1 with the dots still operable by hand.
     this.reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -659,6 +703,26 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() { clearInterval(this.heroTimer); }
+
+  validEmail() {
+    // Deliberately permissive: reject only what is obviously not an address,
+    // so unusual but valid emails are never turned away.
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.enquiryEmail.trim());
+  }
+
+  sendEnquiry() {
+    if (!this.validEmail()) {
+      this.setState({ enquiryError: 'Please add an email address we can reply to.' });
+      return;
+    }
+    if (!this.state.enquiryMessage.trim()) {
+      this.setState({ enquiryError: 'Tell us what you would like to know, in as few words as you like.' });
+      return;
+    }
+    // No backend in the prototype. The success state is real UI; wiring it to
+    // a mail service or CRM is a one-function change here.
+    this.setState({ enquirySent: true, enquiryError: '' });
+  }
 
   renderVals() {
     return {
@@ -701,6 +765,31 @@ class Component extends DCLogic {
         if (this.state.quickScan === 'Not sure') return 'Tell us the body area and we pick the right subspecialist — ' + a.match;
         return a.match;
       })(),
+      // The hero asked two questions; checkout used to ignore both answers and
+      // open on MRI / brain regardless. Now they travel with the visitor.
+      quickHref: 'Start Flow.dc.html?' + new URLSearchParams({
+        scan: this.state.quickScan,
+        area: this.state.quickArea
+      }).toString(),
+      // The enquiry form behind "Ask us first" and Pricing's "Get a fixed quote".
+      // Both were buttons with no destination and no form anywhere on the site.
+      enquiryOpen: !this.state.enquirySent,
+      enquirySent: this.state.enquirySent,
+      enquiryEmail: this.state.enquiryEmail,
+      enquiryMessage: this.state.enquiryMessage,
+      enquiryError: this.state.enquiryError,
+      emailBorder: this.state.enquiryError && !this.validEmail() ? '#D08A78' : '#D4DDE0',
+      messageBorder: this.state.enquiryError && !this.state.enquiryMessage.trim() ? '#D08A78' : '#D4DDE0',
+      onEnquiryEmail: e => this.setState({ enquiryEmail: e.target.value, enquiryError: '' }),
+      onEnquiryMessage: e => this.setState({ enquiryMessage: e.target.value, enquiryError: '' }),
+      sendEnquiry: () => this.sendEnquiry(),
+      resetEnquiry: () => this.setState({ enquirySent: false, enquiryEmail: '', enquiryMessage: '', enquiryError: '' }),
+      sentGlyph: this.icon('Check', 26),
+      enquiryPoints: [
+        { text: 'Read by a consultant radiologist, not a call centre' },
+        { text: 'A straight answer within one working day' },
+        { text: 'Free, and we will tell you if a second read would not change anything' }
+      ],
       heroGlyph: this.icon('Zap', 21),
       checkGlyph: this.icon('Check', 14),
       howSteps: this.state.howSteps.map(s => ({ ...s, glyph: this.icon(s.icon, 24) })),
@@ -710,8 +799,18 @@ class Component extends DCLogic {
       arrowSmallGlyph: this.icon('ArrowRight', 16),
       ...this.carouselVals('svc'),
       ...this.carouselVals('spec'),
-      specialists: this.state.specialists,
-      pricingCards: this.state.pricingCards,
+      // Each card links to its own consultant. Every card used to carry the
+      // same hardcoded href, so all seven opened Dr Mallon's profile.
+      specialists: this.state.specialists.map(c => ({
+        ...c,
+        focus: c.focus || '50% 50%',
+        profileHref: 'Specialist Profile.dc.html?id=' + encodeURIComponent(c.id)
+      })),
+      // "Select this deadline" now carries the tier into checkout.
+      pricingCards: this.state.pricingCards.map(c => ({
+        ...c,
+        href: 'Start Flow.dc.html?speed=' + encodeURIComponent(c.id)
+      })),
       pricingRows: this.state.pricingRows,
       testimonials: this.state.testimonials,
       faqs: this.state.faqData.map((f, i) => ({

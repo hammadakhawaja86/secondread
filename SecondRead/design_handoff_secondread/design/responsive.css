@@ -612,3 +612,21 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
   outline-offset: 2px;
   border-radius: 6px;
 }
+
+/* ------------------------------------- 14. sections added in the flow fixes
+   The enquiry form, the checkout confirmation and the legal pages. Selectors
+   use the data-r hooks rather than [style*=] so they are unaffected by React
+   re-serialising the inline styles (see NOTE ON SELECTORS above). */
+
+@media (max-width: 860px) {
+  [data-r="enquiry"] { gap: 34px !important; padding-top: 52px !important; padding-bottom: 52px !important; }
+}
+
+@media (max-width: 620px) {
+  [data-r="enquiry"] { gap: 28px !important; padding: 44px 20px !important; }
+  /* The form card carries its own padding; drop it in from 32 so the fields
+     keep a comfortable width on a 375px screen. */
+  [data-r="enquiry"] > div:last-child { padding: 24px !important; }
+  [data-r="doneactions"] { flex-direction: column !important; align-items: stretch !important; }
+  [data-r="doneactions"] > a { justify-content: center !important; }
+}

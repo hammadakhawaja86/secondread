@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./consultants.js"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -16,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=11">
+  <link rel="stylesheet" href="responsive.css?v=12">
   <script src="./image-slot.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,16 +57,14 @@
       <span>/</span>
       <a href="Specialists.dc.html" style="color: #5A6B77;">Specialists</a>
       <span>/</span>
-      <span style="color: #0A1F2C; font-weight: 600;">Dr Dermot Mallon</span>
+      <span style="color: #0A1F2C; font-weight: 600;">Dr {{ name }}</span>
     </div>
-    <div style="display: grid; grid-template-columns: 240px 1fr; gap: 44px; align-items: start;">
-      <div style="width: 240px; height: 292px; border-radius: 18px; overflow: hidden; background: #E4F2F2; box-shadow: 0 12px 30px rgba(10,31,44,0.14);">
-        <image-slot id="profile-mallon" shape="rounded" radius="18" placeholder="Portrait"></image-slot>
-      </div>
+    <div data-r="profhero" style="display: grid; grid-template-columns: 240px 1fr; gap: 44px; align-items: start;">
+      <div data-r="profphoto" style="width: 240px; height: 292px; border-radius: 18px; overflow: hidden; background: #D7F2F3; box-shadow: 0 12px 30px rgba(10,31,44,0.14);">{{ portrait }}</div>
       <div>
-        <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Consultant neuroradiologist</div>
-        <h1 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 40px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">Dr Dermot Mallon</h1>
-        <p style="margin: 0 0 24px; font-size: 17.5px; line-height: 1.6; color: #173B4F; max-width: 660px;">Consultant at the National Hospital for Neurology and Neurosurgery, UCLH. Reads brain, spine and skull-base imaging every working day.</p>
+        <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">{{ role }}</div>
+        <h1 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 40px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">Dr {{ name }}</h1>
+        <p style="margin: 0 0 24px; font-size: 17.5px; line-height: 1.6; color: #173B4F; max-width: 660px;">{{ intro }}</p>
         <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;">
           <sc-for list="{{ credentials }}" as="cred" hint-placeholder-count="4">
             <span style="background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 999px; padding: 7px 15px; font-size: 12.5px; font-weight: 600; color: #095458;">{{ cred.label }}</span>
@@ -73,15 +72,17 @@
         </div>
         <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
           <button type="button" onClick="{{ toggleRequest }}" style="min-height: 52px; padding: 15px 32px; border-radius: 999px; border: none; background: {{ ctaBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">{{ ctaLabel }}</button>
-          <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #095458;">
-            <span style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; display: flex; align-items: center; justify-content: center;">{{ tickGlyph }}</span>
-            <span>Available today · usually reports within 18 hours</span>
-          </div>
+          <sc-if value="{{ availability }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #095458;">
+              <span style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; display: flex; align-items: center; justify-content: center;">{{ tickGlyph }}</span>
+              <span>{{ availability }}</span>
+            </div>
+          </sc-if>
         </div>
         <sc-if value="{{ requested }}" hint-placeholder-val="{{ false }}">
           <div style="margin-top: 20px; background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
-            <span style="font-size: 15px; font-weight: 600; color: #06313A;">Dr Mallon is reserved for your study.</span>
-            <button type="button" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out;" style-hover="background: #095458;">Continue to upload</button>
+            <span style="font-size: 15px; font-weight: 600; color: #06313A;">Dr {{ surname }} is reserved for your study.</span>
+            <a href="{{ startHref }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
           </div>
         </sc-if>
       </div>
@@ -91,8 +92,8 @@
 
 <section style="background: #FFFFFF; padding: 72px 32px;">
   <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="margin: 0 0 28px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #0A1F2C; letter-spacing: -0.01em;">Where Dr Mallon can help</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px 32px;">
+    <h2 style="margin: 0 0 28px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #0A1F2C; letter-spacing: -0.01em;">Where Dr {{ surname }} can help</h2>
+    <div data-r="helpgrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px 32px;">
       <sc-for list="{{ helpWith }}" as="item" hint-placeholder-count="6">
         <div style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; background: #F4F7F8; border: 1px solid #E2E9EC; border-radius: 12px; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #C3E0DE; background: #EEF7F7;">
           <span style="flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: #E4F2F2; display: flex; align-items: center; justify-content: center; color: #0D6E70;">{{ tickGlyph }}</span>
@@ -104,15 +105,20 @@
 </section>
 
 <section style="background: #F4F7F8; padding: 72px 32px 88px;">
-  <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.35fr 1fr; gap: 32px; align-items: start;">
+  <div data-r="profcols" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.35fr 1fr; gap: 32px; align-items: start;">
     <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 34px 36px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
       <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 14px;">Background</div>
-      <p style="margin: 0 0 18px; font-size: 16px; line-height: 1.75; color: #173B4F;">Biochemistry and medicine at Bristol, PhD at Cambridge, then joint academic and clinical radiology training at Imperial College Healthcare, including an Academic Clinical Fellowship and a Clinical Lectureship at Imperial College London.</p>
-      <p style="margin: 0; font-size: 16px; line-height: 1.75; color: #173B4F;">Now a substantive consultant neuroradiologist at NHNN, part of UCLH — one of the largest neurological referral centres in Europe.</p>
+      <sc-for list="{{ background }}" as="para" hint-placeholder-count="2">
+        <p style="margin: 0 0 18px; font-size: 16px; line-height: 1.75; color: #173B4F;">{{ para.text }}</p>
+      </sc-for>
+      <div style="margin-top: 6px; padding-top: 18px; border-top: 1px solid #E2E9EC; display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 13.5px; color: #5A6B77;">
+        <span>GMC {{ gmc }}</span>
+        <span>{{ hospital }}</span>
+      </div>
     </div>
     <div style="display: flex; flex-direction: column; gap: 20px;">
       <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 30px 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-        <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 18px;">Typical turnaround</div>
+        <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 18px;">Turnaround you can choose</div>
         <div style="display: flex; flex-direction: column;">
           <sc-for list="{{ turnaround }}" as="row" hint-placeholder-count="3">
             <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid #E2E9EC;">
@@ -121,12 +127,19 @@
             </div>
           </sc-for>
         </div>
-        <p style="margin: 16px 0 0; font-size: 12.5px; line-height: 1.55; color: #5A6B77;">Median over the last 90 days, not a marketing claim.</p>
+        <p style="margin: 16px 0 0; font-size: 12.5px; line-height: 1.55; color: #5A6B77;">Deadlines you select at checkout. Miss one and the fee is refunded in full.</p>
       </div>
-      <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 18px; padding: 30px 32px;">
-        <div style="font-size: 16px; letter-spacing: 3px; color: #0D6E70; margin-bottom: 14px;">★★★★★</div>
-        <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.7; color: #06313A;">“The report I received from Dr Mallon was exceptional — clear understanding and the information I needed.”</p>
-        <div style="font-size: 13px; color: #4A5C68;">Verified patient · spine MRI</div>
+      <sc-if value="{{ hasReview }}" hint-placeholder-val="{{ true }}">
+        <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 18px; padding: 30px 32px;">
+          <div style="font-size: 16px; letter-spacing: 3px; color: #0D6E70; margin-bottom: 14px;">★★★★★</div>
+          <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.7; color: #06313A;">“{{ reviewQuote }}”</p>
+          <div style="font-size: 13px; color: #4A5C68;">{{ reviewSource }}</div>
+        </div>
+      </sc-if>
+      <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 26px 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+        <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Not the right fit?</div>
+        <p style="margin: 0 0 16px; font-size: 15px; line-height: 1.65; color: #4A5C68;">{{ peerLine }}</p>
+        <a href="Specialists.dc.html" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #0D6E70; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">See all consultants</a>
       </div>
     </div>
   </div>
@@ -161,47 +174,134 @@
     <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
       <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
       <div style="display: flex; gap: 18px;">
-        <a href="#" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Accessibility</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Terms</a>
+        <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
       </div>
     </div>
   </div>
 </footer>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+/* This page renders any consultant from the shared roster in consultants.js,
+   selected by the `id` query parameter:  Specialist Profile.dc.html?id=mallon
+   Before this, the page was hardcoded to one person while every card on the
+   site linked here, so all seven consultants opened Dr Mallon's profile. */
+
+const AREA_LABELS = {
+  brain: 'brain and spine imaging',
+  chest: 'chest and heart imaging',
+  bones: 'bone and joint imaging',
+  abdomen: 'abdominal and pelvic imaging',
+  breast: 'breast imaging',
+  headneck: 'head and neck imaging',
+  children: 'children’s imaging'
+};
+
+// Service-level deadlines, chosen at checkout. These are the same three tiers
+// the pricing page sells. The first concept showed invented per-consultant
+// median turnarounds here; those were not real numbers, so they are gone.
+const TURNAROUND = [
+  { study: 'Urgent', time: '12 hours' },
+  { study: 'Priority', time: '24 hours' },
+  { study: 'Standard', time: '48 hours' }
+];
+
+function currentConsultant() {
+  var id = '';
+  try { id = new URLSearchParams(window.location.search).get('id') || ''; } catch (e) {}
+  return CONSULTANT_BY_ID[id] || null;
+}
+
 class Component extends DCLogic {
   state = { requested: false };
 
+  icon(size, width) {
+    return React.createElement('svg', {
+      width: size, height: size, viewBox: '0 0 24 24', fill: 'none',
+      stroke: 'currentColor', strokeWidth: width || 3, strokeLinecap: 'round', strokeLinejoin: 'round'
+    }, React.createElement('path', { d: 'M20 6 9 17l-5-5' }));
+  }
+
+  // A headshot when we have one, otherwise a branded initials tile. Never an
+  // empty grey box: a blank frame beside a named doctor reads as a broken page.
+  portrait(c) {
+    if (c.photo) {
+      return React.createElement('img', {
+        src: c.photo,
+        alt: 'Dr ' + c.name,
+        style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 50%', display: 'block' }
+      });
+    }
+    return React.createElement('div', {
+      style: {
+        width: '100%', height: '100%', display: 'flex', alignItems: 'center',
+        justifyContent: 'center', background: '#D7F2F3', color: '#0D6E70',
+        fontFamily: "'Montserrat', sans-serif", fontSize: '56px', fontWeight: 700,
+        letterSpacing: '0.02em'
+      }
+    }, c.initials);
+  }
+
   renderVals() {
+    const c = currentConsultant();
+
+    // No id, or an id that is not on the roster. Say so plainly and route the
+    // visitor to the directory rather than silently showing someone else.
+    if (!c) {
+      return {
+        name: 'not found', surname: 'not found', role: 'Consultant not found',
+        intro: 'We could not find that consultant. They may have been removed from the panel. Browse the full list and we will match you with the right subspecialist.',
+        portrait: null, credentials: [], helpWith: [], background: [],
+        turnaround: TURNAROUND, tickGlyph: this.icon(13),
+        availability: '', requested: false, hasReview: false,
+        reviewQuote: '', reviewSource: '', gmc: '—', hospital: '—',
+        ctaLabel: 'See all consultants', ctaBg: '#0D6E70',
+        toggleRequest: () => { window.location.href = 'Specialists.dc.html'; },
+        startHref: 'Start Flow.dc.html',
+        peerLine: CONSULTANTS.length + ' consultants read across every body area.'
+      };
+    }
+
+    const surname = consultantSurname(c);
+    const peers = CONSULTANTS.filter(x => x.id !== c.id && x.areas.some(a => c.areas.includes(a)));
+
     return {
+      name: c.name,
+      surname: surname,
+      role: c.role,
+      hospital: c.hospital,
+      gmc: c.gmc,
+      intro: c.intro || c.bio,
+      portrait: this.portrait(c),
+      availability: c.availability,
+      tickGlyph: this.icon(13),
+
+      credentials: [{ label: 'GMC ' + c.gmc }].concat(
+        (c.credentials || []).map(l => ({ label: l }))
+      ),
+      helpWith: (c.helpWith || []).map(t => ({ text: t })),
+      background: (c.background || [c.bio]).map(t => ({ text: t })),
+      turnaround: TURNAROUND,
+
+      hasReview: !!c.review,
+      reviewQuote: c.review ? c.review.quote : '',
+      reviewSource: c.review ? c.review.source : '',
+
+      peerLine: peers.length === 0
+        ? 'Dr ' + surname + ' is our subspecialist for ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '. Tell us the body area during your order and we will match you.'
+        : (peers.length === 1
+            ? 'One other consultant reads ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.'
+            : peers.length + ' other consultants read ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.'),
+
       requested: this.state.requested,
-      ctaLabel: this.state.requested ? 'Dr Mallon requested' : 'Request Dr Mallon · from £249',
+      ctaLabel: this.state.requested ? 'Dr ' + surname + ' requested' : 'Request Dr ' + surname + ' · from £249',
       ctaBg: this.state.requested ? '#095458' : '#0D6E70',
       toggleRequest: () => this.setState(s => ({ requested: !s.requested })),
-      tickGlyph: React.createElement('svg', {
-        width: 13, height: 13, viewBox: '0 0 24 24', fill: 'none',
-        stroke: 'currentColor', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round'
-      }, React.createElement('path', { d: 'M20 6 9 17l-5-5' })),
-      credentials: [
-        { label: 'GMC 7012345' },
-        { label: 'FRCR' },
-        { label: 'PhD Cambridge' },
-        { label: 'Reports since 2019' }
-      ],
-      helpWith: [
-        { text: 'Unclear brain MRI findings' },
-        { text: 'Suspected MS or inflammation' },
-        { text: 'Stroke and vascular imaging' },
-        { text: 'Spinal cord and nerve-root pain' },
-        { text: 'Memory and neurodegeneration' },
-        { text: 'Skull-base and pituitary lesions' }
-      ],
-      turnaround: [
-        { study: 'Brain MRI', time: '14 hours' },
-        { study: 'Whole spine MRI', time: '20 hours' },
-        { study: 'Head CT', time: '9 hours' }
-      ]
+
+      // Carries the choice into checkout so step 2 opens on this consultant
+      // instead of resetting to whoever the default body area matches.
+      startHref: 'Start Flow.dc.html?consultant=' + encodeURIComponent(c.id)
     };
   }
 }
