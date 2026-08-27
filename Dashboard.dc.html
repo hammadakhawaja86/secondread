@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./consultants.js?v=2"></script>
+<script src="./portal.js?v=7"></script>
+<script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
+<script src="./support.js?v=3"></script>
+</head>
+<body>
+<x-dc><helmet>
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
+  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="responsive.css?v=20">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; padding: 0; background: #F4F7F8; font-family: 'Inter', sans-serif; }
+    a { color: #095458; text-decoration: none; }
+    a:hover { color: #0D6E70; text-decoration: underline; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+    /* Account menu. A <details> element so it works before hydration and
+       closes on Escape without a keydown handler of our own. */
+    [data-r="acctmenu"] { position: relative; }
+    [data-r="acctmenu"] > summary { list-style: none; cursor: pointer; }
+    [data-r="acctmenu"] > summary::-webkit-details-marker { display: none; }
+    [data-r="acctmenu"] > summary::marker { content: ""; }
+    [data-r="acctmenu"] > summary:focus-visible {
+      outline: 2px solid #0D6E70; outline-offset: 3px; border-radius: 999px;
+    }
+    [data-r="acctpanel"] {
+      position: absolute; right: 0; top: calc(100% + 10px); min-width: 244px; z-index: 200;
+    }
+    [data-r="acctmenu"][open] > summary > [data-r="chev"] { transform: rotate(180deg); }
+
+    /* Portal focus ring — visible on both the white cards and the mint washes. */
+    [data-r="portalwrap"] a:focus-visible,
+    [data-r="portalwrap"] button:focus-visible,
+    [data-r="portalwrap"] input:focus-visible,
+    [data-r="portalwrap"] textarea:focus-visible {
+      outline: 2px solid #0D6E70; outline-offset: 2px;
+    }
+  </style>
+</helmet>
+<header data-r="portalbar" style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
+  <div style="max-width: 1180px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; gap: 34px;">
+    <a href="Dashboard.dc.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height: 46px; width: 184px; display: block"></a>
+    <nav data-r="portalnav" style="display: flex; gap: 26px; align-items: center;">
+      <a href="Dashboard.dc.html" style="color: #0D6E70; font-size: 14px; font-weight: 600;">Dashboard</a>
+      <a href="Dashboard.dc.html#reports" style="color: #173B4F; font-size: 14px; font-weight: 500;">My reports</a>
+      <a href="Account.dc.html#support" style="color: #173B4F; font-size: 14px; font-weight: 500;">Support</a>
+    </nav>
+    <div style="margin-left: auto; display: flex; align-items: center; gap: 12px;">
+      <a href="Dashboard.dc.html" aria-label="{{ notifAria }}" style="position: relative; width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid #E2E9EC; background: #FFFFFF; color: #173B4F; display: flex; align-items: center; justify-content: center; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #F0F8F8;">
+        {{ bellGlyph }}
+        <span style="position: absolute; top: -3px; right: -3px; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 999px; background: #C68A2E; color: #FFFFFF; font-size: 11px; font-weight: 700; display: {{ notifDisplay }}; align-items: center; justify-content: center; box-sizing: border-box; border: 2px solid #FFFFFF;">{{ notifCount }}</span>
+      </a>
+      <details data-r="acctmenu">
+        <summary style="display: inline-flex; align-items: center; gap: 9px; padding: 6px 14px 6px 6px; border-radius: 999px; border: 1.5px solid #E2E9EC; background: #FFFFFF;">
+          <span style="width: 30px; height: 30px; border-radius: 50%; background: #D7F2F3; color: #0D6E70; font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ userInitials }}</span>
+          <span style="font-size: 14px; font-weight: 600; color: #0A1F2C;">{{ userShort }}</span>
+          <span data-r="chev" style="display: inline-flex; color: #5A6B77; transition: transform 180ms ease-out;">{{ chevGlyph }}</span>
+        </summary>
+        <div data-r="acctpanel" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 14px; padding: 8px; box-shadow: 0 18px 40px rgba(10,31,44,0.16);">
+          <div style="padding: 10px 12px 12px; border-bottom: 1px solid #E2E9EC; margin-bottom: 6px;">
+            <div style="font-size: 14px; font-weight: 600; color: #0A1F2C;">{{ userShort }}</div>
+            <div style="font-size: 12.5px; color: #5A6B77; margin-top: 2px; word-break: break-all;">{{ userEmail }}</div>
+          </div>
+          <a href="Dashboard.dc.html" data-r="acctmobileonly" style="display: none; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Dashboard</a>
+          <a href="Dashboard.dc.html#reports" data-r="acctmobileonly" style="display: none; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">My reports</a>
+          <a href="Account.dc.html" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Personal details</a>
+          <a href="Account.dc.html#security" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Sign-in &amp; security</a>
+          <a href="Account.dc.html#privacy" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Privacy &amp; your data</a>
+          <a href="Account.dc.html#support" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Help &amp; support</a>
+          <div style="border-top: 1px solid #E2E9EC; margin: 6px 0 0; padding-top: 6px;">
+            <button type="button" onClick="{{ signOut }}" style="width: 100%; appearance: none; text-align: left; padding: 10px 12px; border: none; border-radius: 9px; background: none; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #93332E; cursor: pointer; transition: background 120ms ease-out;" style-hover="background: #FBEEEC;">Sign out</button>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+<div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
+  <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
+  </div>
+</div>
+<div data-r="portalwrap" style="max-width: 1180px; margin: 0 auto; padding: 36px 32px 40px;">
+
+  <div data-r="greeting" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 30px;">
+    <div>
+      <h1 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; line-height: 1.14; letter-spacing: -0.02em; color: #0A1F2C;">{{ greeting }}</h1>
+      <p style="margin: 0; font-size: 15.5px; color: #4A5C68;">{{ subline }}</p>
+    </div>
+    <a href="Start Flow.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 9px; box-sizing: border-box; min-height: 50px; padding: 13px 26px; border-radius: 999px; border: {{ ctaBorder }}; background: {{ ctaBg }}; color: {{ ctaColor }}; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; box-shadow: {{ ctaShadow }}; flex-shrink: 0; transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; border-color: #095458; text-decoration: none;" style-active="transform: translateY(1px);">Start a new case {{ arrowGlyph }}</a>
+  </div>
+
+  <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+    <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 56px 40px; text-align: center; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+      <h2 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; color: #0A1F2C;">Nothing here yet</h2>
+      <p style="margin: 0 auto 26px; max-width: 460px; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">When you send us a scan, this is where you will follow it — from upload, through your consultant's review, to your finished report.</p>
+      <a href="Start Flow.dc.html" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 50px; padding: 14px 30px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; box-shadow: 0 6px 20px rgba(13,110,112,0.3);" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start a new case</a>
+      <p style="margin: 20px 0 0; font-size: 14px; color: #5A6B77;"><a href="How It Works.dc.html" style="font-weight: 600;">What you will need to hand</a></p>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ hasCases }}" hint-placeholder-val="{{ true }}">
+  <div data-r="portalgrid" style="display: grid; grid-template-columns: 1.85fr 1fr; gap: 24px; align-items: start;">
+
+    <div data-r="portalmain" style="display: flex; flex-direction: column; gap: 24px; min-width: 0;">
+
+      <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="1">
+        <div style="background: #FDF2E2; border: 1.5px solid #E7CB97; border-radius: 20px; padding: 26px 28px;">
+          <div style="display: flex; align-items: center; gap: 9px; margin-bottom: 12px;">
+            <span style="display: inline-flex; color: #8A5712;">{{ t.glyph }}</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 500; color: #8A5712;">Action needed &middot; {{ t.ref }}</span>
+          </div>
+          <h2 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #0A1F2C;">{{ t.title }}</h2>
+          <p style="margin: 0 0 6px; font-size: 15px; line-height: 1.65; color: #4A5C68;">{{ t.body }}</p>
+          <p style="margin: 0 0 18px; font-size: 13.5px; line-height: 1.6; color: #8A5712;">We have paused your delivery time while we wait. It restarts as soon as you reply.</p>
+
+          <div style="background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 14px; padding: 20px 22px;">
+            <p style="margin: 0 0 12px; font-size: 15px; font-weight: 600; line-height: 1.55; color: #0A1F2C;">{{ t.ask }}</p>
+            <textarea rows="3" value="{{ t.answer }}" onChange="{{ t.onAnswer }}" placeholder="{{ t.placeholder }}" style="width: 100%; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+            <div data-r="caseactions" style="display: flex; align-items: center; gap: 12px; margin-top: 14px; flex-wrap: wrap;">
+              <button type="button" onClick="{{ t.send }}" aria-disabled="{{ t.blocked }}" style="min-height: 46px; padding: 12px 24px; border-radius: 999px; border: none; background: {{ t.btnBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: {{ t.btnCursor }}; transition: background 140ms ease-out;" style-hover="background: #095458;">Send my answer</button>
+              <span style="font-size: 13.5px; color: #5A6B77;">{{ t.hint }}</span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+
+      <sc-for list="{{ active }}" as="c" hint-placeholder-count="1">
+        <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 28px 30px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+          <div data-r="casehead" style="display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 500; color: #5A6B77;">Case {{ c.ref }}</span>
+            <div style="display: flex; align-items: center; gap: 9px;">
+              <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #4A5C68; background: #F4F7F8; border: 1px solid #E2E9EC; border-radius: 999px; padding: 4px 11px;">{{ c.clockGlyph }} {{ c.speedLabel }}</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: {{ c.chipFg }}; background: {{ c.chipBg }}; border: 1px solid {{ c.chipBorder }}; border-radius: 999px; padding: 4px 11px;">{{ c.chip }}</span>
+            </div>
+          </div>
+
+          <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; color: #0A1F2C;">{{ c.title }}</h2>
+          <p style="margin: 0 0 4px; font-size: 15px; color: #4A5C68;">{{ c.consultantLine }}</p>
+          <p style="margin: 0 0 20px; font-size: 14px; color: #5A6B77;">{{ c.scanLine }} &middot; Uploaded {{ c.createdShort }}</p>
+
+        <div data-r="timeline" style="display: flex; align-items: center; margin: 4px 0 22px;">
+          <sc-for list="{{ c.timeline }}" as="t" hint-placeholder-count="4">
+            <div style="display: flex; align-items: center; flex: 1; min-width: 0;">
+              <div data-r="tlbar" style="flex: 1; height: 2px; background: {{ t.barBg }}; display: {{ t.barDisplay }};"></div>
+              <div data-r="tlnode" style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; padding: 0 6px;">
+                <span style="width: 14px; height: 14px; border-radius: 50%; background: {{ t.dotBg }}; border: 2px solid {{ t.dotBorder }}; box-sizing: border-box;"></span>
+                <span style="font-size: 12px; font-weight: {{ t.weight }}; color: {{ t.color }}; white-space: nowrap;">{{ t.label }}</span>
+              </div>
+              <div data-r="tlbar" style="flex: 1; height: 2px; background: {{ t.barAfterBg }}; display: {{ t.barAfterDisplay }};"></div>
+            </div>
+          </sc-for>
+        </div>
+          <div style="background: #F7FBFB; border: 1px solid #C3E0DE; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px;">
+            <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5A6B77; margin-bottom: 3px;">{{ c.dueLabel }}</div>
+            <div style="font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: #06313A;">{{ c.dueLong }}</div>
+          </div>
+
+          <div data-r="caseactions" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <a href="{{ c.caseHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 48px; padding: 13px 26px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; box-shadow: 0 4px 14px rgba(13,110,112,0.26); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">View your case</a>
+            <a href="{{ c.messagesHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 48px; padding: 13px 26px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Message the team</a>
+          </div>
+        </div>
+      </sc-for>
+
+      <sc-for list="{{ ready }}" as="c" hint-placeholder-count="1">
+        <div style="background: #FFFFFF; border: 1.5px solid #B7DEC8; border-radius: 20px; padding: 28px 30px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+          <div data-r="casehead" style="display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 500; color: #5A6B77;">Case {{ c.ref }}</span>
+            <div style="display: flex; align-items: center; gap: 9px; flex-wrap: wrap;">
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: {{ c.outcomeFg }}; background: {{ c.outcomeBg }}; border: 1px solid {{ c.outcomeBorder }}; border-radius: 999px; padding: 4px 11px;">{{ c.outcome }}</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #1F6B45; background: #E3F3EA; border: 1px solid #B7DEC8; border-radius: 999px; padding: 4px 11px;">Report ready</span>
+            </div>
+          </div>
+          <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; color: #0A1F2C;">Your second opinion is ready</h2>
+          <p style="margin: 0 0 4px; font-size: 15px; color: #4A5C68;">{{ c.consultantLine }}</p>
+          <p style="margin: 0 0 18px; font-size: 14px; color: #5A6B77;">{{ c.scanLine }} &middot; Delivered {{ c.deliveredLong }}</p>
+
+          <div style="background: #F7FBFB; border: 1px solid #C3E0DE; border-radius: 14px; padding: 18px 20px; margin-bottom: 18px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.11em; text-transform: uppercase; color: #095458; margin-bottom: 7px;">In short</div>
+            <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #06313A;">{{ c.inShort }}</p>
+          </div>
+
+          <div data-r="readjump" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin-bottom: 20px;">
+            <sc-for list="{{ c.jumps }}" as="j" hint-placeholder-count="4">
+              <a href="{{ j.href }}" style="display: flex; align-items: center; gap: 9px; padding: 11px 14px; border-radius: 11px; border: 1px solid #E2E9EC; background: #FFFFFF; font-size: 14px; font-weight: 600; color: #173B4F; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #F7FBFB; color: #095458; text-decoration: none;"><span style="flex-shrink: 0; color: #0D6E70;">{{ j.glyph }}</span>{{ j.label }}</a>
+            </sc-for>
+          </div>
+
+          <div data-r="caseactions" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <a href="{{ c.reportHref }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 9px; box-sizing: border-box; min-height: 50px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Read my report {{ c.arrow }}</a>
+            <a href="{{ c.pdfHref }}" download="{{ c.download }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 9px; box-sizing: border-box; min-height: 50px; padding: 14px 26px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">{{ c.downloadGlyph }} Download the PDF</a>
+            <a href="{{ c.caseHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 50px; padding: 14px 26px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">View your case</a>
+          </div>
+        </div>
+      </sc-for>
+
+      <div id="reports" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 26px 30px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); scroll-margin-top: 90px;">
+        <h2 style="margin: 0 0 4px; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">Your reports</h2>
+        <p style="margin: 0 0 18px; font-size: 14px; color: #5A6B77;">{{ reportsNote }}</p>
+        <div style="display: flex; flex-direction: column;">
+          <sc-for list="{{ reports }}" as="r" hint-placeholder-count="2">
+            <div data-r="reportrow" style="display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0; border-top: 1px solid #E2E9EC;">
+              <div style="min-width: 0;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 5px;">
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #5A6B77;">{{ r.ref }}</span>
+                  <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: {{ r.outcomeFg }}; background: {{ r.outcomeBg }}; border: 1px solid {{ r.outcomeBorder }}; border-radius: 999px; padding: 3px 9px;">{{ r.outcome }}</span>
+                </div>
+                <div style="font-size: 15.5px; font-weight: 600; color: #0A1F2C; margin-bottom: 3px;">{{ r.scanLine }}</div>
+                <div style="font-size: 13.5px; color: #5A6B77;">{{ r.consultantName }} &middot; Delivered {{ r.deliveredShort }}</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
+                <a href="{{ r.reportHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 44px; padding: 11px 22px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; transition: background 140ms ease-out, color 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Read</a>
+                <a href="sample-report-secondread.pdf" download="{{ r.download }}" aria-label="Download {{ r.ref }} as a PDF" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #173B4F; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">{{ r.downloadGlyph }}</a>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ noReports }}" hint-placeholder-val="{{ false }}">
+          <p style="margin: 0; padding: 18px 0 0; border-top: 1px solid #E2E9EC; font-size: 14.5px; color: #5A6B77;">Your finished reports will appear here. They stay in your account, and you can download or share them at any time.</p>
+        </sc-if>
+      </div>
+    </div>
+
+    <div data-r="portalside" style="display: flex; flex-direction: column; gap: 20px; min-width: 0;">
+
+      <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
+        <h3 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #5A6B77;">Secure messages</h3>
+        <sc-if value="{{ hasMessage }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-bottom: 16px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 5px;">
+              <span style="font-size: 14px; font-weight: 600; color: #0A1F2C;">{{ lastFrom }}</span>
+              <span style="font-size: 12.5px; color: #5A6B77; flex-shrink: 0;">{{ lastAgo }}</span>
+            </div>
+            <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: #4A5C68; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ lastText }}</p>
+          </div>
+          <a href="{{ lastHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Open messages</a>
+        </sc-if>
+        <sc-if value="{{ noMessage }}" hint-placeholder-val="{{ false }}">
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: #4A5C68;">No messages yet. If our clinical team needs anything, it will appear here and on your case.</p>
+        </sc-if>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
+        <h3 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #5A6B77;">Your details</h3>
+        <div style="display: flex; flex-direction: column;">
+          <a href="Account.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E2E9EC; font-size: 14.5px; color: #173B4F;" style-hover="color: #0D6E70; text-decoration: none;">Personal details {{ chevRight }}</a>
+          <a href="Account.dc.html#security" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E2E9EC; font-size: 14.5px; color: #173B4F;" style-hover="color: #0D6E70; text-decoration: none;">Sign-in &amp; security {{ chevRight }}</a>
+          <a href="Account.dc.html#privacy" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; font-size: 14.5px; color: #173B4F;" style-hover="color: #0D6E70; text-decoration: none;">Privacy &amp; your data {{ chevRight }}</a>
+        </div>
+      </div>
+
+
+<div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
+  <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #5A6B77;">Not an emergency service</h3>
+  <p style="margin: 0; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">A second read takes at least 12 hours and is not a substitute for seeing a doctor. If you feel unwell or your symptoms are getting worse, contact your GP, call <strong style="color: #0A1F2C;">NHS 111</strong>, or in an emergency call <strong style="color: #0A1F2C;">999</strong>.</p>
+</div>
+    </div>
+  </div>
+  </sc-if>
+</div>
+<footer style="background: #06131C; color: #FFFFFF; padding: 44px 32px 26px; margin-top: 24px;">
+  <div style="max-width: 1180px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+      <img src="logo-secondread-light.svg" alt="SecondOpinion Radiology" style="height: 48px; width: 192px; display: block">
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px;">
+        <a href="index.html" style="color: rgba(255,255,255,0.85);">Main site</a>
+        <a href="How It Works.dc.html" style="color: rgba(255,255,255,0.85);">How it works</a>
+        <a href="FAQs.dc.html" style="color: rgba(255,255,255,0.85);">FAQs</a>
+        <a href="tel:+441438904272" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>01438 904272</a>
+      </div>
+    </div>
+    <div style="padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
+      <span>&copy; 2026 SecondRead Ltd &middot; Registered in England &middot; Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <div style="display: flex; gap: 18px;">
+        <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+
+// Single-path stroke icon. Everything in the portal is one of these.
+function icon(d, size, width) {
+  return React.createElement('svg', {
+    width: size || 18, height: size || 18, viewBox: '0 0 24 24', fill: 'none',
+    stroke: 'currentColor', strokeWidth: width || 2,
+    strokeLinecap: 'round', strokeLinejoin: 'round'
+  }, React.createElement('path', { d: d }));
+}
+
+
+const ARROW = 'M5 12h14m-6-6 6 6-6 6';
+const CHEV_RIGHT = 'm9 18 6-6-6-6';
+const DOWNLOAD = 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3';
+const HEART = 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z';
+const COMPARE = 'M12 3v18M3 7h5M3 12h5M3 17h5M16 7h5M16 12h5M16 17h5';
+const SHARE = 'M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13';
+const CHAT = 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z';
+const CLOCK = 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 6v6l4 2';
+const ALERT = 'M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z';
+
+// Four fixed nodes. The current one is filled; everything after it is an
+// outline. There is no percentage anywhere — a number that does not move is
+// worse than a phase name that does.
+function timelineFor(c) {
+  const at = c.position;
+  return PORTAL.TIMELINE.map((label, i) => {
+    const n = i + 1;
+    const done = n < at;
+    const now = n === at;
+    return {
+      label: label,
+      dotBg: done ? '#0D6E70' : (now ? '#0D6E70' : '#FFFFFF'),
+      dotBorder: done || now ? '#0D6E70' : '#D4DDE0',
+      color: now ? '#0A1F2C' : (done ? '#4A5C68' : '#8FA0A9'),
+      weight: now ? '700' : '500',
+      barBg: n <= at ? '#0D6E70' : '#D4DDE0',
+      barAfterBg: n < at ? '#0D6E70' : '#D4DDE0',
+      barDisplay: i === 0 ? 'none' : 'block',
+      barAfterDisplay: i === PORTAL.TIMELINE.length - 1 ? 'none' : 'block'
+    };
+  });
+}
+
+class Component extends DCLogic {
+  state = {
+    store: PORTAL.load(),
+    answers: {}
+  };
+
+  refresh() { this.setState({ store: PORTAL.load() }); }
+
+  sendAnswer(ref, taskId) {
+    const key = ref + '::' + taskId;
+    const text = (this.state.answers[key] || '').trim();
+    if (text.length < 3) return;
+    PORTAL.answerTask(ref, taskId, text);
+    const answers = Object.assign({}, this.state.answers);
+    delete answers[key];
+    this.setState({ answers: answers, store: PORTAL.load() });
+  }
+
+  greeting() {
+    const h = new Date().getHours();
+    const part = h < 12 ? 'Good morning' : (h < 18 ? 'Good afternoon' : 'Good evening');
+    // Greet on the first name alone — "Good afternoon, Hammad A." reads oddly.
+    const first = (this.state.store.user.firstName || 'there').split(' ')[0];
+    return part + ', ' + first;
+  }
+
+  renderVals() {
+    const cases = this.state.store.cases.map(PORTAL.decorate);
+    const active = cases.filter(c => c.isActive);
+    const ready = cases.filter(c => c.statusId === 'ready');
+    const delivered = cases.filter(c => c.isDelivered);
+
+    // One task card per open task, flattened across cases, newest case first.
+    const tasks = [];
+    cases.forEach(c => c.tasks.forEach(t => {
+      const key = c.ref + '::' + t.id;
+      const answer = this.state.answers[key] || '';
+      const ok = answer.trim().length >= 3;
+      tasks.push({
+        ref: c.ref,
+        title: t.title,
+        body: t.body.replace('[Name]', c.consultantName),
+        ask: t.ask,
+        placeholder: t.placeholder || '',
+        answer: answer,
+        blocked: ok ? null : 'true',
+        btnBg: ok ? '#0D6E70' : '#A9BFC4',
+        btnCursor: ok ? 'pointer' : 'not-allowed',
+        hint: ok ? 'Your delivery time restarts as soon as you send this.' : 'Write a sentence or two, then send.',
+        glyph: icon(ALERT, 17, 2),
+        onAnswer: e => {
+          const answers = Object.assign({}, this.state.answers);
+          answers[key] = e.target.value;
+          this.setState({ answers: answers });
+        },
+        send: () => this.sendAnswer(c.ref, t.id)
+      });
+    }));
+
+    // Latest message across every case — truncated hard, and never repeated
+    // in a notification.
+    let last = null;
+    cases.forEach(c => c.messages.forEach(m => {
+      if (!last || m.when > last.when) last = { m: m, c: c };
+    }));
+
+    const inProgress = active.length;
+    const subline = tasks.length > 0
+      ? (tasks.length === 1 ? 'One thing is waiting on you.' : tasks.length + ' things are waiting on you.')
+      : (ready.length > 0
+          ? (ready.length === 1 ? 'Your report is ready to read.' : ready.length + ' reports are ready to read.')
+          : (inProgress === 0
+              ? 'Nothing in progress right now.'
+              : (inProgress === 1 ? 'You have 1 case in progress.' : 'You have ' + inProgress + ' cases in progress.')));
+
+    // The new-case button drops to a secondary treatment whenever something
+    // else on the page has a stronger claim on the eye.
+    const quiet = tasks.length > 0 || ready.length > 0 || active.length > 0;
+
+    return Object.assign(this.chromeVals(), {
+      greeting: this.greeting(),
+      subline: subline,
+      isEmpty: cases.length === 0,
+      hasCases: cases.length > 0,
+      ctaBg: quiet ? '#FFFFFF' : '#0D6E70',
+      ctaColor: quiet ? '#0A1F2C' : '#FFFFFF',
+      ctaBorder: quiet ? '1.5px solid #D4DDE0' : 'none',
+      ctaShadow: quiet ? 'none' : '0 6px 20px rgba(13,110,112,0.3)',
+      arrowGlyph: icon(ARROW, 17, 2),
+      chevRight: icon(CHEV_RIGHT, 15, 2),
+
+      tasks: tasks,
+
+      active: active.map(c => ({
+        ref: c.ref,
+        chip: c.status.chip,
+        chipBg: c.status.bg, chipFg: c.status.fg, chipBorder: c.status.border,
+        title: c.statusId === 'action' ? 'Waiting on you' : c.status.title,
+        consultantLine: c.consultant
+          ? c.consultantName + ' \u00B7 ' + c.consultantRole
+          : 'We are matching your case to a consultant now.',
+        scanLine: c.scanLine,
+        createdShort: c.createdShort,
+        speedLabel: c.speedLabel,
+        clockGlyph: icon(CLOCK, 13, 2),
+        timeline: timelineFor(c),
+        dueLabel: c.statusId === 'action' ? 'Delivery time paused' : 'Expected by',
+        dueLong: c.statusId === 'action' ? c.remainingLabel : c.dueLong,
+        caseHref: c.caseHref,
+        messagesHref: c.caseHref + '#messages'
+      })),
+
+      ready: ready.map(c => ({
+        ref: c.ref,
+        consultantLine: c.consultantName + ' \u00B7 ' + c.consultantRole,
+        scanLine: c.scanLine,
+        deliveredLong: c.deliveredLong,
+        reportHref: c.reportHref,
+        caseHref: c.caseHref,
+        // The summary line the consultant wrote. Shown here so the dashboard
+        // answers "is it bad news?" without making anyone open a PDF first.
+        inShort: c.report ? c.report.inShort : '',
+        outcome: c.outcome ? c.outcome.label : 'Report delivered',
+        outcomeBg: c.outcome ? c.outcome.bg : '#EEF2F4',
+        outcomeFg: c.outcome ? c.outcome.fg : '#4A5C68',
+        outcomeBorder: c.outcome ? c.outcome.border : '#D4DDE0',
+        jumps: [
+          { label: 'What this means for you', href: c.reportHref + '#means', glyph: icon(HEART, 16, 2) },
+          { label: 'Your report comparison', href: c.reportHref + '#comparison', glyph: icon(COMPARE, 16, 2) },
+          { label: 'Recommended next steps', href: c.reportHref + '#next', glyph: icon(ARROW, 16, 2) },
+          { label: 'Share with your GP', href: c.reportHref + '#share', glyph: icon(SHARE, 16, 2) },
+          { label: 'Follow-up options', href: c.reportHref + '#followup', glyph: icon(CHAT, 16, 2) }
+        ],
+        pdfHref: 'sample-report-secondread.pdf',
+        download: 'SecondRead-' + c.ref + '.pdf',
+        downloadGlyph: icon(DOWNLOAD, 17, 2),
+        arrow: icon(ARROW, 17, 2)
+      })),
+
+      reports: delivered.map(c => ({
+        ref: c.ref,
+        scanLine: c.scanLine,
+        consultantName: c.consultantName,
+        deliveredShort: c.deliveredShort,
+        outcome: c.outcome ? c.outcome.label : 'Report delivered',
+        outcomeBg: c.outcome ? c.outcome.bg : '#EEF2F4',
+        outcomeFg: c.outcome ? c.outcome.fg : '#4A5C68',
+        outcomeBorder: c.outcome ? c.outcome.border : '#D4DDE0',
+        reportHref: c.reportHref,
+        download: 'SecondRead-' + c.ref + '.pdf',
+        downloadGlyph: icon(DOWNLOAD, 17, 2)
+      })),
+      noReports: delivered.length === 0,
+      reportsNote: delivered.length === 0
+        ? 'Nothing delivered yet.'
+        : 'Kept in your account. Download or share them whenever you need to.',
+
+      hasMessage: !!last,
+      noMessage: !last,
+      lastFrom: last ? last.m.from : '',
+      lastAgo: last ? last.m.ago : '',
+      lastText: last ? last.m.text : '',
+      lastHref: last ? last.c.caseHref + '#messages' : 'Dashboard.dc.html'
+    });
+  }
+
+  // Values the shared top bar needs. Every portal page supplies these.
+  chromeVals() {
+    const s = PORTAL.load();
+    const cases = s.cases.map(PORTAL.decorate);
+    const tasks = cases.reduce((n, c) => n + c.tasks.length, 0);
+    const unread = cases.filter(c => c.statusId === 'ready' && !c.raw.opened).length;
+    const count = tasks + unread;
+    const first = s.user.firstName || 'You';
+    const last = s.user.lastName || '';
+    return {
+      userShort: (first + ' ' + last).trim(),
+      userInitials: (first.charAt(0) + (last.charAt(0) || '')).toUpperCase(),
+      userEmail: s.user.email || '',
+      notifCount: count > 9 ? '9+' : String(count),
+      notifDisplay: count > 0 ? 'flex' : 'none',
+      notifAria: count === 0
+        ? 'Notifications: nothing new'
+        : 'Notifications: ' + count + (count === 1 ? ' thing needs you' : ' things need you'),
+      signOut: () => { PORTAL.signOut(); window.location.href = 'index.html'; },
+      bellGlyph: icon('M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0', 19, 1.7),
+      chevGlyph: icon('m6 9 6 6 6-6', 15, 2.2)
+    };
+  }
+
+}
+</script>
+</body>
+</html>

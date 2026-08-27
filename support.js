@@ -388,30 +388,9 @@
   function kebabToCamel(s) {
     return s.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
   }
-  function splitCssDecls(css) {
-    const decls = [];
-    let depth = 0, quote = null, start = 0;
-    for (let i = 0; i < css.length; i++) {
-      const c = css[i];
-      if (quote) {
-        if (c === quote) quote = null;
-      } else if (c === '"' || c === "'") {
-        quote = c;
-      } else if (c === "(") {
-        depth++;
-      } else if (c === ")") {
-        depth--;
-      } else if (c === ";" && depth === 0) {
-        decls.push(css.slice(start, i));
-        start = i + 1;
-      }
-    }
-    decls.push(css.slice(start));
-    return decls;
-  }
   function cssToObj(css) {
     const o = {};
-    for (const decl of splitCssDecls(css)) {
+    for (const decl of css.split(";")) {
       const i = decl.indexOf(":");
       if (i < 0) continue;
       const prop = decl.slice(0, i).trim();
@@ -1600,10 +1579,11 @@
       const cls = "scp" + (n++).toString(36);
       const isPseudoElement = pseudo === "before" || pseudo === "after";
       const sel = isPseudoElement ? "." + cls + "::" + pseudo : "." + cls + ":" + pseudo;
-      el.sheet.insertRule(
-        sel + "{" + (isPseudoElement ? css : importantify(css)) + "}",
-        el.sheet.cssRules.length
-      );
+      let rule = sel + "{" + (isPseudoElement ? css : importantify(css)) + "}";
+      // Hover is a pointer-device affordance. On touch screens :hover latches after a
+      // tap and leaves cards stuck in their lifted state, so gate it on real pointers.
+      if (pseudo === "hover") rule = "@media (hover: hover) and (pointer: fine){" + rule + "}";
+      el.sheet.insertRule(rule, el.sheet.cssRules.length);
       cache.set(k, cls);
       return cls;
     };
@@ -1930,3 +1910,7 @@
     throw err;
   });
 })();
+
+// iOS Safari only evaluates :active while a touch listener exists on the document,
+// so press feedback is dead on iPhone/iPad without this no-op subscription.
+document.addEventListener("touchstart", function () {}, { passive: true });

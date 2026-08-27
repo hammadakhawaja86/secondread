@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<script src="./portal.js?v=7"></script>
+<script src="./support.js?v=3"></script>
 </head>
 <body>
 <x-dc>
@@ -16,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="responsive.css?v=20">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -31,16 +32,18 @@
 
 <header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
   <nav data-r="nav" style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
-    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="secondread" style="height: 55px; width: 202px; display: block"></a>
-    <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;">
+    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height: 55px; width: 220px; display: block"></a>
+    <details data-r="navmenu">
+      <summary data-r="navburger" aria-label="Menu"><span></span><span></span><span></span></summary>
+    </details>
+    <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;"><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link data-r="navdashmobile" style="color: #095458; font-size: 14px; font-weight: 700;">Patient dashboard</a>
       <a href="How It Works.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">How it works</a>
       <a href="Specialists.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Specialists</a>
       <a href="Pricing.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Pricing</a>
       <a href="Sample Report.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Sample report</a>
       <a href="FAQs.dc.html" style="color: #0D6E70; font-size: 14px; font-weight: 600;">FAQs</a>
     </div>
-    <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;">
-      <a href="tel:+441438904272" style="font-size: 14px; font-weight: 600;">01438 904272</a>
+    <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;"><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link data-r="navdash" style="min-height: 42px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid #C3E0DE; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #F0F8F8; color: #095458; text-decoration: none;">Patient dashboard</a>
       <a href="Start Flow.dc.html" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 4px 14px rgba(13,110,112,0.28); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start my second read</a>
     </div>
   </nav>
@@ -124,7 +127,7 @@
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 44px;">
       <div>
-        <img src="logo-secondread-light.svg" alt="secondread" style="height: 61px; width: 176px; display: block; margin-bottom: 14px">
+        <img src="logo-secondread-light.svg" alt="SecondOpinion Radiology" style="height: 61px; width: 244px; display: block; margin-bottom: 14px">
         <p style="margin: 0; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.72); max-width: 340px;">Independent subspecialist radiology reporting for patients, families and clinics across the UK and internationally.</p>
       </div>
       <div>
@@ -141,17 +144,17 @@
         <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Contact</h4>
         <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85);">
           <a href="mailto:info@secondread.co.uk" style="color: rgba(255,255,255,0.85);">info@secondread.co.uk</a>
-          <a href="tel:+441438904272" style="color: rgba(255,255,255,0.85);">01438 904272</a>
+          <a href="tel:+441438904272" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>01438 904272</a>
           <span style="color: rgba(255,255,255,0.72);">Mon–Sun, 09:00–20:00</span>
         </div>
       </div>
     </div>
-    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
+    <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
       <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
       <div style="display: flex; gap: 18px;">
-        <a href="#" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Accessibility</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Terms</a>
+        <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
       </div>
     </div>
   </div>
@@ -163,7 +166,7 @@ const CATEGORIES = ['Before you order', 'Getting your images', 'Your report', 'P
 const FAQS = [
   { id: 'gp-referral', category: 'Before you order', q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly and order without seeing anyone first. If you would like your GP or consultant copied into the report, give us their email at upload and we send it to them at the same time as you.' },
   { id: 'nhs-scan', category: 'Getting your images', q: 'Can I use a scan done on the NHS?', a: 'Yes. The images belong to you under your right of access, and a second opinion on an NHS scan is entirely legitimate. Reporting on NHS imaging is routine for us and does not affect your NHS care in any way.' },
-  { id: 'no-images', category: 'Getting your images', q: 'What if I do not have the images?', a: 'Tell us where the scan was done and we request them for you: we send you a one-page request letter and, with your consent, chase the radiology department through the Image Exchange Portal. This usually takes two to five working days and does not change the price.' },
+  { id: 'no-images', category: 'Getting your images', q: 'What if I do not have the images?', a: 'You have a legal right to a copy of your own scan images. Ring the radiology department at the hospital where the scan was done — or medical records — and ask for the images themselves rather than just the written report. They can usually supply a disc or a secure download, and under UK data protection law they should respond within one month. If the scan was private or done abroad, ask the clinic for the download link they issued you. Start your case now and add the images when they arrive: nothing is charged until the last step. We cannot make the request on your behalf, because it has to come from you, but call us and we will talk you through it.' },
   { id: 'bad-news', category: 'Your report', q: 'Will you tell me I have cancer over email?', a: 'Never as a surprise line in a PDF. If the consultant finds something serious or urgent, we call you before the report is released and offer a video call with the reporting consultant at no extra cost, so you hear it from a doctor who can answer your questions.' },
   { id: 'who-sees', category: 'Privacy', q: 'Who can see my images?', a: 'Only the reporting consultant and our clinical governance lead. Images are stored encrypted on UK servers under UK GDPR and we are ICO registered. We never share your study with insurers, employers or third parties, and you can ask us to delete it at any time.' },
   { id: 'outside-uk', category: 'Before you order', q: 'I am outside the UK — can you still help?', a: 'Yes. We accept images from any country and report in English. Payment is in pounds sterling and the deadline you see at checkout is shown in your local time as well as UK time.' }

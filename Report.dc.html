@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./consultants.js?v=2"></script>
+<script src="./portal.js?v=7"></script>
+<script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
+<script src="./support.js?v=3"></script>
+</head>
+<body>
+<x-dc><helmet>
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
+  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="responsive.css?v=20">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; padding: 0; background: #F4F7F8; font-family: 'Inter', sans-serif; }
+    a { color: #095458; text-decoration: none; }
+    a:hover { color: #0D6E70; text-decoration: underline; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+    /* Account menu. A <details> element so it works before hydration and
+       closes on Escape without a keydown handler of our own. */
+    [data-r="acctmenu"] { position: relative; }
+    [data-r="acctmenu"] > summary { list-style: none; cursor: pointer; }
+    [data-r="acctmenu"] > summary::-webkit-details-marker { display: none; }
+    [data-r="acctmenu"] > summary::marker { content: ""; }
+    [data-r="acctmenu"] > summary:focus-visible {
+      outline: 2px solid #0D6E70; outline-offset: 3px; border-radius: 999px;
+    }
+    [data-r="acctpanel"] {
+      position: absolute; right: 0; top: calc(100% + 10px); min-width: 244px; z-index: 200;
+    }
+    [data-r="acctmenu"][open] > summary > [data-r="chev"] { transform: rotate(180deg); }
+
+    /* Portal focus ring — visible on both the white cards and the mint washes. */
+    [data-r="portalwrap"] a:focus-visible,
+    [data-r="portalwrap"] button:focus-visible,
+    [data-r="portalwrap"] input:focus-visible,
+    [data-r="portalwrap"] textarea:focus-visible {
+      outline: 2px solid #0D6E70; outline-offset: 2px;
+    }
+  </style>
+</helmet>
+<header data-r="portalbar" style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
+  <div style="max-width: 1180px; margin: 0 auto; padding: 14px 32px; display: flex; align-items: center; gap: 34px;">
+    <a href="Dashboard.dc.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height: 46px; width: 184px; display: block"></a>
+    <nav data-r="portalnav" style="display: flex; gap: 26px; align-items: center;">
+      <a href="Dashboard.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Dashboard</a>
+      <a href="Dashboard.dc.html#reports" style="color: #0D6E70; font-size: 14px; font-weight: 600;">My reports</a>
+      <a href="Account.dc.html#support" style="color: #173B4F; font-size: 14px; font-weight: 500;">Support</a>
+    </nav>
+    <div style="margin-left: auto; display: flex; align-items: center; gap: 12px;">
+      <a href="Dashboard.dc.html" aria-label="{{ notifAria }}" style="position: relative; width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid #E2E9EC; background: #FFFFFF; color: #173B4F; display: flex; align-items: center; justify-content: center; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #F0F8F8;">
+        {{ bellGlyph }}
+        <span style="position: absolute; top: -3px; right: -3px; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 999px; background: #C68A2E; color: #FFFFFF; font-size: 11px; font-weight: 700; display: {{ notifDisplay }}; align-items: center; justify-content: center; box-sizing: border-box; border: 2px solid #FFFFFF;">{{ notifCount }}</span>
+      </a>
+      <details data-r="acctmenu">
+        <summary style="display: inline-flex; align-items: center; gap: 9px; padding: 6px 14px 6px 6px; border-radius: 999px; border: 1.5px solid #E2E9EC; background: #FFFFFF;">
+          <span style="width: 30px; height: 30px; border-radius: 50%; background: #D7F2F3; color: #0D6E70; font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ userInitials }}</span>
+          <span style="font-size: 14px; font-weight: 600; color: #0A1F2C;">{{ userShort }}</span>
+          <span data-r="chev" style="display: inline-flex; color: #5A6B77; transition: transform 180ms ease-out;">{{ chevGlyph }}</span>
+        </summary>
+        <div data-r="acctpanel" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 14px; padding: 8px; box-shadow: 0 18px 40px rgba(10,31,44,0.16);">
+          <div style="padding: 10px 12px 12px; border-bottom: 1px solid #E2E9EC; margin-bottom: 6px;">
+            <div style="font-size: 14px; font-weight: 600; color: #0A1F2C;">{{ userShort }}</div>
+            <div style="font-size: 12.5px; color: #5A6B77; margin-top: 2px; word-break: break-all;">{{ userEmail }}</div>
+          </div>
+          <a href="Dashboard.dc.html" data-r="acctmobileonly" style="display: none; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Dashboard</a>
+          <a href="Dashboard.dc.html#reports" data-r="acctmobileonly" style="display: none; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">My reports</a>
+          <a href="Account.dc.html" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Personal details</a>
+          <a href="Account.dc.html#security" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Sign-in &amp; security</a>
+          <a href="Account.dc.html#privacy" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Privacy &amp; your data</a>
+          <a href="Account.dc.html#support" style="display: block; padding: 10px 12px; border-radius: 9px; font-size: 14px; color: #173B4F; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Help &amp; support</a>
+          <div style="border-top: 1px solid #E2E9EC; margin: 6px 0 0; padding-top: 6px;">
+            <button type="button" onClick="{{ signOut }}" style="width: 100%; appearance: none; text-align: left; padding: 10px 12px; border: none; border-radius: 9px; background: none; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #93332E; cursor: pointer; transition: background 120ms ease-out;" style-hover="background: #FBEEEC;">Sign out</button>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+<div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
+  <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
+  </div>
+</div>
+<div data-r="portalwrap" style="max-width: 1180px; margin: 0 auto; padding: 28px 32px 40px;">
+
+  <a href="{{ backHref }}" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #173B4F; margin-bottom: 22px;" style-hover="color: #0D6E70; text-decoration: none;"><span aria-hidden="true">&#8592;</span> {{ backLabel }}</a>
+
+  <sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
+    <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 48px 40px; text-align: center; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+      <h1 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; color: #0A1F2C;">{{ notFoundTitle }}</h1>
+      <p style="margin: 0 auto 24px; max-width: 480px; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">{{ notFoundBody }}</p>
+      <a href="Dashboard.dc.html" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 48px; padding: 13px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Go to your dashboard</a>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ found }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <div data-r="casehead" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 500; color: #5A6B77;">Case {{ ref }}</span>
+      <span style="font-size: 13px; color: #5A6B77;">Delivered {{ deliveredLong }}</span>
+    </div>
+
+    <h1 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.12; letter-spacing: -0.025em; color: #0A1F2C;">Your second-opinion report</h1>
+
+    <div data-r="reportmeta" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 20px 24px; margin-bottom: 26px;">
+      <sc-for list="{{ meta }}" as="m" hint-placeholder-count="4">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.11em; text-transform: uppercase; color: #5A6B77; margin-bottom: 4px;">{{ m.label }}</div>
+          <div style="font-size: 14.5px; font-weight: 600; line-height: 1.45; color: #0A1F2C;">{{ m.value }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="background: #E4F2F2; border: 1.5px solid #C3E0DE; border-radius: 20px; padding: 28px 32px; margin-bottom: 26px;">
+      <h2 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #095458;">In short</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #06313A;">{{ inShort }}</p>
+    </div>
+
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px;">
+      <sc-for list="{{ anchors }}" as="a" hint-placeholder-count="4">
+        <a href="{{ a.href }}" style="display: inline-flex; align-items: center; min-height: 42px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #173B4F; font-size: 14px; font-weight: 600; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #F0F8F8; color: #095458; text-decoration: none;">{{ a.label }}</a>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ hasComparison }}" hint-placeholder-val="{{ true }}">
+    <section id="comparison" style="margin-bottom: 34px; scroll-margin-top: 90px;">
+      <h2 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #0A1F2C;">Your report comparison</h2>
+      <p style="margin: 0 0 20px; font-size: 15.5px; line-height: 1.65; color: #4A5C68; max-width: 720px;">Written by {{ consultantName }} as part of your report. Nothing here is generated or matched automatically.</p>
+
+      <div style="background: {{ outcomeBg }}; border: 1.5px solid {{ outcomeBorder }}; border-radius: 20px; padding: 26px 30px; margin-bottom: 20px;">
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: {{ outcomeFg }}; background: #FFFFFF; border: 1px solid {{ outcomeBorder }}; border-radius: 999px; padding: 5px 13px; margin-bottom: 14px;">{{ outcomeLabel }}</span>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.65; color: #0A1F2C;">{{ outcomeSummary }}</p>
+        <sc-if value="{{ isReassuring }}" hint-placeholder-val="{{ false }}">
+          <p style="margin: 14px 0 0; font-size: 15.5px; line-height: 1.65; color: #1F6B45; font-weight: 600;">{{ reassuringNext }}</p>
+        </sc-if>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+        <div data-r="compare" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; background: #F4F7F8;">
+          <sc-for list="{{ columns }}" as="col" hint-placeholder-count="4">
+            <div data-r="comparecol" style="padding: 22px 24px; border-left: 1px solid #E2E9EC;">
+              <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: -0.005em; color: #0A1F2C;">{{ col.title }}</h3>
+              <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #5A6B77;">{{ col.source }}</p>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-for list="{{ items }}" as="it" hint-placeholder-count="3">
+          <div style="border-top: 1px solid #D4DDE0;">
+            <div style="padding: 14px 24px; background: #FAFCFC; border-bottom: 1px solid #E2E9EC;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77;">{{ it.region }}</span>
+            </div>
+            <div data-r="compare" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
+              <div data-r="comparecol" style="padding: 20px 24px; border-left: 1px solid #E2E9EC;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase; color: #8FA0A9; margin-bottom: 8px;">Reported before</div>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #4A5C68;">{{ it.before }}</p>
+              </div>
+              <div data-r="comparecol" style="padding: 20px 24px; border-left: 1px solid #E2E9EC; background: #FCFEFE;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase; color: #8FA0A9; margin-bottom: 8px;">What we found</div>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #0A1F2C;">{{ it.found }}</p>
+              </div>
+              <div data-r="comparecol" style="padding: 20px 24px; border-left: 1px solid #E2E9EC;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase; color: #8FA0A9; margin-bottom: 8px;">What is different</div>
+                <span style="display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: {{ it.catFg }}; background: {{ it.catBg }}; border: 1px solid {{ it.catBorder }}; border-radius: 999px; padding: 3px 10px; margin-bottom: 10px;">{{ it.category }}</span>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #4A5C68; display: {{ it.noteDisplay }};">{{ it.note }}</p>
+              </div>
+              <div data-r="comparecol" style="padding: 20px 24px; border-left: 1px solid #E2E9EC; background: #F7FBFB;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase; color: #095458; margin-bottom: 8px;">What this means for you</div>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #0A1F2C;">{{ it.means }}</p>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <p style="margin: 16px 0 0; font-size: 13.5px; line-height: 1.7; color: #5A6B77; max-width: 780px; font-style: italic;">Radiology reports can reasonably differ between specialists. This report is an independent opinion based on the images and information provided, and does not replace the advice of the doctor treating you.</p>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ noComparison }}" hint-placeholder-val="{{ false }}">
+      <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 26px 30px; margin-bottom: 34px;">
+        <h2 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">No comparison in this report</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #4A5C68;">We did not receive an original report for this scan, so there is nothing to compare against. Your consultant has given you a full independent read instead.</p>
+      </div>
+    </sc-if>
+
+    <div data-r="reportgrid" style="display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: 24px; align-items: start;">
+
+      <div style="display: flex; flex-direction: column; gap: 22px; min-width: 0;">
+
+        <section id="report" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 30px 34px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); scroll-margin-top: 90px;">
+          <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #0A1F2C;">The full report</h2>
+          <p style="margin: 0 0 24px; font-size: 14px; line-height: 1.6; color: #5A6B77;">In clinical language, exactly as your consultant wrote it. This is the version to give a doctor.</p>
+          <sc-for list="{{ sections }}" as="s" hint-placeholder-count="4">
+            <div style="margin-bottom: 24px;">
+              <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: #095458;">{{ s.title }}</h3>
+              <sc-for list="{{ s.paras }}" as="p" hint-placeholder-count="2">
+                <p style="margin: 0 0 10px; font-size: 15.5px; line-height: 1.72; color: #173B4F;">{{ p.text }}</p>
+              </sc-for>
+            </div>
+          </sc-for>
+        </section>
+
+        <section id="means" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 30px 34px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); scroll-margin-top: 90px;">
+          <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #0A1F2C;">What this means for you</h2>
+          <p style="margin: 0 0 22px; font-size: 14px; line-height: 1.6; color: #5A6B77;">The same findings in plain English, written by {{ consultantName }} — not a summary produced by software.</p>
+          <sc-for list="{{ means }}" as="p" hint-placeholder-count="4">
+            <p style="margin: 0 0 14px; font-size: 16.5px; line-height: 1.75; color: #173B4F;">{{ p.text }}</p>
+          </sc-for>
+        </section>
+
+        <section id="next" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 30px 34px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); scroll-margin-top: 90px;">
+          <h2 style="margin: 0 0 20px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #0A1F2C;">What we suggest you do next</h2>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <sc-for list="{{ nextSteps }}" as="n" hint-placeholder-count="4">
+              <div style="display: flex; gap: 14px; align-items: flex-start;">
+                <span style="flex-shrink: 0; width: 27px; height: 27px; border-radius: 50%; background: #E4F2F2; border: 1px solid #C3E0DE; color: #095458; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ n.n }}</span>
+                <p style="margin: 0; padding-top: 2px; font-size: 15.5px; line-height: 1.65; color: #173B4F;">{{ n.text }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section id="share" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 30px 34px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); scroll-margin-top: 90px;">
+          <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Share this report with your doctor</h2>
+          <p style="margin: 0 0 20px; font-size: 14.5px; line-height: 1.65; color: #4A5C68;">We send a secure link, never the report itself. Your doctor confirms a one-time code sent to the same address, and the link expires after 30 days. You can revoke it at any time.</p>
+
+          <sc-for list="{{ shares }}" as="sh" hint-placeholder-count="0">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; background: #F7FBFB; border: 1px solid #C3E0DE; border-radius: 12px; padding: 14px 18px; margin-bottom: 12px; flex-wrap: wrap;">
+              <div>
+                <div style="font-size: 14.5px; font-weight: 600; color: #0A1F2C;">{{ sh.name }}</div>
+                <div style="font-size: 13px; color: #5A6B77;">{{ sh.detail }}</div>
+              </div>
+              <button type="button" onClick="{{ sh.revoke }}" style="appearance: none; min-height: 40px; padding: 9px 18px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #93332E; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out;" style-hover="border-color: #93332E;">Revoke access</button>
+            </div>
+          </sc-for>
+
+          <sc-if value="{{ shareError }}" hint-placeholder-val="{{ false }}">
+            <div role="alert" style="background: #FBEEEC; border: 1px solid #E7BDB8; border-radius: 11px; padding: 13px 15px; font-size: 14px; line-height: 1.55; color: #7E2B26; margin-bottom: 16px;">{{ shareErrorText }}</div>
+          </sc-if>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 14px;">
+            <label style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Their name</span>
+              <input type="text" value="{{ shareName }}" onChange="{{ onShareName }}" placeholder="Dr Helen Price" style="min-height: 48px; padding: 12px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Their role</span>
+              <input type="text" value="{{ shareRole }}" onChange="{{ onShareRole }}" placeholder="GP, or treating consultant" style="min-height: 48px; padding: 12px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Their email</span>
+              <input type="email" value="{{ shareEmail }}" onChange="{{ onShareEmail }}" placeholder="practice@nhs.net" style="min-height: 48px; padding: 12px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+            </label>
+          </div>
+
+          <label style="display: flex; align-items: flex-start; gap: 11px; cursor: pointer; margin-bottom: 16px;">
+            <input type="checkbox" checked="{{ shareConsent }}" onChange="{{ onShareConsent }}" style="width: 19px; height: 19px; margin: 2px 0 0; accent-color: #0D6E70; cursor: pointer; flex-shrink: 0;">
+            <span style="font-size: 14px; line-height: 1.55; color: #173B4F;">I am happy for SecondRead to share my report with this person.</span>
+          </label>
+
+          <button type="button" onClick="{{ sendShare }}" style="min-height: 48px; padding: 13px 26px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out;" style-hover="background: #095458;">Send report</button>
+        </section>
+
+        <section id="followup" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 30px 34px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); scroll-margin-top: 90px;">
+          <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Still have questions?</h2>
+          <p style="margin: 0 0 22px; font-size: 14.5px; line-height: 1.65; color: #4A5C68;">You can come back to {{ consultantName }} until {{ followupUntil }}.</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+            <div style="border: 1px solid #C3E0DE; background: #F7FBFB; border-radius: 16px; padding: 22px 24px;">
+              <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #095458; margin-bottom: 8px;">Included</div>
+              <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: #0A1F2C;">Three written questions</h3>
+              <p style="margin: 0 0 16px; font-size: 14px; line-height: 1.65; color: #4A5C68;">Answered by the consultant who wrote your report, usually within two working days. For understanding this report — not a new opinion on new images.</p>
+              <a href="{{ askHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 46px; padding: 12px 24px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Ask a question</a>
+            </div>
+
+            <div style="border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
+              <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6B77; margin-bottom: 8px;">&pound;150</div>
+              <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: #0A1F2C;">15-minute call</h3>
+              <p style="margin: 0 0 16px; font-size: 14px; line-height: 1.65; color: #4A5C68;">A call to talk the report through. It explains your report; it does not create a treatment plan or replace your own doctor.</p>
+
+              <sc-if value="{{ callIdle }}" hint-placeholder-val="{{ true }}">
+                <button type="button" onClick="{{ openCall }}" style="min-height: 46px; padding: 12px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Book a 15-minute call</button>
+              </sc-if>
+
+              <sc-if value="{{ callPicking }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 9px; margin-bottom: 14px;">
+                  <sc-for list="{{ slots }}" as="sl" hint-placeholder-count="3">
+                    <button type="button" onClick="{{ sl.pick }}" style="appearance: none; text-align: left; min-height: 46px; padding: 12px 16px; border-radius: 11px; border: 1.5px solid {{ sl.border }}; background: {{ sl.bg }}; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ sl.label }}</button>
+                  </sc-for>
+                </div>
+                <button type="button" onClick="{{ confirmCall }}" aria-disabled="{{ callBlocked }}" style="min-height: 46px; padding: 12px 24px; border-radius: 999px; border: none; background: {{ callBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: {{ callCursor }}; transition: background 140ms ease-out;" style-hover="background: #095458;">Confirm and pay &pound;150</button>
+              </sc-if>
+
+              <sc-if value="{{ callBooked }}" hint-placeholder-val="{{ false }}">
+                <div style="background: #E3F3EA; border: 1px solid #B7DEC8; border-radius: 12px; padding: 16px 18px;">
+                  <div style="font-size: 14.5px; font-weight: 700; color: #1F6B45; margin-bottom: 4px;">Call booked</div>
+                  <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #1F6B45;">{{ callConfirmation }}</p>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div data-r="reportaside" style="display: flex; flex-direction: column; gap: 20px; position: sticky; top: 88px; min-width: 0;">
+
+        <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
+          <h3 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #5A6B77;">Reported by</h3>
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+            <div style="width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #D7F2F3; color: #0D6E70; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700;">{{ docPortrait }}</div>
+            <div style="min-width: 0;">
+              <div style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">{{ consultantName }}</div>
+              <div style="font-size: 13px; line-height: 1.5; color: #5A6B77;">{{ consultantRole }}</div>
+            </div>
+          </div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5A6B77; margin-bottom: 14px;">GMC {{ gmc }}</div>
+          <a href="{{ docHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">See their full profile</a>
+        </div>
+
+        <div data-r="reportactions" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+          <a href="sample-report-secondread.pdf" download="{{ downloadName }}" type="application/pdf" style="display: inline-flex; align-items: center; justify-content: center; gap: 9px; box-sizing: border-box; min-height: 48px; padding: 13px 22px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; box-shadow: 0 4px 14px rgba(13,110,112,0.26); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">{{ downloadGlyph }} Download PDF</a>
+          <a href="#share" style="display: inline-flex; align-items: center; justify-content: center; gap: 9px; box-sizing: border-box; min-height: 48px; padding: 13px 22px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">{{ shareGlyph }} Share with my GP</a>
+          <a href="{{ askHref }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 9px; box-sizing: border-box; min-height: 48px; padding: 13px 22px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">{{ askGlyph }} Ask a question</a>
+        </div>
+
+
+<div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
+  <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #5A6B77;">Not an emergency service</h3>
+  <p style="margin: 0; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">A second read takes at least 12 hours and is not a substitute for seeing a doctor. If you feel unwell or your symptoms are getting worse, contact your GP, call <strong style="color: #0A1F2C;">NHS 111</strong>, or in an emergency call <strong style="color: #0A1F2C;">999</strong>.</p>
+</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+</div>
+<footer style="background: #06131C; color: #FFFFFF; padding: 44px 32px 26px; margin-top: 24px;">
+  <div style="max-width: 1180px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+      <img src="logo-secondread-light.svg" alt="SecondOpinion Radiology" style="height: 48px; width: 192px; display: block">
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px;">
+        <a href="index.html" style="color: rgba(255,255,255,0.85);">Main site</a>
+        <a href="How It Works.dc.html" style="color: rgba(255,255,255,0.85);">How it works</a>
+        <a href="FAQs.dc.html" style="color: rgba(255,255,255,0.85);">FAQs</a>
+        <a href="tel:+441438904272" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>01438 904272</a>
+      </div>
+    </div>
+    <div style="padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
+      <span>&copy; 2026 SecondRead Ltd &middot; Registered in England &middot; Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <div style="display: flex; gap: 18px;">
+        <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+
+// Single-path stroke icon. Everything in the portal is one of these.
+function icon(d, size, width) {
+  return React.createElement('svg', {
+    width: size || 18, height: size || 18, viewBox: '0 0 24 24', fill: 'none',
+    stroke: 'currentColor', strokeWidth: width || 2,
+    strokeLinecap: 'round', strokeLinejoin: 'round'
+  }, React.createElement('path', { d: d }));
+}
+
+
+const DOWNLOAD = 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3';
+const SHARE = 'M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13';
+const ASK = 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z';
+
+const SLOTS = ['Tomorrow, 9:30 am', 'Tomorrow, 4:00 pm', 'Thursday, 11:15 am'];
+
+class Component extends DCLogic {
+  state = {
+    ref: PORTAL.param('ref'),
+    store: PORTAL.load(),
+    shareName: '', shareRole: '', shareEmail: '', shareConsent: false, shareError: '',
+    shares: [],
+    call: 'idle',
+    slot: -1
+  };
+
+  componentDidMount() {
+    // First open is recorded on the case, which is what stops the 48-hour
+    // "your report is still unread" reminder from going out.
+    // Deep-link scrolling is handled once, centrally, in portal.js.
+    if (this.state.ref) PORTAL.markOpened(this.state.ref);
+  }
+
+  current() {
+    const list = this.state.store.cases.filter(c => c.ref === this.state.ref);
+    return list.length ? PORTAL.decorate(list[0]) : null;
+  }
+
+  share() {
+    const s = this.state;
+    if (!s.shareName.trim()) return this.setState({ shareError: 'Enter the name of the person you want to share this with.' });
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s.shareEmail.trim())) {
+      return this.setState({ shareError: 'That does not look like an email address. Check for a missing @ or a typo in the domain.' });
+    }
+    if (!s.shareConsent) return this.setState({ shareError: 'Tick the box to confirm you are happy for us to share your report with this person.' });
+    const entry = {
+      name: s.shareName.trim(),
+      role: s.shareRole.trim(),
+      email: s.shareEmail.trim(),
+      sent: PORTAL.fmtShort(new Date())
+    };
+    this.setState({
+      shares: this.state.shares.concat([entry]),
+      shareName: '', shareRole: '', shareEmail: '', shareConsent: false, shareError: ''
+    });
+  }
+
+  renderVals() {
+    const c = this.current();
+
+    if (!c || !c.report) {
+      return Object.assign(this.chromeVals(), {
+        notFound: true, found: false,
+        backHref: 'Dashboard.dc.html', backLabel: 'Back to your dashboard',
+        notFoundTitle: c ? 'This report is not ready yet' : 'We cannot find that report',
+        notFoundBody: c
+          ? 'Your consultant is still reviewing this scan. We will email you the moment your report is available, and it will appear on your dashboard.'
+          : 'The link may be out of date, or the report may belong to a different account. Your own reports are all on your dashboard.',
+        ref: '', deliveredLong: '', meta: [], inShort: '', anchors: [],
+        hasComparison: false, noComparison: false, columns: [], items: [],
+        outcomeLabel: '', outcomeSummary: '', outcomeBg: '#FFFFFF', outcomeFg: '#0A1F2C',
+        outcomeBorder: '#E2E9EC', isReassuring: false, reassuringNext: '',
+        sections: [], means: [], nextSteps: [],
+        consultantName: '', consultantRole: '', gmc: '', docPortrait: null,
+        docHref: 'Specialists.dc.html', downloadName: '', askHref: 'Dashboard.dc.html',
+        downloadGlyph: null, shareGlyph: null, askGlyph: null,
+        shares: [], shareName: '', shareRole: '', shareEmail: '', shareConsent: false,
+        shareError: false, shareErrorText: '',
+        onShareName: () => {}, onShareRole: () => {}, onShareEmail: () => {},
+        onShareConsent: () => {}, sendShare: () => {},
+        followupUntil: '', callIdle: true, callPicking: false, callBooked: false,
+        slots: [], openCall: () => {}, confirmCall: () => {},
+        callBlocked: 'true', callBg: '#A9BFC4', callCursor: 'not-allowed', callConfirmation: ''
+      });
+    }
+
+    const r = c.report;
+    const cmp = c.comparison;
+    const doc = c.consultant;
+    const cat = k => PORTAL.CATEGORY[k] || PORTAL.CATEGORY.clarifies;
+    const outcome = cmp && cmp.available ? cat(cmp.overallOutcome) : null;
+    const reassuring = cmp && cmp.overallOutcome === 'no_material';
+
+    const followupEnd = c.deliveredAt
+      ? new Date(c.deliveredAt.getTime() + 30 * 24 * 3600 * 1000)
+      : new Date();
+
+    return Object.assign(this.chromeVals(), {
+      notFound: false,
+      found: true,
+      backHref: c.caseHref,
+      backLabel: 'Back to your case',
+      ref: c.ref,
+      deliveredLong: c.deliveredLong,
+
+      meta: [
+        { label: 'Study', value: c.scan + ' \u00B7 ' + c.areaLabel },
+        { label: 'Scan date', value: c.raw.scanDate || 'Not given' },
+        { label: 'Reported by', value: c.consultantName },
+        { label: 'Report date', value: c.deliveredShort }
+      ],
+
+      inShort: r.inShort,
+
+      anchors: [
+        { label: 'Comparison', href: '#comparison' },
+        { label: 'Full report', href: '#report' },
+        { label: 'What this means', href: '#means' },
+        { label: 'Next steps', href: '#next' },
+        { label: 'Share', href: '#share' }
+      ],
+
+      hasComparison: !!(cmp && cmp.available),
+      noComparison: !(cmp && cmp.available),
+
+      outcomeLabel: outcome ? outcome.label : '',
+      outcomeSummary: cmp ? cmp.overallSummary : '',
+      outcomeBg: outcome ? outcome.bg : '#FFFFFF',
+      outcomeFg: outcome ? outcome.fg : '#0A1F2C',
+      outcomeBorder: outcome ? outcome.border : '#E2E9EC',
+      isReassuring: reassuring,
+      reassuringNext: 'Take this report to the doctor looking after you. It supports the plan you have already been given.',
+
+      columns: cmp && cmp.available ? [
+        {
+          title: 'What was reported before',
+          source: cmp.original.sourceLabel + (cmp.original.providerName ? ' \u00B7 ' + cmp.original.providerName : '')
+            + ', ' + cmp.original.reportDate + '. We have not altered this text.'
+        },
+        {
+          title: 'What we found',
+          source: 'Independent review by ' + c.consultantName + ', ' + (doc ? doc.role : 'Consultant Radiologist') + '.'
+        },
+        {
+          title: 'What is different',
+          source: 'Assessed and written by ' + c.consultantName + '. Not generated automatically.'
+        },
+        {
+          title: 'What this means for you',
+          source: 'Written in plain English by ' + c.consultantName + ', and approved by them before release.'
+        }
+      ] : [],
+
+      items: cmp && cmp.available ? cmp.items.map(it => {
+        const k = cat(it.category);
+        return {
+          region: it.region,
+          before: it.before,
+          found: it.found,
+          category: k.label,
+          catBg: k.bg, catFg: k.fg, catBorder: k.border,
+          note: it.differenceNote || '',
+          noteDisplay: it.differenceNote ? 'block' : 'none',
+          means: it.meansForYou
+        };
+      }) : [],
+
+      sections: [
+        { title: 'Clinical history', paras: [{ text: r.clinicalHistory }] },
+        { title: 'Technique', paras: [{ text: r.technique }] },
+        { title: 'Findings', paras: r.findings.map(t => ({ text: t })) },
+        { title: 'Impression', paras: r.impression.map(t => ({ text: t })) }
+      ],
+      means: r.meansForYou.map(t => ({ text: t })),
+      nextSteps: r.nextSteps,
+
+      consultantName: c.consultantName,
+      consultantRole: doc ? doc.role : '',
+      gmc: doc ? doc.gmc : '',
+      docPortrait: doc && doc.photo
+        ? React.createElement('img', {
+            src: doc.photo, alt: '',
+            style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }
+          })
+        : (doc ? doc.initials : '\u2014'),
+      docHref: doc ? 'Specialist Profile.dc.html?id=' + encodeURIComponent(doc.id) : 'Specialists.dc.html',
+
+      downloadName: 'SecondRead-' + c.ref + '.pdf',
+      askHref: c.caseHref + '#messages',
+      downloadGlyph: icon(DOWNLOAD, 16, 2),
+      shareGlyph: icon(SHARE, 16, 2),
+      askGlyph: icon(ASK, 16, 2),
+
+      shares: this.state.shares.map((sh, i) => ({
+        name: sh.name,
+        detail: (sh.role ? sh.role + ' \u00B7 ' : '') + sh.email + ' \u00B7 sent ' + sh.sent + ' \u00B7 expires in 30 days',
+        revoke: () => this.setState({ shares: this.state.shares.filter((_, j) => j !== i) })
+      })),
+      shareName: this.state.shareName,
+      shareRole: this.state.shareRole,
+      shareEmail: this.state.shareEmail,
+      shareConsent: this.state.shareConsent,
+      shareError: !!this.state.shareError,
+      shareErrorText: this.state.shareError,
+      onShareName: e => this.setState({ shareName: e.target.value, shareError: '' }),
+      onShareRole: e => this.setState({ shareRole: e.target.value }),
+      onShareEmail: e => this.setState({ shareEmail: e.target.value, shareError: '' }),
+      onShareConsent: e => this.setState({ shareConsent: e.target.checked, shareError: '' }),
+      sendShare: () => this.share(),
+
+      followupUntil: PORTAL.fmtShort(followupEnd),
+      callIdle: this.state.call === 'idle',
+      callPicking: this.state.call === 'picking',
+      callBooked: this.state.call === 'booked',
+      slots: SLOTS.map((label, i) => ({
+        label: label,
+        bg: this.state.slot === i ? '#E4F2F2' : '#FFFFFF',
+        border: this.state.slot === i ? '#0D6E70' : '#D4DDE0',
+        pick: () => this.setState({ slot: i })
+      })),
+      openCall: () => this.setState({ call: 'picking' }),
+      confirmCall: () => { if (this.state.slot >= 0) this.setState({ call: 'booked' }); },
+      callBlocked: this.state.slot >= 0 ? null : 'true',
+      callBg: this.state.slot >= 0 ? '#0D6E70' : '#A9BFC4',
+      callCursor: this.state.slot >= 0 ? 'pointer' : 'not-allowed',
+      callConfirmation: this.state.slot >= 0
+        ? SLOTS[this.state.slot] + ' with ' + c.consultantName + '. We have sent a confirmation with a join link — it contains the time only, nothing about your scan.'
+        : ''
+    });
+  }
+
+  // Values the shared top bar needs. Every portal page supplies these.
+  chromeVals() {
+    const s = PORTAL.load();
+    const cases = s.cases.map(PORTAL.decorate);
+    const tasks = cases.reduce((n, c) => n + c.tasks.length, 0);
+    const unread = cases.filter(c => c.statusId === 'ready' && !c.raw.opened).length;
+    const count = tasks + unread;
+    const first = s.user.firstName || 'You';
+    const last = s.user.lastName || '';
+    return {
+      userShort: (first + ' ' + last).trim(),
+      userInitials: (first.charAt(0) + (last.charAt(0) || '')).toUpperCase(),
+      userEmail: s.user.email || '',
+      notifCount: count > 9 ? '9+' : String(count),
+      notifDisplay: count > 0 ? 'flex' : 'none',
+      notifAria: count === 0
+        ? 'Notifications: nothing new'
+        : 'Notifications: ' + count + (count === 1 ? ' thing needs you' : ' things need you'),
+      signOut: () => { PORTAL.signOut(); window.location.href = 'index.html'; },
+      bellGlyph: icon('M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0', 19, 1.7),
+      chevGlyph: icon('m6 9 6 6 6-6', 15, 2.2)
+    };
+  }
+
+}
+</script>
+</body>
+</html>

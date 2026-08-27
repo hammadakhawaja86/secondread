@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./portal.js?v=7"></script>
+<script src="./support.js?v=3"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
+  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="responsive.css?v=20">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
+  <style>
+    body { margin: 0; padding: 0; background: #F4F7F8; font-family: 'Inter', sans-serif; }
+    a { color: #095458; text-decoration: none; }
+    a:hover { color: #0D6E70; text-decoration: underline; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    input::placeholder { color: #6C7C87; }
+  </style>
+</helmet>
+
+<header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
+  <nav data-r="nav" style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
+    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height: 55px; width: 220px; display: block"></a>
+    <details data-r="navmenu">
+      <summary data-r="navburger" aria-label="Menu"><span></span><span></span><span></span></summary>
+    </details>
+    <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;"><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link data-r="navdashmobile" style="color: #095458; font-size: 14px; font-weight: 700;">Patient dashboard</a>
+      <a href="How It Works.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">How it works</a>
+      <a href="Specialists.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Specialists</a>
+      <a href="Pricing.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Pricing</a>
+      <a href="Sample Report.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Sample report</a>
+      <a href="FAQs.dc.html" style="color: #0D6E70; font-size: 14px; font-weight: 600;">FAQs</a>
+    </div>
+    <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;"><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link data-r="navdash" style="min-height: 42px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid #C3E0DE; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #F0F8F8; color: #095458; text-decoration: none;">Patient dashboard</a>
+      <a href="Start Flow.dc.html" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 4px 14px rgba(13,110,112,0.28); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start my second read</a>
+    </div>
+  </nav>
+</header>
+
+
+<section style="background: linear-gradient(135deg, #E4F2F2 0%, #EEF7F7 55%, #F7FBFB 100%); border-bottom: 1px solid #E2E9EC;">
+  <div style="max-width: 860px; margin: 0 auto; padding: 40px 32px 52px;">
+    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; color: #5A6B77; margin-bottom: 28px;">
+      <a href="index.html" style="color: #5A6B77;">Home</a>
+      <span>/</span>
+      <span style="color: #0A1F2C; font-weight: 600;">Privacy & UK GDPR</span>
+    </div>
+    <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Legal</div>
+    <h1 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.025em; color: #0A1F2C;">Privacy &amp; UK GDPR</h1>
+    <p style="margin: 0 0 20px; font-size: 17.5px; line-height: 1.6; color: #173B4F;">What we do with your scans, your report and your contact details — in plain English, then in the detail the law requires.</p>
+    <div style="font-size: 13.5px; color: #5A6B77;">Last updated 25 August 2026</div>
+  </div>
+</section>
+
+<section style="background: #FFFFFF; padding: 64px 32px 88px;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div style="background: #FFF6E9; border: 1px solid #E8D3AE; border-radius: 14px; padding: 20px 24px; margin-bottom: 40px;">
+      <div style="font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #8A6320; margin-bottom: 8px;">Before this page goes live</div>
+      <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #6B4E1B;">This notice is drafted to the right shape and covers what SecondRead actually does, but the bracketed details are placeholders. A named data protection officer, the ICO registration number, the company number and registered address, and the identity of the UK hosting and PACS providers must be filled in and the whole notice reviewed by the practice’s own adviser before launch. Health data is special-category data under UK GDPR Article 9 — this is not a page to publish on trust.</p>
+    </div>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">The short version</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">You send us medical images and a question. A consultant radiologist reads them and writes you a report. To do that we have to store your images, your report and your contact details — there is no way around it.</p>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">We keep all of it in the United Kingdom. We do not sell it, we do not use it for advertising, and we do not share it with anyone you have not asked us to share it with. You can ask us to delete it at any time, and we will, unless we are legally required to keep a copy.</p>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">Who is responsible for your data</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">SecondRead Ltd is the data controller for the information described on this page. We are registered in England, company number [COMPANY NUMBER], registered office [REGISTERED ADDRESS].</p>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">We are registered with the Information Commissioner’s Office under registration [ICO REGISTRATION NUMBER].</p>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Our data protection contact is [DPO NAME AND EMAIL]. Write to them first if anything on this page concerns you.</p>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">What we collect</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">We collect three kinds of information, and we collect them for different reasons.</p>
+    <ul style="margin: 0 0 16px; padding-left: 22px; display: flex; flex-direction: column; gap: 9px;">
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;"><strong>Your images and clinical information.</strong> The scans you upload, any prior imaging, the report you already have, and the question you asked us. This is special-category health data.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;"><strong>Your contact and account details.</strong> Your name, email address, phone number, and your GP’s email address if you give it to us.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;"><strong>Payment details.</strong> Handled by our payment processor. We see the amount, the date and the last four digits of the card. We never see or store the full card number.</li>
+    </ul>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">Why we are allowed to use it</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Under UK GDPR we need both a lawful basis and, for health data, a further condition.</p>
+    <ul style="margin: 0 0 16px; padding-left: 22px; display: flex; flex-direction: column; gap: 9px;">
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;"><strong>To provide the report you ordered</strong> — Article 6(1)(b), performance of a contract with you. For the health data itself, Article 9(2)(h), the provision of health care and medical diagnosis, carried out by a professional bound by a duty of confidentiality.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;"><strong>To answer your enquiry</strong> before you order anything — Article 6(1)(f), our legitimate interest in responding to people who ask us questions, and Article 9(2)(a), your explicit consent when you send us clinical detail.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;"><strong>To meet our legal and regulatory obligations</strong> — Article 6(1)(c), including medical record retention and our duty to cooperate with a regulator.</li>
+    </ul>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">Where your data lives</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Your images and reports are stored on servers located in the United Kingdom, operated by [HOSTING PROVIDER]. Images are encrypted in transit and at rest.</p>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Access is limited to the reporting consultant assigned to your study and the small operational team who need it to run the service. Every access is logged.</p>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">We do not transfer your images or your report outside the United Kingdom. If that ever changes, we will update this notice and tell you before it happens.</p>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">How long we keep it</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">We keep your report for eight years from the date it is signed, in line with the retention period expected of a UK medical record for an adult. For a patient under 18 at the time of the study, we keep it until their 25th birthday.</p>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">We keep your source images for twelve months after your report is issued, so that a follow-up question can be answered against the original study. After that they are deleted.</p>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Enquiries that do not turn into an order are deleted after twelve months.</p>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">You can ask us to delete anything sooner. We will do it unless a legal or regulatory obligation means we have to keep a copy, and if that applies we will tell you which obligation and for how long.</p>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">Who else sees it</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Only the people who have to.</p>
+    <ul style="margin: 0 0 16px; padding-left: 22px; display: flex; flex-direction: column; gap: 9px;">
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;"><strong>Your reporting consultant.</strong> Named to you before you pay, GMC-registered, and bound by the same duty of confidentiality as any doctor.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;"><strong>Your GP or treating clinician</strong>, but only if you give us their address and ask us to send it.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;"><strong>Our hosting and payment providers</strong>, acting on our written instructions and not permitted to use your data for anything else.</li>
+    </ul>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">We do not sell your data. We do not share it with insurers, employers or advertisers. We do not use your images to train machine-learning models. If we ever want to use anonymised imaging for research or teaching, we will ask you for separate, specific consent, and a refusal will not affect your report.</p>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">Your rights</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Under UK GDPR you can ask us to do any of the following, free of charge, and we will respond within one month.</p>
+    <ul style="margin: 0 0 16px; padding-left: 22px; display: flex; flex-direction: column; gap: 9px;">
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Give you a copy of everything we hold about you.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Correct anything that is wrong.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Delete your data, subject to the retention obligations above.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Restrict or object to how we use it.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Send your data to another provider in a portable format.</li>
+      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Withdraw a consent you previously gave, at any time.</li>
+    </ul>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Email [DPO NAME AND EMAIL] or write to us at the registered address. We may ask you to confirm your identity first — this protects you, not us.</p>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">If you are not satisfied with our response you can complain to the Information Commissioner’s Office at ico.org.uk, or on 0303 123 1113. We would rather you came to us first, but it is your right either way.</p>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">Cookies</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">This site uses only the cookies needed to make it work — keeping you signed in to an order and remembering an order you saved to finish later. We do not use advertising or cross-site tracking cookies, so there is nothing here for you to consent to or opt out of.</p>
+    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">Changes to this notice</h2>
+    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">If we change how we handle your data in a way that affects you, we will update this page and tell you directly before the change takes effect. The date at the top of this page always reflects the current version.</p>
+
+    <div style="margin-top: 48px; padding-top: 28px; border-top: 1px solid #E2E9EC; display: flex; gap: 14px; flex-wrap: wrap; font-size: 14.5px; color: #5A6B77;">
+      <span>Questions about this page?</span>
+      <a href="mailto:info@secondread.co.uk" style="font-weight: 600;">info@secondread.co.uk</a>
+      <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background: #06131C; color: #FFFFFF; padding: 60px 32px 28px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 44px;">
+      <div>
+        <img src="logo-secondread-light.svg" alt="SecondOpinion Radiology" style="height: 61px; width: 244px; display: block; margin-bottom: 14px">
+        <p style="margin: 0; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.72); max-width: 340px;">Independent subspecialist radiology reporting for patients, families and clinics across the UK and internationally.</p>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Service</h4>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+          <li><a href="How It Works.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">How it works</a></li>
+          <li><a href="Specialists.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Specialists</a></li>
+          <li><a href="Pricing.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Pricing</a></li>
+          <li><a href="Sample Report.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Sample report</a></li>
+          <li><a href="FAQs.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Contact</h4>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85);">
+          <a href="mailto:info@secondread.co.uk" style="color: rgba(255,255,255,0.85);">info@secondread.co.uk</a>
+          <a href="tel:+441438904272" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>01438 904272</a>
+          <span style="color: rgba(255,255,255,0.72);">Mon–Sun, 09:00–20:00</span>
+        </div>
+      </div>
+    </div>
+    <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
+      <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <div style="display: flex; gap: 18px;">
+        <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<script src="./consultants.js?v=2"></script>
+<script src="./portal.js?v=7"></script>
+<script src="./support.js?v=3"></script>
 </head>
 <body>
 <x-dc>
@@ -16,7 +18,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="responsive.css?v=20">
   <script src="./image-slot.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,16 +33,18 @@
 
 <header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
   <nav data-r="nav" style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
-    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="secondread" style="height: 55px; width: 202px; display: block"></a>
-    <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;">
+    <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height: 55px; width: 220px; display: block"></a>
+    <details data-r="navmenu">
+      <summary data-r="navburger" aria-label="Menu"><span></span><span></span><span></span></summary>
+    </details>
+    <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;"><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link data-r="navdashmobile" style="color: #095458; font-size: 14px; font-weight: 700;">Patient dashboard</a>
       <a href="How It Works.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">How it works</a>
       <a href="Specialists.dc.html" style="color: #0D6E70; font-size: 14px; font-weight: 600;">Specialists</a>
       <a href="Pricing.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Pricing</a>
       <a href="Sample Report.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Sample report</a>
       <a href="FAQs.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">FAQs</a>
     </div>
-    <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;">
-      <a href="tel:+441438904272" style="font-size: 14px; font-weight: 600;">01438 904272</a>
+    <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;"><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link data-r="navdash" style="min-height: 42px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid #C3E0DE; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #F0F8F8; color: #095458; text-decoration: none;">Patient dashboard</a>
       <a href="Start Flow.dc.html" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 4px 14px rgba(13,110,112,0.28); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start my second read</a>
     </div>
   </nav>
@@ -62,12 +66,12 @@
 
 <section style="background: #F4F7F8; padding: 48px 32px 88px;">
   <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 268px 1fr; gap: 32px; align-items: start;">
-    <aside style="position: sticky; top: 96px; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 26px 24px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+    <aside data-r="filterrail" style="position: sticky; top: 96px; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 26px 24px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
       <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
         <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #0A1F2C;">Body area</h2>
         <button type="button" onClick="{{ clearFilters }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #5A6B77; cursor: pointer; transition: color 140ms ease-out;" style-hover="color: #0D6E70;">Reset</button>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px;">
+      <div data-r="arealist" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px;">
         <sc-for list="{{ areaOptions }}" as="area" hint-placeholder-count="7">
           <button type="button" onClick="{{ area.select }}" style="appearance: none; width: 100%; display: flex; align-items: center; gap: 10px; padding: 9px 10px; border: none; border-radius: 10px; background: {{ area.rowBg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: background 140ms ease-out;" style-hover="background: #EEF7F7;">
             <span style="flex-shrink: 0; width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid {{ area.boxBorder }}; background: {{ area.boxBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ area.tick }}</span>
@@ -92,9 +96,7 @@
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <sc-for list="{{ visibleDoctors }}" as="doc" hint-placeholder-count="3">
           <div style="background: #FFFFFF; border: 1px solid {{ doc.cardBorder }}; border-radius: 18px; padding: 24px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); display: grid; grid-template-columns: 132px 1fr; gap: 24px; align-items: start; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out, border-color 220ms ease-out;" style-hover="transform: translateY(-3px); box-shadow: 0 16px 34px rgba(10,31,44,0.13); border-color: #C3E0DE;">
-            <div style="width: 132px; height: 156px; border-radius: 14px; overflow: hidden; background: #E4F2F2;">
-              <image-slot id="{{ doc.slotId }}" shape="rounded" radius="14" placeholder="Portrait"></image-slot>
-            </div>
+            <div data-r="docphoto" style="width: 132px; height: 156px; border-radius: 14px; overflow: hidden; background: #D7F2F3;">{{ doc.portrait }}</div>
             <div>
               <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 6px;">
                 <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Dr {{ doc.name }}</h3>
@@ -111,7 +113,7 @@
               <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.65; color: #4A5C68; max-width: 620px;">{{ doc.bio }}</p>
               <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                 <button type="button" onClick="{{ doc.request }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid {{ doc.ctaBorder }}; background: {{ doc.ctaBg }}; color: {{ doc.ctaColor }}; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF;" style-active="transform: translateY(1px);">{{ doc.ctaLabel }}</button>
-                <a href="Specialist Profile.dc.html" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Profile</a>
+                <a href="{{ doc.profileHref }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Profile</a>
               </div>
             </div>
           </div>
@@ -130,7 +132,7 @@
             <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 6px;">Requested</div>
             <div style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #06313A;">Dr {{ selectedDoctor }} will read your scan</div>
           </div>
-          <button type="button" style="min-height: 46px; padding: 12px 26px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 18px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458;">Continue to upload</button>
+          <a href="{{ continueHref }}" style="min-height: 46px; padding: 12px 26px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 6px 18px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
         </div>
       </sc-if>
     </div>
@@ -141,7 +143,7 @@
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 44px;">
       <div>
-        <img src="logo-secondread-light.svg" alt="secondread" style="height: 61px; width: 176px; display: block; margin-bottom: 14px">
+        <img src="logo-secondread-light.svg" alt="SecondOpinion Radiology" style="height: 61px; width: 244px; display: block; margin-bottom: 14px">
         <p style="margin: 0; font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.72); max-width: 340px;">Independent subspecialist radiology reporting for patients, families and clinics across the UK and internationally.</p>
       </div>
       <div>
@@ -158,17 +160,17 @@
         <h4 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.72);">Contact</h4>
         <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85);">
           <a href="mailto:info@secondread.co.uk" style="color: rgba(255,255,255,0.85);">info@secondread.co.uk</a>
-          <a href="tel:+441438904272" style="color: rgba(255,255,255,0.85);">01438 904272</a>
+          <a href="tel:+441438904272" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>01438 904272</a>
           <span style="color: rgba(255,255,255,0.72);">Mon–Sun, 09:00–20:00</span>
         </div>
       </div>
     </div>
-    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
+    <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
       <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
       <div style="display: flex; gap: 18px;">
-        <a href="#" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Accessibility</a>
-        <a href="#" style="color: rgba(255,255,255,0.72);">Terms</a>
+        <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
+        <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
+        <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
       </div>
     </div>
   </div>
@@ -187,27 +189,56 @@ const AREAS = [
 
 const MODALITIES = ['MRI', 'CT', 'PET-CT', 'Ultrasound'];
 
-const DOCTORS = [
-  { id: 'mallon', name: 'Dermot Mallon', role: 'Consultant neuroradiologist', hospital: 'NHNN, UCLH', areas: ['brain'], modalities: ['MRI', 'CT'], tags: ['Brain MRI', 'Spine', 'Stroke'], bio: 'Advanced stroke imaging, vasculitis, neurodegeneration and skull-base disorders. PhD, Cambridge.', availability: 'Available today', rank: 0 },
-  { id: 'wassati', name: 'Husam Wassati', role: 'Head & neck and neuroradiology', hospital: "King's College Hospital", areas: ['brain', 'headneck'], modalities: ['MRI', 'CT', 'Ultrasound'], tags: ['Neck', 'Thyroid', 'Skull base'], bio: 'Orbital and ENT imaging, skull base, thyroid and salivary gland disease.', availability: 'Next slot tomorrow', rank: 1 },
-  { id: 'darco', name: "Felice D'Arco", role: 'Paediatric neuroradiologist', hospital: 'Great Ormond Street', areas: ['brain', 'children', 'headneck'], modalities: ['MRI'], tags: ['Children', 'Inner ear', 'Epilepsy'], bio: "Children's brain, inner ear and head & neck imaging. Paediatric epilepsy.", availability: '', rank: 2 },
-  { id: 'alsanjari', name: 'Senan Alsanjari', role: 'Cardiothoracic & oncological radiologist', hospital: 'NHNN', areas: ['chest'], modalities: ['CT', 'PET-CT', 'MRI'], tags: ['Heart', 'Chest CT', 'PET-CT'], bio: 'Heart, chest and PET-CT imaging. Level III accredited cardiac MRI and CT.', availability: 'Available today', rank: 0 },
-  { id: 'tamimi', name: 'Asad Tamimi', role: 'Gastrointestinal & abdominal radiologist', hospital: 'Imperial', areas: ['abdomen', 'chest'], modalities: ['CT', 'MRI', 'PET-CT'], tags: ['Liver', 'Bowel', 'Prostate'], bio: 'Liver, bowel, prostate and post-surgical imaging. Oncological staging.', availability: '', rank: 3 },
-  { id: 'kakar', name: 'Geetanjali Kakar', role: 'Consultant gynaecological radiologist', hospital: 'Imperial', areas: ['abdomen'], modalities: ['MRI', 'Ultrasound'], tags: ['Pelvic MRI', 'Endometriosis', 'Ultrasound'], bio: 'Pelvic MRI and ultrasound. Endometriosis and gynaecological oncology.', availability: 'Next slot tomorrow', rank: 1 },
-  { id: 'rajakulasingam', name: 'Ramanan Rajakulasingam', role: 'Musculoskeletal & sarcoma radiologist', hospital: 'RNOH', areas: ['bones'], modalities: ['MRI', 'CT', 'Ultrasound'], tags: ['Joints', 'Sarcoma', 'Sports injury'], bio: 'Bones, joints and soft tissue. Sarcoma and complex orthopaedic imaging.', availability: '', rank: 2 },
-  { id: 'okoye', name: 'Chidi Okoye', role: 'Musculoskeletal radiologist', hospital: 'Nuffield Orthopaedic Centre', areas: ['bones'], modalities: ['MRI', 'CT'], tags: ['Spine', 'Shoulder', 'Knee'], bio: 'Degenerative spine, sports injury and post-operative joint imaging.', availability: 'Next slot tomorrow', rank: 1 },
-  { id: 'shah', name: 'Priya Shah', role: 'Uroradiologist', hospital: "Guy's and St Thomas'", areas: ['abdomen'], modalities: ['MRI', 'CT', 'Ultrasound'], tags: ['Kidney', 'Bladder', 'Prostate MRI'], bio: 'Kidney, bladder and prostate imaging, including multiparametric prostate MRI.', availability: 'Available today', rank: 0 },
-  { id: 'taufik', name: 'Hebah Taufik', role: 'Consultant breast radiologist', hospital: 'London', areas: ['breast'], modalities: ['MRI', 'Ultrasound'], tags: ['Breast MRI', 'Mammography', 'Ultrasound'], bio: 'Breast MRI, mammography and ultrasound. Screening and diagnostic imaging.', availability: 'Available today', rank: 0 }
-];
+/* The roster lives in consultants.js so this page, the landing carousel and
+   the profile pages can never drift apart. */
+const DOCTORS = CONSULTANTS;
+
+// Carried in from checkout, and handed straight back
+// so picking a different consultant does not reset the order.
+function inboundOrder() {
+  var out = {};
+  try {
+    var q = new URLSearchParams(window.location.search);
+    ['scan', 'area', 'speed', 'addons'].forEach(function (k) {
+      var v = q.get(k);
+      if (v) out[k] = v;
+    });
+  } catch (e) {}
+  return out;
+}
+
+function startFlowHref(extra) {
+  var params = Object.assign(inboundOrder(), extra || {});
+  var q = new URLSearchParams();
+  Object.keys(params).forEach(function (k) { if (params[k]) q.set(k, params[k]); });
+  var qs = q.toString();
+  return 'Start Flow.dc.html' + (qs ? '?' + qs : '');
+}
 
 class Component extends DCLogic {
-  state = { area: 'brain', modalities: [], requested: '' };
+  state = { area: inboundOrder().area || 'brain', modalities: [], requested: '' };
 
   tick(size, width) {
     return React.createElement('svg', {
       width: size, height: size, viewBox: '0 0 24 24', fill: 'none',
       stroke: 'currentColor', strokeWidth: width || 3, strokeLinecap: 'round', strokeLinejoin: 'round'
     }, React.createElement('path', { d: 'M20 6 9 17l-5-5' }));
+  }
+
+  portrait(d) {
+    if (d.photo) {
+      return React.createElement('img', {
+        src: d.photo, alt: 'Dr ' + d.name, loading: 'lazy',
+        style: { width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 50%', display: 'block' }
+      });
+    }
+    return React.createElement('div', {
+      style: {
+        width: '100%', height: '100%', display: 'flex', alignItems: 'center',
+        justifyContent: 'center', background: '#D7F2F3', color: '#0D6E70',
+        fontFamily: "'Montserrat', sans-serif", fontSize: '34px', fontWeight: 700
+      }
+    }, d.initials);
   }
 
   matches(d) {
@@ -254,13 +285,15 @@ class Component extends DCLogic {
       resultHeading: visible.length + (visible.length === 1 ? ' consultant reads ' : ' consultants read ') + (areaLabel ? areaLabel.toLowerCase() + ' imaging' : 'across all body areas'),
       noResults: visible.length === 0,
       selectedDoctor: s.requested,
+      continueHref: startFlowHref({ consultant: (DOCTORS.find(d => d.name === s.requested) || {}).id }),
       visibleDoctors: visible.map(d => {
         const on = s.requested === d.name;
         return {
           ...d,
-          slotId: 'portrait-' + d.id,
+          portrait: this.portrait(d),
+          profileHref: 'Specialist Profile.dc.html?id=' + encodeURIComponent(d.id),
           cardBorder: on ? '#0D6E70' : '#E2E9EC',
-          ctaLabel: on ? 'Requested' : 'Request Dr ' + d.name.split(' ').slice(-1)[0],
+          ctaLabel: on ? 'Requested' : 'Request Dr ' + consultantSurname(d),
           ctaBg: on ? '#0D6E70' : '#FFFFFF',
           ctaColor: on ? '#FFFFFF' : '#095458',
           ctaBorder: '#0D6E70',

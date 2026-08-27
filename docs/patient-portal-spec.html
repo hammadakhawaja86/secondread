@@ -1,0 +1,1202 @@
+<title>Second Opinion Patient Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#F3F6F5;
+  --surface:#FFFFFF;
+  --surface-2:#EAEFEE;
+  --ink:#14211F;
+  --ink-2:#3A4B48;
+  --muted:#65756F;
+  --rule:#D9E1DF;
+  --rule-strong:#BFCCC9;
+  --accent:#0B5C60;
+  --accent-ink:#083F42;
+  --accent-wash:#E2EFEF;
+  --signal:#8F5410;
+  --signal-wash:#F7EDDF;
+  --ok:#2C6349;
+  --ok-wash:#E2EEE8;
+  --warn:#8F5410;
+  --warn-wash:#F7EDDF;
+  --stop:#93332E;
+  --stop-wash:#F7E5E3;
+  --shadow:0 1px 2px rgba(20,33,31,.05), 0 8px 24px -16px rgba(20,33,31,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1514;
+    --surface:#161F1E;
+    --surface-2:#1D2827;
+    --ink:#E7EDEB;
+    --ink-2:#C0CCC9;
+    --muted:#8C9C98;
+    --rule:#26332F;
+    --rule-strong:#35443F;
+    --accent:#7FC5C6;
+    --accent-ink:#A8DBDB;
+    --accent-wash:#122A2B;
+    --signal:#D9A45F;
+    --signal-wash:#2B2013;
+    --ok:#7FBE9C;
+    --ok-wash:#14261E;
+    --warn:#D9A45F;
+    --warn-wash:#2B2013;
+    --stop:#DE9089;
+    --stop-wash:#2C1917;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1514;
+  --surface:#161F1E;
+  --surface-2:#1D2827;
+  --ink:#E7EDEB;
+  --ink-2:#C0CCC9;
+  --muted:#8C9C98;
+  --rule:#26332F;
+  --rule-strong:#35443F;
+  --accent:#7FC5C6;
+  --accent-ink:#A8DBDB;
+  --accent-wash:#122A2B;
+  --signal:#D9A45F;
+  --signal-wash:#2B2013;
+  --ok:#7FBE9C;
+  --ok-wash:#14261E;
+  --warn:#D9A45F;
+  --warn-wash:#2B2013;
+  --stop:#DE9089;
+  --stop-wash:#2C1917;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Public Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px 120px}
+.layout{display:grid;grid-template-columns:212px minmax(0,1fr);gap:56px;align-items:start}
+@media (max-width:1000px){.layout{grid-template-columns:minmax(0,1fr);gap:0}.rail{display:none}}
+
+/* ---- masthead ---- */
+.mast{border-bottom:1px solid var(--rule);padding:64px 0 34px;margin-bottom:44px}
+.eyebrow{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin:0 0 20px;
+}
+h1{
+  font-family:"Newsreader", Georgia, "Times New Roman", serif;
+  font-weight:500;font-size:clamp(2.4rem,5.2vw,3.9rem);line-height:1.04;
+  letter-spacing:-.02em;margin:0 0 18px;max-width:19ch;text-wrap:balance;
+}
+.standfirst{font-size:1.12rem;color:var(--ink-2);max-width:64ch;margin:0 0 30px}
+.meta{display:flex;flex-wrap:wrap;gap:0 34px;font-size:13px;color:var(--muted);
+  font-family:"IBM Plex Mono", ui-monospace, monospace;}
+.meta b{color:var(--ink-2);font-weight:500}
+
+/* ---- toc ---- */
+.rail{position:sticky;top:0;padding-top:64px;max-height:100vh;overflow-y:auto}
+.rail h2{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 14px;font-weight:500;
+}
+.rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;counter-reset:toc}
+.rail a{
+  display:flex;gap:9px;color:var(--ink-2);text-decoration:none;font-size:13.5px;line-height:1.35;
+  border-left:2px solid transparent;padding-left:10px;margin-left:-12px;
+}
+.rail a:hover{color:var(--accent);border-left-color:var(--accent)}
+.rail a span{font-family:"IBM Plex Mono", monospace;font-size:11px;color:var(--muted);padding-top:2px}
+.toc-inline{display:none}
+@media (max-width:1000px){
+  .toc-inline{display:block;background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px 22px;margin-bottom:44px}
+  .toc-inline ol{margin:0;padding-left:20px;font-size:14.5px;display:flex;flex-direction:column;gap:6px}
+  .toc-inline a{color:var(--ink-2);text-decoration:none}
+  .toc-inline h2{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:500}
+}
+
+/* ---- sections ---- */
+section{margin:0 0 76px;scroll-margin-top:24px}
+.sec-num{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;font-size:11.5px;letter-spacing:.14em;
+  color:var(--accent);text-transform:uppercase;display:block;margin-bottom:10px;
+}
+h2.sec{
+  font-family:"Newsreader", Georgia, serif;font-weight:500;font-size:clamp(1.7rem,3.2vw,2.35rem);
+  line-height:1.12;letter-spacing:-.015em;margin:0 0 8px;text-wrap:balance;
+  padding-bottom:16px;border-bottom:1px solid var(--rule-strong);
+}
+h3{
+  font-family:"Public Sans",sans-serif;font-weight:600;font-size:1.09rem;letter-spacing:-.005em;
+  margin:38px 0 10px;color:var(--ink);
+}
+h4{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:11.5px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;
+}
+p{margin:0 0 15px;max-width:70ch}
+.lede{font-size:1.05rem;color:var(--ink-2);max-width:68ch;margin-top:18px}
+ul,ol{max-width:70ch;padding-left:22px;margin:0 0 16px}
+li{margin-bottom:7px}
+li::marker{color:var(--muted)}
+strong{font-weight:600}
+em{font-style:italic}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+code{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.875em;
+  background:var(--surface-2);padding:1px 5px;border-radius:2px;color:var(--ink-2);
+}
+hr{border:0;border-top:1px solid var(--rule);margin:34px 0}
+
+/* ---- tables ---- */
+.tw{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:740px;font-size:14.2px;line-height:1.5}
+th{
+  text-align:left;font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:10.8px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--muted);
+  padding:12px 16px;border-bottom:1px solid var(--rule-strong);vertical-align:bottom;white-space:nowrap;
+}
+td{padding:13px 16px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td b, td strong{color:var(--ink)}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---- chips ---- */
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-family:"IBM Plex Mono",monospace;
+  font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:2px;
+  white-space:nowrap;border:1px solid transparent;
+}
+.chip.act{background:var(--warn-wash);color:var(--warn);border-color:var(--warn)}
+.chip.sub{background:var(--surface-2);color:var(--ink-2);border-color:var(--rule-strong)}
+.chip.mat{background:var(--accent-wash);color:var(--accent-ink);border-color:var(--accent)}
+.chip.rev{background:var(--accent-wash);color:var(--accent-ink);border-color:var(--accent)}
+.chip.rdy{background:var(--ok-wash);color:var(--ok);border-color:var(--ok)}
+.chip.fol{background:var(--surface-2);color:var(--ink-2);border-color:var(--rule-strong)}
+
+/* ---- callouts ---- */
+.note{
+  border-left:2px solid var(--accent);background:var(--surface);
+  padding:18px 22px;margin:22px 0;border-radius:0 3px 3px 0;box-shadow:var(--shadow);
+}
+.note.safety{border-left-color:var(--stop)}
+.note.privacy{border-left-color:var(--signal)}
+.note h4{margin-top:0}
+.note p:last-child{margin-bottom:0}
+.note p{max-width:66ch}
+
+/* ---- copy blocks (verbatim UI strings) ---- */
+.copy{
+  background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  padding:16px 18px;margin:14px 0;box-shadow:var(--shadow);
+}
+.copy dl{margin:0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:8px 18px;font-size:14.4px}
+.copy dt{
+  font-family:"IBM Plex Mono",monospace;font-size:10.8px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding-top:4px;
+}
+.copy dd{margin:0;color:var(--ink)}
+@media (max-width:620px){.copy dl{grid-template-columns:minmax(0,1fr);gap:2px 0}.copy dd{margin-bottom:12px}}
+
+/* ---- wireframe / mermaid ---- */
+pre.wire{
+  overflow-x:auto;background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  padding:22px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;line-height:1.5;
+  color:var(--ink-2);margin:20px 0 26px;box-shadow:var(--shadow);
+}
+pre.mermaid{
+  background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  padding:22px;overflow-x:auto;margin:20px 0 26px;text-align:center;box-shadow:var(--shadow);
+}
+
+/* ---- cards ---- */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin:20px 0 26px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px 22px;box-shadow:var(--shadow)}
+.card h4{margin-top:0}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.card ul{padding-left:19px}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--rule-strong);padding-top:26px;margin-top:20px;color:var(--muted);font-size:13.5px}
+footer p{max-width:70ch}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">Product design specification &nbsp;·&nbsp; Second Opinion Radiology UK</p>
+  <h1>A calm place to send your scan and get an answer</h1>
+  <p class="standfirst">An account-based patient portal that replaces the current enquiry-and-email service. It takes a patient from the first anxious click through upload, consultant matching, expert review and a published second-opinion report — with a radiologist-authored comparison against the report they already have.</p>
+  <div class="meta">
+    <span><b>Version</b> 1.0 — for handoff</span>
+    <span><b>Audience</b> UI design + engineering</span>
+    <span><b>Scope</b> Patient-facing only</span>
+    <span><b>Regulatory</b> UK GDPR / DSPT</span>
+  </div>
+</header>
+
+<div class="layout">
+
+<nav class="rail" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s1"><span>01</span> Product decisions</a></li>
+    <li><a href="#s2"><span>02</span> Information architecture</a></li>
+    <li><a href="#s3"><span>03</span> End-to-end journey</a></li>
+    <li><a href="#s4"><span>04</span> Exception paths</a></li>
+    <li><a href="#s5"><span>05</span> Status &amp; notifications</a></li>
+    <li><a href="#s6"><span>06</span> Patient dashboard</a></li>
+    <li><a href="#s7"><span>07</span> New case &amp; upload</a></li>
+    <li><a href="#s8"><span>08</span> Report viewer</a></li>
+    <li><a href="#s9"><span>09</span> Report comparison</a></li>
+    <li><a href="#s10"><span>10</span> Website changes</a></li>
+    <li><a href="#s11"><span>11</span> CTA label set</a></li>
+    <li><a href="#s12"><span>12</span> Safety &amp; privacy</a></li>
+    <li><a href="#s13"><span>13</span> MVP vs phase two</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<div class="toc-inline">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s1">Product decisions</a></li>
+    <li><a href="#s2">Information architecture</a></li>
+    <li><a href="#s3">End-to-end journey</a></li>
+    <li><a href="#s4">Exception paths</a></li>
+    <li><a href="#s5">Status &amp; notifications</a></li>
+    <li><a href="#s6">Patient dashboard</a></li>
+    <li><a href="#s7">New case &amp; upload</a></li>
+    <li><a href="#s8">Report viewer</a></li>
+    <li><a href="#s9">Report comparison</a></li>
+    <li><a href="#s10">Website changes</a></li>
+    <li><a href="#s11">CTA label set</a></li>
+    <li><a href="#s12">Safety &amp; privacy</a></li>
+    <li><a href="#s13">MVP vs phase two</a></li>
+  </ol>
+</div>
+
+<!-- ============ 01 ============ -->
+<section id="s1">
+  <span class="sec-num">01</span>
+  <h2 class="sec">Product decisions taken up front</h2>
+  <p class="lede">These are the calls that shape everything downstream. They are decisions, not options — if any of them is wrong for the business, changing it changes the spec.</p>
+
+  <h3>Account before upload, not after — and passwordless</h3>
+  <p>Patients create an account at the start of the case, not after paying. Medical images and reports must never sit in an anonymous session that cannot be recovered, and a half-finished case with a real account behind it is a case the clinical team can chase. The account is created from a name and an email address alone: a <strong>pending</strong> account is written immediately, a six-digit code is emailed, and the account activates when the code comes back. <strong>There is no password anywhere in the product</strong> — nothing to choose badly, nothing to reuse from a breached site, nothing to reset. The same code screen serves signing in. Nothing about the patient's health is asked before the account exists.</p>
+
+  <h3>Pay last, upload first</h3>
+  <p>Payment sits at the end of step three, after the images are in and validated and the clinical context is complete. Taking money before knowing whether the imaging is usable creates refunds, and refunds on a health service create complaints. An indicative price is visible in the order summary throughout; the firm price appears once a turnaround is chosen, and never changes after submission without an explicit conversation.</p>
+
+  <h3>The patient never picks a radiologist</h3>
+  <p>There is no "choose a specialist" step, and no consultant is pinned into the flow by a link from a profile page. Matching a scan to the right subspecialist is a triage decision made from the clinical context, and handing it to an anxious patient both overstates what they can judge and makes the service look like a marketplace. Consultant profiles stay public as evidence of who does the work; a link from one carries the <em>body area</em> that consultant covers, never their identity. The named consultant, their subspecialty and the delivery timeframe are all confirmed on screen before any payment is taken.</p>
+
+  <h3>The patient sees a service, not a workflow</h3>
+  <p>Internally a case moves through triage, allocation, reporting, quality review and release. The patient sees six states. Internal sub-states never leak into patient-facing copy, and no status ever hints at a clinical finding — <em>"Under expert review"</em> means the same thing whether the scan is normal or not.</p>
+
+  <h3>Nothing clinical leaves the portal</h3>
+  <p>Emails and push notifications carry no findings, no body part, no scan type and no consultant impression. They say a thing has happened and link to a sign-in. This is both a UK GDPR position and a plain human one — nobody should learn something about their health from a lock screen on a train.</p>
+
+  <h3>Comparison is a clinical artefact, not a diff</h3>
+  <p>The <em>Your report comparison</em> module is authored by the reporting consultant inside the reporting tool. Nothing in it is generated, inferred or auto-matched. Its categories are a fixed clinical vocabulary (§9) so that patients, GPs and the business all read the same word the same way.</p>
+
+  <h3>Not an emergency service, said once and said well</h3>
+  <p>Emergency guidance appears in exactly three places — the case-detail sidebar, the report viewer footer, and the confirmation screen — in a consistent, non-alarmist form. It is never a red banner and never an interstitial.</p>
+  <div class="note safety">
+    <h4>Standing emergency copy</h4>
+    <p><strong>This service is not for urgent symptoms.</strong> A second opinion takes at least 12 hours and is not a substitute for seeing a doctor. If you feel unwell or your symptoms are getting worse, contact your GP, call NHS 111, or in an emergency call 999.</p>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section id="s2">
+  <span class="sec-num">02</span>
+  <h2 class="sec">Information architecture</h2>
+  <p class="lede">Two zones: a public marketing site anyone can read, and an authenticated portal behind a hard boundary. Nothing in the portal is indexable, linkable-without-auth, or shareable by URL alone.</p>
+
+<pre class="wire">PUBLIC SITE                          AUTH                               PORTAL (signed in)
+─────────────────────────            ─────────────────────────          ─────────────────────────────────
+/                Home                /sign-in                           /dashboard        Dashboard
+/how-it-works    How it works        /create-account                    /cases/new        New case (account gate + 3 steps)
+/specialists     Our consultants     /verify-code                       /cases/:id        Case detail
+/pricing         Pricing &amp; turnaround                                   /cases/:id/report Report viewer
+/sample-report   Sample report                                          /cases/:id/report/comparison
+/faq             Questions                                              /cases/:id/messages  Secure messages
+/contact         Contact &amp; enquiry                                      /cases/:id/follow-up Follow-up options
+/about           About us                                               /reports          All my reports
+                                                                        /profile          Personal details
+LEGAL                                                                   /profile/security Sign-in &amp; security
+/privacy   /terms   /accessibility                                      /profile/privacy  Data, consent, deletion
+/cookies   /complaints                                                  /support          Help &amp; contact
+</pre>
+
+  <div class="note">
+    <p>There is no <code>/forgot-password</code>, <code>/reset-password</code> or <code>/check-your-email</code> route, and no password field anywhere in the sitemap. Sign-in and account creation are both passwordless: a six-digit code sent to the patient's email is the only credential, so <code>/verify-code</code> is the single shared destination for entering it, whichever route sent it.</p>
+  </div>
+
+  <h3>Sitemap rules</h3>
+  <ul>
+    <li><strong>One case, one URL.</strong> <code>/cases/:id</code> is the spine of the experience. Every notification, every email, every dashboard card resolves to it.</li>
+    <li><strong>The report is a child of the case, not a separate object.</strong> A patient who bookmarks the report and returns after sign-in lands on the report, not the dashboard.</li>
+    <li><strong>Deep links survive sign-out.</strong> Any portal URL hit while signed out goes to <code>/sign-in?next=…</code> and returns the patient to where they were aiming. The <code>next</code> parameter is validated against an allow-list of portal routes — never an open redirect, and never carrying a case ID into a page title or a browser history entry a shared device can read.</li>
+    <li><strong>No case data in URLs beyond the opaque ID.</strong> No scan type, no body area, no name.</li>
+    <li><strong>Support is global, messages are per-case.</strong> "How do I download my report?" is <code>/support</code>. "Can you clarify the finding on my L4?" is <code>/cases/:id/messages</code>, because it needs to reach the reporting consultant with the case attached.</li>
+    <li><strong><code>/specialists</code> is a directory, not a picker.</strong> It exists for trust and transparency — patients can see who might review a case like theirs — but nothing on it lets a patient choose their own reviewer. Its links into the flow carry a body area, never a consultant identity (§1, "The patient never picks a radiologist").</li>
+  </ul>
+
+  <h3>Navigation model inside the portal</h3>
+  <p>Desktop uses a persistent top bar with the account menu on the right and no left sidebar — patients have one to three cases, not a workspace, and a sidebar would be mostly empty. Mobile uses the same top bar with the account menu collapsed into a sheet. There is no bottom tab bar; the portal is not used often enough to earn one.</p>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="s3">
+  <span class="sec-num">03</span>
+  <h2 class="sec">End-to-end patient journey</h2>
+  <p class="lede">The happy path from first visit to a report read, downloaded and shared with a GP. Exception paths branch out of this and are specified in §4.</p>
+
+<pre class="mermaid">
+flowchart TD
+    A["Website visit"] --> B["Get a second opinion"]
+    B --> C{"Signed in?"}
+    C -->|"Yes"| H{"Case in progress?"}
+    C -->|"No"| E["Name and email"]
+    E --> E2{"Email already an account?"}
+    E2 -->|"Yes"| D["Sign in to continue your saved case"]
+    E2 -->|"No"| F["Pending account + six-digit code"]
+    F --> F2["Draft case saved"]
+    F2 --> F3["Code verified: account activated"]
+    F3 --> K
+    D --> H
+    H -->|"Yes"| I["Dashboard"]
+    H -->|"No"| K
+    I --> K
+    K["Step 1 — Upload your scans"] --> L["File and identity validation"]
+    L -->|"Incomplete or identity mismatch"| M["Action needed: fix uploads"]
+    M --> K
+    L -->|"Passed"| J["Step 2 — Tell us about your case"]
+    J --> J2{"Invite a GP or clinician?"}
+    J2 -->|"Yes"| J3["Secure single-case link, 7 days"]
+    J3 --> J4["Clinician completes their section"]
+    J2 -->|"No"| N
+    J4 --> N
+    N["Step 3 — Get your expert report"] --> N2["Consultant, expertise and timeframe confirmed"]
+    N2 --> O["Consent and payment"]
+    O -->|"Payment declined"| P["Retry or change method"]
+    P --> O
+    O -->|"Paid"| Q["Submitted"]
+    Q --> R["Being matched to a subspecialist"]
+    R --> S["Under expert review"]
+    S -->|"Clarification needed"| T["Action needed: answer a question"]
+    T --> S
+    S --> U["Clinical quality check"]
+    U --> V["Report ready"]
+    V --> W["Read report + Your report comparison"]
+    W --> X["Download PDF"]
+    W --> Y["Share securely with GP or clinician"]
+    W --> Z["Follow-up: written questions or 15-min call"]
+</pre>
+
+  <h3>Phase timings the patient is told about</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Phase</th><th>Patient-visible?</th><th>Clock</th><th>What the patient is told</th></tr></thead>
+    <tbody>
+      <tr><td><b>Submitted</b></td><td>Yes</td><td class="num">Starts at payment</td><td>The countdown begins the moment payment clears, not when a consultant picks it up.</td></tr>
+      <tr><td><b>Being matched</b></td><td>Yes</td><td class="num">Typically &lt; 2 h</td><td>Named consultant appears on the case as soon as allocation happens.</td></tr>
+      <tr><td><b>Under expert review</b></td><td>Yes</td><td class="num">Bulk of the window</td><td>Expected delivery time is shown as a date and time, never a percentage bar.</td></tr>
+      <tr><td>Clinical quality check</td><td>No — folded into review</td><td class="num">Final ~10%</td><td>Not exposed. Splitting it out invites "why is it stuck in checking?"</td></tr>
+      <tr><td><b>Report ready</b></td><td>Yes</td><td class="num">Within the chosen window</td><td>Notification + dashboard promotion + email that carries no findings.</td></tr>
+      <tr><td><b>Follow-up available</b></td><td>Yes</td><td class="num">30 days</td><td>Written questions included; a call is a paid add-on.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <h4>The clock rule</h4>
+    <p>If the clinical team asks the patient a question, the turnaround clock <strong>pauses</strong> and the case shows <span class="chip act">Action needed</span>. The patient is told this explicitly at the moment they are asked, so a delay they caused never reads as a service failure — and so the business is not held to a 12-hour promise while waiting on a reply.</p>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section id="s4">
+  <span class="sec-num">04</span>
+  <h2 class="sec">Exception paths</h2>
+  <p class="lede">Each exception is specified as: what triggers it, what the patient sees, what unblocks it, and what the clock does. Every one of them resolves into the dashboard's <span class="chip act">Action needed</span> queue rather than into an email the patient has to go find.</p>
+
+  <h3>4.1 Existing patient signs in</h3>
+  <p><strong>Trigger:</strong> a returning patient clicks <em>Get a second opinion</em> or <em>Patient dashboard</em>, or types an email into the account gate that already belongs to an account.</p>
+  <p><strong>Behaviour:</strong> sign-in is passwordless throughout — a six-digit code sent to the patient's email, entered at <code>/verify-code</code>, is the only credential. If they have a case in flight, they land on the dashboard, not on step 1 of a new one; the new-case CTA carries a quieter label, <em>Start another case</em>. Starting a new case from scratch begins at the step 0 account gate (§7.2); a signed-in patient skips straight past it into step 1, and their name, date of birth and contact details are pre-filled from the profile as a read-only summary with an <em>Edit</em> link, so step 1 opens on the upload zone rather than a re-typing exercise. If the email entered at the gate already belongs to an account, the gate shows exactly: <em>An account already exists for this email. Please sign in to continue your saved case.</em>, with a direct link into the sign-in code flow — never a password prompt.</p>
+  <p><strong>Clock:</strong> unaffected. Cases are independent; a second case does not queue behind the first.</p>
+
+  <h3>4.2 Incomplete or unsupported upload</h3>
+  <p><strong>Trigger:</strong> validation at step 1 (Upload your scans) finds a file that is not DICOM, PDF or a supported image; a ZIP that unpacks to nothing readable; a study with too few images to be a full series; a mismatch between the DICOM patient identity and the account; or a file that fails a virus scan.</p>
+  <p><strong>Behaviour:</strong> the file row turns to an error state <em>in place</em>, alongside the files that succeeded. The patient is never bounced out of the step or shown a modal. Copy names the specific problem and the specific fix (§7.4). If the patient cannot resolve it, <em>Send me my files by post or WeTransfer instead</em> opens a support thread and the case is held as a draft.</p>
+  <p><strong>Clock:</strong> not started. Nothing has been paid for.</p>
+
+  <h3>4.3 Missing original report</h3>
+  <p><strong>Trigger:</strong> the patient reaches the end of step 1 without uploading a radiology report.</p>
+  <p><strong>Behaviour:</strong> not a blocker. A single, plainly worded choice: <em>I don't have the original report</em> — which reveals a short field asking what the patient was told and by whom. This does not offer to request the report from the provider on the patient's behalf; that is not an active operational service, so the flow instead points to the same self-service guidance shown at step 1 for missing images (contact the hospital or imaging provider's records or PACS department directly). The patient is told once, without drama, that the comparison module is only produced when an original report exists.</p>
+  <div class="copy">
+    <dl>
+      <dt>Inline note</dt><dd>Without the original report, your consultant will still give you a full independent read — but we won't be able to include the side-by-side comparison, because there is nothing to compare against.</dd>
+    </dl>
+  </div>
+  <p><strong>Clock:</strong> normal. The case proceeds as an independent read.</p>
+
+  <h3>4.4 Prior scan available for comparison</h3>
+  <p><strong>Trigger:</strong> the patient indicates at step 1 that they have earlier imaging of the same body area.</p>
+  <p><strong>Behaviour:</strong> an optional <em>Prior studies</em> upload zone appears, with its own date field per study. Prior imaging is labelled distinctly throughout the case and in the report viewer, and never merged with the current study. The report gains an <em>Interval change</em> line in the comparison module. Copy tells the patient why this is worth the extra effort: <em>Earlier scans let your consultant say whether something has changed, not just what is there now.</em></p>
+  <p><strong>Clock:</strong> normal. Prior studies do not extend the window.</p>
+
+  <h3>4.5 Payment failure</h3>
+  <p><strong>Trigger:</strong> card declined, 3-D Secure abandoned, or the payment provider errors, at the consent-and-payment action inside step 3.</p>
+  <p><strong>Behaviour:</strong> the patient stays on step 3 with everything intact — uploads, answers, consent, and the confirmed consultant and timeframe. The case is saved as a draft immediately on failure, so a closed tab loses nothing. The error distinguishes the three cases, because the fix differs.</p>
+  <div class="copy">
+    <dl>
+      <dt>Declined</dt><dd>Your bank declined this payment. Nothing has been charged. Try another card, or contact your bank and try again — your case is saved.</dd>
+      <dt>3DS dropped</dt><dd>We didn't get confirmation from your bank. Nothing has been charged. Try again and complete the check in your banking app.</dd>
+      <dt>Provider error</dt><dd>Something went wrong on our side and the payment didn't go through. Nothing has been charged. Try again in a moment, or contact us and we'll take payment another way.</dd>
+    </dl>
+  </div>
+  <p><strong>Clock:</strong> not started. The countdown only begins on a cleared payment.</p>
+
+  <h3>4.6 Clinical team needs clarification</h3>
+  <p><strong>Trigger:</strong> the consultant or the clinical coordinator needs information before they can report — a missing sequence, an unclear clinical question, or the date of a symptom.</p>
+  <p><strong>Behaviour:</strong> the case flips to <span class="chip act">Action needed</span>, the dashboard promotes it to the top, and a task appears with the specific question. The patient replies in the case thread or uploads the missing file directly from the task. The question is written by a clinician but reviewed against a plain-English guide — no abbreviations, no "please provide the axial T2".</p>
+  <div class="copy">
+    <dl>
+      <dt>Task title</dt><dd>Your consultant needs one more thing</dd>
+      <dt>Body</dt><dd>Dr [Name] has started reviewing your scan and needs a little more information before finishing your report. Answering now keeps your report on time.</dd>
+      <dt>Clock note</dt><dd>We've paused your delivery time while we wait. It restarts as soon as you reply.</dd>
+    </dl>
+  </div>
+  <p><strong>Clock:</strong> <strong>paused</strong> on entry, restarted on reply, and the new expected delivery time is recalculated and shown immediately.</p>
+
+  <h3>4.7 Report is ready</h3>
+  <p><strong>Trigger:</strong> the report passes clinical quality check and is released.</p>
+  <p><strong>Behaviour:</strong> in-app notification, email, and optional SMS — all content-free. The dashboard case card becomes the primary object on the page with a single dominant action, <em>Read my report</em>. First open of the report is timestamped and recorded in the case audit trail; if the report has not been opened in 48 hours, one reminder is sent, and one only.</p>
+  <p><strong>Clock:</strong> stops. Delivery time is replaced by <em>Delivered [date, time]</em>, and the follow-up window begins.</p>
+
+  <h3>4.8 No material difference from the original report</h3>
+  <p><strong>Trigger:</strong> the consultant selects <code>no_material_difference</code> as the overall comparison outcome.</p>
+  <p><strong>Behaviour:</strong> this is designed as a <em>good result</em>, not an empty state. The comparison module leads with a full-width reassurance panel above the three columns, and the columns still render, because the value the patient paid for is the independent confirmation itself.</p>
+  <div class="copy">
+    <dl>
+      <dt>Heading</dt><dd>No material difference identified</dd>
+      <dt>Body</dt><dd>Your consultant reviewed your images independently and reached the same conclusions as the original report. That is a meaningful result: two specialists, working separately, agree on what your scan shows.</dd>
+      <dt>Next step</dt><dd>Take this report to the doctor looking after you. It supports the plan you have already been given.</dd>
+    </dl>
+  </div>
+  <div class="note">
+    <p>Never render this outcome with a neutral-grey empty-state icon, a "no changes found" label, or language that implies the patient wasted their money. The visual weight is the same as any other outcome and the accent colour is the reassuring one.</p>
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="s5">
+  <span class="sec-num">05</span>
+  <h2 class="sec">Status and notification system</h2>
+  <p class="lede">Six patient-facing statuses. Every internal state maps into exactly one of them. The chip, the supporting sentence, the progress position and the primary action are fixed per status and are identical on the dashboard card, the case detail header and the reports list.</p>
+
+  <h3>The six statuses</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Chip</th><th>Patient-facing title</th><th>Supporting text</th><th>Position</th><th>Primary action</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="chip act">Action needed</span></td>
+        <td><b>Action needed</b></td>
+        <td>We need one thing from you before we can carry on. It only takes a minute.</td>
+        <td class="num">Pauses at current step</td>
+        <td><em>See what's needed</em></td>
+      </tr>
+      <tr>
+        <td><span class="chip sub">Submitted</span></td>
+        <td><b>We've got everything</b></td>
+        <td>Your scan and details are safely with us. We're getting your case ready for a consultant.</td>
+        <td class="num">Stage 1 of 4</td>
+        <td><em>View your case</em></td>
+      </tr>
+      <tr>
+        <td><span class="chip mat">Being matched</span></td>
+        <td><b>Finding the right specialist</b></td>
+        <td>We're matching your scan to a consultant who specialises in this part of the body.</td>
+        <td class="num">Stage 2 of 4</td>
+        <td><em>View your case</em></td>
+      </tr>
+      <tr>
+        <td><span class="chip rev">Under expert review</span></td>
+        <td><b>Your consultant is reviewing your scan</b></td>
+        <td>Dr [Name] is reading your images in full. Your report is expected by [day, time].</td>
+        <td class="num">Stage 3 of 4</td>
+        <td><em>View your case</em></td>
+      </tr>
+      <tr>
+        <td><span class="chip rdy">Report ready</span></td>
+        <td><b>Your second opinion is ready</b></td>
+        <td>Your consultant's full report is here, with a plain-English explanation of what it means.</td>
+        <td class="num">Stage 4 of 4 — complete</td>
+        <td><em>Read my report</em></td>
+      </tr>
+      <tr>
+        <td><span class="chip fol">Follow-up available</span></td>
+        <td><b>Questions about your report?</b></td>
+        <td>You can send written questions to your consultant, or book a 15-minute call, until [date].</td>
+        <td class="num">After delivery</td>
+        <td><em>Ask a question</em></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Notification copy</h3>
+  <p>Email subjects carry no clinical content, no body part and no scan type. In-app messages may name the consultant and the case reference, because the patient is already authenticated.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Status</th><th>Email subject</th><th>Email body (first line)</th><th>In-app</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>Submitted</b></td>
+        <td>Your case is with us — [REF]</td>
+        <td>Thanks — we have everything we need. Sign in to follow your case; we'll email you at each stage.</td>
+        <td>Case [REF] submitted. Expected by [day, time].</td>
+      </tr>
+      <tr>
+        <td><b>Being matched</b></td>
+        <td>— no email —</td>
+        <td>Not notified by email. It is a short state, and an email here reads as filler.</td>
+        <td>We're matching your case to a specialist.</td>
+      </tr>
+      <tr>
+        <td><b>Under expert review</b></td>
+        <td>A consultant is now reviewing your case — [REF]</td>
+        <td>Your case has been assigned to a consultant radiologist. Sign in to see who, and when to expect your report.</td>
+        <td>Dr [Name] is reviewing your scan. Expected by [day, time].</td>
+      </tr>
+      <tr>
+        <td><b>Action needed</b></td>
+        <td>We need one thing from you — [REF]</td>
+        <td>There's a task waiting in your dashboard. We've paused your delivery time until you reply.</td>
+        <td>Action needed: [task title].</td>
+      </tr>
+      <tr>
+        <td><b>Report ready</b></td>
+        <td>Your report is ready — [REF]</td>
+        <td>Your second-opinion report is available now. Sign in to read it, download it, or share it with your doctor.</td>
+        <td>Your report is ready.</td>
+      </tr>
+      <tr>
+        <td><b>Follow-up available</b></td>
+        <td>Your follow-up window closes on [date] — [REF]</td>
+        <td>You can still send written questions to your consultant until [date]. Sign in to ask.</td>
+        <td>Follow-up available until [date].</td>
+      </tr>
+      <tr>
+        <td><b>Payment failed</b></td>
+        <td>Your case is saved, but payment didn't go through</td>
+        <td>Nothing has been charged. Your uploads and answers are saved — sign in to finish when you're ready.</td>
+        <td>Payment didn't go through. Nothing charged.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note privacy">
+    <h4>Push and lock-screen rule</h4>
+    <p>If push or SMS is added, the payload is a fixed, non-clinical string — <strong>"Second Opinion Radiology: there's an update on your case. Sign in to view."</strong> — with the case reference and everything else fetched only after authentication. No body part, no scan type, no consultant name, no status verb that implies a finding. The same string is used for every event type, so the notification itself carries no signal.</p>
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section id="s6">
+  <span class="sec-num">06</span>
+  <h2 class="sec">Patient dashboard</h2>
+  <p class="lede">Desktop-first, two columns, 1140&nbsp;px content maximum. The dashboard answers one question in the first viewport — <em>what is happening with my scan, and is anything waiting on me?</em> Everything else is below that answer.</p>
+
+  <h3>6.1 Desktop wireframe</h3>
+<pre class="wire">┌──────────────────────────────────────────────────────────────────────────────────────────┐
+│  ◐ Second Opinion Radiology            Dashboard   Reports   Support     🔔²  Sarah M ▾   │  A
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+   Good afternoon, Sarah                                       ┌──────────────────────────┐
+   You have 1 case in progress.                                │  Start a new case     →  │  B
+                                                               └──────────────────────────┘
+┌───────────────────────────────────────────────────────────┐ ┌──────────────────────────┐
+│  ⚠ ACTION NEEDED                                          │ │  SECURE MESSAGES         │  F
+│  Your consultant needs one more thing                     │ │  Dr Patel · 2 days ago   │
+│  Answering now keeps your report on time.                 │ │  "Thanks — that's..."    │
+│  [ See what's needed ]                                    │ │  [ Open messages ]       │
+└───────────────────────────────────────────────────────────┘ └──────────────────────────┘
+                                                     C
+┌───────────────────────────────────────────────────────────┐ ┌──────────────────────────┐
+│  CASE SR-2026-4417                    ⏱ 24-hour           │ │  YOUR DETAILS            │  G
+│                                                           │ │  Personal details      → │
+│  Your consultant is reviewing your scan                   │ │  Sign-in & security    → │
+│  Dr [Name] · Consultant Neuroradiologist                  │ │  Privacy & your data   → │
+│                                                           │ └──────────────────────────┘
+│  MRI · Brain and spine · Uploaded 14 Mar                  │
+│                                                           │ ┌──────────────────────────┐
+│  ●────────●────────◉─ ─ ─ ─ ○                             │ │  NOT AN EMERGENCY        │  H
+│  Got it  Matched  Reviewing  Report                       │ │  A second opinion takes  │
+│                                                           │ │  at least 12 hours. If   │
+│  Expected by Friday 15 Mar, 4:00 pm                       │ │  you feel unwell, call   │
+│                                                           │ │  your GP or NHS 111. In  │
+│  [ View your case ]        [ Message the team ]           │ │  an emergency, call 999. │
+└───────────────────────────────────────────────────────────┘ └──────────────────────────┘
+                                                     D
+┌───────────────────────────────────────────────────────────┐
+│  YOUR REPORTS                                             │  E
+│  ────────────────────────────────────────────────────     │
+│  SR-2025-8830   CT · Chest      Delivered 2 Nov 2025      │
+│  Dr [Name] · Clarifies finding            [ Read ]  [ ⤓ ] │
+│  ────────────────────────────────────────────────────     │
+│  SR-2025-6104   MRI · Knee      Delivered 8 Aug 2025      │
+│  Dr [Name] · No material difference       [ Read ]  [ ⤓ ] │
+└───────────────────────────────────────────────────────────┘
+</pre>
+
+  <h3>6.2 Region specification</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Ref</th><th>Region</th><th>Contents and rules</th></tr></thead>
+    <tbody>
+      <tr><td class="num"><b>A</b></td><td><b>Header</b></td><td>Wordmark (links to dashboard), three nav items, notification bell with unread count, account menu containing the patient's first name and initial only — never a full name, because the header persists on a screen someone else may glance at. The menu holds Personal details, Sign-in &amp; security, Privacy &amp; your data, Support, and Sign out. Sign out is visually separated and always the last item.</td></tr>
+      <tr><td class="num"><b>B</b></td><td><b>Primary CTA</b></td><td><em>Start a new case</em> — the only filled accent button on the page when no case needs attention. When a case is in flight it keeps the same label but drops to a secondary treatment, so the action-needed card and the active case card own the visual hierarchy. Never removed: a patient with a case in progress may legitimately need a second opinion on different imaging.</td></tr>
+      <tr><td class="num"><b>C</b></td><td><b>Action needed</b></td><td>Rendered only when tasks exist, always first in the column, always with the warning accent. One card per task, each with the specific question and a direct action. Answering a task removes the card with a short cross-fade — no confetti, no success modal; the case card below simply updates its status and its expected delivery time.</td></tr>
+      <tr><td class="num"><b>D</b></td><td><b>Active case card</b></td><td>Case reference, turnaround badge, status title, assigned consultant (name and subspecialty once matched, "Being matched" until then), scan type · body area · upload date, four-node progress timeline, expected delivery as an absolute date and time in the patient's local timezone, and two actions. Multiple active cases stack newest first, each a full card — never collapsed into a list.</td></tr>
+      <tr><td class="num"><b>E</b></td><td><b>Recent reports</b></td><td>Delivered cases, newest first, maximum three then <em>See all reports</em>. Each row shows reference, modality · body area, delivery date, consultant, the comparison outcome as a plain phrase, and two actions: <em>Read</em> and a download icon. Reports are never deleted from this list by the patient; deletion is a data-rights request handled in Privacy.</td></tr>
+      <tr><td class="num"><b>F</b></td><td><b>Secure messages</b></td><td>Latest thread preview, truncated at one line, with unread state. Message previews are the one place a clinician's words appear on the dashboard, so the preview is truncated hard and never rendered in a notification.</td></tr>
+      <tr><td class="num"><b>G</b></td><td><b>Profile &amp; privacy</b></td><td>Three links, no content. Deliberately dull — this is a wayfinding block, not a settings panel.</td></tr>
+      <tr><td class="num"><b>H</b></td><td><b>Emergency guidance</b></td><td>Persistent, low-contrast, bordered rather than filled. Never red, never dismissible, never above the fold on mobile.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>6.3 Responsive behaviour</h3>
+  <ul>
+    <li><strong>≥ 1024&nbsp;px</strong> — two columns, 2:1. Right column is not sticky; the page is short enough that stickiness only creates a floating orphan.</li>
+    <li><strong>768–1023&nbsp;px</strong> — single column. Order becomes: greeting, action needed, active case, start a new case, reports, messages, profile, emergency.</li>
+    <li><strong>&lt; 768&nbsp;px</strong> — single column, full-bleed cards with 20&nbsp;px gutters. The <em>Start a new case</em> button becomes full-width and moves <em>below</em> the active case card, because a patient opening the portal on a phone is almost always checking an existing case, not starting a new one. The progress timeline rotates to vertical with the current node expanded. Nav collapses to a hamburger; the notification bell stays in the bar.</li>
+    <li><strong>Empty state (no cases)</strong> — the greeting is replaced with a single centred block: a one-line explanation of what the service does, the <em>Start a new case</em> button at full weight, and a secondary link to <em>What you'll need to hand</em>. No illustration of a doctor. No empty-box graphic.</li>
+  </ul>
+
+  <div class="note">
+    <h4>What the dashboard deliberately does not have</h4>
+    <p>No percentage progress bar (a number that does not move is worse than a phase name that does), no countdown timer in seconds (it raises the temperature of a page read by anxious people), no thumbnail of the patient's own imaging (a preview of one's own brain MRI on a dashboard is not reassurance), and no marketing modules.</p>
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="s7">
+  <span class="sec-num">07</span>
+  <h2 class="sec">New case and upload flow</h2>
+  <p class="lede">Three steps, named the same way here, on the public website, in the stepper, on the dashboard and in every email. A short account gate sits in front of them, before the numbering starts, so a draft exists from the first keystroke. The patient can leave at any point and come back to exactly where they were, on any device.</p>
+
+  <p><strong>There is no "choose a specialist" step.</strong> Asking an anxious patient to pick a radiologist from a directory transfers a clinical judgement to the person least equipped to make it, and makes the match look like a shopping choice rather than a triage decision. We collect the clinical context instead, match internally, and confirm the named consultant and their expertise before payment is taken. Consultant profiles remain public — as evidence of who does the work, not as a menu.</p>
+
+  <h3>7.1 Step structure</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Step</th><th>Title</th><th>Sub-line</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td class="num">0</td><td><b>Account gate</b></td><td>Name, email, six-digit code. Not numbered in the stepper.</td><td class="num">~45 s</td></tr>
+      <tr><td class="num">1</td><td><b>Upload your scans</b></td><td>Your images, your original report, and any earlier related scans.</td><td class="num">2–20 min</td></tr>
+      <tr><td class="num">2</td><td><b>Tell us about your case</b></td><td>Your symptoms, your history, and what you would like our consultant to review.</td><td class="num">~3 min</td></tr>
+      <tr><td class="num">3</td><td><b>Get your expert report</b></td><td>Confirm who is reviewing your case and when it lands, then pay.</td><td class="num">~60 s</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>7.2 Fields</h3>
+
+  <h4>Step 0 — Account gate</h4>
+  <p>Passwordless throughout. The patient never chooses a password, so there is nothing to forget, nothing to reuse from another site, and nothing to leak.</p>
+  <ul>
+    <li>First name and last name — <em>required.</em> As they appear on your medical records, so we can match your scan to your report.</li>
+    <li>Email address — <em>required.</em> A <strong>pending</strong> account is created against it and a six-digit code is emailed. The draft case is attached to the pending account immediately, before the code comes back, so nothing is lost if the patient closes the tab to go and find their CD.</li>
+    <li>Code entry — six digits, valid fifteen minutes, single use. <em>Send it again</em> and <em>Use a different email</em> both sit under the field.</li>
+    <li>If the address already belongs to an account, the flow stops with exactly this: <strong>"An account already exists for this email. Please sign in to continue your saved case."</strong> — with the sign-in link inside the message, not below it. It is never treated as a failed validation, because it is not one.</li>
+    <li>Date of birth, mobile number and country are collected in <em>Account &rarr; Personal details</em>, not here. Three fields is the most a patient will accept before they have seen anything happen.</li>
+    <li>Who is this for? — asked at step 2, alongside the clinical context, because that is where it belongs once the account exists.</li>
+  </ul>
+
+  <h4>Step 1 — Upload your scans</h4>
+  <p>Three clearly separated zones, in this order and with this emphasis:</p>
+  <ul>
+    <li><strong>Your scan images — required.</strong> DICOM (<code>.dcm</code>), a DICOM folder, or a ZIP of either. Also accepts the CD/USB folder structure hospitals hand out. Maximum 5&nbsp;GB per case. DICOM is glossed in plain English at first mention, every time: <em>the format hospitals store scan images in — usually a folder full of files ending .dcm, often with no obvious file names.</em></li>
+    <li><strong>Your original radiology report — strongly encouraged.</strong> PDF, DOCX, JPG, PNG, HEIC — including a photo of a printed report. Maximum 25&nbsp;MB per file.</li>
+    <li><strong>Earlier scans of the same area — optional.</strong> Each prior study carries its own date field. An earlier study is what makes the comparison module possible.</li>
+  </ul>
+  <p>A standing warning sits beneath the zones, in its own amber panel: <strong>screenshots, photographs of a scan viewer, and the report PDF on its own are not enough for a full image review.</strong> They cannot be re-read as images. Send the report as well — just not instead.</p>
+  <p><strong>Validation on every study:</strong> file integrity, patient name and date of birth against the account, scan date, modality, body area, and series completeness. Results are shown per file as a visible checklist, not a silent pass. If a study is incomplete, or the identity on the images does not match, the case moves to <em>Action needed</em> with a message naming exactly what to do. <strong>DICOM patient identity data is never silently altered or merged.</strong> Where a mismatch is legitimate — a patient uploading for someone they care for — the resolution is a declaration on the case, not an edit to the header.</p>
+  <p><strong>No images yet.</strong> The panel explains how to request them: ring the radiology department or medical records at the hospital where the scan was done, ask for the images rather than the report, expect a disc or a secure download, and allow up to the one month UK data protection law gives them. It states plainly that <strong>we do not make the request on the patient's behalf</strong>, because the request has to come from the patient, and offers the phone number instead. This replaces earlier copy across the site that promised to collect images from hospitals — a promise the operation does not currently deliver.</p>
+
+  <h4>Step 2 — Tell us about your case</h4>
+  <p>Scan type and body area are <strong>read from the uploaded study's metadata and shown back for confirmation</strong>, not asked cold. A single <em>Something here is wrong. Let me correct it</em> control reveals the pickers.</p>
+  <ul>
+    <li>Scan type and body area — <em>detected, confirmable.</em> MRI, CT, X-ray, Ultrasound, PET-CT, Not sure · Brain or spine · Chest or heart · Abdomen or pelvis · Bones or joints · Breast · Head or neck.</li>
+    <li>Date of the scan — <em>required, month and year accepted.</em></li>
+    <li>Hospital or imaging provider — <em>optional.</em></li>
+    <li>Main symptoms — <em>free text.</em> When they began, and how they have changed since — two short fields beside it.</li>
+    <li>Relevant history — <em>free text.</em> Previous diagnoses, operations, injuries, any cancer history, treatment past or present. "None of that applies" is an explicitly welcomed answer.</li>
+    <li>Original report availability — <em>required.</em> <code>Yes, I have it</code> / <code>I have asked for it</code> / <code>No, I do not have it</code>.</li>
+    <li>Prior-study availability — <em>required.</em> <code>Yes, and I have it</code> / <code>Yes, but I do not have it</code> / <code>No earlier scan</code>.</li>
+    <li><strong>What would you like the consultant radiologist to review or clarify?</strong> — <em>required, free text.</em> The single most valuable field in the flow and the only hard blocker on this step. Large textarea, four one-tap example prompts underneath that write themselves into the field.</li>
+    <li>Clinician invitation — <em>required choice.</em> See below.</li>
+  </ul>
+  <div class="copy">
+    <dl>
+      <dt>Prompt help (the four examples, verbatim)</dt><dd><em>"Please review whether this scan explains my persistent knee pain."</em> · <em>"Please compare this scan with my previous scan and explain any important change."</em> · <em>"Please clarify the finding described in my original report."</em> · <em>"Please provide an independent opinion on the reported abnormality."</em></dd>
+      <dt>Trust statement (sits above the matched consultant, on this step)</dt><dd>We use this information to match your case with the appropriate consultant subspecialist. Before payment, we confirm who will review your case, their relevant expertise, and your report delivery timeframe.</dd>
+    </dl>
+  </div>
+
+  <h5>Inviting a GP or treating clinician</h5>
+  <p>Asked as: <em>Would you like your GP or treating clinician to add clinical information for the radiologist?</em> Three options: <code>I'll provide the information myself</code> · <code>Invite my GP or clinician</code> · <code>I'll provide it now and invite my clinician if more detail is needed</code>.</p>
+  <ul>
+    <li>The invitation is a <strong>secure, time-limited, single-case link</strong> — seven days, this case and nothing else.</li>
+    <li><strong>No patient account is created from the clinician's email address.</strong> The clinician is not a portal user; they hold a scoped grant.</li>
+    <li>The clinician verifies their identity before any content is shown.</li>
+    <li>They supply: patient identifiers to confirm they have the right person, referrer details, relevant clinical history, the specific clinical question, scan context, prior imaging details, and any urgency context.</li>
+    <li>The patient can keep uploading while the clinician's section is outstanding. <strong>The case does not progress to specialist matching until every required section is complete</strong>, and the case card says so rather than showing a stalled clock.</li>
+  </ul>
+
+  <h4>Step 3 — Get your expert report</h4>
+  <p>Opens with the confirmation panel the trust statement promised: the named consultant, their subspecialty, why they were matched, the case in one line, and the delivery moment. Then turnaround, then what every report includes, then optional extras, then where the report goes, then payment. Detail in §7.6.</p>
+
+  <h3>7.3 Upload states</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>State</th><th>Visual</th><th>Copy</th></tr></thead>
+    <tbody>
+      <tr><td><b>Empty</b></td><td>Dashed border, centred prompt, single browse control</td><td>Drag your files here, or <u>choose files</u>. Hospital CDs and USB sticks are fine — drag the whole folder.</td></tr>
+      <tr><td><b>Reading</b></td><td>Indeterminate bar; file name only</td><td>Reading your files…</td></tr>
+      <tr><td><b>Uploading</b></td><td>Determinate bar per file, percentage, cancel control</td><td>Uploading 248 of 1,204 images · 3 min left</td></tr>
+      <tr><td><b>Checking</b></td><td>Bar complete, spinner on the row</td><td>Checking your files are readable…</td></tr>
+      <tr><td><b>Ready</b></td><td>Tick, file summary, remove control</td><td>MRI Brain · 1,204 images · 2 series · 14 Mar 2026</td></tr>
+      <tr><td><b>Error</b></td><td>Row turns to warning state in place, retry + remove</td><td>See §7.4</td></tr>
+      <tr><td><b>Interrupted</b></td><td>Row paused, resume control</td><td>Upload paused. We saved your progress — press resume, or leave and come back later.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Uploads are chunked and resumable. Closing the tab mid-upload does not lose completed chunks. The <em>Continue</em> button is disabled — with a visible reason, not a silent grey — until every file is in the ready state.</p>
+
+  <h3>7.4 Validation and error messages</h3>
+  <p>Every message names what happened, why it matters, and the next thing to do. No error says "invalid", "failed" or "please try again" alone.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Condition</th><th>Message</th></tr></thead>
+    <tbody>
+      <tr><td>Unsupported file type</td><td><b>We can't read this file type.</b> Scan images need to be DICOM files — usually a folder of <code>.dcm</code> files from your hospital CD. If you only have JPEGs or photos of the screen, upload them under <em>Original report</em> and we'll tell you whether they're usable.</td></tr>
+      <tr><td>ZIP unpacks to nothing readable</td><td><b>This ZIP didn't contain any scan images we can read.</b> It may be empty, or it may hold a viewer program rather than the images. Try uploading the <code>DICOM</code> folder from your CD directly.</td></tr>
+      <tr><td>Too few images</td><td><b>This looks like part of a scan, not the whole thing.</b> We found 12 images — a full study is usually several hundred. Please upload the complete folder so your consultant can review every slice.</td></tr>
+      <tr><td>File too large</td><td><b>This file is larger than 5&nbsp;GB.</b> Split the study into separate uploads, or <u>send it to us another way</u> and we'll take it from there.</td></tr>
+      <tr><td>Virus scan failed</td><td><b>We couldn't accept this file after our security check.</b> This is usually a corrupted download. Try copying it from the original CD again, or <u>contact us</u>.</td></tr>
+      <tr><td>Name mismatch in DICOM header</td><td><b>The name on these images doesn't match the name on your account.</b> That's fine if you're uploading for someone you care for — <u>tell us who this is for</u>. Otherwise, check you've uploaded the right folder.</td></tr>
+      <tr><td>Required field empty</td><td><b>We need this to match your case correctly.</b> (Placed beneath the field, with the field outlined and focused.)</td></tr>
+      <tr><td>Clinical question too short</td><td><b>A sentence or two helps a lot.</b> Your consultant reads this before they open your images — even "I want to know if the shadow on my lung is serious" gives them a direction.</td></tr>
+      <tr><td>Date of birth in the future</td><td><b>Check the year.</b> This date hasn't happened yet.</td></tr>
+      <tr><td>Consent not ticked</td><td><b>We can't start without your consent.</b> Tick the box above to confirm you're happy for our consultants to review your images.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>7.5 Save and resume</h3>
+  <ul>
+    <li>A draft is created the moment step 1 is first blurred, and updated on every field blur and every completed upload.</li>
+    <li>Drafts are server-side and tied to the account, so a patient who starts on a laptop and finishes on a phone keeps everything, including uploaded files.</li>
+    <li>A persistent, quiet line sits under the stepper: <em>Saved — you can close this and come back any time.</em> It updates in place rather than appearing as a toast.</li>
+    <li>Drafts appear on the dashboard as a case card in a <em>Draft</em> state with <em>Finish your case</em> as the action, and are the one case type the patient may delete themselves.</li>
+    <li>An unfinished draft triggers one email after 48 hours and one after 7 days. Then nothing. Uploaded images in an abandoned draft are deleted after 30 days, and the email says so.</li>
+  </ul>
+
+  <h3>7.6 Step 3 in detail</h3>
+  <p><strong>Confirmation before payment.</strong> The first panel on the step names the consultant, their subspecialty, and one line on why they were matched — <em>"Matched to your case because your scan covers bones or joints."</em> Beside it: the case in one line, the delivery moment, and where the report will land. This panel is the promise made at step 2 being kept, and it is deliberately above the price.</p>
+  <p><strong>Turnaround.</strong> Three cards: 48-hour, 24-hour, 12-hour, each with price and the exact delivery date and time that choice produces, computed live from the current moment, so the patient chooses a date rather than an abstraction. No card is pre-selected and no card is badged "most popular" — nudging a pricing choice on a health service is the wrong instinct.</p>
+  <p><strong>What is included.</strong> A flat, unpriced list, so nothing in the core report reads as an upsell: the findings written by a consultant radiologist, the plain-English "What this means for you" section, comparison with a prior scan where one exists, recommended next steps, and secure sharing with a GP or treating clinician.</p>
+  <p><strong>Consent and payment.</strong> Three separate, individually-ticked consents, never bundled: (a) consent for consultant radiologists to access and report on the images, (b) agreement to the terms and privacy notice, (c) an <em>optional</em> consent to retain the images beyond the standard period for future comparison — clearly marked optional and refusable without consequence. Payment is card via a PCI-compliant provider in a hosted field; card details never touch the portal's own DOM.</p>
+
+  <h3>7.7 Confirmation screen</h3>
+  <p>Full-page, calm, no celebratory animation. Contains, in order: case reference, the expected delivery date and time in large type, <strong>the six-status progress tracker with the case's current position marked</strong>, a <em>what happens next</em> list, a summary of what was submitted, the emergency guidance block, and a single primary action — <em>Go to my dashboard</em>.</p>
+  <p>The tracker here uses the same six names, in the same order, as the dashboard, the case page and the emails: <em>Action needed · Submitted · Being matched · Under expert review · Report ready · Follow-up available</em>. "Action needed" is drawn as a waiting state rather than a completed one, because it is a pause that can interrupt any stage, not a stage the case has already passed through. Where a clinician was invited, an extra item appears in <em>what happens next</em> naming the address the single-case link went to and stating that the case waits at that point.</p>
+  <div class="copy">
+    <dl>
+      <dt>Heading</dt><dd>Your case is with us</dd>
+      <dt>Reference</dt><dd>SR-2026-4417</dd>
+      <dt>Delivery</dt><dd>Expected by Friday 15 March, 4:00 pm</dd>
+      <dt>Next 1</dt><dd>We check your images are complete and readable — usually within an hour.</dd>
+      <dt>Next 2</dt><dd>We match your case to a consultant who specialises in this part of the body, and you'll see their name on your dashboard.</dd>
+      <dt>Next 3</dt><dd>They review your scan in full and write your report. We'll email you the moment it's ready.</dd>
+      <dt>Reassurance</dt><dd>You don't need to do anything else. We'll email you at each stage — and if we need anything, it'll be waiting on your dashboard.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ 08 ============ -->
+<section id="s8">
+  <span class="sec-num">08</span>
+  <h2 class="sec">Report viewer</h2>
+  <p class="lede">The report is the product. It is read once carefully, then re-read anxiously, then shown to a GP. It must work in all three situations, and it must be readable on a phone in a hospital corridor.</p>
+
+  <h3>8.1 Page structure</h3>
+<pre class="wire">┌──────────────────────────────────────────────────────────────────────────┐
+│  ← Back to your case          SR-2026-4417 · Delivered 15 Mar, 2:14 pm   │
+├──────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  Your second-opinion report                                              │
+│  MRI · Brain and spine · Scan dated 8 Mar 2026                           │
+│  Reported by Dr [Name], Consultant Neuroradiologist · GMC [number]       │
+│                                                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │  IN SHORT                                                          │  │  1
+│  │  Two or three sentences, written by the consultant, that a person   │  │
+│  │  can read while standing up.                                        │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+│                                                                          │
+│  [ Report ]  [ What this means ]  [ Comparison ]  [ Next steps ]         │  ← anchor nav
+│                                                                          │
+│  ── YOUR REPORT COMPARISON ──────────────────────────────────────────    │  2
+│  ┌──────────────────┬──────────────────┬──────────────────┐             │
+│  │ What was reported│ What we found    │ What is different│             │
+│  │ before           │                  │                  │             │
+│  └──────────────────┴──────────────────┴──────────────────┘             │
+│                                                                          │
+│  ── THE FULL REPORT ─────────────────────────────────────────────────    │  3
+│  Clinical history · Technique · Findings · Impression                    │
+│                                                                          │
+│  ── WHAT THIS MEANS FOR YOU ─────────────────────────────────────────    │  4
+│  Plain-English explanation, written by the same consultant.              │
+│                                                                          │
+│  ── WHAT WE SUGGEST YOU DO NEXT ─────────────────────────────────────    │  5
+│  1. Share this report with the doctor looking after you.                 │
+│  2. …                                                                    │
+│                                                                          │
+│  ┌──────────────────────┐ ┌──────────────────────┐ ┌──────────────────┐ │  6
+│  │ ⤓ Download PDF       │ │ ⇗ Share with my GP   │ │ ✉ Ask a question │ │
+│  └──────────────────────┘ └──────────────────────┘ └──────────────────┘ │
+│                                                                          │
+│  Not an emergency service · GP, NHS 111, 999                             │  7
+└──────────────────────────────────────────────────────────────────────────┘
+</pre>
+
+  <h3>8.2 Section rules</h3>
+  <ol>
+    <li><strong>In short.</strong> Consultant-authored, 40–60 words, plain language, always present. This is the first thing on the page because it is the first thing the patient wants. It is never a truncation of the impression — it is written separately.</li>
+    <li><strong>Your report comparison</strong> sits <em>above</em> the full clinical report, because "is this different from what I was told?" is the question the patient paid to have answered. Specified in full in §9. Omitted entirely when no original report was supplied, replaced by a one-line explanation of why.</li>
+    <li><strong>The full consultant report.</strong> Verbatim, in clinical language, in the standard four headings. Not simplified, not annotated, not truncated. This is the document a clinician will read, and altering it would undermine its standing.</li>
+    <li><strong>What this means for you.</strong> The same content in plain English, authored by the reporting consultant, not generated from the clinical text. Reading age target 12. Any term that must stay technical is defined inline on first use.</li>
+    <li><strong>What we suggest you do next.</strong> A short ordered list, always ending with a line that returns the patient to their own doctor. Never phrased as an instruction to stop or change treatment.</li>
+    <li><strong>Actions.</strong> Download PDF (the full report including the comparison and the plain-English section, with a footer carrying the consultant's name, GMC number and the report date). Share with my GP (§8.3). Ask a question (opens the follow-up flow).</li>
+    <li><strong>Emergency guidance</strong>, in the standing form.</li>
+  </ol>
+
+  <h3>8.3 Secure sharing</h3>
+  <p>Sharing sends a link, never an attachment, and never the report itself by email.</p>
+  <ul>
+    <li>The patient enters the clinician's name, role and email, and ticks an explicit consent: <em>I'm happy for Second Opinion Radiology to share my report with this person.</em></li>
+    <li>The recipient gets a content-free email with a link. Opening it requires a one-time code sent to the same address, and the link expires after 30 days.</li>
+    <li>The recipient sees a read-only report with a banner identifying who shared it and when. No dashboard, no other cases, no ability to reply into the patient's message thread.</li>
+    <li>The patient sees a <em>Shared with</em> list on the report with the recipient, the date, whether it has been opened, and a <em>Revoke access</em> control that works immediately.</li>
+    <li>Every share, open and revocation is written to the case audit trail.</li>
+  </ul>
+
+  <h3>8.4 Follow-up</h3>
+  <p>Two options, both time-boxed to 30 days from delivery and both surfaced at the bottom of the report and on the case:</p>
+  <ul>
+    <li><strong>Written questions — included.</strong> Up to three questions in one thread, answered by the reporting consultant, typically within two working days. Copy is explicit that this is for understanding the report, not a new opinion on new imaging.</li>
+    <li><strong>15-minute call — paid add-on.</strong> Booked against real consultant availability, video or telephone, with a confirmation containing only the time and a join link. The booking screen states plainly that the call explains the report and does not create a doctor–patient relationship or a treatment plan.</li>
+  </ul>
+</section>
+
+<!-- ============ 09 ============ -->
+<section id="s9">
+  <span class="sec-num">09</span>
+  <h2 class="sec">Your report comparison</h2>
+  <p class="lede">The module that justifies the service. Three clearly separated sections, a fixed clinical vocabulary, and language that never suggests the original clinician got it wrong.</p>
+
+  <h3>9.1 Layout</h3>
+  <p>Desktop: four equal columns with visible dividers and a shared header row. "What this means for you" is its own column, not a callout nested inside "What is different" — it carries the consultant's plain-English verdict and its own provenance line, and it is the column most patients read first. Tablet and mobile: four stacked sections in the same order, each with its full heading and its source label repeated — the labels are the safety mechanism and must never be lost to responsive collapse.</p>
+
+<pre class="wire">┌───────────────────────┬───────────────────────┬───────────────────────┬───────────────────────┐
+│ WHAT WAS REPORTED     │ WHAT WE FOUND         │ WHAT IS DIFFERENT     │ WHAT THIS MEANS       │
+│ BEFORE                │                       │                       │ FOR YOU               │
+│ ───────────────────── │ ───────────────────── │ ───────────────────── │ ───────────────────── │
+│ Supplied by you or    │ Independent review by │ ┌───────────────────┐ │ Written in plain      │
+│ your imaging          │ Dr [Name], Consultant │ │ ◆ Clarifies       │ │ English by Dr [Name], │
+│ provider. We have     │ [Subspecialty]        │ │   finding         │ │ and approved by them  │
+│ not altered this      │ Radiologist           │ └───────────────────┘ │ before release.       │
+│ text.                 │                       │ Plain description     │                       │
+│                       │                       │ of what is different  │ "…what this finding   │
+│ "…original report     │ "…second-opinion      │ between the two       │ means, and what to    │
+│ extract…"             │ finding…"             │ reads.                │ do next…"             │
+│                       │                       │                       │                       │
+│ Source: [Hospital],   │ Reported 15 Mar 2026  │                       │                       │
+│ 8 Mar                 │                       │                       │                       │
+└───────────────────────┴───────────────────────┴───────────────────────┴───────────────────────┘
+</pre>
+
+  <h3>9.2 Comparison categories</h3>
+  <p>A closed list. The reporting consultant selects one per compared item, plus one overall outcome for the case. No other value may be entered, and the label the consultant selects is the exact label the patient reads.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Key</th><th>Patient-facing label</th><th>Meaning</th><th>Tone</th></tr></thead>
+    <tbody>
+      <tr><td><code>confirms</code></td><td><b>Confirms original finding</b></td><td>The second opinion independently reaches the same conclusion on this point.</td><td>Reassuring</td></tr>
+      <tr><td><code>clarifies</code></td><td><b>Clarifies finding</b></td><td>The same finding, described more precisely or characterised further.</td><td>Neutral</td></tr>
+      <tr><td><code>additional</code></td><td><b>Additional finding</b></td><td>Something present on the images that the original report does not mention.</td><td>Neutral, factual</td></tr>
+      <tr><td><code>differing</code></td><td><b>Differing interpretation</b></td><td>The same appearance, read differently by the second consultant.</td><td>Careful, non-accusatory</td></tr>
+      <tr><td><code>no_material</code></td><td><b>No material difference identified</b></td><td>Nothing found that would change the conclusions or the plan.</td><td>Reassuring — see §4.8</td></tr>
+      <tr><td><code>interval</code></td><td><b>Change since your earlier scan</b></td><td>Only available when a prior study was supplied. Describes interval change.</td><td>Factual</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>9.3 Content model</h3>
+<pre class="wire">comparison
+├─ available            boolean      false when no original report was supplied
+├─ unavailable_reason   enum         no_original_report | provider_report_pending
+├─ overall_outcome      enum         one of the six category keys — drives the summary panel
+├─ overall_summary      rich text    consultant-authored, 30–60 words, plain English
+├─ authored_by          object       { consultant_id, name, gmc, subspecialty }
+├─ approved_at          timestamp    set only on clinical sign-off; nothing renders before this
+├─ original_report
+│  ├─ source_label      string       e.g. "Supplied by you" / "Supplied by [Provider]"
+│  ├─ provider_name     string?      optional, patient-entered
+│  ├─ report_date       date
+│  └─ verbatim_text     text         unaltered, never edited, never summarised
+├─ prior_study                       present only when a prior study was supplied
+│  ├─ study_date        date
+│  └─ interval_note     rich text    consultant-authored
+└─ items[]                           1..n compared points, ordered by clinical significance
+   ├─ id                string
+   ├─ region            string       e.g. "Right frontal lobe" — optional
+   ├─ before            text         extract from the original report, or "Not mentioned"
+   ├─ found             text         the second-opinion finding, consultant-authored
+   ├─ category          enum         one of the six keys
+   ├─ difference_note   rich text    consultant-authored; required unless category = confirms
+   └─ means_for_you     rich text    consultant-authored plain English, required
+</pre>
+
+  <h3>9.4 Authoring and safety rules</h3>
+  <div class="note safety">
+    <h4>Non-negotiable</h4>
+    <ul>
+      <li><strong>No inference.</strong> Nothing in this module may be produced by text comparison, diffing, or a model. Every field is typed or selected by the reporting radiologist and is subject to the same clinical sign-off as the report body.</li>
+      <li><strong>Nothing renders before <code>approved_at</code>.</strong> A partially authored comparison is not shown in any state, including to the patient's shared clinician.</li>
+      <li><strong>Provenance is always visible.</strong> The original column carries "Supplied by you or your imaging provider. We have not altered this text." The second-opinion column carries the consultant's name, subspecialty and GMC number. The "What this means for you" column carries its own line: "Written in plain English by [consultant], and approved by them before release" — it is not exempt from provenance just because it reads as a summary. These labels appear at every breakpoint and in the PDF.</li>
+      <li><strong>Verbatim means verbatim.</strong> The original report text is displayed unedited. If it is long, it is truncated with an explicit <em>Show the full original report</em> control — never paraphrased.</li>
+    </ul>
+  </div>
+
+  <h3>9.5 Language rules</h3>
+  <p>The difference between a defensible comparison and a negligence claim is often one verb. These are house rules for consultants and for the UI copy around them.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Never</th><th>Instead</th></tr></thead>
+    <tbody>
+      <tr><td>"The original report missed…"</td><td>"This was not described in the original report."</td></tr>
+      <tr><td>"Incorrect", "error", "wrong"</td><td>"We read this differently." / "Our interpretation differs."</td></tr>
+      <tr><td>"The first radiologist failed to…"</td><td>"On our review, we would describe this as…"</td></tr>
+      <tr><td>"You should stop the treatment you were given."</td><td>"Discuss these findings with the doctor looking after you before making any changes."</td></tr>
+      <tr><td>"No changes found" (as an empty state)</td><td>"No material difference identified" (as a result)</td></tr>
+      <tr><td>"Second opinion overrides the original."</td><td>"This is an independent review. It sits alongside your original report."</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Standing footnote beneath every comparison module and in the PDF: <em>Radiology reports can reasonably differ between specialists. This report is an independent opinion based on the images and information provided, and does not replace the advice of the doctor treating you.</em></p>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="s10">
+  <span class="sec-num">10</span>
+  <h2 class="sec">Public website changes</h2>
+  <p class="lede">Two persistent entry points, both state-aware, neither competing with the primary conversion action.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Top navigation</h4>
+      <p><strong>Signed out:</strong> a secondary button labelled <em>Patient dashboard</em>, sitting immediately left of the primary CTA. Outlined, accent-coloured text, transparent fill. Links to <code>/sign-in</code>.</p>
+      <p><strong>Signed in:</strong> the same button links straight to <code>/dashboard</code>, and the primary CTA changes to <em>Start a new case</em>.</p>
+      <p><strong>Hierarchy:</strong> <em>Get a second opinion</em> stays filled, accent, and heavier. On mobile the primary CTA stays in the bar; <em>Patient dashboard</em> moves into the menu as the first item, above the marketing links.</p>
+    </div>
+    <div class="card">
+      <h4>Footer</h4>
+      <p>A distinct band above the link columns, full width, quiet background:</p>
+      <p><strong>Already submitted a case?</strong> <u>View your dashboard</u></p>
+      <p>Signed out it resolves to <code>/sign-in?next=/dashboard</code>; signed in, straight to the dashboard. Text link with an arrow, never a second filled button — the footer must not compete with the header CTA.</p>
+    </div>
+  </div>
+
+  <h3>Three-step section</h3>
+  <p>The home page and How it works both carry the same three-step section, word-for-word, as the single description of what happens: <strong>1. Upload your scans, 2. Tell us about your case, 3. Get your expert report.</strong> There is no "Choose a specialist" step and no fourth step for payment — payment is described as sitting inside step 3, not as a separate stage. Each step has a supportive note:</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Step</th><th>Supportive note</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Upload your scans</b></td><td>If you do not yet have your images, we show clear guidance on requesting them from the hospital or imaging provider. We do not request them on your behalf — this is not something we do for you today.</td></tr>
+      <tr><td><b>2. Tell us about your case</b></td><td>We use this information to match your case with the appropriate consultant subspecialist. Before payment, we confirm who will review your case, their relevant expertise, and your report delivery timeframe.</td></tr>
+      <tr><td><b>3. Get your expert report</b></td><td>Your report lives in your Patient dashboard. It is downloadable, shareable with your GP, and comes with follow-up support if you have questions.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Supporting changes</h3>
+  <ul>
+    <li><strong>How it works</strong> carries the three-step section above as a distinct band, plus a screenshot of the dashboard using placeholder data, never a real case, showing the report living there after step 3.</li>
+    <li><strong>Sample report</strong> gains the comparison module, so the thing patients are buying is visible before they buy it.</li>
+    <li><strong>Pricing</strong> tier CTAs carry the choice into the flow, landing the patient at the step 0 account gate with the turnaround pre-selected and confirmable inside step 3.</li>
+    <li><strong>FAQ</strong> "What if I don't have my images?" is rewritten to the same honest, self-service answer as the step 1 supportive note — no promise that the service requests images on the patient's behalf.</li>
+    <li><strong>Sign-in and create account</strong> are both passwordless: email (plus name on create account), a six-digit code, <em>Stay signed in on this device</em> (off by default), and a cross-link between the two pages for the "wrong one" case. No password field, no forgot-password, no reset-password. No marketing, no hero image, no testimonial.</li>
+  </ul>
+</section>
+
+<!-- ============ 11 ============ -->
+<section id="s11">
+  <span class="sec-num">11</span>
+  <h2 class="sec">CTA label set</h2>
+  <p class="lede">One label per action across the whole product. A label that appears here appears nowhere else in another form.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Context</th><th>Label</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Site primary</td><td><b>Get a second opinion</b></td><td>Filled, accent. Never changes wording.</td></tr>
+      <tr><td>Site secondary</td><td><b>Patient dashboard</b></td><td>Outlined. State-aware destination.</td></tr>
+      <tr><td>Footer</td><td><b>Already submitted a case? View your dashboard</b></td><td>Text link.</td></tr>
+      <tr><td>Dashboard primary</td><td><b>Start a new case</b></td><td>Demotes to secondary when a case needs attention.</td></tr>
+      <tr><td>Draft case</td><td><b>Finish your case</b></td><td>Not "Continue" — names the outcome.</td></tr>
+      <tr><td>Account gate</td><td><b>Send my code</b></td><td>Step 0. Never "Sign up" or "Register" — there is no password to set.</td></tr>
+      <tr><td>Flow, step 1</td><td><b>Continue</b></td><td>Disabled with a visible reason until uploads pass validation. Plus a quiet <em>Back</em>.</td></tr>
+      <tr><td>Flow, step 2</td><td><b>Continue</b></td><td>Disabled until the consultant question and any required clinician details are filled in. Plus a quiet <em>Back</em>.</td></tr>
+      <tr><td>Flow, step 3</td><td><b>Pay £[amount] and start my case</b></td><td>Appears only after the matched consultant, expertise and timeframe are shown and confirmed. Names the amount. Never "Submit".</td></tr>
+      <tr><td>Task</td><td><b>See what's needed</b></td><td></td></tr>
+      <tr><td>Case in progress</td><td><b>View your case</b></td><td></td></tr>
+      <tr><td>Report delivered</td><td><b>Read my report</b></td><td>The only filled button on a delivered card.</td></tr>
+      <tr><td>Report actions</td><td><b>Download PDF</b> · <b>Share with my GP</b> · <b>Ask a question</b></td><td></td></tr>
+      <tr><td>Follow-up call</td><td><b>Book a 15-minute call</b></td><td>Price shown adjacent, not inside the label.</td></tr>
+      <tr><td>Sharing</td><td><b>Send report</b> / <b>Revoke access</b></td><td></td></tr>
+      <tr><td>Support</td><td><b>Message the team</b></td><td>Not "Contact us" inside the portal.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============ 12 ============ -->
+<section id="s12">
+  <span class="sec-num">12</span>
+  <h2 class="sec">Accessibility, privacy and clinical safety</h2>
+  <p class="lede">Three requirement sets that are acceptance criteria, not aspirations. A build that fails any line here is not shippable.</p>
+
+  <h3>12.1 Accessibility — WCAG 2.2 AA</h3>
+  <ul>
+    <li><strong>Contrast.</strong> 4.5:1 for body text, 3:1 for large text and for the boundary of every interactive control. Status is never carried by colour alone — every chip pairs colour with its own word.</li>
+    <li><strong>Keyboard.</strong> Every action reachable and operable by keyboard, in a logical order, with a visible focus ring that meets 3:1 against both the control and the page. The upload zone has a real focusable button, not a drag-only target.</li>
+    <li><strong>Screen readers.</strong> Upload progress announced through a polite live region at meaningful intervals, not every percent. Status changes on the dashboard announced once. Errors linked with <code>aria-describedby</code> and moved to on invalid submit. The three comparison columns are a semantic table or a set of headed regions — never three visually adjacent divs with no relationship.</li>
+    <li><strong>Zoom and reflow.</strong> Usable at 400% zoom and at 320&nbsp;px width with no horizontal scrolling of the page body. Wide content scrolls inside its own container.</li>
+    <li><strong>Motion.</strong> <code>prefers-reduced-motion</code> honoured everywhere; progress indicators degrade to static text.</li>
+    <li><strong>Cognitive load.</strong> One question set per screen. No time limits on any form. No auto-advancing carousels. Session timeout warns at 25 minutes with an extend control, and never discards a draft.</li>
+    <li><strong>Language.</strong> Plain English throughout, reading age 12 for patient-facing copy. Clinical text is exempt and is always paired with a plain-English equivalent.</li>
+  </ul>
+
+  <h3>12.2 Privacy — UK GDPR</h3>
+  <ul>
+    <li><strong>Lawful basis.</strong> Contract for the service; Article 9(2)(h) for the special-category health data. Consent is used only where it is genuinely optional — extended retention, marketing, sharing with a third party — and refusing it never blocks the service.</li>
+    <li><strong>Data minimisation.</strong> No NHS number, no address, no next of kin, no GP details unless the patient chooses to share the report with them. Nothing is collected "in case it's useful later".</li>
+    <li><strong>Notifications.</strong> Content-free, per §5. This is a design requirement and a testable one.</li>
+    <li><strong>Storage and residency.</strong> UK or EEA only, encrypted at rest and in transit. Images and reports in object storage with per-object access control; no public URLs; signed URLs expire in minutes, not days.</li>
+    <li><strong>Retention.</strong> Stated numerically on the privacy page and echoed in the flow: images and reports retained for eight years by default, abandoned drafts deleted after 30 days, shared links expire after 30 days. Extended retention is the optional consent at step 3, alongside payment.</li>
+    <li><strong>Patient rights, self-serve.</strong> <code>/profile/privacy</code> offers a download of everything held, a correction request, a withdrawal of the optional consents, and a deletion request with a plainly stated caveat about the records the business must keep for medico-legal reasons.</li>
+    <li><strong>Audit trail.</strong> Every access to a case — by staff, by consultant, by a shared clinician — is logged with actor, action and timestamp, and is disclosable to the patient on request.</li>
+    <li><strong>Access control.</strong> Session cookies <code>HttpOnly</code>, <code>Secure</code>, <code>SameSite=Lax</code>. Two-factor authentication offered at sign-up and required before a report can be shared externally. Re-authentication (a fresh six-digit code) required to change email or bank details.</li>
+    <li><strong>Shared devices.</strong> "Stay signed in" is off by default and labelled <em>Only on a device that's yours</em>. Sign out clears all local state including any cached report.</li>
+  </ul>
+
+  <h3>12.3 Clinical safety — DCB0129 / DCB0160</h3>
+  <ul>
+    <li><strong>A clinical safety officer owns the hazard log.</strong> The statuses, the comparison categories and the emergency guidance are all hazard-log items, and changing their wording is a change that needs re-approval — not a copy tweak.</li>
+    <li><strong>No status implies a finding.</strong> "Under review" is used identically for a normal scan and an urgent one.</li>
+    <li><strong>Critical-finding pathway sits outside the portal.</strong> If a consultant identifies something requiring urgent action, the clinical team contacts the patient and, with consent, their treating clinician by phone. The portal is never the primary channel for that, and the case simply shows <span class="chip act">Action needed</span> with a request to call.</li>
+    <li><strong>Nothing patient-facing is model-generated.</strong> Not the report, not the plain-English section, not the comparison, not the next steps. Any future assistive tooling operates behind clinical sign-off and is never surfaced as authored content.</li>
+    <li><strong>Identity matching.</strong> DICOM header name and date of birth are checked against the account at validation, and a mismatch raises a task rather than silently proceeding.</li>
+    <li><strong>Version integrity.</strong> A published report is immutable. A correction is issued as a new version with a visible <em>Amended [date]</em> notice, the reason for amendment, and the previous version retained and accessible.</li>
+    <li><strong>Emergency guidance is not dismissible</strong> and appears at the three fixed locations in §1.</li>
+  </ul>
+</section>
+
+<!-- ============ 13 ============ -->
+<section id="s13">
+  <span class="sec-num">13</span>
+  <h2 class="sec">MVP versus phase two</h2>
+  <p class="lede">The MVP is the smallest thing that lets a patient complete a case end-to-end without a human touching the process. Everything that improves the experience but does not gate completion is phase two.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>MVP — build first</h4>
+      <ul>
+        <li>Passwordless accounts: name + email, pending account, six-digit email code, no password anywhere</li>
+        <li>Three-step case flow (Upload your scans / Tell us about your case / Get your expert report) behind a step 0 account gate, with server-side drafts and resumable chunked upload</li>
+        <li>DICOM, ZIP, PDF and image validation with the error set in §7.4</li>
+        <li>Card payment, with the failure handling in §4.5</li>
+        <li>All six statuses, the dashboard, and the case-detail page</li>
+        <li>Action-needed tasks and the clock-pause behaviour</li>
+        <li>Per-case secure messaging</li>
+        <li>Report viewer with all five content sections</li>
+        <li><strong>Your report comparison</strong>, fully consultant-authored — this is the differentiator and cannot wait</li>
+        <li>PDF download</li>
+        <li>Written follow-up questions</li>
+        <li>Content-free email notifications</li>
+        <li>Profile, privacy self-serve, and the audit trail</li>
+        <li>Nav and footer dashboard entry points</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Phase two</h4>
+      <ul>
+        <li>Secure sharing with a GP or treating clinician, with one-time codes and revocation</li>
+        <li>Booked 15-minute consultant calls with live availability</li>
+        <li>An in-browser DICOM viewer with the consultant's key images annotated</li>
+        <li>Two-factor authentication as a default rather than an option</li>
+        <li>Direct image transfer from providers via IEP or an equivalent, removing the CD step</li>
+        <li>Push notifications and SMS on the fixed content-free payload</li>
+        <li>Multiple-patient accounts for carers and parents</li>
+        <li>Saved payment methods and instalments</li>
+        <li>Welsh-language interface and BSL support content</li>
+        <li>Insurer and employer billing routes</li>
+        <li>A returning-patient path that pre-fills a new case from a previous one</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Sequencing note</h3>
+  <p>Sharing is the one phase-two item worth arguing about, because "take it to your GP" is the recommended next step in almost every report. It stays out of the MVP only because a downloaded PDF the patient forwards themselves is a workable interim, and because the one-time-code recipient flow carries its own security review. Build it immediately after launch, not eventually.</p>
+
+  <h3>Open items for the client</h3>
+  <ul>
+    <li>Payment provider, and whether insurer billing is needed at launch.</li>
+    <li>Confirmed retention period — the eight years above is the common UK adult record standard and needs sign-off.</li>
+    <li>Named clinical safety officer and hazard log owner.</li>
+    <li>Whether "someone I care for" needs formal proof of authority, and what that looks like operationally.</li>
+    <li>Consultant availability data source for phase-two call booking.</li>
+    <li>Whether the current 12-hour turnaround is offered around the clock or within working hours — this changes the delivery-time calculation shown at step 3.</li>
+  </ul>
+</section>
+
+<footer>
+  <p><strong>Second Opinion Patient Portal</strong> — product design specification v1.0. Patient-facing scope only; the consultant reporting tool, triage console and clinical operations views are specified separately. Names, GMC numbers, case references, prices and dates in this document are illustrative placeholders and must be replaced with verified values before any of this copy is published.</p>
+</footer>
+
+</main>
+</div>
+</div>
