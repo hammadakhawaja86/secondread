@@ -9,7 +9,9 @@ name: Deploy SecondRead to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    # `v2` is the published branch on the `secondread` remote; `main` is the
+    # local line of development. Either can publish.
+    branches: [main, v2]
   workflow_dispatch:
 
 permissions:
