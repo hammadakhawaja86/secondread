@@ -6,6 +6,25 @@ SecondRead is a UK service that re-reads a scan (MRI, CT, ultrasound, X-ray, PET
 already has, using a named subspecialist consultant, and returns a signed report in 12–48 hours
 from £249. No GP referral, no appointment.
 
+> ### Status — read this first
+>
+> This document was written for the **first handoff**. The prototype has moved on since, and the
+> sections below have **not** been rewritten to match. Where the two disagree, **the code is
+> correct**. Known drift, as of the `v1.0.0` release:
+>
+> | Since the handoff was written | Where to look |
+> | --- | --- |
+> | The site is now **17 pages**, not 8: a secure patient portal (sign-in, dashboard, case, report, account) was added. | `design/*.dc.html` |
+> | The order flow is **three steps** — Upload your scans · Tell us about your case · Get your expert report. The old "Choose a specialist" step is gone: patients no longer pick their own radiologist, we match one and name them before payment. | `patient-portal-spec.html` |
+> | Sign-in is **passwordless** (emailed six-digit code). There is no password field, and no forgot/reset routes. | `design/Sign In.dc.html`, `design/portal.js` |
+> | The wordmark is now the **SecondOpinion Radiology** lockup, at a different aspect ratio. Dimensions quoted below are stale. | `design/logo-secondread*.svg` |
+> | The phone number has moved **out of the header** and into the footer only. | `design/responsive.css` |
+> | Portraits are **seven real consultant headshots** as `.jpg`, named after the consultant. The base64 `data.js` delivery described below is gone. | `design/portraits/` |
+> | The Services section is a **card carousel with photography**, rebuilt to a Figma reference. | `design/index.html`, `design/services/` |
+>
+> `patient-portal-spec.html` is the current specification for the portal and the flow. For everything
+> else, `git log` is the record.
+
 This handoff covers an **8-page marketing site plus a 3-step ordering flow**, designed as a working
 prototype: filtering, accordions, a hero carousel, a specialist picker and a multi-step checkout are
 all functional in the HTML.
@@ -167,16 +186,16 @@ Sticky, `top: 0`, `z-index: 100`, `background: rgba(255,255,255,0.88)`, `backdro
 `display: flex`, `align-items: center`, `gap: 40px`.
 
 Contents, left to right:
-1. **Logo** — `logo-secondread.svg`, `height 55px`, `width 202px`, links to `index.html`. Hover `opacity: 0.78`.
+1. **Logo** — `logo-secondread.svg`, `height 55px`, `width 220px`, links to `index.html`. Hover `opacity: 0.78`.
 2. **Nav links** — How it works · Specialists · Pricing · Sample report · FAQs. 14px/500 `#173B4F`; the current page is 14px/600 `#0D6E70`. `gap: 28px`, `white-space: nowrap`.
-3. **Right cluster** (`margin-left: auto`, `gap: 14px`) — phone `01438 904272` (14px/600 link) and the **Start my second read** primary CTA → `Start Flow`.
+3. **Right cluster** (`margin-left: auto`, `gap: 14px`) — the **Start my second read** primary CTA → `Start Flow`. The phone number is **not** in the header: three items plus a burger never cleared one row on a phone, so it lives in the footer only.
 
 The header must **never wrap into two rows above 860px**. See [Responsive](#responsive-behaviour).
 
 ### Footer (every page)
 
 `#06131C`, white text, `padding 60px 32px 28px`. Three columns `1.4fr 1fr 1fr`, `gap 48px`:
-- **Brand** — `logo-secondread-light.svg` (`height 61px`, `width 176px`) + 13px/1.65 `rgba(255,255,255,0.72)` blurb, `max-width 340px`.
+- **Brand** — `logo-secondread-light.svg` (`height 61px`, `width 244px`) + 13px/1.65 `rgba(255,255,255,0.72)` blurb, `max-width 340px`.
 - **Service** — heading 14px/600 uppercase `0.06em` `rgba(255,255,255,0.72)`; links 13px `rgba(255,255,255,0.85)` in a 10px-gap column.
 - **Contact** — email, phone, "Mon–Sun, 09:00–20:00".
 
@@ -945,12 +964,16 @@ the hero carousel height when slide 2's form is taller than slide 1, and the spe
 
 | File | Notes |
 | --- | --- |
-| `logo-secondread.svg` | Navy wordmark. Header (55 × 202) and the sample-report letterhead (32px tall). Derived from the supplied `logoSR.svg` with the white background rect removed and `black` remapped to `#0A1F2C`, so it sits on any light surface. |
-| `logo-secondread-light.svg` | Same mark in `#FFFFFF`, for the dark footer (61 × 176). |
-| `hero-mri.png` | AI-generated hero photo — consultant reviewing MRI images beside a scanner. `object-position: 78% center` keeps the scanner visible while the left third stays clear for the headline. **Placeholder — replace.** |
+| `logo-secondread.svg` | The **SecondOpinion Radiology** lockup — mark plus two-line wordmark, `viewBox 0 0 2041 510` (4.00∶1). Navy `#00212D` with a `#29E6C4` ring, for light surfaces. Header 55 × 220, sample-report letterhead 46 × 184. Text is converted to outlines, because an SVG loaded through `<img>` cannot use a webfont. |
+| `logo-secondread-light.svg` | The same lockup in `#FFFFFF` with a `#6FE3C5` ring, for the dark footer (61 × 244). |
+| `hero-mri.png` | **Superseded.** The landing hero now uses `design/uploads/Generated image 1 (5).png`. Kept only because it is the asset the rest of this document was written against. |
 
-`design/portraits/` — six AI-generated headshots (`sa/rr/dm/at/gk/ht.png`, 320 × 384, head-level crop)
-plus `data.js` / `data.json` holding them as base64 for offline export. **All placeholders — replace with real headshots.**
+> The copies of these two logos under `design/` are the ones the pages actually load. `assets/` holds
+> the same files for anyone picking up the brand marks on their own.
+
+`design/portraits/` — seven consultant headshots as `.jpg`, each named after the consultant it shows
+(`senan-alsanjari.jpg`, `ramanan-rajakulasingam.jpg`, and so on). These are **real photographs of real
+named consultants**; confirm you have the right to use each one before launch.
 
 **Icons** — Lucide-style glyphs, hand-inlined as small SVG path arrays in each page's logic class
 (`upload-cloud`, `user-search`, `file-text`, `zap`, `check`, `clock`, `scan-check`, `arrow-up-right`,
