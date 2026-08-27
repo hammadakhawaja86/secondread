@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="responsive.css?v=20">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
   <style>
     body { margin: 0; padding: 0; background: #F4F7F8; font-family: 'Inter', sans-serif; }
     a { color: #095458; text-decoration: none; }
@@ -227,8 +227,27 @@
       <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
         <div style="display: flex; flex-direction: column; gap: 22px;">
 
-          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What we read from your images</h3>
+          <div id="req-summary" style="background: #FFFFFF; border: 1.5px solid {{ reqSummaryBorder }}; border-radius: 18px; padding: 24px 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 6px 14px; flex-wrap: wrap;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Before we can match your case</h3>
+              <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: {{ reqCountColor }};">{{ reqCountLabel }}</span>
+            </div>
+            <p style="margin: 8px 0 16px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Three answers decide which subspecialist reads your scan and what they answer. Everything else on this page is optional &mdash; it only makes their report better.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 9px;">
+              <sc-for list="{{ reqItems }}" as="r" hint-placeholder-count="3">
+                <button type="button" onClick="{{ r.go }}" style="appearance: none; display: flex; align-items: center; gap: 9px; min-height: 40px; padding: 9px 15px 9px 11px; border-radius: 999px; border: 1.5px solid {{ r.border }}; background: {{ r.bg }}; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; color: {{ r.color }}; cursor: pointer; text-align: left; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
+                  <span style="flex-shrink: 0; width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid {{ r.dotBorder }}; background: {{ r.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ r.glyph }}</span>
+                  <span>{{ r.label }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div id="req-area" style="background: #FFFFFF; border: 1.5px solid {{ areaCardBorder }}; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What we read from your images</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #FBEDE9; border: 1px solid #F0D3CA; color: #A2452F;">Required</span>
+            </div>
             <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Taken from the study you uploaded. Have a look, and correct anything that is wrong.</p>
             <div data-r="detected" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 18px;">
               <sc-for list="{{ detected }}" as="d" hint-placeholder-count="2">
@@ -252,7 +271,7 @@
                 <div>
                   <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 4px;">Body area</div>
                   <p style="margin: 0 0 12px; font-size: 13.5px; color: #5A6B77;">You do not have to know the medical term.</p>
-                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                  <div id="body-area-options" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
                     <sc-for list="{{ bodyAreas }}" as="opt" hint-placeholder-count="6">
                       <button type="button" onClick="{{ opt.select }}" style="appearance: none; display: flex; align-items: center; gap: 11px; padding: 14px 16px; border-radius: 12px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
                         <span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid {{ opt.dotBorder }}; background: {{ opt.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ opt.tick }}</span>
@@ -260,22 +279,37 @@
                       </button>
                     </sc-for>
                   </div>
+                  <sc-if value="{{ hasAreaError }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top: 10px; font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #A2452F;">Choose the part of the body that was scanned. Your consultant is matched from this.</div>
+                  </sc-if>
                 </div>
               </div>
             </sc-if>
           </div>
 
-          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">When and where the scan was done</h3>
+          <div id="req-date" style="background: #FFFFFF; border: 1.5px solid {{ dateCardBorder }}; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">When and where the scan was done</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #FBEDE9; border: 1px solid #F0D3CA; color: #A2452F;">Required</span>
+            </div>
             <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">This helps us tell your study apart from any earlier ones, and tells your consultant which machine and protocol to expect.</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
-              <label style="display: flex; flex-direction: column; gap: 7px;">
-                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Date of the scan</span>
-                <input type="text" value="{{ scanDate }}" onChange="{{ onScanDate }}" placeholder="For example: March 2026" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
-                <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">Roughly is fine if you cannot remember the day.</span>
+              <label onClick="{{ openDatePicker }}" style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Date of the scan</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A2452F;">Required</span>
+                </span>
+                <input id="scan-date" type="date" value="{{ scanDate }}" onChange="{{ onScanDate }}" min="1980-01-01" max="{{ scanDateMax }}" aria-invalid="{{ scanDateInvalid }}" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ scanDateBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; cursor: pointer; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <sc-if value="{{ hasScanDateError }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #A2452F;">{{ scanDateError }}</span>
+                </sc-if>
+                <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">{{ scanDateHint }}</span>
               </label>
               <label style="display: flex; flex-direction: column; gap: 7px;">
-                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Hospital or imaging provider</span>
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Hospital or imaging provider</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
                 <input type="text" value="{{ provider }}" onChange="{{ onProvider }}" placeholder="For example: Royal Free Hospital" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
                 
               </label>
@@ -283,21 +317,33 @@
           </div>
 
           <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Your symptoms</h3>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Your symptoms</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4F7F8; border: 1px solid #E2E9EC; color: #6E7C86;">Optional</span>
+            </div>
             <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">In your own words. There is no wrong way to describe this.</p>
             <div style="display: flex; flex-direction: column; gap: 18px;">
               <label style="display: flex; flex-direction: column; gap: 7px;">
-                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">What are your main symptoms?</span>
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">What are your main symptoms?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
             <textarea value="{{ symptoms }}" onChange="{{ onSymptoms }}" placeholder="For example: a dull ache on the outside of my right knee, worse going downstairs." style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 92px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
               </label>
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
               <label style="display: flex; flex-direction: column; gap: 7px;">
-                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">When did they begin?</span>
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">When did they begin?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
                 <input type="text" value="{{ symptomsOnset }}" onChange="{{ onOnset }}" placeholder="For example: around November" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
                 
               </label>
               <label style="display: flex; flex-direction: column; gap: 7px;">
-                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">How have they changed since?</span>
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">How have they changed since?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
                 <input type="text" value="{{ symptomsChange }}" onChange="{{ onSymptomsChange }}" placeholder="For example: slowly getting worse" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
                 
               </label>
@@ -306,17 +352,26 @@
           </div>
 
           <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Anything in your medical history we should know</h3>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Anything in your medical history we should know</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4F7F8; border: 1px solid #E2E9EC; color: #6E7C86;">Optional</span>
+            </div>
             <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Previous diagnoses, operations, injuries, any cancer history, and any treatment you are having or have had. If none of that applies, say so &mdash; that is useful too.</p>
             <textarea value="{{ history }}" onChange="{{ onHistory }}" placeholder="For example: knee arthroscopy in 2019. No cancer history. No other operations." style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 92px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
           </div>
 
           <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What you already have</h3>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What you already have</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4F7F8; border: 1px solid #E2E9EC; color: #6E7C86;">Optional</span>
+            </div>
             <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Your original report lets your consultant compare directly with what was said before. An earlier scan lets them tell you what has changed.</p>
             <div style="display: flex; flex-direction: column; gap: 20px;">
               <div>
-                <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 10px;">Do you have the original radiology report?</div>
+                <div style="display: flex; align-items: baseline; gap: 9px; margin-bottom: 10px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Do you have the original radiology report?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </div>
             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
               <sc-for list="{{ reportOptions }}" as="opt" hint-placeholder-count="3">
                 <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
@@ -324,7 +379,10 @@
             </div>
               </div>
               <div>
-                <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 10px;">Do you have an earlier scan of the same area?</div>
+                <div style="display: flex; align-items: baseline; gap: 9px; margin-bottom: 10px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Do you have an earlier scan of the same area?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </div>
             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
               <sc-for list="{{ priorOptions }}" as="opt" hint-placeholder-count="3">
                 <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
@@ -334,10 +392,16 @@
             </div>
           </div>
 
-          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); border-color: #C3E0DE;">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What would you like the consultant radiologist to review or clarify?</h3>
+          <div id="req-question" style="background: #FFFFFF; border: 1.5px solid {{ questionCardBorder }}; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What would you like the consultant radiologist to review or clarify?</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #FBEDE9; border: 1px solid #F0D3CA; color: #A2452F;">Required</span>
+            </div>
             <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">This is the one thing we ask you not to skip. Your consultant answers it directly, in plain English, in your report.</p>
-            <textarea value="{{ question }}" onChange="{{ onQuestion }}" placeholder="For example: my report mentioned a possible lesion — is it a tumour, and has it changed since my last scan?" style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 108px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+            <textarea id="scan-question" value="{{ question }}" onChange="{{ onQuestion }}" placeholder="For example: my report mentioned a possible lesion — is it a tumour, and has it changed since my last scan?" style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid {{ questionBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 108px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+            <sc-if value="{{ hasQuestionError }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 9px; font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #A2452F;">Tell us what you would like your consultant to answer. One sentence is enough &mdash; or use one of the examples below.</div>
+            </sc-if>
             <div style="margin-top: 14px;">
               <div style="font-size: 13px; font-weight: 600; color: #5A6B77; margin-bottom: 9px;">Not sure how to put it? Start from one of these.</div>
               <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -348,8 +412,11 @@
             </div>
           </div>
 
-          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Would you like your GP or treating clinician to add clinical information for the radiologist?</h3>
+          <div id="req-clinician" style="background: #FFFFFF; border: 1.5px solid {{ clinicianCardBorder }}; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Would you like your GP or treating clinician to add clinical information for the radiologist?</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4F7F8; border: 1px solid #E2E9EC; color: #6E7C86;">Optional</span>
+            </div>
             <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Not required. It helps most when your history is long, or when someone else has been managing your care.</p>
             <div style="display: flex; flex-direction: column; gap: 10px;">
               <sc-for list="{{ clinicianOptions }}" as="opt" hint-placeholder-count="3">
@@ -366,13 +433,22 @@
               <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #E2E9EC; display: flex; flex-direction: column; gap: 16px;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
               <label style="display: flex; flex-direction: column; gap: 7px;">
-                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Your clinician's name</span>
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Your clinician's name</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
                 <input type="text" value="{{ clinicianName }}" onChange="{{ onClinicianName }}" placeholder="For example: Dr Sarah Patel" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
                 
               </label>
               <label style="display: flex; flex-direction: column; gap: 7px;">
-                <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Their email address</span>
-                <input type="text" value="{{ clinicianEmail }}" onChange="{{ onClinicianEmail }}" placeholder="surgery@nhs.net" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Their email address</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A2452F;">Required</span>
+                </span>
+                <input id="clinician-email" type="email" value="{{ clinicianEmail }}" onChange="{{ onClinicianEmail }}" placeholder="surgery@nhs.net" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ clinicianEmailBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <sc-if value="{{ hasClinicianEmailError }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #A2452F;">We need a working address to send their single-case link. Change your answer above if you would rather provide the information yourself.</span>
+                </sc-if>
                 <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">We only ever use this to send the single-case link.</span>
               </label>
                 </div>
@@ -607,6 +683,29 @@ const BODY_AREAS = [
 const DRAFT_KEY = 'secondread:draft:v1';
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+/* A scan that has not happened yet cannot be re-read, so the picker is capped
+   at today and a later date is refused with its own message rather than
+   silently accepted. */
+function todayISO() {
+  const d = new Date();
+  const pad = n => (n < 10 ? '0' : '') + n;
+  return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+}
+
+/* The date input speaks ISO; the case file and the portal show dates the way
+   a person would write them. Formatting on the way out keeps one value in
+   state rather than two that can drift apart. */
+const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'];
+function humanDate(iso) {
+  if (!ISO_DATE_RE.test(iso || '')) return iso || '';
+  const p = iso.split('-');
+  const month = MONTH_NAMES[Number(p[1]) - 1];
+  if (!month) return iso;
+  return Number(p[2]) + ' ' + month + ' ' + p[0];
+}
 
 /* The order is now seeded from the URL, so a choice made on the landing page,
    the pricing table or a consultant profile survives the click into checkout.
@@ -741,6 +840,9 @@ function initialState() {
     scanType: 'MRI',
     area: 'brain',
     editingDetected: false,
+    // Errors stay hidden until the visitor actually tries to move on, so the
+    // step does not open covered in red before they have typed anything.
+    showErrors: false,
     scanDate: '',
     provider: '',
     symptoms: '',
@@ -769,6 +871,11 @@ function initialState() {
     demoCode: ''
   };
   const st = Object.assign(base, loadDraft() || {}, orderFromQuery());
+  // Drafts saved before the date picker existed hold free text ("March 2026"),
+  // which a date input cannot show. Drop it rather than render an empty field
+  // that claims to be filled in.
+  if (!ISO_DATE_RE.test(st.scanDate || '')) st.scanDate = '';
+  st.showErrors = false;
   const signedIn = !!(window.PORTAL && PORTAL.isSignedIn());
   const waiting = !!(window.PORTAL && PORTAL.pending());
   if (!signedIn) {
@@ -825,18 +932,72 @@ class Component extends DCLogic {
     return { amount: base + extra, isFrom: !speed };
   }
 
+  /* Everything step 2 will not proceed without, in the order it appears on the
+     page. One list drives four things: the checklist at the top of the step,
+     the red state on each card and field, what the Next button refuses to do,
+     and which field it scrolls to. Keeping them in one place is what stops the
+     checklist and the button disagreeing about what is outstanding. */
+  requirements() {
+    const s = this.state;
+    const today = todayISO();
+    const dateGiven = ISO_DATE_RE.test(s.scanDate || '');
+    const list = [
+      { id: 'req-area', label: 'Part of the body scanned',
+        ok: !!s.area,
+        blocker: 'Tell us which part of the body was scanned' },
+      { id: 'req-date', label: 'Date of the scan',
+        ok: dateGiven && s.scanDate <= today,
+        blocker: dateGiven ? 'That scan date is in the future' : 'Add the date of your scan' },
+      // The consultant answers this question directly in the report, so a case
+      // without one is a case we cannot match or write to.
+      { id: 'req-question', label: 'What to review or clarify',
+        ok: !!s.question.trim(),
+        blocker: 'Tell us what you would like the consultant to review' }
+    ];
+    if (s.clinicianMode !== 'self') {
+      list.push({ id: 'req-clinician', label: "Your clinician's email",
+        ok: EMAIL_RE.test(s.clinicianEmail.trim()),
+        blocker: "Add your clinician's email address, or choose to provide the information yourself" });
+    }
+    return list;
+  }
+
+  // Take the visitor to an outstanding answer and put the cursor in it. The
+  // wait is for the error state to paint first, so the field they land on is
+  // already showing why it stopped them.
+  focusRequirement(id) {
+    if (typeof document === 'undefined') return;
+    if (id === 'req-area') this.setState({ editingDetected: true });
+    setTimeout(() => {
+      const card = document.getElementById(id);
+      if (!card) return;
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // The card is bigger than the answer: the clinician card leads with three
+      // option buttons, so landing on "the first focusable thing" would put the
+      // cursor somewhere other than the field that stopped them.
+      const FIELDS = {
+        'req-area': '#body-area-options button',
+        'req-date': '#scan-date',
+        'req-question': '#scan-question',
+        'req-clinician': '#clinician-email'
+      };
+      const field = (FIELDS[id] && card.querySelector(FIELDS[id]))
+        || card.querySelector('input, textarea, button');
+      if (field && field.focus) {
+        try { field.focus({ preventScroll: true }); } catch (e) { field.focus(); }
+      }
+    }, 80);
+  }
+
   // What stops the visitor moving on from `step`, or '' if nothing does.
   // Previously `next` advanced unconditionally, so it was possible to reach the
   // payment screen with no turnaround chosen and still be quoted a firm price.
   blockerFor(step) {
     const s = this.state;
     if (step === 1 && s.files.some(f => f.progress < 100)) return 'Waiting for your upload to finish';
-    if (step === 2 && !s.area) return 'Tell us which part of the body was scanned';
-    // The consultant answers this question directly in the report, so a case
-    // without one is a case we cannot match or write to.
-    if (step === 2 && !s.question.trim()) return 'Tell us what you would like the consultant to review';
-    if (step === 2 && s.clinicianMode !== 'self' && !EMAIL_RE.test(s.clinicianEmail.trim())) {
-      return "Add your clinician's email address, or choose to provide the information yourself";
+    if (step === 2) {
+      const missing = this.requirements().filter(r => !r.ok)[0];
+      if (missing) return missing.blocker;
     }
     if (step === 3 && !s.speed) return 'Choose when you need your report';
     return '';
@@ -909,7 +1070,7 @@ class Component extends DCLogic {
         consultant: doc ? doc.id : '',
         speed: s.speed,
         question: s.question,
-        scanDate: s.scanDate,
+        scanDate: humanDate(s.scanDate),
         provider: s.provider,
         symptoms: s.symptoms,
         symptomsOnset: s.symptomsOnset,
@@ -948,6 +1109,8 @@ class Component extends DCLogic {
     const total = this.total();
     const blocker = this.blockerFor(s.step);
     const priceText = (total.isFrom ? 'from £' : '£') + total.amount;
+    const dateGiven = ISO_DATE_RE.test(s.scanDate || '');
+    const dateOk = dateGiven && s.scanDate <= todayISO();
 
     return {
       lockGlyph: this.svg(15, ['M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2Z', 'M8 11V7a4 4 0 0 1 8 0v4']),
@@ -991,16 +1154,26 @@ class Component extends DCLogic {
       isStep3: s.step === 3,
       canGoBack: s.step > 1 && ordering,
       back: () => {
-        this.setState(st => ({ step: Math.max(1, st.step - 1) }));
+        this.setState(st => ({ step: Math.max(1, st.step - 1), showErrors: false }));
         if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
       },
 
       // Step 3's CTA now completes the order instead of clamping at 3 and
       // leaving the visitor on a button that appears broken.
       next: () => {
-        if (this.blockerFor(this.state.step)) return;
+        // A button that does nothing reads as broken. When something is
+        // outstanding, show every outstanding answer at once and take the
+        // visitor to the first of them.
+        if (this.blockerFor(this.state.step)) {
+          this.setState({ showErrors: true });
+          if (this.state.step === 2) {
+            const missing = this.requirements().filter(r => !r.ok)[0];
+            if (missing) this.focusRequirement(missing.id);
+          }
+          return;
+        }
         if (this.state.step === 3) { this.placeOrder(); return; }
-        this.setState(st => ({ step: Math.min(3, st.step + 1), saved: false }));
+        this.setState(st => ({ step: Math.min(3, st.step + 1), saved: false, showErrors: false }));
         if (typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0, 0);
       },
       nextLabel: s.step === 1
@@ -1084,11 +1257,74 @@ class Component extends DCLogic {
       ],
 
       /* ---------------------------------------------- step 2: your case */
+
+      /* The required answers, and the three shades every one of them is drawn
+         in: satisfied, outstanding, and outstanding-after-the-visitor-tried-to
+         -move-on. Only the last is red — nothing is red before they act. */
+      reqItems: (() => {
+        const show = s.showErrors;
+        return this.requirements().map(r => {
+          const bad = show && !r.ok;
+          return {
+            label: r.label,
+            glyph: r.ok ? this.tick(11) : null,
+            bg: r.ok ? '#E4F2F2' : (bad ? '#FBEDE9' : '#FFFFFF'),
+            border: r.ok ? '#C3E0DE' : (bad ? '#E8C4B7' : '#E2E9EC'),
+            color: r.ok ? '#06313A' : (bad ? '#A2452F' : '#4A5C68'),
+            dotBg: r.ok ? '#0D6E70' : '#FFFFFF',
+            dotBorder: r.ok ? '#0D6E70' : (bad ? '#D9A493' : '#D4DDE0'),
+            go: () => this.focusRequirement(r.id)
+          };
+        });
+      })(),
+      reqCountLabel: (() => {
+        const reqs = this.requirements();
+        const done = reqs.filter(r => r.ok).length;
+        return done === reqs.length ? 'All ' + reqs.length + ' complete'
+          : done + ' of ' + reqs.length + ' complete';
+      })(),
+      reqCountColor: this.requirements().every(r => r.ok) ? '#095458' : '#5A6B77',
+      reqSummaryBorder: this.requirements().every(r => r.ok) ? '#C3E0DE'
+        : (s.showErrors ? '#D9A493' : '#E2E9EC'),
+
+      hasAreaError: s.showErrors && !s.area,
+      areaCardBorder: s.showErrors && !s.area ? '#D9A493' : '#E2E9EC',
+
+      // Clicking the field — its label included — should open the calendar,
+      // not only the small native indicator at the right-hand edge.
+      openDatePicker: e => {
+        const root = e.currentTarget;
+        const input = root && root.querySelector ? root.querySelector('input[type="date"]') : null;
+        if (!input || !input.showPicker) return;
+        // A click on the label is forwarded to the input and bubbles back, so
+        // without this the picker would open and immediately close again.
+        if (this._pickerAt && Date.now() - this._pickerAt < 400) return;
+        this._pickerAt = Date.now();
+        try { input.showPicker(); } catch (err) {}
+      },
+      scanDateMax: todayISO(),
+      scanDateHint: 'If you only remember the month, the first of that month is fine.',
+      hasScanDateError: s.showErrors && !dateOk,
+      scanDateInvalid: s.showErrors && !dateOk ? 'true' : 'false',
+      scanDateError: dateGiven
+        ? 'A scan cannot have been taken in the future. Check the year.'
+        : 'Pick the date your scan was taken.',
+      scanDateBorder: s.showErrors && !dateOk ? '#B4462F' : '#D4DDE0',
+      dateCardBorder: s.showErrors && !dateOk ? '#D9A493' : '#E2E9EC',
+
+      hasQuestionError: s.showErrors && !s.question.trim(),
+      questionBorder: s.showErrors && !s.question.trim() ? '#B4462F' : '#D4DDE0',
+      questionCardBorder: s.showErrors && !s.question.trim() ? '#D9A493' : '#C3E0DE',
+
+      hasClinicianEmailError: s.showErrors && s.clinicianMode !== 'self' && !EMAIL_RE.test(s.clinicianEmail.trim()),
+      clinicianEmailBorder: s.showErrors && s.clinicianMode !== 'self' && !EMAIL_RE.test(s.clinicianEmail.trim()) ? '#B4462F' : '#D4DDE0',
+      clinicianCardBorder: s.showErrors && s.clinicianMode !== 'self' && !EMAIL_RE.test(s.clinicianEmail.trim()) ? '#D9A493' : '#E2E9EC',
+
       detected: [
         { label: 'Scan type', value: s.scanType },
         { label: 'Body area', value: areaLabel }
       ],
-      editingDetected: s.editingDetected,
+      editingDetected: s.editingDetected || (s.showErrors && !s.area),
       detectedToggleLabel: s.editingDetected ? 'Done — hide these options' : 'Something here is wrong. Let me correct it',
       toggleDetected: () => this.setState(st => ({ editingDetected: !st.editingDetected })),
 
