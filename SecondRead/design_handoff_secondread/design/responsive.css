@@ -246,7 +246,7 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
 
 @media (max-width: 1180px) {
   [data-r="nav"] { flex-wrap: nowrap !important; gap: 20px !important; }
-  [data-r="nav"] > a:first-child img { height: 42px !important; width: auto !important; }
+  [data-r="nav"] > a:first-child img { height: 42px !important; width: auto !important; object-fit: contain; }
   [data-r="navlinks"] { gap: 18px !important; }
   [data-r="navlinks"] > a { font-size: 13.5px !important; }
   [data-r="navcta"] { margin-left: auto !important; flex-shrink: 0; gap: 10px !important; }
@@ -317,7 +317,7 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
     row-gap: 0 !important;
   }
   [data-r="nav"] > a:first-child { flex-shrink: 1; min-width: 0; min-height: 44px; }
-  [data-r="nav"] > a:first-child img { height: 38px !important; width: auto !important; }
+  [data-r="nav"] > a:first-child img { height: 36px !important; width: auto !important; }
 
   [data-r="navcta"] { order: 2; margin-left: auto !important; flex-shrink: 0; gap: 8px !important; }
   [data-r="navcta"] > a:last-child {
@@ -358,7 +358,7 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
 
   /* Start Flow chrome: the reassurance line is the first thing to go */
   [data-r="flowbar"] { gap: 12px !important; padding: 12px 24px !important; }
-  [data-r="flowbar"] > a:first-child img { height: 38px !important; width: auto !important; }
+  [data-r="flowbar"] > a:first-child img { height: 36px !important; width: auto !important; object-fit: contain; }
   [data-r="flowassure"] { display: none !important; }
 }
 
@@ -490,6 +490,16 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
   /* ...but never the compact ones in the header */
   [data-r="navcta"] > a, [data-r="nav"] a { width: auto !important; }
 
+  /* The header carries three things on a phone — wordmark, primary CTA and the
+     burger — and on a 414px screen they did not clear the row even before the
+     wordmark went from 3.71:1 to 4.00:1. Both the logo and the CTA come down a
+     step through the whole phone band so the header stays on one line instead
+     of dropping the burger onto a second row. */
+  [data-r="nav"] > a:first-child img { height: 34px !important; }
+  [data-r="navcta"] > a:last-child {
+    min-height: 40px !important; padding: 9px 13px !important; font-size: 12.5px !important;
+  }
+
   /* Rows that were space-between at desktop stack instead of squeezing */
   [style*="justify-content: space-between"][style*="flex-wrap: wrap"] {
     justify-content: flex-start !important;
@@ -554,8 +564,12 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
 /* -------------------------------------------- 11. small phone (<= 400px) */
 
 @media (max-width: 400px) {
-  [data-r="nav"] { gap: 0 8px !important; padding: 9px 16px !important; }
-  [data-r="nav"] > a:first-child img { height: 32px !important; }
+  /* Gutters and gap tighten rather than the 44px burger, which is the floor
+     for a touch target. This is what buys a 360px Android phone its single
+     header row; below ~340px the row still wraps, and wrapping is the right
+     answer there. */
+  [data-r="nav"] { gap: 0 6px !important; padding: 9px 12px !important; }
+  [data-r="nav"] > a:first-child img { height: 30px !important; }
   [data-r="navcta"] > a:last-child {
     min-height: 40px !important; padding: 9px 13px !important; font-size: 12.5px !important;
   }
@@ -563,7 +577,7 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
   [data-r="navmenu"][open] ~ [data-r="navlinks"] { margin-left: -16px !important; margin-right: -16px !important; padding-left: 16px !important; padding-right: 16px !important; }
 
   [data-r="flowbar"] { padding: 10px 16px !important; }
-  [data-r="flowbar"] > a:first-child img { height: 32px !important; }
+  [data-r="flowbar"] > a:first-child img { height: 30px !important; }
 
   /* Below this the 2x3 picker labels start truncating */
   [style*="grid-template-columns: repeat(3, 1fr)"][style*="gap: 10px"] { gap: 8px !important; }
