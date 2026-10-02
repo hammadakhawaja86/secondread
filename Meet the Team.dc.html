@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./consultants.js?v=2"></script>
 <script src="./portal.js?v=7"></script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -18,6 +19,7 @@
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="responsive.css?v=24">
+  <script src="./image-slot.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -26,7 +28,6 @@
     a { color: #095458; text-decoration: none; }
     a:hover { color: #0D6E70; text-decoration: underline; }
     h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
-    input::placeholder { color: #6C7C87; }
   </style>
 </helmet>
 
@@ -41,7 +42,7 @@
       <a href="Specialists.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Specialists</a>
       <a href="Pricing.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Pricing</a>
       <a href="Sample Report.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Sample report</a>
-      <a href="Meet the Team.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Meet the team</a>
+      <a href="Meet the Team.dc.html" style="color: #0D6E70; font-size: 14px; font-weight: 600;">Meet the team</a>
       <a href="FAQs.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">FAQs</a>
     </div>
     <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;"><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link data-r="navdash" style="min-height: 42px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid #C3E0DE; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #F0F8F8; color: #095458; text-decoration: none;">Patient dashboard</a>
@@ -50,55 +51,50 @@
   </nav>
 </header>
 
-
 <section style="background: linear-gradient(135deg, #E4F2F2 0%, #EEF7F7 55%, #F7FBFB 100%); border-bottom: 1px solid #E2E9EC;">
-  <div style="max-width: 860px; margin: 0 auto; padding: 40px 32px 52px;">
-    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; color: #5A6B77; margin-bottom: 28px;">
-      <a href="index.html" style="color: #5A6B77;">Home</a>
-      <span>/</span>
-      <span style="color: #0A1F2C; font-weight: 600;">Accessibility</span>
-    </div>
-    <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Legal</div>
-    <h1 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.025em; color: #0A1F2C;">Accessibility</h1>
-    <p style="margin: 0 0 20px; font-size: 17.5px; line-height: 1.6; color: #173B4F;">How this site is built to be usable, what we know is not yet good enough, and how to tell us when we have got it wrong.</p>
-    <div style="font-size: 13.5px; color: #5A6B77;">Last updated 25 August 2026</div>
+  <div style="max-width: 1120px; margin: 0 auto; padding: 40px 32px 56px;">
+    <nav aria-label="Breadcrumb" style="font-size: 13px; color: #5A6B77; margin-bottom: 22px;"><a href="index.html" style="color: #5A6B77;">Home</a> &nbsp;/&nbsp; <span style="color: #0A1F2C; font-weight: 600;">Meet the team</span></nav>
+    <span style="display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; background: #D7F2F3; border: 1px solid #C3E0DE; border-radius: 999px; padding: 6px 14px; margin-bottom: 18px;">Meet the team</span>
+    <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C; max-width: 760px;">The people behind SecondRead</h1>
+    <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #4A5C68; max-width: 640px;">Health-technology leadership, NHS clinical governance, and the consultant radiologists who read the scans.</p>
   </div>
 </section>
 
-<section style="background: #FFFFFF; padding: 64px 32px 88px;">
-  <div style="max-width: 860px; margin: 0 auto;">
-    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">Our commitment</h2>
-    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">People come to SecondRead worried, often in pain, and sometimes with the very condition that makes a website hard to use. A site that is difficult to read or impossible to navigate by keyboard is not a minor inconvenience in that situation.</p>
-    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">We aim to meet <strong>WCAG 2.2 Level AA</strong> across every page, and to go beyond it where meeting the letter of the standard would still leave someone stuck.</p>
-    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">What we have done</h2>
-    <ul style="margin: 0 0 16px; padding-left: 22px; display: flex; flex-direction: column; gap: 9px;">
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Every page works at 320&nbsp;px wide and at 400% browser zoom without horizontal scrolling or loss of content.</li>
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">All text meets at least a 4.5:1 contrast ratio against its background; large headings meet 3:1.</li>
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Every interactive control can be reached and operated with a keyboard alone, in a logical order, with a visible focus indicator.</li>
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Buttons, links and form fields have a touch target of at least 44&nbsp;&times;&nbsp;44&nbsp;px.</li>
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Form fields have real, associated labels — never a placeholder standing in for one — and errors are announced, not just coloured red.</li>
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Images that carry meaning have alternative text. Decorative images are hidden from screen readers.</li>
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">Animation is subdued automatically for anyone whose system asks for reduced motion, and no content moves, flashes or auto-advances in a way that cannot be stopped.</li>
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">The site does not depend on colour alone to convey any piece of information.</li>
-    </ul>
-    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">What is not there yet</h2>
-    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">We would rather list these than let you discover them.</p>
-    <ul style="margin: 0 0 16px; padding-left: 22px; display: flex; flex-direction: column; gap: 9px;">
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">The sample report is offered as a PDF. It is tagged and readable by a screen reader, but the on-page version above it is the more reliable route, and we intend to make the PDF fully equivalent rather than merely accessible.</li>
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">The consultant carousels on the home page can be operated by keyboard and read in full on the Specialists page, but the carousel itself is a less comfortable experience than the plain list. If you find it awkward, the Specialists page has the same information laid out simply.</li>
-      <li style="font-size: 16px; line-height: 1.7; color: #173B4F;">We have not yet completed an independent audit by a third-party accessibility specialist. One is planned, and we will publish the findings here — including the ones that do not flatter us.</li>
-    </ul>
-    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">If something does not work for you</h2>
-    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Tell us, and we will fix it. You do not need to know what is wrong technically — describing what you were trying to do and what happened is enough.</p>
-    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">Email <a href="mailto:info@secondread.co.uk" style="font-weight: 600;">info@secondread.co.uk</a> or call <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>, 09:00–20:00, seven days. We aim to reply within two working days.</p>
-    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">If any part of this site stops you ordering a report, call us and we will take the whole order over the phone at the same price. That is not a workaround we are proud of, but it should always be available to you.</p>
-    <h2 style="margin: 40px 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.25; color: #0A1F2C; letter-spacing: -0.01em;">Enforcement</h2>
-    <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.75; color: #173B4F;">If you are unhappy with how we have responded to an accessibility complaint, you can contact the Equality Advisory and Support Service (EASS) at equalityadvisoryservice.com. We are a private-sector provider, so the public-sector accessibility regulations do not apply to us — but the Equality Act 2010 does, and so does the ordinary expectation that a health service should be usable.</p>
+<section style="background: #F4F7F8; padding: 72px 32px 24px;">
+  <div style="max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 88px;" data-r="teamlist">
+    <sc-for list="{{ team }}" as="p" hint-placeholder-count="4">
+      <article data-r="teamrow" style="display: flex; flex-direction: {{ p.dir }}; align-items: center; gap: 64px;">
 
-    <div style="margin-top: 48px; padding-top: 28px; border-top: 1px solid #E2E9EC; display: flex; gap: 14px; flex-wrap: wrap; font-size: 14.5px; color: #5A6B77;">
-      <span>Questions about this page?</span>
-      <a href="mailto:info@secondread.co.uk" style="font-weight: 600;">info@secondread.co.uk</a>
-      <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>
+        <div data-r="teamfig" style="position: relative; flex: 0 0 248px; max-width: 248px; width: 100%;">
+          <span aria-hidden="true" data-r="teamfigback" style="position: absolute; inset: -15px; border-radius: 50%; border: 1px solid #C3E0DE;"></span>
+          <span aria-hidden="true" data-r="teamfigback" style="position: absolute; inset: -30px; border-radius: 50%; border: 1px solid #E2E9EC;"></span>
+          <img src="{{ p.photo }}" alt="{{ p.alt }}" loading="lazy" style="position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 50%; background: #D7F2F3; box-shadow: 0 14px 34px rgba(6,19,28,0.13);">
+        </div>
+
+        <div style="flex: 1 1 0; min-width: 0;">
+          <h2 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-size: 23px; font-weight: 700; line-height: 1.2; letter-spacing: 0.1em; text-transform: uppercase; color: #095458;">{{ p.name }}</h2>
+          <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #173B4F; max-width: 560px;">{{ p.bio }}</p>
+          <sc-if value="{{ p.hasProfile }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ p.profileHref }}" style="display: inline-flex; align-items: center; gap: 9px; margin-top: 20px; font-size: 15px; font-weight: 600; color: #095458; transition: gap 140ms ease-out, color 140ms ease-out;" style-hover="color: #0D6E70; gap: 14px; text-decoration: none;">{{ p.profileLabel }} <span aria-hidden="true">&#8594;</span></a>
+          </sc-if>
+        </div>
+
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section style="background: #F4F7F8; padding: 48px 32px 80px;">
+  <div style="max-width: 1060px; margin: 0 auto;">
+    <div data-r="teamhow" style="background: #06313A; border-radius: 22px; padding: 44px 48px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;">
+      <div>
+        <h2 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 25px; font-weight: 700; letter-spacing: -0.02em; color: #FFFFFF;">The radiologist who reads your scan</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.78); max-width: 560px;">You are not asked to choose one. Tell us what was scanned and what you want answered, and we match your case to the consultant who subspecialises in it &mdash; named, with their GMC number, before you pay.</p>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="Specialists.dc.html" style="min-height: 50px; padding: 14px 26px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,0.35); background: transparent; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #7FD8D4; background: rgba(255,255,255,0.08); color: #FFFFFF; text-decoration: none;">See the specialists</a>
+        <a href="Start Flow.dc.html" style="min-height: 50px; padding: 14px 26px; border-radius: 999px; background: #29E6C4; color: #06313A; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; box-sizing: border-box; transition: background 140ms ease-out;" style-hover="background: #6FE3C5; color: #06313A; text-decoration: none;">Start my second read</a>
+      </div>
     </div>
   </div>
 </section>
@@ -142,8 +138,79 @@
 </footer>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
+/* ---------------------------------------------------------------------------
+   Meet the team
+
+   This list is deliberately local to this page. consultants.js is the reporting
+   roster — it drives the specialist directory, the landing carousel and the
+   profile pages — and the people below are mostly not on it. Adding them there
+   would put the leadership team into the "find a radiologist" filters.
+
+   Dr Rajakulasingam appears in both. His entry is read from consultants.js so
+   his details cannot drift from his profile page; only the paragraph written
+   for this page lives here.
+
+   CONTENT STATUS — for the client, before launch:
+     · The three biographies are the client's own copy, reproduced verbatim.
+     · All four headshots are exported from the Figma file (node 100-14) at
+       3x and resized to 496px, which is 2x the size they are shown at. They
+       are the client's own assets, already masked and set on the site tint.
+     · No job titles have been assigned. The supplied copy names roles at other
+       organisations (31G, NHS England), not at SecondRead, so inventing a
+       title here would be putting words in someone's mouth.
+--------------------------------------------------------------------------- */
+
+const RR = (typeof CONSULTANTS !== 'undefined'
+  ? CONSULTANTS.filter(c => c.id === 'rajakulasingam')[0]
+  : null) || {};
+
+const TEAM = [
+  {
+    name: 'Hasib Aftab',
+    photo: 'team/hasib-aftab.jpg',
+    bio: '20+ years leading healthcare technology transformation. CIO experience with a large US-parent corporate. Founder and CEO of 31G, scaling AI-driven health platforms in UK, KSA, Pakistan and UAE. Board-level leader with SaaS scaling, M&A and digital compliance expertise.'
+  },
+  {
+    name: 'Jarrar Hyder',
+    photo: 'team/jarrar-hyder.jpg',
+    bio: '23+ years leading enterprise architecture and data strategy transformation. Led Data Fabric transformation at Arqiva, built Telefonica O2’s 95-billion-row NetPulse datalake, and delivered the NHS’s award-winning CIDR care record platform. TOGAF-certified CTO and Enterprise Architect with cloud, big data and AI expertise.'
+  },
+  {
+    name: 'Dr Zuhaib Keekeebhai',
+    photo: 'team/zuhaib-keekeebhai.jpg',
+    bio: 'GP Principal across two North London sites (CQC Outstanding-rated). Regional Clinical Lead for Primary Care Digital Transformation, NHS England (London). Qualified Clinical Safety Officer supporting health-tech manufacturers through NHS regulatory requirements.'
+  },
+  {
+    name: 'Dr ' + (RR.name || 'Ramanan Rajakulasingam'),
+    photo: 'team/ramanan-rajakulasingam.jpg',
+    // Written out rather than concatenated from his roster fields, which
+    // produced lowercased modalities and repeated the hospital. Every fact
+    // here is from that entry; nothing is added to it.
+    bio: 'Consultant musculoskeletal and sarcoma radiologist at RNOH Stanmore, FRCR. '
+       + 'Reports bones, joints and soft tissue \u2014 including sarcoma and complex '
+       + 'orthopaedic imaging \u2014 across MRI, CT and ultrasound.',
+    profileId: RR.id || 'rajakulasingam',
+    profileLabel: 'Read Dr ' + (typeof consultantSurname === 'function' && RR.name ? consultantSurname(RR) : 'Rajakulasingam') + '’s full profile'
+  }
+];
+
 class Component extends DCLogic {
-  renderVals() { return {}; }
+  renderVals() {
+    return {
+      /* Portrait left, portrait right, down the page. Set here rather than with
+         nth-child so the row can flip without the stylesheet having to know how
+         many people there are. */
+      team: TEAM.map((p, i) => ({
+        ...p,
+        dir: i % 2 === 1 ? 'row-reverse' : 'row',
+        alt: p.name,
+        hasProfile: !!p.profileId,
+        profileHref: p.profileId
+          ? 'Specialist Profile.dc.html?id=' + encodeURIComponent(p.profileId)
+          : ''
+      }))
+    };
+  }
 }
 </script>
 </body>

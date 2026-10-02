@@ -34,6 +34,13 @@ a[href^="mailto:"], a[href^="tel:"] { overflow-wrap: anywhere; }
 /* Nav labels never wrap mid-label at any width */
 [data-r="navlinks"] > a { white-space: nowrap; }
 [data-r="navlinks"] { min-width: 0; }
+/* Six links, a wordmark and two calls to action do not fit at the 28px gap the
+   row was authored with when it held five. Overridden here rather than in each
+   page's inline style, which is where the 28px lives. */
+[data-r="navlinks"] { gap: 18px !important; }
+/* The 40px authored between wordmark, links and CTAs leaves the six-link row
+   with nothing in hand at 1264px, where the 1200px container stops growing. */
+[data-r="nav"] { gap: 32px !important; }
 
 /* A 14px text link is a 17px hit target. Padding lifts it to ~37px without
    changing the header's height, which the 42px CTA already sets. */
@@ -250,6 +257,47 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
   [data-r="navlinks"] { gap: 18px !important; }
   [data-r="navlinks"] > a { font-size: 13.5px !important; }
   [data-r="navcta"] { margin-left: auto !important; flex-shrink: 0; gap: 10px !important; }
+}
+
+/* ----------------------------------- 5b. burger takes over (<= 1264px)
+
+   Measured, not guessed: with six links the row overflows its container from
+   1264px down, sliding the last links under the CTA buttons. It did so
+   from roughly 1030px even with five, so this also fixes a break that was
+   already there. The drawer is the same row re-laid out, so the current-page
+   highlight keeps working and there is one set of links in the DOM.
+
+   The <= 900px block below repeats the sheet's offsets against that band's
+   narrower nav padding, and wins by coming later.                           */
+
+@media (max-width: 1264px) {
+  [data-r="nav"] { flex-wrap: wrap !important; row-gap: 0 !important; }
+  [data-r="navcta"] { order: 2; }
+  [data-r="navmenu"] { display: block; order: 3; flex-shrink: 0; }
+  [data-r="navlinks"] { display: none !important; }
+
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] {
+    display: flex !important;
+    order: 4;
+    width: 100%;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    margin: 10px -32px 0 !important;
+    padding: 4px 32px 8px !important;
+    border-top: 1px solid #E2E9EC;
+    background: #FFFFFF;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > a {
+    display: flex; align-items: center;
+    min-height: 52px;
+    padding: 0 !important;
+    font-size: 16px !important;
+    border-bottom: 1px solid #EEF2F4;
+  }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > a:last-child { border-bottom: none; }
 }
 
 /* -------------------------------------------------- 6. tablet (<= 1024px) */
@@ -773,4 +821,37 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
 
   /* Check results and detected values go to a single column. */
   [data-r="checkgrid"], [data-r="detected"], [data-r="readjump"] { grid-template-columns: minmax(0, 1fr) !important; }
+}
+
+/* ------------------------------------------------- 14. Meet the team page */
+
+/* The alternating row is a desktop idea: below the tablet break the portrait
+   always leads and the text always follows, so the reading order never depends
+   on which side the photo happened to land on. `row-reverse` is set inline per
+   row, hence the !important. */
+@media (max-width: 1024px) {
+  [data-r="teamlist"] { gap: 64px !important; }
+  [data-r="teamrow"] { gap: 44px !important; }
+  [data-r="teamfig"] { flex-basis: 204px !important; max-width: 204px !important; }
+}
+
+@media (max-width: 860px) {
+  [data-r="teamrow"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 26px !important;
+  }
+  [data-r="teamfig"] { flex-basis: auto !important; max-width: 188px !important; }
+  [data-r="teamlist"] { gap: 52px !important; }
+  [data-r="teamhow"] { grid-template-columns: 1fr !important; gap: 26px !important; padding: 32px !important; }
+}
+
+@media (max-width: 620px) {
+  [data-r="teamfig"] { max-width: 158px !important; }
+  /* The outer rings need breathing room the gutter no longer has. */
+  [data-r="teamfigback"] { display: none !important; }
+  [data-r="teamrow"] h2 { font-size: 19px !important; letter-spacing: 0.07em !important; }
+  [data-r="teamrow"] p { font-size: 15.5px !important; }
+  [data-r="teamhow"] { padding: 26px 22px !important; }
+  [data-r="teamhow"] > div:last-child > a { width: 100%; justify-content: center; }
 }

@@ -35,13 +35,14 @@ that origin — use a server.
 | --- | --- |
 | `index.html` | Landing page |
 | `How It Works` · `Specialists` · `Specialist Profile` · `Pricing` · `Sample Report` · `FAQs` · `Privacy` · `Terms` · `Accessibility` | Marketing site |
+| `Meet the Team.dc.html` | The people behind the service |
 | `Start Flow.dc.html` | The three-step order flow — upload, tell us about your case, get your report |
 | `Sign In` · `Create Account` · `Dashboard` · `Case` · `Report` · `Account` | The patient portal |
 | `_ds/` | Design-system tokens and stylesheet |
 | `consultants.js` · `portal.js` | The single sources of truth for consultant data and portal state |
 | `support.js` | The component runtime the pages are authored against |
 | `responsive.css` | The only hand-written CSS; everything else is inline |
-| `portraits/` · `services/` · `uploads/` | Photography |
+| `portraits/` · `services/` · `team/` · `uploads/` | Photography |
 | `docs/` | The handoff spec, the patient-portal spec, and deployment notes |
 
 ## Read this before showing anyone
