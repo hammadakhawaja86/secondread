@@ -152,9 +152,9 @@
 
    CONTENT STATUS — for the client, before launch:
      · The three biographies are the client's own copy, reproduced verbatim.
-     · The three headshots were cut from the supplied reference image and are
-       188px square. They are sharp enough at the size used here and will not
-       survive being shown larger — supply the originals.
+     · All four headshots are exported from the Figma file (node 100-14) at
+       3x and resized to 496px, which is 2x the size they are shown at. They
+       are the client's own assets, already masked and set on the site tint.
      · No job titles have been assigned. The supplied copy names roles at other
        organisations (31G, NHS England), not at SecondRead, so inventing a
        title here would be putting words in someone's mouth.
@@ -167,22 +167,22 @@ const RR = (typeof CONSULTANTS !== 'undefined'
 const TEAM = [
   {
     name: 'Hasib Aftab',
-    photo: 'team/hasib-aftab.png',
+    photo: 'team/hasib-aftab.jpg',
     bio: '20+ years leading healthcare technology transformation. CIO experience with a large US-parent corporate. Founder and CEO of 31G, scaling AI-driven health platforms in UK, KSA, Pakistan and UAE. Board-level leader with SaaS scaling, M&A and digital compliance expertise.'
   },
   {
     name: 'Jarrar Hyder',
-    photo: 'team/jarrar-hyder.png',
+    photo: 'team/jarrar-hyder.jpg',
     bio: '23+ years leading enterprise architecture and data strategy transformation. Led Data Fabric transformation at Arqiva, built Telefonica O2’s 95-billion-row NetPulse datalake, and delivered the NHS’s award-winning CIDR care record platform. TOGAF-certified CTO and Enterprise Architect with cloud, big data and AI expertise.'
   },
   {
     name: 'Dr Zuhaib Keekeebhai',
-    photo: 'team/zuhaib-keekeebhai.png',
+    photo: 'team/zuhaib-keekeebhai.jpg',
     bio: 'GP Principal across two North London sites (CQC Outstanding-rated). Regional Clinical Lead for Primary Care Digital Transformation, NHS England (London). Qualified Clinical Safety Officer supporting health-tech manufacturers through NHS regulatory requirements.'
   },
   {
     name: 'Dr ' + (RR.name || 'Ramanan Rajakulasingam'),
-    photo: 'team/ramanan-rajakulasingam.png',
+    photo: 'team/ramanan-rajakulasingam.jpg',
     // Written out rather than concatenated from his roster fields, which
     // produced lowercased modalities and repeated the hospital. Every fact
     // here is from that entry; nothing is added to it.
