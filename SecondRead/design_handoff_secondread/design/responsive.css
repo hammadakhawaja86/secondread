@@ -826,34 +826,32 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
 /* ------------------------------------------------- 14. Meet the team page */
 
 /* The alternating row is a desktop idea: below the tablet break the portrait
-   always leads and the text always follows, so the reading order never
-   depends on which side the photo happened to land on. `row-reverse` is set
-   inline per row, hence the !important. */
+   always leads and the text always follows, so the reading order never depends
+   on which side the photo happened to land on. `row-reverse` is set inline per
+   row, hence the !important. */
 @media (max-width: 1024px) {
-  [data-r="teamlist"] { gap: 72px !important; }
-  [data-r="teamrow"] { gap: 36px !important; }
-  [data-r="teamfig"] { flex-basis: 340px !important; max-width: 340px !important; }
+  [data-r="teamlist"] { gap: 64px !important; }
+  [data-r="teamrow"] { gap: 44px !important; }
+  [data-r="teamfig"] { flex-basis: 204px !important; max-width: 204px !important; }
 }
 
 @media (max-width: 860px) {
   [data-r="teamrow"] {
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 28px !important;
+    gap: 26px !important;
   }
-  [data-r="teamfig"] { flex-basis: auto !important; max-width: 420px !important; }
-  /* The offset panel needs room it does not have once the row is a column,
-     and it reads as a stray block rather than depth. */
-  [data-r="teamfigback"] { display: none !important; }
-  [data-r="teamlist"] { gap: 56px !important; }
+  [data-r="teamfig"] { flex-basis: auto !important; max-width: 188px !important; }
+  [data-r="teamlist"] { gap: 52px !important; }
+  [data-r="teamhow"] { grid-template-columns: 1fr !important; gap: 26px !important; padding: 32px !important; }
 }
 
 @media (max-width: 620px) {
-  [data-r="teamfig"] { max-width: 100% !important; }
-  [data-r="teamrow"] h2 { font-size: 27px !important; }
-}
-
-/* Two equal columns is a desktop layout; the explainer stacks with the list. */
-@media (max-width: 860px) {
-  [data-r="teamhow"] { grid-template-columns: 1fr !important; gap: 32px !important; }
+  [data-r="teamfig"] { max-width: 158px !important; }
+  /* The outer rings need breathing room the gutter no longer has. */
+  [data-r="teamfigback"] { display: none !important; }
+  [data-r="teamrow"] h2 { font-size: 19px !important; letter-spacing: 0.07em !important; }
+  [data-r="teamrow"] p { font-size: 15.5px !important; }
+  [data-r="teamhow"] { padding: 26px 22px !important; }
+  [data-r="teamhow"] > div:last-child > a { width: 100%; justify-content: center; }
 }

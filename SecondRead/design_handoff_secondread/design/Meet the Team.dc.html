@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=23">
+  <link rel="stylesheet" href="responsive.css?v=24">
   <script src="./image-slot.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,51 +52,31 @@
 </header>
 
 <section style="background: linear-gradient(135deg, #E4F2F2 0%, #EEF7F7 55%, #F7FBFB 100%); border-bottom: 1px solid #E2E9EC;">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 40px 32px 56px;">
+  <div style="max-width: 1120px; margin: 0 auto; padding: 40px 32px 56px;">
     <nav aria-label="Breadcrumb" style="font-size: 13px; color: #5A6B77; margin-bottom: 22px;"><a href="index.html" style="color: #5A6B77;">Home</a> &nbsp;/&nbsp; <span style="color: #0A1F2C; font-weight: 600;">Meet the team</span></nav>
     <span style="display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; background: #D7F2F3; border: 1px solid #C3E0DE; border-radius: 999px; padding: 6px 14px; margin-bottom: 18px;">Meet the team</span>
-    <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C; max-width: 760px;">The consultants who read your scan</h1>
-    <p style="margin: 0 0 26px; font-size: 17px; line-height: 1.65; color: #4A5C68; max-width: 660px;">{{ teamCount }} consultant radiologists, each subspecialising in one part of the body. Your scan goes to the one whose subspecialty matches it &mdash; and you see who, by name, before you pay.</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-      <sc-for list="{{ trustPoints }}" as="p" hint-placeholder-count="3">
-        <span style="display: inline-flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 999px; padding: 9px 16px; font-size: 13.5px; font-weight: 600; color: #06313A;">{{ p.glyph }} {{ p.label }}</span>
-      </sc-for>
-    </div>
+    <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C; max-width: 760px;">The people behind SecondRead</h1>
+    <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #4A5C68; max-width: 640px;">Health-technology leadership, NHS clinical governance, and the consultant radiologists who read the scans.</p>
   </div>
 </section>
 
-<section style="background: #F4F7F8; padding: 64px 32px 40px;">
-  <div style="max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 104px;" data-r="teamlist">
-    <sc-for list="{{ team }}" as="doc" hint-placeholder-count="4">
-      <article data-r="teamrow" style="display: flex; flex-direction: {{ doc.dir }}; align-items: center; gap: 64px;">
+<section style="background: #F4F7F8; padding: 72px 32px 24px;">
+  <div style="max-width: 1060px; margin: 0 auto; display: flex; flex-direction: column; gap: 88px;" data-r="teamlist">
+    <sc-for list="{{ team }}" as="p" hint-placeholder-count="4">
+      <article data-r="teamrow" style="display: flex; flex-direction: {{ p.dir }}; align-items: center; gap: 64px;">
 
-        <div data-r="teamfig" style="position: relative; flex: 0 0 418px; max-width: 418px; width: 100%;">
-          <span aria-hidden="true" data-r="teamfigback" style="position: absolute; top: 26px; bottom: -26px; left: {{ doc.backLeft }}; right: {{ doc.backRight }}; border-radius: 28px; background: {{ doc.accent }};"></span>
-          <span style="position: relative; display: block; width: 100%; aspect-ratio: 1 / 1.06; border-radius: 28px; overflow: hidden; background: #D7F2F3; border: 1px solid #C3E0DE; box-shadow: 0 18px 44px rgba(6,19,28,0.14);">{{ doc.portrait }}</span>
-          <span style="position: absolute; left: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.95); border: 1px solid #C3E0DE; border-radius: 999px; padding: 7px 14px; font-size: 12.5px; font-weight: 600; color: #095458; box-shadow: 0 4px 14px rgba(6,19,28,0.12);">{{ doc.availGlyph }} {{ doc.availability }}</span>
+        <div data-r="teamfig" style="position: relative; flex: 0 0 248px; max-width: 248px; width: 100%;">
+          <span aria-hidden="true" data-r="teamfigback" style="position: absolute; inset: -15px; border-radius: 50%; border: 1px solid #C3E0DE;"></span>
+          <span aria-hidden="true" data-r="teamfigback" style="position: absolute; inset: -30px; border-radius: 50%; border: 1px solid #E2E9EC;"></span>
+          <img src="{{ p.photo }}" alt="{{ p.alt }}" loading="lazy" style="position: relative; display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 50%; background: #D7F2F3; box-shadow: 0 14px 34px rgba(6,19,28,0.13);">
         </div>
 
         <div style="flex: 1 1 0; min-width: 0;">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
-            <span style="flex-shrink: 0; height: 1px; width: 34px; background: #0D6E70;"></span>
-            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #095458;">{{ doc.eyebrow }}</span>
-          </div>
-
-          <h2 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 34px; font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; color: #0A1F2C;">Dr {{ doc.name }}</h2>
-          <p style="margin: 0 0 6px; font-size: 16px; line-height: 1.5; font-weight: 500; color: #173B4F;">{{ doc.role }}</p>
-          <p style="margin: 0 0 20px; font-size: 13.5px; line-height: 1.5; color: #5A6B77;">{{ doc.quals }}</p>
-          <p style="margin: 0 0 22px; font-size: 16px; line-height: 1.7; color: #4A5C68; max-width: 520px;">{{ doc.bio }}</p>
-
-          <div style="margin-bottom: 24px;">
-            <div style="font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #5A6B77; margin-bottom: 11px;">Often asked to look at</div>
-            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px;">
-              <sc-for list="{{ doc.asks }}" as="ask" hint-placeholder-count="3">
-                <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.55; color: #173B4F;"><span style="flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: #E4F2F2; border: 1px solid #C3E0DE; color: #0D6E70; display: flex; align-items: center; justify-content: center; margin-top: 1px;">{{ ask.glyph }}</span>{{ ask.label }}</li>
-              </sc-for>
-            </ul>
-          </div>
-
-          <a href="{{ doc.profileHref }}" style="display: inline-flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; color: #095458; transition: gap 140ms ease-out, color 140ms ease-out;" style-hover="color: #0D6E70; gap: 14px; text-decoration: none;">{{ doc.profileLabel }} <span aria-hidden="true">&#8594;</span></a>
+          <h2 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-size: 23px; font-weight: 700; line-height: 1.2; letter-spacing: 0.1em; text-transform: uppercase; color: #095458;">{{ p.name }}</h2>
+          <p style="margin: 0; font-size: 16.5px; line-height: 1.75; color: #173B4F; max-width: 560px;">{{ p.bio }}</p>
+          <sc-if value="{{ p.hasProfile }}" hint-placeholder-val="{{ false }}">
+            <a href="{{ p.profileHref }}" style="display: inline-flex; align-items: center; gap: 9px; margin-top: 20px; font-size: 15px; font-weight: 600; color: #095458; transition: gap 140ms ease-out, color 140ms ease-out;" style-hover="color: #0D6E70; gap: 14px; text-decoration: none;">{{ p.profileLabel }} <span aria-hidden="true">&#8594;</span></a>
+          </sc-if>
         </div>
 
       </article>
@@ -104,28 +84,17 @@
   </div>
 </section>
 
-
-<section style="background: #FFFFFF; border-top: 1px solid #E2E9EC; padding: 64px 32px;">
-  <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;" data-r="teamhow">
-    <div>
-      <h2 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; color: #0A1F2C;">You are not asked to choose</h2>
-      <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.7; color: #4A5C68;">Picking a radiologist is not a patient&rsquo;s job. Tell us what was scanned and what you want answered, and we match your case to the consultant who subspecialises in it. We confirm who that is, and their relevant expertise, before you pay anything.</p>
-      <p style="margin: 0 0 26px; font-size: 16px; line-height: 1.7; color: #4A5C68;">If you would rather browse by body area and ask for someone specific, you can &mdash; the specialist directory is there for exactly that.</p>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a href="Start Flow.dc.html" style="min-height: 50px; padding: 14px 28px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 6px 18px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start my second read</a>
-        <a href="Specialists.dc.html" style="min-height: 50px; padding: 14px 28px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Browse by body area</a>
+<section style="background: #F4F7F8; padding: 48px 32px 80px;">
+  <div style="max-width: 1060px; margin: 0 auto;">
+    <div data-r="teamhow" style="background: #06313A; border-radius: 22px; padding: 44px 48px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;">
+      <div>
+        <h2 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 25px; font-weight: 700; letter-spacing: -0.02em; color: #FFFFFF;">The radiologist who reads your scan</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.78); max-width: 560px;">You are not asked to choose one. Tell us what was scanned and what you want answered, and we match your case to the consultant who subspecialises in it &mdash; named, with their GMC number, before you pay.</p>
       </div>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 14px;">
-      <sc-for list="{{ promises }}" as="pr" hint-placeholder-count="4">
-        <div style="display: flex; gap: 14px; align-items: flex-start; background: #F7FBFB; border: 1px solid #D6E6E6; border-radius: 14px; padding: 18px 20px;">
-          <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #0D6E70; color: #FFFFFF; display: flex; align-items: center; justify-content: center; margin-top: 1px;">{{ pr.glyph }}</span>
-          <span>
-            <span style="display: block; font-size: 15px; font-weight: 600; color: #0A1F2C; margin-bottom: 3px;">{{ pr.title }}</span>
-            <span style="display: block; font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ pr.body }}</span>
-          </span>
-        </div>
-      </sc-for>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="Specialists.dc.html" style="min-height: 50px; padding: 14px 26px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,0.35); background: transparent; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #7FD8D4; background: rgba(255,255,255,0.08); color: #FFFFFF; text-decoration: none;">See the specialists</a>
+        <a href="Start Flow.dc.html" style="min-height: 50px; padding: 14px 26px; border-radius: 999px; background: #29E6C4; color: #06313A; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; box-sizing: border-box; transition: background 140ms ease-out;" style-hover="background: #6FE3C5; color: #06313A; text-decoration: none;">Start my second read</a>
+      </div>
     </div>
   </div>
 </section>
@@ -169,109 +138,77 @@
 </footer>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
-/* The roster lives in consultants.js, so this page, the specialist directory,
-   the landing carousel and the profile pages cannot drift apart. Adding a
-   consultant here is a matter of adding them there. */
-const DOCTORS = CONSULTANTS;
+/* ---------------------------------------------------------------------------
+   Meet the team
 
-/* The same body-area vocabulary the specialist directory filters by, so a
-   consultant's subspecialty is named identically wherever it appears. */
-const AREA_LABELS = {
-  brain: 'Neuroradiology',
-  chest: 'Cardiothoracic imaging',
-  bones: 'Musculoskeletal imaging',
-  abdomen: 'Abdominal & pelvic imaging',
-  breast: 'Breast imaging',
-  headneck: 'Head & neck imaging',
-  children: 'Paediatric imaging'
-};
+   This list is deliberately local to this page. consultants.js is the reporting
+   roster — it drives the specialist directory, the landing carousel and the
+   profile pages — and the people below are mostly not on it. Adding them there
+   would put the leadership team into the "find a radiologist" filters.
+
+   Dr Rajakulasingam appears in both. His entry is read from consultants.js so
+   his details cannot drift from his profile page; only the paragraph written
+   for this page lives here.
+
+   CONTENT STATUS — for the client, before launch:
+     · The three biographies are the client's own copy, reproduced verbatim.
+     · The three headshots were cut from the supplied reference image and are
+       188px square. They are sharp enough at the size used here and will not
+       survive being shown larger — supply the originals.
+     · No job titles have been assigned. The supplied copy names roles at other
+       organisations (31G, NHS England), not at SecondRead, so inventing a
+       title here would be putting words in someone's mouth.
+--------------------------------------------------------------------------- */
+
+const RR = (typeof CONSULTANTS !== 'undefined'
+  ? CONSULTANTS.filter(c => c.id === 'rajakulasingam')[0]
+  : null) || {};
+
+const TEAM = [
+  {
+    name: 'Hasib Aftab',
+    photo: 'team/hasib-aftab.png',
+    bio: '20+ years leading healthcare technology transformation. CIO experience with a large US-parent corporate. Founder and CEO of 31G, scaling AI-driven health platforms in UK, KSA, Pakistan and UAE. Board-level leader with SaaS scaling, M&A and digital compliance expertise.'
+  },
+  {
+    name: 'Jarrar Hyder',
+    photo: 'team/jarrar-hyder.png',
+    bio: '23+ years leading enterprise architecture and data strategy transformation. Led Data Fabric transformation at Arqiva, built Telefonica O2’s 95-billion-row NetPulse datalake, and delivered the NHS’s award-winning CIDR care record platform. TOGAF-certified CTO and Enterprise Architect with cloud, big data and AI expertise.'
+  },
+  {
+    name: 'Dr Zuhaib Keekeebhai',
+    photo: 'team/zuhaib-keekeebhai.png',
+    bio: 'GP Principal across two North London sites (CQC Outstanding-rated). Regional Clinical Lead for Primary Care Digital Transformation, NHS England (London). Qualified Clinical Safety Officer supporting health-tech manufacturers through NHS regulatory requirements.'
+  },
+  {
+    name: 'Dr ' + (RR.name || 'Ramanan Rajakulasingam'),
+    photo: 'team/ramanan-rajakulasingam.png',
+    // Written out rather than concatenated from his roster fields, which
+    // produced lowercased modalities and repeated the hospital. Every fact
+    // here is from that entry; nothing is added to it.
+    bio: 'Consultant musculoskeletal and sarcoma radiologist at RNOH Stanmore, FRCR. '
+       + 'Reports bones, joints and soft tissue \u2014 including sarcoma and complex '
+       + 'orthopaedic imaging \u2014 across MRI, CT and ultrasound.',
+    profileId: RR.id || 'rajakulasingam',
+    profileLabel: 'Read Dr ' + (typeof consultantSurname === 'function' && RR.name ? consultantSurname(RR) : 'Rajakulasingam') + '’s full profile'
+  }
+];
 
 class Component extends DCLogic {
-  svg(size, paths, width) {
-    return React.createElement('svg', {
-      width: size, height: size, viewBox: '0 0 24 24', fill: 'none',
-      stroke: 'currentColor', strokeWidth: width || 2.2,
-      strokeLinecap: 'round', strokeLinejoin: 'round'
-    }, paths.map((d, i) => React.createElement('path', { d: d, key: i })));
-  }
-
-  tick(size) {
-    return this.svg(size, ['M20 6 9 17l-5-5'], 3);
-  }
-
-  /* A headshot where we have one, the consultant's initials where we do not.
-     An initials tile is honest about a missing photo; a stock face would not
-     be, next to a real person's name. */
-  portrait(d) {
-    if (d.photo) {
-      return React.createElement('img', {
-        src: d.photo, alt: 'Dr ' + d.name, loading: 'lazy',
-        style: {
-          position: 'absolute', inset: 0, width: '100%', height: '100%',
-          objectFit: 'cover', objectPosition: d.focus || '50% 30%', display: 'block'
-        }
-      });
-    }
-    return React.createElement('div', {
-      style: {
-        position: 'absolute', inset: 0, display: 'flex', alignItems: 'center',
-        justifyContent: 'center', background: '#D7F2F3', color: '#0D6E70',
-        fontFamily: "'Montserrat', sans-serif", fontSize: '46px', fontWeight: 700,
-        letterSpacing: '0.02em'
-      }
-    }, d.initials);
-  }
-
   renderVals() {
     return {
-      teamCount: DOCTORS.length,
-
-      trustPoints: [
-        { glyph: this.tick(14), label: 'GMC-registered consultants' },
-        { glyph: this.tick(14), label: 'Named before you pay' },
-        { glyph: this.tick(14), label: 'Subspecialist to your body area' }
-      ],
-
-      /* Sorted the same way the directory sorts, so the two pages present the
-         team in the same order rather than two arbitrary ones. The row then
-         alternates side by side: portrait left, portrait right, down the page.
-         `dir` and the two offsets are computed here rather than in CSS because
-         nth-child cannot mirror the backing panel as well as flip the row. */
-      team: DOCTORS.slice().sort((a, b) => a.rank - b.rank).map((d, i) => {
-        const flipped = i % 2 === 1;
-        return {
-          ...d,
-          dir: flipped ? 'row-reverse' : 'row',
-          // The tinted panel sits behind the portrait and leans away from the
-          // text, so the row reads outward rather than into the gutter.
-          backLeft:  flipped ? '-26px' : '26px',
-          backRight: flipped ? '26px'  : '-26px',
-          accent: flipped ? '#D7F2F3' : '#E4F2F2',
-          portrait: this.portrait(d),
-          availGlyph: this.tick(11),
-          // Built here, not in the template: the runtime pads a text hole with
-          // whitespace, which put a gap before the possessive apostrophe.
-          profileLabel: 'Read Dr ' + consultantSurname(d) + '\u2019s full profile',
-          eyebrow: AREA_LABELS[d.areas[0]] || 'Consultant radiologist',
-          // Three is enough to show the shape of their work without turning
-          // the page into a list of lists.
-          asks: (d.helpWith || []).slice(0, 3).map(label => ({
-            label: label, glyph: this.tick(9)
-          })),
-          profileHref: 'Specialist Profile.dc.html?id=' + encodeURIComponent(d.id)
-        };
-      }),
-
-      promises: [
-        { glyph: this.tick(13), title: 'A named consultant, not a pool',
-          body: 'One radiologist reads your scan and signs the report. You get their name and GMC number before you are charged.' },
-        { glyph: this.tick(13), title: 'Matched to the body area',
-          body: 'A brain MRI goes to a neuroradiologist, a knee MRI to a musculoskeletal radiologist. The match is made from what was scanned and what you asked.' },
-        { glyph: this.tick(13), title: 'Written so you can read it',
-          body: 'Every report carries a plain-English section answering your question directly, alongside the clinical section your own doctor needs.' },
-        { glyph: this.tick(13), title: 'A deadline you can hold us to',
-          body: 'You choose the turnaround at checkout. Miss it and we refund you in full.' }
-      ]
+      /* Portrait left, portrait right, down the page. Set here rather than with
+         nth-child so the row can flip without the stylesheet having to know how
+         many people there are. */
+      team: TEAM.map((p, i) => ({
+        ...p,
+        dir: i % 2 === 1 ? 'row-reverse' : 'row',
+        alt: p.name,
+        hasProfile: !!p.profileId,
+        profileHref: p.profileId
+          ? 'Specialist Profile.dc.html?id=' + encodeURIComponent(p.profileId)
+          : ''
+      }))
     };
   }
 }
