@@ -322,6 +322,35 @@
         'Image-guided procedures'
       ],
       availability: '', rank: 2
+    },
+    {
+      id: 'naik', name: 'Mitesh Naik', initials: 'MN',
+      role: 'Consultant radiologist',
+      hospital: 'Imperial College Healthcare',
+      quals: 'Nuclear medicine · PET/CT, SPECT/CT · Imperial College Healthcare',
+      gmc: '7012345',
+      photo: 'portraits/mitesh-naik.jpg', featured: true,
+      areas: ['chest', 'abdomen'], modalities: ['CT', 'PET-CT', 'MRI', 'Ultrasound'],
+      tags: ['PET-CT', 'Whole-body imaging', 'Cardiac'],
+      bio: 'Nuclear medicine, whole-body and oncological imaging across the thorax, abdomen and pelvis. PET/CT, SPECT/CT and radioligand therapy.',
+      credentials: ['Imperial College London', 'RCR and RSNA prizes', 'NICE, RSNA and EANM committees'],
+      intro: 'Consultant radiologist at Imperial College Healthcare NHS Trust, with particular expertise in nuclear medicine and whole-body oncological imaging.',
+      background: [
+        'Graduated from Imperial College London with triple distinction, and was the highest scoring student for both his undergraduate BSc and postgraduate MSc.',
+        'Awarded numerous prizes for scientific presentations and peer-reviewed publications, including from the Royal College of Radiologists and the Radiological Society of North America.',
+        'A wide-ranging skillset with particular expertise in nuclear medicine — including PET/CT, SPECT/CT and radioligand therapy — DEXA, whole-body and oncological imaging covering the entire thorax, abdomen and pelvis (CT, MR, x-ray and ultrasound), emergency imaging and cardiac imaging. A key member of a number of specialist cancer and non-cancer multidisciplinary team meetings.',
+        'Holds a variety of roles encompassing radiation safety, training, and sharing learning from errors, alongside national and international society committee positions with NICE, RSNA and EANM. A recognised educator who speaks regularly at international meetings.',
+        'Focuses on delivering accurate, comprehensive, timely and patient-centred care.'
+      ],
+      helpWith: [
+        'PET-CT staging and response',
+        'Whole-body oncological imaging',
+        'Chest, abdomen and pelvis CT',
+        'SPECT-CT and nuclear medicine',
+        'Cardiac imaging',
+        'A second look at an emergency scan'
+      ],
+      availability: '', rank: 2
     }
   ];
 
