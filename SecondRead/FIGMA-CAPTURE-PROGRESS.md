@@ -80,12 +80,15 @@ as the desktop width is the cheaper path if that is acceptable.
 
 ## Admin console — section `130:7` "Admin"
 
-| Frame | Node | Size |
+| Frame | Node | Source |
 | --- | --- | --- |
-| Admin 1920 — Dashboard | 136:2 | 1920 × 1080 |
+| Admin 1920 — Dashboard | 136:2 | `design/Admin.dc.html` |
+| Admin 1920 — Manage users | 138:2 | `design/Admin Users.dc.html` |
+| Admin 1920 — Profile | 139:2 | `design/Admin Profile.dc.html` |
 
-Source page: `design/Admin.dc.html`. Plain static HTML — no `support.js`
-runtime — so the capture is deterministic. Built to the MSA layout the client
+All three are 1920 × 1080 exactly, laid out in a row at y = 240.
+Plain static HTML — no `support.js` runtime — so captures are deterministic.
+Shared chrome and styling live in `design/admin.css`. Built to the MSA layout the client
 supplied, in SecondRead's own palette and type.
 
 Not linked from any nav. It is reachable by URL if the branch is deployed.
