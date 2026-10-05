@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=7"></script>
+<script src="./portal.js?v=8"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -91,7 +91,7 @@
                 <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">Where we send your code, and where we tell you your report is ready. We never put clinical details in an email.</span>
               </label>
           <button type="button" onClick="{{ sendCode }}" style="min-height: 52px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Email me a sign-in code</button>
-          <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #5A6B77;">No password to choose or forget. We email you a six-digit code each time you sign in. By continuing you agree to the <a href="Terms.dc.html" style="font-weight: 600;">terms</a> and the <a href="Privacy.dc.html" style="font-weight: 600;">privacy notice</a>.</p>
+          <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #5A6B77;">No password to choose or forget. We email you a six-digit code each time you sign in. By continuing you agree to the <a href="Terms.dc.html" style="font-weight: 600;">terms</a>, the <a href="Privacy.dc.html" style="font-weight: 600;">privacy notice</a> and the <a href="Medical Disclaimer.dc.html" style="font-weight: 600;">medical disclaimer</a>.</p>
         </div>
       </div>
 
@@ -148,6 +148,379 @@
             <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Drag your DICOM folder or ZIP file here</h3>
             <p style="margin: 0 0 20px; font-size: 14px; color: #5A6B77;">The whole folder or CD is fine &middot; up to 4GB</p>
             <span style="display: inline-flex; min-height: 46px; padding: 12px 26px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-size: 14.5px; font-weight: 600; align-items: center;">Choose files</span>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What to send us</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Three things, in order of importance. You can add the last two later if you need to.</p>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <sc-for list="{{ needList }}" as="n" hint-placeholder-count="3">
+                <div style="display: flex; gap: 13px; align-items: flex-start;">
+                  <span style="flex-shrink: 0; display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; background: {{ n.tagBg }}; border: 1px solid {{ n.tagBorder }}; color: {{ n.tagColor }}; font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; margin-top: 2px;">{{ n.tag }}</span>
+                  <div style="min-width: 0;">
+                    <div style="font-size: 15px; font-weight: 600; color: #0A1F2C; margin-bottom: 3px;">{{ n.title }}</div>
+                    <div style="font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ n.body }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #E2E9EC;">
+              <div style="font-size: 14px; line-height: 1.65; color: #4A5C68;"><strong style="color: #0A1F2C;">DICOM</strong> is the format hospitals store scan images in. On a CD or a download it usually looks like a folder full of files ending <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px;">.dcm</span>, sometimes with no obvious file names at all. Send the whole folder &mdash; you do not need to work out which files matter.</div>
+            </div>
+          </div>
+
+          <sc-for list="{{ files }}" as="file" hint-placeholder-count="2">
+            <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 14px; padding: 20px 22px; box-shadow: 0 2px 6px rgba(10,31,44,0.05);">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 10px;">
+                <div style="min-width: 0;">
+                  <div style="font-size: 15px; font-weight: 600; color: #0A1F2C; margin-bottom: 4px;">{{ file.name }}</div>
+                  <div style="font-size: 13px; color: #5A6B77;">{{ file.meta }}</div>
+                </div>
+                <span style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px; background: {{ file.pillBg }}; border: 1px solid {{ file.pillBorder }}; border-radius: 999px; padding: 5px 13px; font-size: 12px; font-weight: 600; color: {{ file.pillColor }};">{{ file.pillLabel }}</span>
+              </div>
+              <div style="height: 6px; border-radius: 999px; background: #EEF2F4; overflow: hidden;">
+                <div style="height: 100%; width: {{ file.width }}; border-radius: 999px; background: linear-gradient(90deg, #0D6E70, #6FE3C5); transition: width 300ms ease-out;"></div>
+              </div>
+              <sc-if value="{{ file.showChecks }}" hint-placeholder-val="{{ true }}">
+                <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #EEF2F4;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 10px;">Checks on this study</div>
+                  <div data-r="checkgrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px 18px;">
+                    <sc-for list="{{ file.checks }}" as="chk" hint-placeholder-count="6">
+                      <div style="display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #4A5C68;">
+                        <span style="flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%; background: {{ chk.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ chk.glyph }}</span>
+                        <span>{{ chk.label }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+
+          <div style="background: #FDF2E2; border: 1px solid #E7CB97; border-radius: 14px; padding: 20px 22px; display: flex; gap: 14px; align-items: flex-start;">
+            <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #C68A2E; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ alertGlyph }}</span>
+            <div>
+              <div style="font-size: 15px; font-weight: 600; color: #6B4310; margin-bottom: 5px;">Screenshots and PDFs are not enough on their own</div>
+              <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #6B4310;">A photograph of a screen, a screenshot from a viewing app, or the written report as a PDF cannot be re-read as images. Your consultant needs the original image data to give you a genuine second opinion. Send the report as well &mdash; just not instead.</p>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Do not have your images yet?</h3>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">You have a right to a copy of your own scan images. Here is how to ask for them. You can start your case now and add the images when they arrive &mdash; nothing is charged until the last step.</p>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <sc-for list="{{ getImages }}" as="g" hint-placeholder-count="3">
+                <div style="display: flex; gap: 14px; align-items: flex-start;">
+                  <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #E4F2F2; border: 1px solid #C3E0DE; color: #095458; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ g.n }}</span>
+                  <div>
+                    <div style="font-size: 15px; font-weight: 600; color: #0A1F2C; margin-bottom: 3px;">{{ g.title }}</div>
+                    <div style="font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ g.body }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <p style="margin: 18px 0 0; padding-top: 16px; border-top: 1px solid #E2E9EC; font-size: 13.5px; line-height: 1.6; color: #5A6B77;">To be straight with you: we cannot request your images from the hospital for you. The request has to come from you, because it is your record. If you get stuck, call us on <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a> and we will talk you through it.</p>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 22px;">
+
+          <div id="req-summary" style="background: #FFFFFF; border: 1.5px solid {{ reqSummaryBorder }}; border-radius: 18px; padding: 24px 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 6px 14px; flex-wrap: wrap;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Before we can match your case</h3>
+              <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: {{ reqCountColor }};">{{ reqCountLabel }}</span>
+            </div>
+            <p style="margin: 8px 0 16px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Three answers decide which subspecialist reads your scan and what they answer. Everything else on this page is optional &mdash; it only makes their report better.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 9px;">
+              <sc-for list="{{ reqItems }}" as="r" hint-placeholder-count="3">
+                <button type="button" onClick="{{ r.go }}" style="appearance: none; display: flex; align-items: center; gap: 9px; min-height: 40px; padding: 9px 15px 9px 11px; border-radius: 999px; border: 1.5px solid {{ r.border }}; background: {{ r.bg }}; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; color: {{ r.color }}; cursor: pointer; text-align: left; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
+                  <span style="flex-shrink: 0; width: 19px; height: 19px; border-radius: 50%; border: 1.5px solid {{ r.dotBorder }}; background: {{ r.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ r.glyph }}</span>
+                  <span>{{ r.label }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div id="req-area" style="background: #FFFFFF; border: 1.5px solid {{ areaCardBorder }}; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What we read from your images</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #FBEDE9; border: 1px solid #F0D3CA; color: #A2452F;">Required</span>
+            </div>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Taken from the study you uploaded. Have a look, and correct anything that is wrong.</p>
+            <div data-r="detected" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 18px;">
+              <sc-for list="{{ detected }}" as="d" hint-placeholder-count="2">
+                <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 12px; padding: 14px 16px;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 5px;">{{ d.label }}</div>
+                  <div style="font-size: 16px; font-weight: 600; color: #06313A;">{{ d.value }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <button type="button" onClick="{{ toggleDetected }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #095458; cursor: pointer; text-decoration: underline;">{{ detectedToggleLabel }}</button>
+            <sc-if value="{{ editingDetected }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #E2E9EC; display: flex; flex-direction: column; gap: 20px;">
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 10px;">Scan type</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <sc-for list="{{ scanTypes }}" as="opt" hint-placeholder-count="6">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+                </div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: #4A5C68; margin-bottom: 4px;">Body area</div>
+                  <p style="margin: 0 0 12px; font-size: 13.5px; color: #5A6B77;">You do not have to know the medical term.</p>
+                  <div id="body-area-options" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                    <sc-for list="{{ bodyAreas }}" as="opt" hint-placeholder-count="6">
+                      <button type="button" onClick="{{ opt.select }}" style="appearance: none; display: flex; align-items: center; gap: 11px; padding: 14px 16px; border-radius: 12px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
+                        <span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid {{ opt.dotBorder }}; background: {{ opt.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ opt.tick }}</span>
+                        <span style="font-size: 14.5px; font-weight: 500; color: #173B4F;">{{ opt.label }}</span>
+                      </button>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ hasAreaError }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top: 10px; font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #A2452F;">Choose the part of the body that was scanned. Your consultant is matched from this.</div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div id="req-date" style="background: #FFFFFF; border: 1.5px solid {{ dateCardBorder }}; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">When and where the scan was done</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #FBEDE9; border: 1px solid #F0D3CA; color: #A2452F;">Required</span>
+            </div>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">This helps us tell your study apart from any earlier ones, and tells your consultant which machine and protocol to expect.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
+              <label onClick="{{ openDatePicker }}" style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Date of the scan</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A2452F;">Required</span>
+                </span>
+                <input id="scan-date" type="date" value="{{ scanDate }}" onChange="{{ onScanDate }}" min="1980-01-01" max="{{ scanDateMax }}" aria-invalid="{{ scanDateInvalid }}" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ scanDateBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; cursor: pointer; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <sc-if value="{{ hasScanDateError }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #A2452F;">{{ scanDateError }}</span>
+                </sc-if>
+                <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">{{ scanDateHint }}</span>
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Hospital or imaging provider</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
+                <input type="text" value="{{ provider }}" onChange="{{ onProvider }}" placeholder="For example: Royal Free Hospital" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Your symptoms</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4F7F8; border: 1px solid #E2E9EC; color: #6E7C86;">Optional</span>
+            </div>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">In your own words. There is no wrong way to describe this.</p>
+            <div style="display: flex; flex-direction: column; gap: 18px;">
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">What are your main symptoms?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
+            <textarea value="{{ symptoms }}" onChange="{{ onSymptoms }}" placeholder="For example: a dull ache on the outside of my right knee, worse going downstairs." style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 92px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+              </label>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">When did they begin?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
+                <input type="text" value="{{ symptomsOnset }}" onChange="{{ onOnset }}" placeholder="For example: around November" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">How have they changed since?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
+                <input type="text" value="{{ symptomsChange }}" onChange="{{ onSymptomsChange }}" placeholder="For example: slowly getting worse" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Anything in your medical history we should know</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4F7F8; border: 1px solid #E2E9EC; color: #6E7C86;">Optional</span>
+            </div>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Previous diagnoses, operations, injuries, any cancer history, and any treatment you are having or have had. If none of that applies, say so &mdash; that is useful too.</p>
+            <textarea value="{{ history }}" onChange="{{ onHistory }}" placeholder="For example: knee arthroscopy in 2019. No cancer history. No other operations." style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 92px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What you already have</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4F7F8; border: 1px solid #E2E9EC; color: #6E7C86;">Optional</span>
+            </div>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Your original report lets your consultant compare directly with what was said before. An earlier scan lets them tell you what has changed.</p>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <div style="display: flex; align-items: baseline; gap: 9px; margin-bottom: 10px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Do you have the original radiology report?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <sc-for list="{{ reportOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+              </div>
+              <div>
+                <div style="display: flex; align-items: baseline; gap: 9px; margin-bottom: 10px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Do you have an earlier scan of the same area?</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <sc-for list="{{ priorOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 44px; padding: 11px 20px; border-radius: 999px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.label }}</button>
+              </sc-for>
+            </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="req-question" style="background: #FFFFFF; border: 1.5px solid {{ questionCardBorder }}; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What would you like the consultant radiologist to review or clarify?</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #FBEDE9; border: 1px solid #F0D3CA; color: #A2452F;">Required</span>
+            </div>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">This is the one thing we ask you not to skip. Your consultant answers it directly, in plain English, in your report.</p>
+            <textarea id="scan-question" value="{{ question }}" onChange="{{ onQuestion }}" placeholder="For example: my report mentioned a possible lesion — is it a tumour, and has it changed since my last scan?" style="width: 100%; min-height: 96px; padding: 15px; border-radius: 12px; border: 1.5px solid {{ questionBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out; min-height: 108px;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+            <sc-if value="{{ hasQuestionError }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 9px; font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #A2452F;">Tell us what you would like your consultant to answer. One sentence is enough &mdash; or use one of the examples below.</div>
+            </sc-if>
+            <div style="margin-top: 14px;">
+              <div style="font-size: 13px; font-weight: 600; color: #5A6B77; margin-bottom: 9px;">Not sure how to put it? Start from one of these.</div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ ex.use }}" style="appearance: none; text-align: left; background: #F7FBFB; border: 1px solid #D6E6E6; border-radius: 11px; padding: 12px 15px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.55; color: #173B4F; cursor: pointer; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #EFF7F7;">&ldquo;{{ ex.text }}&rdquo;</button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div id="req-clinician" style="background: #FFFFFF; border: 1.5px solid {{ clinicianCardBorder }}; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 0 0 6px;">
+              <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Would you like your GP or treating clinician to add clinical information for the radiologist?</h3>
+              <span style="flex-shrink: 0; border-radius: 999px; padding: 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: #F4F7F8; border: 1px solid #E2E9EC; color: #6E7C86;">Optional</span>
+            </div>
+            <p style="margin: 0 0 18px; font-size: 14px; line-height: 1.6; color: #5A6B77;">Not required. It helps most when your history is long, or when someone else has been managing your care.</p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <sc-for list="{{ clinicianOptions }}" as="opt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ opt.select }}" style="appearance: none; display: flex; align-items: flex-start; gap: 13px; padding: 16px 18px; border-radius: 12px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70;">
+                  <span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid {{ opt.dotBorder }}; background: {{ opt.dotBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; margin-top: 1px;">{{ opt.tick }}</span>
+                  <span>
+                    <span style="display: block; font-size: 15px; font-weight: 600; color: #0A1F2C;">{{ opt.label }}</span>
+                    <span style="display: block; margin-top: 3px; font-size: 13.5px; line-height: 1.55; color: #4A5C68;">{{ opt.note }}</span>
+                  </span>
+                </button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ wantsClinician }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #E2E9EC; display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px;">
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Your clinician's name</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8D9AA3;">Optional</span>
+                </span>
+                <input type="text" value="{{ clinicianName }}" onChange="{{ onClinicianName }}" placeholder="For example: Dr Sarah Patel" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 7px;">
+                <span style="display: flex; align-items: baseline; gap: 9px;">
+                  <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">Their email address</span>
+                  <span style="flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A2452F;">Required</span>
+                </span>
+                <input id="clinician-email" type="email" value="{{ clinicianEmail }}" onChange="{{ onClinicianEmail }}" placeholder="surgery@nhs.net" style="min-height: 48px; padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ clinicianEmailBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; width: 100%; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+                <sc-if value="{{ hasClinicianEmailError }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #A2452F;">We need a working address to send their single-case link. Change your answer above if you would rather provide the information yourself.</span>
+                </sc-if>
+                <span style="font-size: 12.5px; line-height: 1.5; color: #5A6B77;">We only ever use this to send the single-case link.</span>
+              </label>
+                </div>
+                <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 12px; padding: 16px 18px; font-size: 14px; line-height: 1.65; color: #06313A;">We send them a secure link that opens this case and nothing else, valid for seven days. They verify who they are before they can see anything, and no account is created for them. Keep uploading in the meantime &mdash; but your case will not go to a consultant until their section is complete.</div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 18px; padding: 26px 28px;">
+            <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #06313A;">How your consultant is chosen</h3>
+            <p style="margin: 0 0 18px; font-size: 15px; line-height: 1.65; color: #06313A;">We use everything on this page to match your case with the appropriate consultant subspecialist &mdash; you are not expected to pick a radiologist yourself. Before you pay, we confirm who will review your case, their relevant expertise, and when your report will land.</p>
+            <div style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 14px; padding: 18px 20px;">
+              <span style="flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; background: #E4F2F2; border: 1px solid #C3E0DE; color: #095458; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ consultantInitials }}</span>
+              <div style="min-width: 0;">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #06313A;">{{ consultantName }}</div>
+                <div style="font-size: 13.5px; line-height: 1.5; color: #4A5C68;">{{ consultantRole }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 22px;">
+
+          <div style="background: #FFFFFF; border: 1.5px solid #C3E0DE; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Confirmed before you pay</div>
+            <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px;">
+              <span style="flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%; background: #E4F2F2; border: 1px solid #C3E0DE; color: #095458; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ consultantInitials }}</span>
+              <div style="min-width: 0;">
+                <h3 style="margin: 0 0 4px; font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 700; color: #0A1F2C;">{{ consultantName }}</h3>
+                <div style="font-size: 14.5px; line-height: 1.55; color: #4A5C68;">{{ consultantRole }}</div>
+                <div style="font-size: 13.5px; line-height: 1.55; color: #5A6B77; margin-top: 4px;">{{ consultantWhy }}</div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px;">
+              <sc-for list="{{ confirmRows }}" as="r" hint-placeholder-count="3">
+                <div style="background: #F7FBFB; border: 1px solid #E2E9EC; border-radius: 12px; padding: 13px 15px;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 5px;">{{ r.label }}</div>
+                  <div style="font-size: 15px; font-weight: 600; color: #0A1F2C;">{{ r.value }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 2px solid #C3E0DE; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+              <div>
+                <h3 style="margin: 0 0 4px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Your report, within 48 hours</h3>
+                <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #5A6B77;">{{ deadlineLine }} Miss it and we refund you in full.</p>
+              </div>
+              <span style="display: inline-flex; align-items: center; gap: 7px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 999px; padding: 7px 15px; font-size: 13px; font-weight: 700; color: #095458; white-space: nowrap;">{{ clockGlyph }} 48-hour turnaround</span>
+            </div>
+            <div style="border-top: 1px solid #E2E9EC; padding-top: 18px; display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+                <span style="font-size: 15px; color: #173B4F;">Standard fee &mdash; consultant subspecialist report</span>
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">&pound;250</span>
+              </div>
+              <sc-if value="{{ hasComparison }}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+                  <span style="font-size: 15px; color: #173B4F;">Comparison studies &mdash; your earlier scans read alongside</span>
+                  <span style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">&pound;50</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ noComparison }}" hint-placeholder-val="{{ false }}">
+                <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: #5A6B77;">No earlier scan is being compared, so the &pound;50 comparison fee does not apply. If you do have one, add it in step 1 and say so in step 2 &mdash; the fee is added then.</p>
+              </sc-if>
+              <div style="border-top: 1px solid #E2E9EC; padding-top: 14px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+                <span style="font-size: 15px; font-weight: 700; color: #0A1F2C;">Total for your report</span>
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; color: #0D6E70; letter-spacing: -0.02em;">&pound;{{ reportTotal }}</span>
+              </div>
+            </div>
           </div>
 
           <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
@@ -751,11 +1124,16 @@ function loadDraft() {
   } catch (e) { return null; }
 }
 
+/* One turnaround, one standard fee. The only thing that moves the price is
+   whether there are earlier scans to read alongside the new one, which is
+   what COMPARISON_FEE is: it is charged when the patient tells us in step 2
+   that they have an earlier scan of the same area, and not otherwise. */
 const SPEEDS = [
-  { id: '48', label: '48 hours', price: 249, deadline: 'Report by Thu 6 Aug, 4pm' },
-  { id: '24', label: '24 hours', price: 299, deadline: 'Report by Wed 5 Aug, 4pm' },
-  { id: '12', label: '12 hours', price: 349, deadline: 'Report by tonight, 9pm' }
+  { id: '48', label: '48 hours', price: 250, deadline: 'Report by Thu 6 Aug, 4pm' }
 ];
+
+const STANDARD_FEE = 250;
+const COMPARISON_FEE = 50;
 
 const ADDONS = [
   { id: 'questions', title: 'Three written questions', note: 'Answered by the same consultant', price: 50 },
@@ -856,7 +1234,7 @@ function initialState() {
     clinicianName: '',
     clinicianEmail: '',
     gpEmail: '',
-    speed: '',
+    speed: '48',
     addons: [],
     saved: false,
     orderRef: '',
@@ -925,11 +1303,17 @@ class Component extends DCLogic {
     }, paths.map((d, i) => React.createElement('path', { key: i, d })));
   }
 
+  /* Earlier scans are only compared if the patient actually has them to give
+     us. "There is one but I cannot get it" is not a comparison we can do, so
+     it is not a comparison we charge for. */
+  hasComparison() {
+    return this.state.prior === 'have';
+  }
+
   total() {
-    const speed = SPEEDS.find(s => s.id === this.state.speed);
-    const base = speed ? speed.price : 249;
+    const base = STANDARD_FEE + (this.hasComparison() ? COMPARISON_FEE : 0);
     const extra = this.state.addons.reduce((sum, id) => sum + (ADDONS.find(a => a.id === id) || {}).price, 0);
-    return { amount: base + extra, isFrom: !speed };
+    return { amount: base + extra, isFrom: false };
   }
 
   /* Everything step 2 will not proceed without, in the order it appears on the
@@ -999,7 +1383,6 @@ class Component extends DCLogic {
       const missing = this.requirements().filter(r => !r.ok)[0];
       if (missing) return missing.blocker;
     }
-    if (step === 3 && !s.speed) return 'Choose when you need your report';
     return '';
   }
 
@@ -1195,7 +1578,7 @@ class Component extends DCLogic {
       saveColor: s.saved ? '#095458' : '#0A1F2C',
 
       doneConsultant: (() => { const c = this.assignedConsultant(); return c ? 'Dr ' + c.name : 'your consultant'; })(),
-      doneDeadline: speed ? speed.deadline.replace(/^Report by /, '') : 'within your chosen window',
+      doneDeadline: speed ? speed.deadline.replace(/^Report by /, '') : 'within 48 hours',
       doneSteps: (() => {
         const steps = [
           { n: 1, title: 'We check the images open cleanly',
@@ -1419,7 +1802,7 @@ class Component extends DCLogic {
       /* -------------------------------------------- step 3: your report */
       confirmRows: [
         { label: 'Your case', value: s.scanType + ' · ' + areaLabel },
-        { label: 'Report due', value: speed ? speed.deadline.replace(/^Report by /, '') : 'Choose a timeframe below' },
+        { label: 'Report due', value: speed ? speed.deadline.replace(/^Report by /, '') : 'Within 48 hours' },
         { label: 'Delivered to', value: 'Your patient dashboard' }
       ],
       included: INCLUDED.map(text => ({ text: text, tick: this.tick(10) })),
@@ -1475,20 +1858,13 @@ class Component extends DCLogic {
         files: st.files.concat({ name: 'CD_Import_' + (st.files.length + 1) + '.zip', meta: 'Starting upload…', progress: 4 })
       })),
 
-      speeds: SPEEDS.map(x => {
-        const on = s.speed === x.id;
-        return {
-          label: x.label,
-          price: x.price,
-          deadline: x.deadline,
-          border: on ? '#0D6E70' : '#E2E9EC',
-          shadow: on ? '0 12px 30px rgba(13,110,112,0.2)' : '0 2px 8px rgba(10,31,44,0.06)',
-          dotBg: on ? '#0D6E70' : '#FFFFFF',
-          dotBorder: on ? '#0D6E70' : '#D4DDE0',
-          tick: on ? this.tick(11) : null,
-          select: () => this.setState({ speed: x.id })
-        };
-      }),
+      /* The turnaround is fixed at 48 hours, so step 3 states it rather than
+         asking. The only variable left on this step is the comparison fee. */
+      deadlineLine: speed ? speed.deadline + '.' : '',
+      hasComparison: this.hasComparison(),
+      noComparison: !this.hasComparison(),
+      reportTotal: STANDARD_FEE + (this.hasComparison() ? COMPARISON_FEE : 0),
+      clockGlyph: this.svg(14, ['M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z', 'M12 6v6l4 2'], 2.1),
       addons: ADDONS.map(a => {
         const on = s.addons.includes(a.id);
         return {
@@ -1510,7 +1886,7 @@ class Component extends DCLogic {
         { label: 'Scan type', value: s.scanType, color: '#0A1F2C' },
         { label: 'Body area', value: area ? area.label : 'From step 2', color: area ? '#0A1F2C' : '#A3B0B8' },
         { label: 'Matched to', value: doc ? 'Dr ' + doc.name : 'From step 2', color: doc ? '#0A1F2C' : '#A3B0B8' },
-        { label: 'Report in', value: speed ? speed.label : 'From step 3', color: speed ? '#0A1F2C' : '#A3B0B8' }
+        { label: 'Report in', value: speed ? speed.label : '48 hours', color: '#0A1F2C' }
       ],
       total: (total.isFrom ? 'From £' : '£') + total.amount
     };

@@ -110,11 +110,15 @@
     interval:    { label: 'Change since your earlier scan', tone: 'neutral', bg: '#E4F2F2', fg: '#095458', border: '#C3E0DE' }
   };
 
+  /* One turnaround, one standard fee. Older cases may still carry speed '24'
+     or '12' from before the single-turnaround pricing; they fall back to the
+     48-hour entry rather than losing their label. */
   var SPEEDS = {
-    '48': { label: '48 hours', hours: 48, price: 249 },
-    '24': { label: '24 hours', hours: 24, price: 299 },
-    '12': { label: '12 hours', hours: 12, price: 349 }
+    '48': { label: '48 hours', hours: 48, price: 250 }
   };
+
+  var STANDARD_FEE = 250;
+  var COMPARISON_FEE = 50;
 
   var AREA_LABELS = {
     brain: 'Brain or spine',
@@ -857,6 +861,8 @@
     TIMELINE: TIMELINE,
     CATEGORY: CATEGORY,
     SPEEDS: SPEEDS,
+    STANDARD_FEE: STANDARD_FEE,
+    COMPARISON_FEE: COMPARISON_FEE,
     AREA_LABELS: AREA_LABELS,
     load: load,
     save: save,

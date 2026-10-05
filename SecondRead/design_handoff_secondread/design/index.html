@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=7"></script>
+<script src="./portal.js?v=8"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -60,7 +60,7 @@
       <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
         <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Reports today from 14 UK consultants</span>
         <h1 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 48px; line-height: 1.04; letter-spacing: -0.025em; color: #0A1F2C;">Your scan, read again by the right specialist.</h1>
-        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 560px;">Upload the MRI, CT, ultrasound or X-ray you already have. A GMC-registered consultant who subspecialises in that body area reviews it and writes you a report in plain English — from £249, in as little as 12 hours.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 560px;">Upload the MRI, CT, ultrasound or X-ray you already have. A GMC-registered consultant who subspecialises in that body area reviews it and writes you a report in plain English — £250, within 48 hours.</p>
         <div style="display: flex; gap: 14px; flex-wrap: wrap;">
           <a href="Start Flow.dc.html" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.32); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Start my second read</a>
           <a href="Sample Report.dc.html" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out, transform 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;" style-active="transform: translateY(1px);">See a real sample report <span>→</span></a>
@@ -77,8 +77,8 @@
         <div style="max-width: 340px; background: rgba(255,255,255,0.96); border-radius: 16px; padding: 16px 18px; box-shadow: 0 10px 28px rgba(10,31,44,0.18); display: flex; align-items: center; gap: 12px;">
           <span style="width: 42px; height: 42px; border-radius: 11px; background: linear-gradient(135deg, #0D6E70 0%, #12938F 55%, #6FE3C5 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #FFFFFF;">{{ heroGlyph }}</span>
           <div style="min-width: 0;">
-            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: #5A6B77; text-transform: uppercase;">Fastest turnaround</div>
-            <div style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; color: #0A1F2C;">Report signed within 12 hours</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: #5A6B77; text-transform: uppercase;">Turnaround</div>
+            <div style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; color: #0A1F2C;">Report signed within 48 hours</div>
           </div>
         </div>
       </div>
@@ -281,8 +281,8 @@
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="text-align: center; max-width: 640px; margin: 0 auto 44px;">
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Pricing</div>
-      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Same consultant. You choose the deadline.</h2>
-      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">One flat price per report. No consultation fee, no subscription, nothing added later.</p>
+      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">One price. A 48-hour turnaround.</h2>
+      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">&pound;250 for a consultant report, or &pound;300 if we are also comparing your earlier scans. No consultation fee, no subscription, nothing added later.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: stretch; margin-bottom: 40px;">
       <sc-for list="{{ pricingCards }}" as="card" hint-placeholder-count="3">
@@ -295,7 +295,7 @@
               <span style="font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 700; color: {{ card.priceColor }}; letter-spacing: -0.03em; line-height: 1;">{{ card.price }}</span>
               <span style="font-size: 14px; color: {{ card.mutedColor }};">/ report</span>
             </div>
-            <a href="{{ card.href }}" style="width: 100%; min-height: 46px; padding: 12px 24px; border-radius: 999px; border: 1px solid {{ card.buttonBorder }}; background: {{ card.buttonBg }}; color: {{ card.buttonColor }}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Select this deadline</a>
+            <a href="{{ card.href }}" style="width: 100%; min-height: 46px; padding: 12px 24px; border-radius: 999px; border: 1px solid {{ card.buttonBorder }}; background: {{ card.buttonBg }}; color: {{ card.buttonColor }}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Start my second read</a>
           </div>
           <div style="background: {{ card.panelBg }}; border-radius: 16px; padding: 22px 20px; flex: 1;">
             <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px;">
@@ -490,6 +490,8 @@
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
         <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
+        <a href="Cookies.dc.html" style="color: rgba(255,255,255,0.72);">Cookies</a>
+        <a href="Medical Disclaimer.dc.html" style="color: rgba(255,255,255,0.72);">Medical disclaimer</a>
       </div>
     </div>
   </div>
@@ -538,8 +540,8 @@ const QUICK_AREAS = [
 ].map(function (a) {
   var c = CONSULTANT_BY_ID[a.consultant];
   a.match = c
-    ? 'Dr ' + c.name + ', ' + c.role.replace(/^Consultant /, '').toLowerCase() + ', ' + c.hospital + '. Reports within 12–48 hours.'
-    : 'We match your subspecialist once we see the study. Reports within 12–48 hours.';
+    ? 'Dr ' + c.name + ', ' + c.role.replace(/^Consultant /, '').toLowerCase() + ', ' + c.hospital + '. Report within 48 hours.'
+    : 'We match your subspecialist once we see the study. Report within 48 hours.';
   return a;
 });
 
@@ -596,17 +598,17 @@ class Component extends DCLogic {
     // Sourced from consultants.js — the same roster the directory and the
     // profile pages read, so a card can never point at the wrong person.
     specialists: FEATURED_CONSULTANTS,
+    // One turnaround at one standard fee. The only thing that moves the price
+    // is whether there are earlier scans to read alongside the new one.
     pricingCards: [
-      { id: '48', speed: '48 hours', deadline: 'Report by Wed 5 Aug, 4pm', price: '249', highlighted: false, ...PLAIN },
-      { id: '24', speed: '24 hours', deadline: 'Report by Tue 4 Aug, 4pm', price: '299', highlighted: true, ...FEATURED },
-      { id: '12', speed: '12 hours', deadline: 'Report by tonight, 9pm', price: '349', highlighted: false, ...PLAIN }
+      { id: 'standard', speed: 'Standard report', deadline: 'Signed and returned within 48 hours', price: '250', highlighted: false, ...PLAIN },
+      { id: 'comparison', speed: 'With comparison studies', deadline: 'Your earlier scans read alongside the new one', price: '300', highlighted: true, ...FEATURED }
     ],
     pricingRows: [
       { feature: 'Consultant subspecialist review, signed and named' },
-      { feature: 'Comparison with one prior study' },
       { feature: '"What this means for you" in plain English' },
       { feature: 'Answers to your specific questions' },
-      { feature: 'Full refund if we miss the deadline' }
+      { feature: 'Full refund if we miss the 48-hour deadline' }
     ],
     testimonials: [
       { quote: 'After a confusing NHS report no one would take my calls. The response to my emails was prompt, the service fast, and the report exceptional.', author: 'Benjamin B', scan: 'Spine MRI' },
@@ -831,10 +833,11 @@ class Component extends DCLogic {
           nameLast: sp === -1 ? '' : c.name.slice(sp + 1)
         };
       }),
-      // "Select this deadline" now carries the tier into checkout.
+      // Both cards start the same flow; the comparison fee is added there,
+      // once the patient has told us whether an earlier scan exists.
       pricingCards: this.state.pricingCards.map(c => ({
         ...c,
-        href: 'Start Flow.dc.html?speed=' + encodeURIComponent(c.id)
+        href: 'Start Flow.dc.html'
       })),
       pricingRows: this.state.pricingRows,
       testimonials: this.state.testimonials,

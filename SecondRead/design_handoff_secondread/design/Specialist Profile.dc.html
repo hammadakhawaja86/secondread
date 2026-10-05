@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=7"></script>
+<script src="./portal.js?v=8"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -179,6 +179,8 @@
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
         <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
+        <a href="Cookies.dc.html" style="color: rgba(255,255,255,0.72);">Cookies</a>
+        <a href="Medical Disclaimer.dc.html" style="color: rgba(255,255,255,0.72);">Medical disclaimer</a>
       </div>
     </div>
   </div>
@@ -200,13 +202,11 @@ const AREA_LABELS = {
   children: 'children’s imaging'
 };
 
-// Service-level deadlines, chosen at checkout. These are the same three tiers
-// the pricing page sells. The first concept showed invented per-consultant
-// median turnarounds here; those were not real numbers, so they are gone.
+// One service level, the same for every consultant and every study. The first
+// concept showed invented per-consultant median turnarounds here; those were
+// not real numbers, so they are gone.
 const TURNAROUND = [
-  { study: 'Urgent', time: '12 hours' },
-  { study: 'Priority', time: '24 hours' },
-  { study: 'Standard', time: '48 hours' }
+  { study: 'Every report', time: '48 hours' }
 ];
 
 function currentConsultant() {
@@ -297,7 +297,7 @@ class Component extends DCLogic {
             : peers.length + ' other consultants read ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.'),
 
       requested: this.state.requested,
-      ctaLabel: this.state.requested ? 'Dr ' + surname + ' requested' : 'Request Dr ' + surname + ' · from £249',
+      ctaLabel: this.state.requested ? 'Dr ' + surname + ' requested' : 'Request Dr ' + surname + ' · £250',
       ctaBg: this.state.requested ? '#095458' : '#0D6E70',
       toggleRequest: () => this.setState(s => ({ requested: !s.requested })),
 
