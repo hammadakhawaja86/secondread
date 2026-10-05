@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — SecondRead consultant</title>
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="admin.css?v=3">
+</head>
+<body>
+<div class="shell">
+
+  <aside class="side">
+    <a href="index.html"><img class="side-logo" src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height:46px;width:184px"></a>
+    <nav class="nav">
+      <a class="on" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Dashboard</a>
+      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>Cases assigned</a>
+      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+    </nav>
+    <div class="side-foot">
+      <a class="logout" href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Log out</a>
+      <p class="side-note">© 2026 SecondRead Ltd · Consultant console<br>Dr Dermot Mallon · GMC 7012345</p>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="demobar">
+      <div class="demotag">Demonstration</div>
+      <p>Prototype only. Every case, patient and report below is a written example — no real patient and no real clinical content. Nothing here is connected to a backend.</p>
+    </div>
+
+    <div class="inner">
+      <div class="head">
+        <div>
+          <h1>Good afternoon, Dr Mallon</h1>
+          <p class="who">Neuroradiology · four cases with you · Monday 5 October 2026</p>
+        </div>
+        <a class="refresh" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Refresh</a>
+      </div>
+
+      <div class="next">
+        <div><div class="lab">Next deadline</div><div class="clock">5h 10m</div></div>
+        <div class="mid"><b>SR-2026-6723 &middot; MRI brain, interval change</b><span>Your draft is due before the patient's 24-hour promise. Submit by 19:30.</span></div>
+        <a class="go" href="#">Open case <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="offer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span class="t"><b>One new offer.</b> MRI brain or spine, 24-hour turnaround, &pound;140. Expires in 38 minutes.</span>
+        <a class="btn btn-primary" href="#">Review offer</a>
+        <a class="btn btn-ghost" href="#">Decline</a>
+      </div>
+
+      <div class="stats" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:28px;">
+        <div class="stat"><div class="lab">Offered to you</div><div><div class="num">01</div><div class="delta">Awaiting your answer</div></div></div>
+        <div class="stat"><div class="lab">In review</div><div><div class="num">02</div><div class="delta">States 06&ndash;07</div></div></div>
+        <div class="stat"><div class="lab">Returned to amend</div><div><div class="num">01</div><div class="delta">State 10</div></div></div>
+        <div class="stat"><div class="lab">Signed this month</div><div><div class="num">23</div><div class="delta">State 11 onward</div></div></div>
+      </div>
+
+      <div class="sect">
+        <div>
+          <h2>Your cases</h2>
+          <p>Your deadline, not the patient's &mdash; theirs sits later, to leave room for checking and release.</p>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Case</th><th>Body area</th><th>Modality</th><th>Your deadline</th><th>Lifecycle state</th><th style="text-align:right">Actions</th></tr></thead>
+        <tbody>
+          <tr><td>SR-2026-6723</td><td>Brain or spine</td><td>MRI</td><td><span class="wait over">In 5 h 10 m</span></td><td><span class="st st-review"><span class="n">07</span> In review</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Open case</a></div></td></tr>
+          <tr><td>SR-2026-6701</td><td>Brain or spine</td><td>CT</td><td><span class="wait">In 14 h</span></td><td><span class="st st-review"><span class="n">07</span> In review</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Open case</a></div></td></tr>
+          <tr><td>SR-2026-6688</td><td>Head or neck</td><td>MRI</td><td><span class="wait">In 22 h</span></td><td><span class="st st-amend"><span class="n">10</span> Amend</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Open case</a></div></td></tr>
+          <tr><td>SR-2026-6654</td><td>Brain or spine</td><td>MRI</td><td><span class="wait">Signed 4 Oct</span></td><td><span class="st st-signed"><span class="n">11</span> Signed</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Open case</a></div></td></tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

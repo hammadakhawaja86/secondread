@@ -103,3 +103,24 @@ as real vectors. The generator for this one is inline in `Admin.dc.html`.
 Also: firing `captureForDesign` more than once against the same capture ID
 wedges it permanently. If a capture stalls, take a fresh ID and reload the
 page clean rather than re-firing.
+
+## Consultant console — section `130:7`, row to the right of `130:746`
+
+| Frame | Node | Source |
+| --- | --- | --- |
+| Consultant 1920 — Dashboard | 144:2 | `design/Consultant.dc.html` |
+| Consultant 1920 — Cases assigned | 148:2 | `design/Consultant Cases.dc.html` |
+| Consultant 1920 — Profile | 146:2 | `design/Consultant Profile.dc.html` |
+
+Sidebar is Dashboard / Cases assigned / Profile — no Manage users, which is an
+operations power. Screens carry the lifecycle states from
+`consultant-crm-spec.html` §03 as chips and as a strip across the case.
+
+`130:746` is a stray duplicate of the admin Profile frame, left where it was.
+
+### Gotcha found here
+
+`.rail` was already the Profile page's nav rail (`padding: 22px 18px`) when the
+lifecycle line reused the same class name. The 2px line computed to 44px and
+imported as a solid block. Renamed to `.ln`. Worth grepping admin.css for a
+name before reusing it — it is one stylesheet across six screens now.
