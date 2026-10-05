@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=24">
+  <link rel="stylesheet" href="responsive.css?v=25">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -279,61 +279,111 @@
 
 <section id="pricing" style="background: #F4F7F8; padding: 80px 32px;">
   <div style="max-width: 1200px; margin: 0 auto;">
-    <div style="text-align: center; max-width: 640px; margin: 0 auto 44px;">
-      <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Pricing</div>
-      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">One price. A 48-hour turnaround.</h2>
-      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">&pound;250 for a consultant report, or &pound;300 if we are also comparing your earlier scans. No consultation fee, no subscription, nothing added later.</p>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; align-items: stretch; margin-bottom: 40px;">
-      <sc-for list="{{ pricingCards }}" as="card" hint-placeholder-count="3">
-        <div style="background: {{ card.cardBg }}; border-radius: 22px; padding: 12px; box-shadow: {{ card.shadow }}; box-sizing: border-box; display: flex; flex-direction: column; height: 100%; transition: transform 240ms cubic-bezier(0.16,1,0.3,1), box-shadow 240ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 22px 44px rgba(10,31,44,0.18);">
-          <div style="padding: 22px 20px 20px;">
-            <h3 style="margin: 0 0 4px; font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: {{ card.headColor }};">{{ card.speed }}</h3>
-            <p style="margin: 0 0 22px; font-size: 13px; color: {{ card.mutedColor }};">{{ card.deadline }}</p>
-            <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 20px;">
-              <span style="font-size: 17px; font-weight: 600; color: {{ card.priceColor }}; align-self: flex-start; margin-top: 6px;">£</span>
-              <span style="font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 700; color: {{ card.priceColor }}; letter-spacing: -0.03em; line-height: 1;">{{ card.price }}</span>
-              <span style="font-size: 14px; color: {{ card.mutedColor }};">/ report</span>
-            </div>
-            <a href="{{ card.href }}" style="width: 100%; min-height: 46px; padding: 12px 24px; border-radius: 999px; border: 1px solid {{ card.buttonBorder }}; background: {{ card.buttonBg }}; color: {{ card.buttonColor }}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Start my second read</a>
-          </div>
-          <div style="background: {{ card.panelBg }}; border-radius: 16px; padding: 22px 20px; flex: 1;">
-            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px;">
-              <sc-for list="{{ pricingRows }}" as="row" hint-placeholder-count="5">
-                <li style="display: flex; gap: 10px; align-items: flex-start;">
-                  <span style="flex-shrink: 0; color: {{ card.checkColor }}; margin-top: 2px;">{{ checkGlyph }}</span>
-                  <span style="font-size: 13.5px; line-height: 1.45; color: {{ card.bodyColor }};">{{ row.feature }}</span>
-                </li>
-              </sc-for>
-            </ul>
-          </div>
+    <div data-r="prhead" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 34px;">
+      <div style="max-width: 720px;">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+          <span style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458;">Pricing</span>
+          <span aria-hidden="true" style="width: 110px; height: 1px; background: #C3E0DE;"></span>
         </div>
-      </sc-for>
+        <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.022em; color: #0A1F2C;">One price. A 48-hour turnaround.</h2>
+        <p style="margin: 14px 0 0; font-size: 16.5px; line-height: 1.6; color: #4A5C68; max-width: 620px;">&pound;250 for a consultant report, or &pound;300 if we are also comparing your earlier scans. No consultation fee, no subscription, nothing added later.</p>
+      </div>
+      <div data-r="prtag" aria-hidden="true" style="flex-shrink: 0; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #0D6E70; line-height: 1.95;">Clear answers<br>faster</div>
     </div>
-    <div>
-      <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 18px; padding: 32px 30px; position: relative; overflow: hidden; box-shadow: 0 6px 18px rgba(10,31,44,0.08);">
-        <div style="position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, #0D6E70 0%, #12938F 55%, #6FE3C5 100%); opacity: 0.14;"></div>
+
+    <div data-r="prgrid" style="display: grid; grid-template-columns: 1.62fr 1fr; gap: 20px; align-items: start;">
+
+      <div style="position: relative; overflow: hidden; border-radius: 24px; background: linear-gradient(150deg, #06313A 0%, #0A3540 52%, #052A32 100%); padding: 30px; box-shadow: 0 18px 40px rgba(6,49,58,0.26);">
+        <span aria-hidden="true" style="position: absolute; top: -80px; right: -70px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle at 32% 32%, rgba(111,227,197,0.30), rgba(111,227,197,0) 70%);"></span>
         <div style="position: relative;">
-          <h3 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: #06313A;">Optional add-ons</h3>
-          <div style="display: flex; flex-direction: column; gap: 18px;">
-            <div>
-              <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline;">
-                <span style="font-size: 15px; font-weight: 600; color: #0A1F2C;">Three written questions</span>
-                <span style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0D6E70;">+£50</span>
-              </div>
-              <p style="margin: 4px 0 0; font-size: 13px; color: #4A5C68;">Answered by the same consultant</p>
-            </div>
-            <div style="height: 1px; background: #C3E0DE;"></div>
-            <div>
-              <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline;">
-                <span style="font-size: 15px; font-weight: 600; color: #0A1F2C;">10-minute video call</span>
-                <span style="font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0D6E70;">+£150</span>
-              </div>
-              <p style="margin: 4px 0 0; font-size: 13px; color: #4A5C68;">Talk it through with your consultant</p>
-            </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+            <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6FE3C5;">Choose your package</span>
+          </div>
+
+          <div data-r="prpkgs" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 30px;">
+            <sc-for list="{{ packages }}" as="pkg" hint-placeholder-count="2">
+              <button type="button" onClick="{{ pkg.select }}" aria-pressed="{{ pkg.pressed }}" class="pr-pkg" style="appearance: none; text-align: left; cursor: pointer; font-family: 'Inter', sans-serif; border-radius: 18px; padding: 22px 20px; border: 2px solid {{ pkg.border }}; background: {{ pkg.bg }}; box-shadow: {{ pkg.shadow }}; display: flex; flex-direction: column; transition: border-color 200ms ease-out, background 200ms ease-out, box-shadow 240ms ease-out, transform 240ms cubic-bezier(0.16,1,0.3,1);">
+                <span style="display: flex; align-items: flex-start; gap: 11px; margin-bottom: 14px;">
+                  <span aria-hidden="true" style="flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; border-radius: 50%; border: 2px solid {{ pkg.dotBorder }}; display: flex; align-items: center; justify-content: center; transition: border-color 200ms ease-out;">
+                    <span style="width: 10px; height: 10px; border-radius: 50%; background: #6FE3C5; transform: scale({{ pkg.dotScale }}); opacity: {{ pkg.dotOpacity }}; transition: transform 260ms cubic-bezier(0.34,1.56,0.64,1), opacity 180ms ease-out;"></span>
+                  </span>
+                  <span style="min-width: 0;">
+                    <span style="display: block; font-family: 'Montserrat', sans-serif; font-size: 16.5px; font-weight: 700; color: #FFFFFF; line-height: 1.25;">{{ pkg.title }}</span>
+                    <span style="display: block; margin-top: 4px; min-height: 38px; font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.62);">{{ pkg.blurb }}</span>
+                  </span>
+                </span>
+                <span style="display: flex; align-items: baseline; gap: 3px; margin-bottom: 16px;">
+                  <span style="font-size: 17px; font-weight: 600; color: {{ pkg.priceColor }}; align-self: flex-start; margin-top: 7px; transition: color 200ms ease-out;">&pound;</span>
+                  <span style="font-family: 'Montserrat', sans-serif; font-size: 40px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: {{ pkg.priceColor }}; transition: color 200ms ease-out;">{{ pkg.price }}</span>
+                  <span style="font-size: 13px; color: rgba(255,255,255,0.55);">/ report</span>
+                </span>
+                <span style="display: flex; flex-direction: column; gap: 9px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.14);">
+                  <sc-for list="{{ pkg.features }}" as="f" hint-placeholder-count="4">
+                    <span style="display: flex; gap: 9px; align-items: flex-start;">
+                      <span aria-hidden="true" style="flex-shrink: 0; color: #6FE3C5; margin-top: 1px; display: inline-flex;">{{ tickSmall }}</span>
+                      <span style="font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,0.80);">{{ f.label }}</span>
+                    </span>
+                  </sc-for>
+                </span>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+            <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6FE3C5;">Optional add-ons</span>
+            <span style="font-size: 12.5px; color: rgba(255,255,255,0.50);">Add extra support before you book</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{ addonRows }}" as="a" hint-placeholder-count="2">
+              <button type="button" onClick="{{ a.toggle }}" aria-pressed="{{ a.pressed }}" class="pr-addon" style="appearance: none; text-align: left; cursor: pointer; font-family: 'Inter', sans-serif; width: 100%; box-sizing: border-box; border-radius: 14px; padding: 15px 18px; border: 1.5px solid {{ a.border }}; background: {{ a.bg }}; display: flex; align-items: center; gap: 15px; transition: border-color 180ms ease-out, background 180ms ease-out;">
+                <span aria-hidden="true" style="flex-shrink: 0; width: 21px; height: 21px; border-radius: 6px; border: 2px solid {{ a.boxBorder }}; background: {{ a.boxBg }}; color: #06313A; display: flex; align-items: center; justify-content: center; transition: border-color 180ms ease-out, background 180ms ease-out;">
+                  <span style="display: inline-flex; transform: scale({{ a.tickScale }}); opacity: {{ a.tickOpacity }}; transition: transform 240ms cubic-bezier(0.34,1.56,0.64,1), opacity 160ms ease-out;">{{ tickSmall }}</span>
+                </span>
+                <span aria-hidden="true" style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px; background: rgba(255,255,255,0.08); color: {{ a.iconColor }}; display: flex; align-items: center; justify-content: center; transition: color 180ms ease-out;">{{ a.icon }}</span>
+                <span style="flex: 1; min-width: 0;">
+                  <span style="display: block; font-size: 15px; font-weight: 600; color: #FFFFFF;">{{ a.title }}</span>
+                  <span style="display: block; margin-top: 2px; font-size: 12.5px; color: rgba(255,255,255,0.58);">{{ a.note }}</span>
+                </span>
+                <span style="flex-shrink: 0; font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: {{ a.priceColor }}; transition: color 180ms ease-out;">+&pound;{{ a.price }}</span>
+              </button>
+            </sc-for>
           </div>
         </div>
       </div>
+
+      <div data-r="prorder" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 24px; padding: 28px 26px; box-shadow: 0 6px 20px rgba(10,31,44,0.08); position: sticky; top: 96px;">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #095458;">Your order</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <sc-for list="{{ orderLines }}" as="line" hint-placeholder-count="3">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding-bottom: 13px; border-bottom: 1px solid #EEF2F4;">
+              <span style="font-size: 14.5px; line-height: 1.45; font-weight: {{ line.weight }}; color: {{ line.color }}; transition: color 180ms ease-out;">{{ line.label }}</span>
+              <span style="flex-shrink: 0; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: {{ line.color }}; transition: color 180ms ease-out;">{{ line.value }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top: 22px;">
+          <div style="font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #5A6B77; margin-bottom: 4px;">Total</div>
+          <div style="display: flex; align-items: baseline; gap: 4px; transform: scale({{ totalScale }}); transform-origin: left center; transition: transform 320ms cubic-bezier(0.34,1.56,0.64,1);">
+            <span style="font-size: 24px; font-weight: 600; color: #0D6E70; align-self: flex-start; margin-top: 9px;">&pound;</span>
+            <span style="font-family: 'Montserrat', sans-serif; font-size: 52px; font-weight: 700; letter-spacing: -0.035em; line-height: 1; color: #0D6E70;">{{ orderTotal }}</span>
+          </div>
+          <p style="margin: 10px 0 0; font-size: 13px; line-height: 1.55; color: #5A6B77;">{{ totalNote }}</p>
+        </div>
+
+        <a href="{{ orderHref }}" class="pr-cta" style="margin-top: 22px; width: 100%; min-height: 52px; padding: 14px 24px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.30); transition: background 150ms ease-out, transform 150ms ease-out, box-shadow 200ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: scale(0.975);">Start my second read</a>
+
+        <div style="margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 12.5px; color: #5A6B77;">
+          <span aria-hidden="true" style="display: inline-flex; color: #0D6E70;">{{ lockGlyph }}</span>
+          <span>Nothing is charged until you confirm.</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -504,6 +554,8 @@ const PATHS = {
   ClipboardList: ['M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2', 'M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z', 'M8 12h8', 'M8 16h5'],
   FileText: ['M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z', 'M15 2v5h5', 'M9 13h6', 'M9 17h6'],
   Zap: ['M4 14h7l-1 8 10-12h-7l1-8z'],
+  Video: ['m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5', 'M2 7.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z'],
+  Lock: ['M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2Z', 'M8 11V7a4 4 0 0 1 8 0v4'],
   Check: ['M20 6 9 17l-5-5'],
   ArrowLeft: ['M19 12H5', 'm12 19-7-7 7-7'],
   ArrowRight: ['M5 12h14', 'm12 5 7 7-7 7']
@@ -556,6 +608,11 @@ class Component extends DCLogic {
     enquiryError: '',
     enquirySent: false,
     openFaq: 0,
+    // The pricing configurator. One package is always chosen, because there is
+    // no such thing as "no report"; add-ons start empty.
+    pkg: 'standard',
+    pkgAddons: [],
+    totalBump: false,
     howSteps: [
       { number: '01', icon: 'UploadCloud', title: 'Upload your scans',
         description: 'Upload your original scan images, ideally as a DICOM folder or ZIP file, along with your original radiology report and any earlier related scans. DICOM is simply the format hospitals store scan images in.',
@@ -598,17 +655,23 @@ class Component extends DCLogic {
     // Sourced from consultants.js — the same roster the directory and the
     // profile pages read, so a card can never point at the wrong person.
     specialists: FEATURED_CONSULTANTS,
-    // One turnaround at one standard fee. The only thing that moves the price
-    // is whether there are earlier scans to read alongside the new one.
-    pricingCards: [
-      { id: 'standard', speed: 'Standard report', deadline: 'Signed and returned within 48 hours', price: '250', highlighted: false, ...PLAIN },
-      { id: 'comparison', speed: 'With comparison studies', deadline: 'Your earlier scans read alongside the new one', price: '300', highlighted: true, ...FEATURED }
+    // One turnaround at one standard fee. The only thing that moves the base
+    // price is whether earlier scans are being read alongside the new one.
+    packages: [
+      { id: 'standard', title: 'Standard report', price: 250,
+        blurb: 'Signed and returned within 48 hours' },
+      { id: 'comparison', title: 'With comparison studies', price: 300,
+        blurb: 'Your earlier scans read alongside the new one' }
     ],
-    pricingRows: [
-      { feature: 'Consultant subspecialist review, signed and named' },
-      { feature: '"What this means for you" in plain English' },
-      { feature: 'Answers to your specific questions' },
-      { feature: 'Full refund if we miss the 48-hour deadline' }
+    packageFeatures: [
+      { label: 'Consultant subspecialist review, signed and named' },
+      { label: '\u201cWhat this means for you\u201d in plain English' },
+      { label: 'Answers to your specific questions' },
+      { label: 'Full refund if we miss the 48-hour deadline' }
+    ],
+    pricingAddons: [
+      { id: 'questions', title: 'Three written questions', note: 'Answered by the same consultant', price: 50, icon: 'FileText' },
+      { id: 'call', title: '10-minute video call', note: 'Talk it through with your consultant', price: 150, icon: 'Video' }
     ],
     testimonials: [
       { quote: 'After a confusing NHS report no one would take my calls. The response to my emails was prompt, the service fast, and the report exceptional.', author: 'Benjamin B', scan: 'Spine MRI' },
@@ -724,7 +787,44 @@ class Component extends DCLogic {
     }, 7000);
   }
 
-  componentWillUnmount() { clearInterval(this.heroTimer); }
+  componentWillUnmount() { clearInterval(this.heroTimer); clearTimeout(this.bumpTimer); }
+
+  // ---- pricing configurator -----------------------------------------------
+  // The total is the one number a visitor actually reads, so it gets a short
+  // spring on every change: it has to be obvious that a tap moved it, without
+  // a second of waiting. The flag clears itself; nothing else depends on it.
+  bumpTotal() {
+    clearTimeout(this.bumpTimer);
+    this.setState({ totalBump: true });
+    this.bumpTimer = setTimeout(() => this.setState({ totalBump: false }), 300);
+  }
+
+  selectPackage(id) {
+    if (this.state.pkg === id) return;
+    this.setState({ pkg: id });
+    this.bumpTotal();
+  }
+
+  toggleAddon(id) {
+    const on = this.state.pkgAddons.includes(id);
+    this.setState({
+      pkgAddons: on
+        ? this.state.pkgAddons.filter(x => x !== id)
+        : this.state.pkgAddons.concat([id])
+    });
+    this.bumpTotal();
+  }
+
+  chosenPackage() {
+    return this.state.packages.find(p => p.id === this.state.pkg) || this.state.packages[0];
+  }
+
+  pricingTotal() {
+    return this.state.pkgAddons.reduce(
+      (sum, id) => sum + (this.state.pricingAddons.find(a => a.id === id) || { price: 0 }).price,
+      this.chosenPackage().price
+    );
+  }
 
   validEmail() {
     // Deliberately permissive: reject only what is obviously not an address,
@@ -833,13 +933,69 @@ class Component extends DCLogic {
           nameLast: sp === -1 ? '' : c.name.slice(sp + 1)
         };
       }),
-      // Both cards start the same flow; the comparison fee is added there,
-      // once the patient has told us whether an earlier scan exists.
-      pricingCards: this.state.pricingCards.map(c => ({
-        ...c,
-        href: 'Start Flow.dc.html'
+      /* ---- pricing configurator ----
+         Every visual state here is derived from two pieces of state, so the
+         cards, the checkboxes, the order lines and the total can never
+         disagree about what is selected. */
+      packages: this.state.packages.map(p => {
+        const on = this.state.pkg === p.id;
+        return {
+          title: p.title,
+          blurb: p.blurb,
+          price: p.price,
+          pressed: on ? 'true' : 'false',
+          border: on ? '#6FE3C5' : 'rgba(255,255,255,0.16)',
+          bg: on ? 'rgba(111,227,197,0.10)' : 'rgba(255,255,255,0.04)',
+          shadow: on ? '0 10px 28px rgba(111,227,197,0.18)' : 'none',
+          dotBorder: on ? '#6FE3C5' : 'rgba(255,255,255,0.40)',
+          dotScale: on ? 1 : 0.2,
+          dotOpacity: on ? 1 : 0,
+          priceColor: on ? '#6FE3C5' : 'rgba(255,255,255,0.90)',
+          features: this.state.packageFeatures,
+          select: () => this.selectPackage(p.id)
+        };
+      }),
+      addonRows: this.state.pricingAddons.map(a => {
+        const on = this.state.pkgAddons.includes(a.id);
+        return {
+          title: a.title,
+          note: a.note,
+          price: a.price,
+          pressed: on ? 'true' : 'false',
+          border: on ? '#6FE3C5' : 'rgba(255,255,255,0.14)',
+          bg: on ? 'rgba(111,227,197,0.10)' : 'rgba(255,255,255,0.04)',
+          boxBorder: on ? '#6FE3C5' : 'rgba(255,255,255,0.38)',
+          boxBg: on ? '#6FE3C5' : 'transparent',
+          tickScale: on ? 1 : 0.3,
+          tickOpacity: on ? 1 : 0,
+          iconColor: on ? '#6FE3C5' : 'rgba(255,255,255,0.62)',
+          priceColor: on ? '#6FE3C5' : 'rgba(255,255,255,0.78)',
+          icon: this.icon(a.icon, 18),
+          toggle: () => this.toggleAddon(a.id)
+        };
+      }),
+      orderLines: [{
+        label: this.chosenPackage().title,
+        value: '\u00a3' + this.chosenPackage().price,
+        weight: 700,
+        color: '#0A1F2C'
+      }].concat(this.state.pricingAddons.map(a => {
+        const on = this.state.pkgAddons.includes(a.id);
+        return {
+          label: a.title,
+          value: on ? '+\u00a3' + a.price : '\u2014',
+          weight: on ? 600 : 400,
+          color: on ? '#0A1F2C' : '#A3B0B8'
+        };
       })),
-      pricingRows: this.state.pricingRows,
+      orderTotal: this.pricingTotal(),
+      totalScale: this.state.totalBump ? 1.045 : 1,
+      totalNote: this.state.pkg === 'comparison'
+        ? 'Includes the \u00a350 comparison fee. Confirmed before you pay.'
+        : 'Add earlier scans in the next step and the \u00a350 comparison fee is added then.',
+      orderHref: 'Start Flow.dc.html',
+      tickSmall: this.icon('Check', 14),
+      lockGlyph: this.icon('Lock', 13),
       testimonials: this.state.testimonials,
       faqs: this.state.faqData.map((f, i) => ({
         q: f.q,

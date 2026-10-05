@@ -855,3 +855,41 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
   [data-r="teamhow"] { padding: 26px 22px !important; }
   [data-r="teamhow"] > div:last-child > a { width: 100%; justify-content: center; }
 }
+
+/* ---------------------------------------------------------------------------
+   15. Pricing configurator (index.html #pricing)
+
+   Three numbered stages inside one block: choose a package, add extras, and
+   watch the order total answer. Everything that moves here is feedback on a
+   tap, so the rules are hover/press states and the responsive collapse; the
+   selected states themselves live in the component, because they are state,
+   not styling.                                                              */
+
+.pr-pkg:hover    { transform: translateY(-3px); border-color: rgba(111,227,197,0.55) !important; }
+.pr-pkg:active   { transform: translateY(-1px) scale(0.995); }
+.pr-addon:hover  { border-color: rgba(111,227,197,0.50) !important; background: rgba(255,255,255,0.07) !important; }
+.pr-addon:active { transform: scale(0.995); }
+.pr-pkg:focus-visible,
+.pr-addon:focus-visible,
+.pr-cta:focus-visible { outline: 3px solid #6FE3C5; outline-offset: 3px; }
+.pr-cta:hover    { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(13,110,112,0.36); }
+
+/* The order panel only sticks when there is a column beside it to stick in */
+@media (max-width: 1040px) {
+  [data-r="prgrid"]  { grid-template-columns: 1fr !important; }
+  [data-r="prorder"] { position: static !important; }
+}
+
+@media (max-width: 820px) {
+  [data-r="prtag"] { display: none !important; }
+  [data-r="prhead"] { display: block !important; }
+}
+
+@media (max-width: 620px) {
+  [data-r="prpkgs"] { grid-template-columns: 1fr !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pr-pkg:hover, .pr-pkg:active,
+  .pr-addon:active, .pr-cta:hover { transform: none !important; }
+}
