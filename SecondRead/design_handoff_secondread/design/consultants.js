@@ -128,27 +128,6 @@
       availability: '', rank: 3
     },
     {
-      id: 'bhatnagar', name: 'Gauraang Bhatnagar', initials: 'GB',
-      role: 'Gastrointestinal and oncological radiologist',
-      hospital: 'London',
-      quals: 'FRCR · Oncological staging',
-      gmc: '7012345',
-      photo: 'portraits/gauraang-bhatnagar.jpg', featured: true,
-      areas: ['abdomen'], modalities: ['CT', 'MRI', 'PET-CT'],
-      tags: ['Bowel', 'Liver', 'Staging'],
-      bio: 'Gastrointestinal and oncological imaging, including small-bowel MRI and staging CT.',
-      credentials: ['FRCR', 'Oncological staging'],
-      helpWith: [
-        'Small-bowel MRI',
-        'Inflammatory bowel disease',
-        'Oncological staging and response',
-        'Liver and pancreatic findings',
-        'Post-treatment surveillance',
-        'Second look at an abdominal CT'
-      ],
-      availability: 'Next slot tomorrow', rank: 1
-    },
-    {
       id: 'kakar', name: 'Geetanjali Kakar', initials: 'GK',
       role: 'Consultant gynaecological radiologist',
       hospital: 'Imperial',
