@@ -23,8 +23,11 @@
        and have not been verified against each consultant's own listing.
      · Only Dr Mallon carries a `review`, inherited from the first concept and
        itself unverified. No review has been invented for anyone else.
-     · Four consultants have no headshot and render an initials tile until one
+     · Two consultants have no headshot and render an initials tile until one
        is supplied.
+     · No consultant currently covers breast imaging. The Breast body area is
+       still offered in the pickers and falls back to "we match your
+       subspecialist", so add a breast radiologist here or drop the area.
 --------------------------------------------------------------------------- */
 (function (root) {
   var CONSULTANTS = [
@@ -99,27 +102,6 @@
         'Complex orthopaedic follow-up'
       ],
       availability: '', rank: 2
-    },
-    {
-      id: 'taufik', name: 'Hebah Taufik', initials: 'HT',
-      role: 'Consultant breast radiologist',
-      hospital: 'London',
-      quals: 'FRCR · Screening and diagnostic imaging',
-      gmc: '7012345',
-      photo: 'portraits/hebah-taufik.jpg', featured: true,
-      areas: ['breast'], modalities: ['MRI', 'Ultrasound'],
-      tags: ['Breast MRI', 'Mammography', 'Ultrasound'],
-      bio: 'Breast MRI, mammography and ultrasound. Screening and diagnostic imaging.',
-      credentials: ['FRCR', 'Screening and diagnostic imaging'],
-      helpWith: [
-        'Screening recall findings',
-        'Breast MRI interpretation',
-        'Dense-tissue mammography',
-        'Ultrasound-detected lumps',
-        'Post-surgical breast imaging',
-        'Family-history surveillance'
-      ],
-      availability: 'Available today', rank: 0
     },
     {
       id: 'tamimi', name: 'Asad Tamimi', initials: 'AT',
@@ -229,48 +211,6 @@
         'Second opinion on a child’s scan'
       ],
       availability: '', rank: 2
-    },
-    {
-      id: 'okoye', name: 'Chidi Okoye', initials: 'CO',
-      role: 'Musculoskeletal radiologist',
-      hospital: 'Nuffield Orthopaedic Centre',
-      quals: 'FRCR · Musculoskeletal imaging',
-      gmc: '7012345',
-      photo: null, featured: false,
-      areas: ['bones'], modalities: ['MRI', 'CT'],
-      tags: ['Spine', 'Shoulder', 'Knee'],
-      bio: 'Degenerative spine, sports injury and post-operative joint imaging.',
-      credentials: ['FRCR', 'Musculoskeletal imaging'],
-      helpWith: [
-        'Degenerative spine MRI',
-        'Shoulder and rotator cuff',
-        'Knee ligament and meniscus',
-        'Sports injury imaging',
-        'Post-operative joint review',
-        'Persistent back pain'
-      ],
-      availability: 'Next slot tomorrow', rank: 1
-    },
-    {
-      id: 'shah', name: 'Priya Shah', initials: 'PS',
-      role: 'Uroradiologist',
-      hospital: 'Guy’s and St Thomas’',
-      quals: 'FRCR · Multiparametric prostate MRI',
-      gmc: '7012345',
-      photo: null, featured: false,
-      areas: ['abdomen'], modalities: ['MRI', 'CT', 'Ultrasound'],
-      tags: ['Kidney', 'Bladder', 'Prostate MRI'],
-      bio: 'Kidney, bladder and prostate imaging, including multiparametric prostate MRI.',
-      credentials: ['FRCR', 'Multiparametric prostate MRI'],
-      helpWith: [
-        'Multiparametric prostate MRI',
-        'Kidney lesions and cysts',
-        'Bladder imaging',
-        'Raised PSA with a normal scan',
-        'Post-treatment urology imaging',
-        'Second look at a renal CT'
-      ],
-      availability: 'Available today', rank: 0
     }
   ];
 
