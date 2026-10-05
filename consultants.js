@@ -23,8 +23,14 @@
        and have not been verified against each consultant's own listing.
      · Only Dr Mallon carries a `review`, inherited from the first concept and
        itself unverified. No review has been invented for anyone else.
-     · Four consultants have no headshot and render an initials tile until one
-       is supplied.
+     · Dr Sivarasan, Dr Weston, Dr Withey and Dr Forster were supplied by the
+       client as Figma profiles, so their prose is theirs. Their headshots are
+       NOT: three of the four source layers are named "ChatGPT Image", i.e.
+       they are generated portraits standing in for real named doctors.
+       Replace them with real photographs before any client-facing use.
+     · No consultant currently covers breast imaging. The Breast body area is
+       still offered in the pickers and falls back to "we match your
+       subspecialist", so add a breast radiologist here or drop the area.
 --------------------------------------------------------------------------- */
 (function (root) {
   var CONSULTANTS = [
@@ -101,27 +107,6 @@
       availability: '', rank: 2
     },
     {
-      id: 'taufik', name: 'Hebah Taufik', initials: 'HT',
-      role: 'Consultant breast radiologist',
-      hospital: 'London',
-      quals: 'FRCR · Screening and diagnostic imaging',
-      gmc: '7012345',
-      photo: 'portraits/hebah-taufik.jpg', featured: true,
-      areas: ['breast'], modalities: ['MRI', 'Ultrasound'],
-      tags: ['Breast MRI', 'Mammography', 'Ultrasound'],
-      bio: 'Breast MRI, mammography and ultrasound. Screening and diagnostic imaging.',
-      credentials: ['FRCR', 'Screening and diagnostic imaging'],
-      helpWith: [
-        'Screening recall findings',
-        'Breast MRI interpretation',
-        'Dense-tissue mammography',
-        'Ultrasound-detected lumps',
-        'Post-surgical breast imaging',
-        'Family-history surveillance'
-      ],
-      availability: 'Available today', rank: 0
-    },
-    {
       id: 'tamimi', name: 'Asad Tamimi', initials: 'AT',
       role: 'Gastrointestinal and abdominal radiologist',
       hospital: 'Imperial',
@@ -141,27 +126,6 @@
         'Prostate MRI'
       ],
       availability: '', rank: 3
-    },
-    {
-      id: 'bhatnagar', name: 'Gauraang Bhatnagar', initials: 'GB',
-      role: 'Gastrointestinal and oncological radiologist',
-      hospital: 'London',
-      quals: 'FRCR · Oncological staging',
-      gmc: '7012345',
-      photo: 'portraits/gauraang-bhatnagar.jpg', featured: true,
-      areas: ['abdomen'], modalities: ['CT', 'MRI', 'PET-CT'],
-      tags: ['Bowel', 'Liver', 'Staging'],
-      bio: 'Gastrointestinal and oncological imaging, including small-bowel MRI and staging CT.',
-      credentials: ['FRCR', 'Oncological staging'],
-      helpWith: [
-        'Small-bowel MRI',
-        'Inflammatory bowel disease',
-        'Oncological staging and response',
-        'Liver and pancreatic findings',
-        'Post-treatment surveillance',
-        'Second look at an abdominal CT'
-      ],
-      availability: 'Next slot tomorrow', rank: 1
     },
     {
       id: 'kakar', name: 'Geetanjali Kakar', initials: 'GK',
@@ -194,7 +158,7 @@
       hospital: 'King’s College Hospital',
       quals: 'FRCR · Head & neck imaging',
       gmc: '7012345',
-      photo: null, featured: false,
+      photo: 'portraits/husam-wassati.jpg', featured: true,
       areas: ['brain', 'headneck'], modalities: ['MRI', 'CT', 'Ultrasound'],
       tags: ['Neck', 'Thyroid', 'Skull base'],
       bio: 'Orbital and ENT imaging, skull base, thyroid and salivary gland disease.',
@@ -215,7 +179,7 @@
       hospital: 'Great Ormond Street',
       quals: 'FRCR · Paediatric neuroradiology',
       gmc: '7012345',
-      photo: null, featured: false,
+      photo: 'portraits/felice-darco.jpg', featured: true,
       areas: ['brain', 'children', 'headneck'], modalities: ['MRI'],
       tags: ['Children', 'Inner ear', 'Epilepsy'],
       bio: 'Children’s brain, inner ear and head & neck imaging. Paediatric epilepsy.',
@@ -231,46 +195,141 @@
       availability: '', rank: 2
     },
     {
-      id: 'okoye', name: 'Chidi Okoye', initials: 'CO',
-      role: 'Musculoskeletal radiologist',
-      hospital: 'Nuffield Orthopaedic Centre',
-      quals: 'FRCR · Musculoskeletal imaging',
+      id: 'sivarasan', name: 'Nishanth Sivarasan', initials: 'NS',
+      role: 'Consultant cardiothoracic radiologist',
+      hospital: 'Guy’s and St Thomas’',
+      quals: 'FRCR · MD(Res) Imperial · Guy’s and St Thomas’',
       gmc: '7012345',
-      photo: null, featured: false,
-      areas: ['bones'], modalities: ['MRI', 'CT'],
-      tags: ['Spine', 'Shoulder', 'Knee'],
-      bio: 'Degenerative spine, sports injury and post-operative joint imaging.',
-      credentials: ['FRCR', 'Musculoskeletal imaging'],
-      helpWith: [
-        'Degenerative spine MRI',
-        'Shoulder and rotator cuff',
-        'Knee ligament and meniscus',
-        'Sports injury imaging',
-        'Post-operative joint review',
-        'Persistent back pain'
+      photo: 'portraits/nishanth-sivarasan.jpg', featured: true,
+      areas: ['chest'], modalities: ['CT', 'PET-CT', 'MRI'],
+      tags: ['Lung cancer', 'Interstitial lung disease', 'Airways'],
+      bio: 'Interstitial lung disease, lung cancer and advanced airways disease. National Treasure Fellow in thoracic radiology at Royal Brompton.',
+      credentials: ['FRCR', 'MD(Res) Imperial', 'Thoracic fellowship, Royal Brompton'],
+      intro: 'Consultant cardiothoracic radiologist at Guy’s and St Thomas’, and Responsible Radiologist for the South East London Lung Cancer Screening Programme.',
+      background: [
+        'Graduated from Imperial College London in 2013 as an academic award winner and trained in radiology at Guy’s and St Thomas’, achieving Fellowship of the Royal College of Radiologists in 2018.',
+        'Completed higher specialist training in thoracic radiology as the National Treasure Fellow at Royal Brompton Hospital from 2019 to 2021, and was awarded an MD(Res) from Imperial College London for research into CT morphological phenotypes in pulmonary sarcoidosis.',
+        'Lectures nationally and internationally on thoracic imaging. Responsible Radiologist for the South East London Lung Cancer Screening Programme, Lead Radiologist for the Accelerating Lung Cancer Diagnosis Through AI-Guided Robotic Navigation Bronchoscopy project, and Independent Clinician and Study Oversight Committee member for the MEDLEY trial.'
       ],
-      availability: 'Next slot tomorrow', rank: 1
+      helpWith: [
+        'Interstitial lung disease',
+        'Lung nodules and lung cancer',
+        'Advanced airways disease',
+        'Pulmonary sarcoidosis',
+        'Lung cancer screening findings',
+        'Post-treatment chest imaging'
+      ],
+      availability: '', rank: 2
     },
     {
-      id: 'shah', name: 'Priya Shah', initials: 'PS',
-      role: 'Uroradiologist',
-      hospital: 'Guy’s and St Thomas’',
-      quals: 'FRCR · Multiparametric prostate MRI',
+      id: 'weston', name: 'William Weston', initials: 'WW',
+      role: 'Consultant gastrointestinal radiologist',
+      hospital: 'The Royal Marsden',
+      quals: 'GI fellowship, St Mark’s · The Royal Marsden',
       gmc: '7012345',
-      photo: null, featured: false,
+      photo: 'portraits/william-weston.jpg', featured: true,
+      areas: ['abdomen'], modalities: ['CT', 'MRI'],
+      tags: ['Bowel', 'Liver & pancreas', 'Neuroendocrine'],
+      bio: 'Bowel, liver, pancreatic and biliary imaging, including neuroendocrine tumours. Benign and malignant gastrointestinal disease.',
+      credentials: ['GI fellowship, St Mark’s', 'PG qualification in clinical education'],
+      intro: 'Consultant radiologist at The Royal Marsden with broad expertise in gastrointestinal and abdominal imaging.',
+      background: [
+        'Trained in radiology across several London teaching hospitals, including Guy’s and St Thomas’ and University College London Hospital, before completing a specialist fellowship in gastrointestinal imaging at St Mark’s Hospital.',
+        'Practice covers both benign and malignant gastrointestinal conditions, with particular interests in bowel, liver, pancreatic and biliary imaging as well as neuroendocrine tumours. Working at a high-volume specialist centre, he has extensive experience in CT and MRI for diagnosis, treatment planning, response assessment and follow-up.',
+        'Also involved in research and medical education, and holds a postgraduate qualification in clinical education.'
+      ],
+      helpWith: [
+        'Bowel CT and MRI',
+        'Liver lesions',
+        'Pancreatic and biliary imaging',
+        'Neuroendocrine tumours',
+        'Treatment response assessment',
+        'Surveillance and follow-up scans'
+      ],
+      availability: '', rank: 2
+    },
+    {
+      id: 'withey', name: 'Sam Withey', initials: 'SW',
+      role: 'Consultant uroradiologist',
+      hospital: 'The Royal Marsden',
+      quals: 'President-Elect, BSUR · The Royal Marsden',
+      gmc: '7012345',
+      photo: 'portraits/sam-withey.jpg', featured: true,
       areas: ['abdomen'], modalities: ['MRI', 'CT', 'Ultrasound'],
-      tags: ['Kidney', 'Bladder', 'Prostate MRI'],
-      bio: 'Kidney, bladder and prostate imaging, including multiparametric prostate MRI.',
-      credentials: ['FRCR', 'Multiparametric prostate MRI'],
+      tags: ['Prostate MRI', 'Kidney', 'Bladder'],
+      bio: 'Prostate, kidney and bladder imaging, including PI-RADS scoring, biopsy planning, staging and post-treatment assessment.',
+      credentials: ['President-Elect, BSUR', 'Prostate MRI and PI-RADS'],
+      intro: 'Consultant uroradiologist at The Royal Marsden, one of the world’s leading cancer centres, specialising in prostate, kidney and bladder imaging.',
+      background: [
+        'Trained in medicine at Imperial College London before undertaking radiology training at Guy’s and St Thomas’ and University College London Hospitals, where he developed subspecialist experience in urological and oncological imaging.',
+        'Clinical practice is focused particularly on prostate MRI — screening, lesion identification and PI-RADS scoring, biopsy planning, staging and treatment planning, and assessment following treatment. Wider practice includes renal and bladder imaging, general oncological imaging, and whole-body MRI for advanced malignancy, cancer screening and preventative health assessment.',
+        'An active academic interest in prostate cancer imaging spans the pathway from diagnosis to treatment response assessment, with extensive publication in urological and oncological imaging and contributions to major international research and consensus work. President-Elect of the British Society of Urogenital Radiology, an active member of the European Society of Urogenital Radiology working groups for prostate, bladder and renal imaging, and a former member of the Prostate Cancer UK Research Advisory Committee. He teaches regularly on specialist prostate MRI courses in the UK and Europe.'
+      ],
       helpWith: [
         'Multiparametric prostate MRI',
+        'PI-RADS scoring and biopsy planning',
         'Kidney lesions and cysts',
         'Bladder imaging',
-        'Raised PSA with a normal scan',
         'Post-treatment urology imaging',
-        'Second look at a renal CT'
+        'Whole-body MRI screening'
       ],
-      availability: 'Available today', rank: 0
+      availability: '', rank: 2
+    },
+    {
+      id: 'forster', name: 'Danielle Forster', initials: 'DF',
+      role: 'Consultant musculoskeletal radiologist',
+      hospital: 'Royal National Orthopaedic Hospital',
+      quals: 'MSK fellowship, RNOH · UCLH training',
+      gmc: '7012345',
+      photo: 'portraits/danielle-forster.jpg', featured: true,
+      areas: ['bones'], modalities: ['MRI', 'CT', 'Ultrasound'],
+      tags: ['Joints', 'Spine', 'Image-guided'],
+      bio: 'Musculoskeletal imaging and image-guided procedures, at one of the UK’s leading specialist orthopaedic centres.',
+      credentials: ['MSK fellowship, RNOH', 'Musculoskeletal radiology'],
+      intro: 'Consultant musculoskeletal radiologist at the Royal National Orthopaedic Hospital, Stanmore.',
+      background: [
+        'Qualified in medicine from the University of Glasgow and undertook specialist radiology training in London, completing subspecialty training in musculoskeletal radiology at University College London Hospital.',
+        'Subsequently undertook a fellowship at the Royal National Orthopaedic Hospital, one of the UK’s leading specialist orthopaedic centres, before being appointed there as a consultant musculoskeletal radiologist.',
+        'Clinical practice encompasses a broad range of musculoskeletal imaging and image-guided procedures. Alongside the clinical work, a strong academic interest in musculoskeletal radiology, with research published in peer-reviewed medical journals, contributions to specialist radiology textbooks, and work presented at national and international scientific meetings.'
+      ],
+      helpWith: [
+        'Joint MRI findings',
+        'Spine imaging',
+        'Sports and soft-tissue injury',
+        'Post-operative joint review',
+        'Bone lesions',
+        'Image-guided procedures'
+      ],
+      availability: '', rank: 2
+    },
+    {
+      id: 'naik', name: 'Mitesh Naik', initials: 'MN',
+      role: 'Consultant radiologist',
+      hospital: 'Imperial College Healthcare',
+      quals: 'Nuclear medicine · PET/CT, SPECT/CT · Imperial College Healthcare',
+      gmc: '7012345',
+      photo: 'portraits/mitesh-naik.jpg', featured: true,
+      areas: ['chest', 'abdomen'], modalities: ['CT', 'PET-CT', 'MRI', 'Ultrasound'],
+      tags: ['PET-CT', 'Whole-body imaging', 'Cardiac'],
+      bio: 'Nuclear medicine, whole-body and oncological imaging across the thorax, abdomen and pelvis. PET/CT, SPECT/CT and radioligand therapy.',
+      credentials: ['Imperial College London', 'RCR and RSNA prizes', 'NICE, RSNA and EANM committees'],
+      intro: 'Consultant radiologist at Imperial College Healthcare NHS Trust, with particular expertise in nuclear medicine and whole-body oncological imaging.',
+      background: [
+        'Graduated from Imperial College London with triple distinction, and was the highest scoring student for both his undergraduate BSc and postgraduate MSc.',
+        'Awarded numerous prizes for scientific presentations and peer-reviewed publications, including from the Royal College of Radiologists and the Radiological Society of North America.',
+        'A wide-ranging skillset with particular expertise in nuclear medicine — including PET/CT, SPECT/CT and radioligand therapy — DEXA, whole-body and oncological imaging covering the entire thorax, abdomen and pelvis (CT, MR, x-ray and ultrasound), emergency imaging and cardiac imaging. A key member of a number of specialist cancer and non-cancer multidisciplinary team meetings.',
+        'Holds a variety of roles encompassing radiation safety, training, and sharing learning from errors, alongside national and international society committee positions with NICE, RSNA and EANM. A recognised educator who speaks regularly at international meetings.',
+        'Focuses on delivering accurate, comprehensive, timely and patient-centred care.'
+      ],
+      helpWith: [
+        'PET-CT staging and response',
+        'Whole-body oncological imaging',
+        'Chest, abdomen and pelvis CT',
+        'SPECT-CT and nuclear medicine',
+        'Cardiac imaging',
+        'A second look at an emergency scan'
+      ],
+      availability: '', rank: 2
     }
   ];
 

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add user — SecondRead</title>
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body>
+<div class="shell">
+
+  <aside class="side">
+    <a href="index.html"><img class="side-logo" src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height:46px;width:184px"></a>
+    <nav class="nav">
+      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Dashboard</a>
+      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Consultant activity</a>
+      <a class="on" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>Manage users</a>
+      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+    </nav>
+    <div class="side-foot">
+      <a class="logout" href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Log out</a>
+      <p class="side-note">© 2026 SecondRead Ltd · Internal console<br>Not an emergency service.</p>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="demobar">
+      <div class="demotag">Demonstration</div>
+      <p>Prototype only. Every patient, case reference and consultant assignment below is a written example — no real patient and no real clinical content. Nothing here is connected to a backend.</p>
+    </div>
+
+        <div class="inner">
+      <div class="head">
+        <div>
+          <p class="who" style="margin:0 0 6px;"><a href="#" style="color:#5A6B77;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Back to Manage users</a></p>
+          <h1>Add user</h1>
+          <p class="who">An invitation is emailed. The account is not active until they accept and verify.</p>
+        </div>
+      </div>
+
+      <div class="panel" style="grid-template-columns:1fr;">
+        <div class="pane addpane" style="max-width:none;">
+
+          <h2 style="font-size:19px;">What kind of account?</h2>
+          <div class="roles" style="margin-top:14px;">
+            <div class="role on"><div class="r-top"><span class="rd"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><b>Consultant</b></div>
+              <p>Reads scans and signs reports. Needs GMC registration and indemnity on file.</p></div>
+            <div class="role"><div class="r-top"><span class="rd"></span><b>Operations</b></div>
+              <p>Matches cases, runs checks, releases reports. Cannot write clinical content.</p></div>
+            <div class="role"><div class="r-top"><span class="rd"></span><b>Clinical lead</b></div>
+              <p>Operations powers, plus second-read sign-off and urgent-finding acknowledgement.</p></div>
+          </div>
+
+          <div class="rule"></div>
+
+          <h2 style="font-size:19px;">Their details</h2>
+          <div class="fgrid3" style="margin-top:12px;">
+            <div><label class="k">First name</label><div class="inp ph">Dermot</div></div>
+            <div><label class="k">Last name</label><div class="inp ph">Mallon</div></div>
+            <div><label class="k">Work email</label><div class="inp ph">name@secondread.co.uk</div>
+              <p class="hint">The invitation and every sign-in code go here. It cannot be changed later without codes to both addresses.</p></div>
+            <div><label class="k">GMC number</label><div class="inp ph">7000000</div>
+              <p class="hint">Checked against the GMC register before the account goes live.</p></div>
+            <div><label class="k">Job title</label><div class="inp ph">Consultant neuroradiologist</div></div>
+            <div><label class="k">Hospital or trust</label><div class="inp ph">UCLH</div></div>
+          </div>
+
+          <div class="rule"></div>
+
+          <div class="two">
+            <div>
+              <h2>What they can be offered</h2>
+              <p class="lede" style="font-size:14px;margin-top:6px;">Matching uses this. Leave a body area unticked and they will never be offered it.</p>
+              <div style="margin-top:12px;"><label class="k">Body areas</label><div class="chips" style="margin-top:8px;"><span class="chk on"><span class="bx"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Brain or spine</span><span class="chk"><span class="bx"></span>Chest or heart</span><span class="chk"><span class="bx"></span>Bones or joints</span><span class="chk"><span class="bx"></span>Abdomen or pelvis</span><span class="chk"><span class="bx"></span>Breast</span><span class="chk"><span class="bx"></span>Head or neck</span><span class="chk"><span class="bx"></span>Children</span></div></div>
+              <div style="margin-top:14px;"><label class="k">Modalities</label><div class="chips" style="margin-top:8px;"><span class="chk on"><span class="bx"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>MRI</span><span class="chk on"><span class="bx"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>CT</span><span class="chk"><span class="bx"></span>PET-CT</span><span class="chk"><span class="bx"></span>Ultrasound</span></div></div>
+            </div>
+            <div>
+              <h2>Before it goes live</h2>
+              <div class="note" style="margin-top:12px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                <span>Creating the account does not approve it. It arrives in Manage users as <b>Awaiting approval</b> and stays there until indemnity and GMC registration are confirmed. Until then it is offered no cases.</span></div>
+              <p class="hint" style="margin-top:14px;">The invitation expires after seven days. You can resend it from Manage users without creating a second account.</p>
+            </div>
+          </div>
+
+          <div class="bar">
+            <a class="big-btn btn-primary" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4Z"/></svg> Send invitation</a>
+            <a class="big-btn btn-ghost" href="#">Cancel</a>
+            <span class="sp">Nothing is sent until you choose Send invitation</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
