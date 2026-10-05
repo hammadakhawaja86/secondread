@@ -23,8 +23,6 @@
        and have not been verified against each consultant's own listing.
      · Only Dr Mallon carries a `review`, inherited from the first concept and
        itself unverified. No review has been invented for anyone else.
-     · Dr D’Arco has no headshot and renders an initials tile until one is
-       supplied.
      · Dr Sivarasan, Dr Weston, Dr Withey and Dr Forster were supplied by the
        client as Figma profiles, so their prose is theirs. Their headshots are
        NOT: three of the four source layers are named "ChatGPT Image", i.e.
@@ -202,7 +200,7 @@
       hospital: 'Great Ormond Street',
       quals: 'FRCR · Paediatric neuroradiology',
       gmc: '7012345',
-      photo: null, featured: false,
+      photo: 'portraits/felice-darco.jpg', featured: true,
       areas: ['brain', 'children', 'headneck'], modalities: ['MRI'],
       tags: ['Children', 'Inner ear', 'Epilepsy'],
       bio: 'Children’s brain, inner ear and head & neck imaging. Paediatric epilepsy.',
