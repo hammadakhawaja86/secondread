@@ -25,6 +25,11 @@
        itself unverified. No review has been invented for anyone else.
      · Two consultants have no headshot and render an initials tile until one
        is supplied.
+     · Dr Sivarasan, Dr Weston, Dr Withey and Dr Forster were supplied by the
+       client as Figma profiles, so their prose is theirs. Their headshots are
+       NOT: three of the four source layers are named "ChatGPT Image", i.e.
+       they are generated portraits standing in for real named doctors.
+       Replace them with real photographs before any client-facing use.
      · No consultant currently covers breast imaging. The Breast body area is
        still offered in the pickers and falls back to "we match your
        subspecialist", so add a breast radiologist here or drop the area.
@@ -209,6 +214,114 @@
         'Developmental brain findings',
         'Paediatric head & neck masses',
         'Second opinion on a child’s scan'
+      ],
+      availability: '', rank: 2
+    },
+    {
+      id: 'sivarasan', name: 'Nishanth Sivarasan', initials: 'NS',
+      role: 'Consultant cardiothoracic radiologist',
+      hospital: 'Guy’s and St Thomas’',
+      quals: 'FRCR · MD(Res) Imperial · Guy’s and St Thomas’',
+      gmc: '7012345',
+      photo: 'portraits/nishanth-sivarasan.jpg', featured: true,
+      areas: ['chest'], modalities: ['CT', 'PET-CT', 'MRI'],
+      tags: ['Lung cancer', 'Interstitial lung disease', 'Airways'],
+      bio: 'Interstitial lung disease, lung cancer and advanced airways disease. National Treasure Fellow in thoracic radiology at Royal Brompton.',
+      credentials: ['FRCR', 'MD(Res) Imperial', 'Thoracic fellowship, Royal Brompton'],
+      intro: 'Consultant cardiothoracic radiologist at Guy’s and St Thomas’, and Responsible Radiologist for the South East London Lung Cancer Screening Programme.',
+      background: [
+        'Graduated from Imperial College London in 2013 as an academic award winner and trained in radiology at Guy’s and St Thomas’, achieving Fellowship of the Royal College of Radiologists in 2018.',
+        'Completed higher specialist training in thoracic radiology as the National Treasure Fellow at Royal Brompton Hospital from 2019 to 2021, and was awarded an MD(Res) from Imperial College London for research into CT morphological phenotypes in pulmonary sarcoidosis.',
+        'Lectures nationally and internationally on thoracic imaging. Responsible Radiologist for the South East London Lung Cancer Screening Programme, Lead Radiologist for the Accelerating Lung Cancer Diagnosis Through AI-Guided Robotic Navigation Bronchoscopy project, and Independent Clinician and Study Oversight Committee member for the MEDLEY trial.'
+      ],
+      helpWith: [
+        'Interstitial lung disease',
+        'Lung nodules and lung cancer',
+        'Advanced airways disease',
+        'Pulmonary sarcoidosis',
+        'Lung cancer screening findings',
+        'Post-treatment chest imaging'
+      ],
+      availability: '', rank: 2
+    },
+    {
+      id: 'weston', name: 'William Weston', initials: 'WW',
+      role: 'Consultant gastrointestinal radiologist',
+      hospital: 'The Royal Marsden',
+      quals: 'GI fellowship, St Mark’s · The Royal Marsden',
+      gmc: '7012345',
+      photo: 'portraits/william-weston.jpg', featured: true,
+      areas: ['abdomen'], modalities: ['CT', 'MRI'],
+      tags: ['Bowel', 'Liver & pancreas', 'Neuroendocrine'],
+      bio: 'Bowel, liver, pancreatic and biliary imaging, including neuroendocrine tumours. Benign and malignant gastrointestinal disease.',
+      credentials: ['GI fellowship, St Mark’s', 'PG qualification in clinical education'],
+      intro: 'Consultant radiologist at The Royal Marsden with broad expertise in gastrointestinal and abdominal imaging.',
+      background: [
+        'Trained in radiology across several London teaching hospitals, including Guy’s and St Thomas’ and University College London Hospital, before completing a specialist fellowship in gastrointestinal imaging at St Mark’s Hospital.',
+        'Practice covers both benign and malignant gastrointestinal conditions, with particular interests in bowel, liver, pancreatic and biliary imaging as well as neuroendocrine tumours. Working at a high-volume specialist centre, he has extensive experience in CT and MRI for diagnosis, treatment planning, response assessment and follow-up.',
+        'Also involved in research and medical education, and holds a postgraduate qualification in clinical education.'
+      ],
+      helpWith: [
+        'Bowel CT and MRI',
+        'Liver lesions',
+        'Pancreatic and biliary imaging',
+        'Neuroendocrine tumours',
+        'Treatment response assessment',
+        'Surveillance and follow-up scans'
+      ],
+      availability: '', rank: 2
+    },
+    {
+      id: 'withey', name: 'Sam Withey', initials: 'SW',
+      role: 'Consultant uroradiologist',
+      hospital: 'The Royal Marsden',
+      quals: 'President-Elect, BSUR · The Royal Marsden',
+      gmc: '7012345',
+      photo: 'portraits/sam-withey.jpg', featured: true,
+      areas: ['abdomen'], modalities: ['MRI', 'CT', 'Ultrasound'],
+      tags: ['Prostate MRI', 'Kidney', 'Bladder'],
+      bio: 'Prostate, kidney and bladder imaging, including PI-RADS scoring, biopsy planning, staging and post-treatment assessment.',
+      credentials: ['President-Elect, BSUR', 'Prostate MRI and PI-RADS'],
+      intro: 'Consultant uroradiologist at The Royal Marsden, one of the world’s leading cancer centres, specialising in prostate, kidney and bladder imaging.',
+      background: [
+        'Trained in medicine at Imperial College London before undertaking radiology training at Guy’s and St Thomas’ and University College London Hospitals, where he developed subspecialist experience in urological and oncological imaging.',
+        'Clinical practice is focused particularly on prostate MRI — screening, lesion identification and PI-RADS scoring, biopsy planning, staging and treatment planning, and assessment following treatment. Wider practice includes renal and bladder imaging, general oncological imaging, and whole-body MRI for advanced malignancy, cancer screening and preventative health assessment.',
+        'An active academic interest in prostate cancer imaging spans the pathway from diagnosis to treatment response assessment, with extensive publication in urological and oncological imaging and contributions to major international research and consensus work. President-Elect of the British Society of Urogenital Radiology, an active member of the European Society of Urogenital Radiology working groups for prostate, bladder and renal imaging, and a former member of the Prostate Cancer UK Research Advisory Committee. He teaches regularly on specialist prostate MRI courses in the UK and Europe.'
+      ],
+      helpWith: [
+        'Multiparametric prostate MRI',
+        'PI-RADS scoring and biopsy planning',
+        'Kidney lesions and cysts',
+        'Bladder imaging',
+        'Post-treatment urology imaging',
+        'Whole-body MRI screening'
+      ],
+      availability: '', rank: 2
+    },
+    {
+      id: 'forster', name: 'Danielle Forster', initials: 'DF',
+      role: 'Consultant musculoskeletal radiologist',
+      hospital: 'Royal National Orthopaedic Hospital',
+      quals: 'MSK fellowship, RNOH · UCLH training',
+      gmc: '7012345',
+      photo: 'portraits/danielle-forster.jpg', featured: true,
+      areas: ['bones'], modalities: ['MRI', 'CT', 'Ultrasound'],
+      tags: ['Joints', 'Spine', 'Image-guided'],
+      bio: 'Musculoskeletal imaging and image-guided procedures, at one of the UK’s leading specialist orthopaedic centres.',
+      credentials: ['MSK fellowship, RNOH', 'Musculoskeletal radiology'],
+      intro: 'Consultant musculoskeletal radiologist at the Royal National Orthopaedic Hospital, Stanmore.',
+      background: [
+        'Qualified in medicine from the University of Glasgow and undertook specialist radiology training in London, completing subspecialty training in musculoskeletal radiology at University College London Hospital.',
+        'Subsequently undertook a fellowship at the Royal National Orthopaedic Hospital, one of the UK’s leading specialist orthopaedic centres, before being appointed there as a consultant musculoskeletal radiologist.',
+        'Clinical practice encompasses a broad range of musculoskeletal imaging and image-guided procedures. Alongside the clinical work, a strong academic interest in musculoskeletal radiology, with research published in peer-reviewed medical journals, contributions to specialist radiology textbooks, and work presented at national and international scientific meetings.'
+      ],
+      helpWith: [
+        'Joint MRI findings',
+        'Spine imaging',
+        'Sports and soft-tissue injury',
+        'Post-operative joint review',
+        'Bone lesions',
+        'Image-guided procedures'
       ],
       availability: '', rank: 2
     }
