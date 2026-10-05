@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultant &amp; Operations Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#F3F6F5;
+  --surface:#FFFFFF;
+  --surface-2:#EAEFEE;
+  --ink:#14211F;
+  --ink-2:#3A4B48;
+  --muted:#65756F;
+  --rule:#D9E1DF;
+  --rule-strong:#BFCCC9;
+  --accent:#0B5C60;
+  --accent-ink:#083F42;
+  --accent-wash:#E2EFEF;
+  --signal:#8F5410;
+  --signal-wash:#F7EDDF;
+  --ok:#2C6349;
+  --ok-wash:#E2EEE8;
+  --warn:#8F5410;
+  --warn-wash:#F7EDDF;
+  --stop:#93332E;
+  --stop-wash:#F7E5E3;
+  --shadow:0 1px 2px rgba(20,33,31,.05), 0 8px 24px -16px rgba(20,33,31,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1514;
+    --surface:#161F1E;
+    --surface-2:#1D2827;
+    --ink:#E7EDEB;
+    --ink-2:#C0CCC9;
+    --muted:#8C9C98;
+    --rule:#26332F;
+    --rule-strong:#35443F;
+    --accent:#7FC5C6;
+    --accent-ink:#A8DBDB;
+    --accent-wash:#122A2B;
+    --signal:#D9A45F;
+    --signal-wash:#2B2013;
+    --ok:#7FBE9C;
+    --ok-wash:#14261E;
+    --warn:#D9A45F;
+    --warn-wash:#2B2013;
+    --stop:#DE9089;
+    --stop-wash:#2C1917;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1514;
+  --surface:#161F1E;
+  --surface-2:#1D2827;
+  --ink:#E7EDEB;
+  --ink-2:#C0CCC9;
+  --muted:#8C9C98;
+  --rule:#26332F;
+  --rule-strong:#35443F;
+  --accent:#7FC5C6;
+  --accent-ink:#A8DBDB;
+  --accent-wash:#122A2B;
+  --signal:#D9A45F;
+  --signal-wash:#2B2013;
+  --ok:#7FBE9C;
+  --ok-wash:#14261E;
+  --warn:#D9A45F;
+  --warn-wash:#2B2013;
+  --stop:#DE9089;
+  --stop-wash:#2C1917;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Public Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px 120px}
+.layout{display:grid;grid-template-columns:212px minmax(0,1fr);gap:56px;align-items:start}
+@media (max-width:1000px){.layout{grid-template-columns:minmax(0,1fr);gap:0}.rail{display:none}}
+
+/* ---- masthead ---- */
+.mast{border-bottom:1px solid var(--rule);padding:64px 0 34px;margin-bottom:44px}
+.eyebrow{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin:0 0 20px;
+}
+h1{
+  font-family:"Newsreader", Georgia, "Times New Roman", serif;
+  font-weight:500;font-size:clamp(2.4rem,5.2vw,3.9rem);line-height:1.04;
+  letter-spacing:-.02em;margin:0 0 18px;max-width:19ch;text-wrap:balance;
+}
+.standfirst{font-size:1.12rem;color:var(--ink-2);max-width:64ch;margin:0 0 30px}
+.meta{display:flex;flex-wrap:wrap;gap:0 34px;font-size:13px;color:var(--muted);
+  font-family:"IBM Plex Mono", ui-monospace, monospace;}
+.meta b{color:var(--ink-2);font-weight:500}
+
+/* ---- toc ---- */
+.rail{position:sticky;top:0;padding-top:64px;max-height:100vh;overflow-y:auto}
+.rail h2{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 14px;font-weight:500;
+}
+.rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;counter-reset:toc}
+.rail a{
+  display:flex;gap:9px;color:var(--ink-2);text-decoration:none;font-size:13.5px;line-height:1.35;
+  border-left:2px solid transparent;padding-left:10px;margin-left:-12px;
+}
+.rail a:hover{color:var(--accent);border-left-color:var(--accent)}
+.rail a span{font-family:"IBM Plex Mono", monospace;font-size:11px;color:var(--muted);padding-top:2px}
+.toc-inline{display:none}
+@media (max-width:1000px){
+  .toc-inline{display:block;background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px 22px;margin-bottom:44px}
+  .toc-inline ol{margin:0;padding-left:20px;font-size:14.5px;display:flex;flex-direction:column;gap:6px}
+  .toc-inline a{color:var(--ink-2);text-decoration:none}
+  .toc-inline h2{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:500}
+}
+
+/* ---- sections ---- */
+section{margin:0 0 76px;scroll-margin-top:24px}
+.sec-num{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;font-size:11.5px;letter-spacing:.14em;
+  color:var(--accent);text-transform:uppercase;display:block;margin-bottom:10px;
+}
+h2.sec{
+  font-family:"Newsreader", Georgia, serif;font-weight:500;font-size:clamp(1.7rem,3.2vw,2.35rem);
+  line-height:1.12;letter-spacing:-.015em;margin:0 0 8px;text-wrap:balance;
+  padding-bottom:16px;border-bottom:1px solid var(--rule-strong);
+}
+h3{
+  font-family:"Public Sans",sans-serif;font-weight:600;font-size:1.09rem;letter-spacing:-.005em;
+  margin:38px 0 10px;color:var(--ink);
+}
+h4{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:11.5px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;
+}
+p{margin:0 0 15px;max-width:70ch}
+.lede{font-size:1.05rem;color:var(--ink-2);max-width:68ch;margin-top:18px}
+ul,ol{max-width:70ch;padding-left:22px;margin:0 0 16px}
+li{margin-bottom:7px}
+li::marker{color:var(--muted)}
+strong{font-weight:600}
+em{font-style:italic}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+code{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.875em;
+  background:var(--surface-2);padding:1px 5px;border-radius:2px;color:var(--ink-2);
+}
+hr{border:0;border-top:1px solid var(--rule);margin:34px 0}
+
+/* ---- tables ---- */
+.tw{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:740px;font-size:14.2px;line-height:1.5}
+th{
+  text-align:left;font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:10.8px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--muted);
+  padding:12px 16px;border-bottom:1px solid var(--rule-strong);vertical-align:bottom;white-space:nowrap;
+}
+td{padding:13px 16px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td b, td strong{color:var(--ink)}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---- chips ---- */
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-family:"IBM Plex Mono",monospace;
+  font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:2px;
+  white-space:nowrap;border:1px solid transparent;
+}
+.chip.act{background:var(--warn-wash);color:var(--warn);border-color:var(--warn)}
+.chip.sub{background:var(--surface-2);color:var(--ink-2);border-color:var(--rule-strong)}
+.chip.mat{background:var(--accent-wash);color:var(--accent-ink);border-color:var(--accent)}
+.chip.rev{background:var(--accent-wash);color:var(--accent-ink);border-color:var(--accent)}
+.chip.rdy{background:var(--ok-wash);color:var(--ok);border-color:var(--ok)}
+.chip.fol{background:var(--surface-2);color:var(--ink-2);border-color:var(--rule-strong)}
+
+/* ---- callouts ---- */
+.note{
+  border-left:2px solid var(--accent);background:var(--surface);
+  padding:18px 22px;margin:22px 0;border-radius:0 3px 3px 0;box-shadow:var(--shadow);
+}
+.note.safety{border-left-color:var(--stop)}
+.note.privacy{border-left-color:var(--signal)}
+.note h4{margin-top:0}
+.note p:last-child{margin-bottom:0}
+.note p{max-width:66ch}
+
+/* ---- copy blocks (verbatim UI strings) ---- */
+.copy{
+  background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  padding:16px 18px;margin:14px 0;box-shadow:var(--shadow);
+}
+.copy dl{margin:0;display:grid;grid-template-columns:120px minmax(0,1fr);gap:8px 18px;font-size:14.4px}
+.copy dt{
+  font-family:"IBM Plex Mono",monospace;font-size:10.8px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding-top:4px;
+}
+.copy dd{margin:0;color:var(--ink)}
+@media (max-width:620px){.copy dl{grid-template-columns:minmax(0,1fr);gap:2px 0}.copy dd{margin-bottom:12px}}
+
+/* ---- wireframe / mermaid ---- */
+pre.wire{
+  overflow-x:auto;background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  padding:22px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;line-height:1.5;
+  color:var(--ink-2);margin:20px 0 26px;box-shadow:var(--shadow);
+}
+pre.mermaid{
+  background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  padding:22px;overflow-x:auto;margin:20px 0 26px;text-align:center;box-shadow:var(--shadow);
+}
+
+/* ---- cards ---- */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin:20px 0 26px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px 22px;box-shadow:var(--shadow)}
+.card h4{margin-top:0}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.card ul{padding-left:19px}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--rule-strong);padding-top:26px;margin-top:20px;color:var(--muted);font-size:13.5px}
+footer p{max-width:70ch}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">Operating model specification &nbsp;·&nbsp; Second Opinion Radiology UK</p>
+  <h1>Who does what to a case, and in what order</h1>
+  <p class="standfirst">The patient journey is built. This document specifies the two sides that make it actually deliver a report: the consultant who reads the scan and writes the opinion, and the operations team who match, check and release it. It defines one case lifecycle shared by all three roles, the handoffs between them, and the controls that stop a report reaching a patient before it should.</p>
+  <div class="meta">
+    <span><b>Version</b> 0.9 — for review</span>
+    <span><b>Audience</b> Product + operations + clinical governance</span>
+    <span><b>Scope</b> Consultant and admin; patient side already specified</span>
+    <span><b>Companion</b> patient-portal-spec.html</span>
+  </div>
+</header>
+
+<div class="layout">
+
+<nav class="rail" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s1"><span>01</span> Three roles, one case</a></li>
+    <li><a href="#s2"><span>02</span> Four stages the patient sees, fourteen the system tracks</a></li>
+    <li><a href="#s3"><span>03</span> The case lifecycle</a></li>
+    <li><a href="#s4"><span>04</span> The consultant's loop</a></li>
+    <li><a href="#s5"><span>05</span> The report object: who owns which field</a></li>
+    <li><a href="#s6"><span>06</span> Two operating models — the decision that shapes everything</a></li>
+    <li><a href="#s7"><span>07</span> Urgent findings</a></li>
+    <li><a href="#s8"><span>08</span> The clock, the buffer and the refund</a></li>
+    <li><a href="#s9"><span>09</span> Exception paths</a></li>
+    <li><a href="#s10"><span>10</span> Screens this implies</a></li>
+    <li><a href="#s11"><span>11</span> Open decisions</a></li>
+  </ol>
+</nav>
+
+<main class="copy">
+
+<!-- ============ 01 ============ -->
+<section id="s1">
+  <span class="sec-num">01</span>
+  <h2 class="sec">Three roles, one case</h2>
+
+  <p class="lede">There is one case record. Each role sees a different projection of it, and each holds authority the other two do not have. Getting that boundary right is most of the design.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Patient</h4>
+      <p><strong>Owns:</strong> the images, the clinical question, and the decision to buy.</p>
+      <p><strong>Can:</strong> submit, supply missing items, read the report, ask one follow-up, request a refund on a missed deadline.</p>
+      <p><strong>Never sees:</strong> which consultants declined, how many times a draft was amended, internal QA notes, or the matching queue.</p>
+    </div>
+    <div class="card">
+      <h4>Consultant</h4>
+      <p><strong>Owns:</strong> the clinical content and the signature. This is the only role that can state a radiological opinion.</p>
+      <p><strong>Can:</strong> accept or decline an offer, read the study, draft, amend, flag urgency, sign.</p>
+      <p><strong>Cannot:</strong> release a report to a patient, change the price or deadline, see other consultants' cases, or edit anything after signing.</p>
+    </div>
+    <div class="card">
+      <h4>Operations (admin)</h4>
+      <p><strong>Owns:</strong> the pipeline — data completeness, matching, turnaround, delivery, money.</p>
+      <p><strong>Can:</strong> chase missing items, offer and reassign, run non-clinical QA, release, refund, pause accounts.</p>
+      <p><strong>Cannot:</strong> write or alter clinical content, write the patient-facing explanation, or sign anything.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <h4>The one control that matters most</h4>
+    <p><strong>The consultant signs; operations releases.</strong> These are two different acts by two different people and neither can perform the other's. Signing is a clinical and legal act tied to a named GMC registrant. Releasing is an operational act — confirming the document is complete, correctly attributed and safe to send. A single role doing both is how an unchecked or misattributed report reaches a patient.</p>
+  </div>
+</section>
+
+<!-- ============ 02 ============ -->
+<section id="s2">
+  <span class="sec-num">02</span>
+  <h2 class="sec">Four stages the patient sees, fourteen the system tracks</h2>
+
+  <p class="lede">The patient tracker already has four stages — Submitted, Being matched, Under expert review, Report ready — plus <em>Action needed</em> as an interrupt. Those four do not change. Everything the consultant and operations do happens <em>inside</em> them.</p>
+
+  <p>This is a deliberate asymmetry, not an oversight. A patient who has paid £299 and is frightened does not benefit from watching a case bounce between two consultants, or seeing a draft returned for amendment. They benefit from a stable picture and a deadline that holds. Internal churn is the business's problem to absorb.</p>
+
+  <p>There are exactly two reasons to break that rule, and both are obligations rather than status updates:</p>
+  <ul>
+    <li><strong>Action needed</strong> — the patient has to do something (a missing file, an unreadable upload, a consent). The clock pauses. They must be told.</li>
+    <li><strong>A breached deadline</strong> — the promise was explicit and so is the failure. They are told, and refunded, without having to ask.</li>
+  </ul>
+
+  <div class="note privacy">
+    <h4>Say less, not more</h4>
+    <p>"Being matched" covers an offer declined by two consultants and accepted by a third. "Under expert review" covers a draft returned once for an incomplete comparison. In both cases the honest patient-facing fact is unchanged: a consultant is being found, or a consultant is working on it. Exposing the churn would be transparency about process at the cost of confidence in outcome.</p>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="s3">
+  <span class="sec-num">03</span>
+  <h2 class="sec">The case lifecycle</h2>
+
+  <p class="lede">Fourteen internal states. The right-hand column is the only thing the patient ever sees.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>#</th><th>Internal state</th><th>Held by</th><th>Leaves when</th><th>Patient sees</th></tr></thead>
+      <tbody>
+        <tr><td class="num">00</td><td><b>Draft</b></td><td>Patient</td><td>Payment clears</td><td>&mdash; (not yet a case)</td></tr>
+        <tr><td class="num">01</td><td><b>Intake received</b></td><td>System</td><td>Automated checks finish</td><td><span class="chip sub">Submitted</span></td></tr>
+        <tr><td class="num">02</td><td><b>Data check</b></td><td>Operations</td><td>Study opens, series complete, identity matches</td><td><span class="chip sub">Submitted</span></td></tr>
+        <tr><td class="num">03</td><td><b>Blocked</b></td><td>Patient</td><td>Missing item supplied</td><td><span class="chip act">Action needed</span> &middot; clock paused</td></tr>
+        <tr><td class="num">04</td><td><b>Ready to match</b></td><td>Operations</td><td>Subspecialty decided, offer sent</td><td><span class="chip mat">Being matched</span></td></tr>
+        <tr><td class="num">05</td><td><b>Offered</b></td><td>Consultant</td><td>Accepted, declined, or offer expires</td><td><span class="chip mat">Being matched</span></td></tr>
+        <tr><td class="num">06</td><td><b>Accepted</b></td><td>Consultant</td><td>Consultant opens the study</td><td><span class="chip rev">Under expert review</span></td></tr>
+        <tr><td class="num">07</td><td><b>In review</b></td><td>Consultant</td><td>Draft submitted</td><td><span class="chip rev">Under expert review</span></td></tr>
+        <tr><td class="num">08</td><td><b>Draft submitted</b></td><td>Operations</td><td>QA passes or returns it</td><td><span class="chip rev">Under expert review</span></td></tr>
+        <tr><td class="num">09</td><td><b>Second read</b></td><td>Second consultant</td><td>Agreement recorded</td><td><span class="chip rev">Under expert review</span></td></tr>
+        <tr><td class="num">10</td><td><b>Returned for amendment</b></td><td>Consultant</td><td>Re-submitted</td><td><span class="chip rev">Under expert review</span></td></tr>
+        <tr><td class="num">11</td><td><b>Signed</b></td><td>Consultant</td><td>Signature applied &mdash; content now immutable</td><td><span class="chip rev">Under expert review</span></td></tr>
+        <tr><td class="num">12</td><td><b>Released</b></td><td>Operations</td><td>Patient notified</td><td><span class="chip rdy">Report ready</span></td></tr>
+        <tr><td class="num">13</td><td><b>Follow-up open</b></td><td>Consultant</td><td>Question answered, or 14 days pass</td><td><span class="chip fol">Follow-up available</span></td></tr>
+        <tr><td class="num">&mdash;</td><td><b>Closed / refunded</b></td><td>Operations</td><td>Terminal</td><td>Case closed, with reason</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Where the handoffs are</h3>
+
+<pre class="wire">PATIENT                 OPERATIONS                        CONSULTANT
+─────────────────       ──────────────────────────        ──────────────────────────
+
+ pays ──────────────▶  01 intake received
+                       02 data check
+                        │
+        ◀────────────── ├─▶ 03 blocked  ·· missing file ·· clock PAUSED
+ supplies it ─────────▶ │
+                        ▼
+                       04 ready to match
+                       choose subspecialty
+                        └──── offer ──────────────────▶  05 offered   (anonymised)
+                                                          │
+                       ◀──── decline / expire ────────────┤   back to 04, next consultant
+                                                          │
+                                                          ▼
+                                                        06 accepted  (identity revealed,
+                                                          │           conflict declared)
+                                                          ▼
+                                                        07 in review
+                                                          │  images · prior study ·
+                                                          │  original report · the question
+                                                          ▼
+                       08 draft submitted  ◀──────────── draft
+                        │
+                        ├─ non-clinical QA (ops)
+                        ├─ 09 second read ─────────────▶ second consultant
+                        │     (mandatory if "differing interpretation")
+                        │
+                        ├──── return for amendment ────▶ 10 amend ──┐
+                        │                                           │
+                        │  ◀────────────────────────────────────────┘
+                        ▼
+                                                        11 SIGNED  (name + GMC + timestamp)
+                        │                                  content immutable from here
+                        ▼
+                       12 released ──────────────▶ patient notified
+ reads report ◀────────┘
+ asks follow-up ──────▶ 13 follow-up ────────────────▶ same consultant answers</pre>
+
+  <div class="note">
+    <h4>Why the offer is anonymised</h4>
+    <p>At state 05 the consultant sees modality, body area, the clinical question, the deadline and the fee &mdash; not the patient's name or date of birth. Two reasons. It lets them decline cheaply without having touched identifiable data, which is the data-minimisation position under UK GDPR. And it makes the conflict-of-interest check meaningful: identity is revealed at acceptance, together with a direct question &mdash; <em>have you reported for this patient before?</em> &mdash; which they answer on the record before they can open the study.</p>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section id="s4">
+  <span class="sec-num">04</span>
+  <h2 class="sec">The consultant's loop</h2>
+
+  <p class="lede">What a consultant actually does, from notification to signature. This is the flow the console has to serve.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Step</th><th>What happens</th><th>What the system records</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Offer</b></td><td>Notified by email and in-console. Sees modality, body area, clinical question, deadline, fee. Not the patient.</td><td>Offered at, expires at</td></tr>
+        <tr><td><b>2. Accept or decline</b></td><td>Declining asks why &mdash; outside subspecialty, no capacity, possible conflict. One tap; no penalty.</td><td>Decision, reason, timestamp</td></tr>
+        <tr><td><b>3. Conflict declaration</b></td><td>On accept: identity revealed, and the consultant confirms no prior involvement. A yes routes the case straight back to matching.</td><td>Declaration, on the record</td></tr>
+        <tr><td><b>4. Open the study</b></td><td>Images, any prior study, the original report, and the patient's question in their own words.</td><td>First opened at &rarr; moves to <em>In review</em></td></tr>
+        <tr><td><b>5. Draft</b></td><td>Structured form, not a blank page. Findings, impression, comparison, finding category, plain-English section, next steps.</td><td>Autosaved; every save versioned</td></tr>
+        <tr><td><b>6. Urgency check</b></td><td>An explicit question before submission: <em>does anything here need attention sooner than the deadline?</em></td><td>Flag + free text; see &sect;07</td></tr>
+        <tr><td><b>7. Submit</b></td><td>Goes to operations for QA. The consultant can still be asked to amend.</td><td>Submitted at; consultant deadline met or missed</td></tr>
+        <tr><td><b>8. Amend (if asked)</b></td><td>Returned with a specific reason. Never a silent edit by anyone else.</td><td>Reason, who asked, round number</td></tr>
+        <tr><td><b>9. Sign</b></td><td>Name, GMC number, timestamp. The content becomes immutable. Any later change is a new, versioned addendum.</td><td>Signature block, locked</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note safety">
+    <h4>The draft is a form, not a text box</h4>
+    <p>The product's differentiator is a report with a <em>finding category</em> and a <em>plain-English section</em>, not a conventional radiology report. A free-text box produces conventional reports, because that is what radiologists write. Structuring the draft &mdash; with the category as a required choice and the patient-facing section as a required field &mdash; is what makes the promise on the website deliverable at volume rather than case by case.</p>
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="s5">
+  <span class="sec-num">05</span>
+  <h2 class="sec">The report object: who owns which field</h2>
+
+  <p class="lede">Ownership here is not a permission detail. It is the difference between the website's promise being true and being marketing.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Field</th><th>Author</th><th>Required</th><th>Patient sees</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Clinical question</td><td>Patient</td><td>Yes</td><td>Yes</td><td>Carried verbatim. Never reworded.</td></tr>
+        <tr><td>Study details</td><td>Intake</td><td>Yes</td><td>Yes</td><td>Modality, date, provider, body area</td></tr>
+        <tr><td>Comparison</td><td>Consultant</td><td>Yes</td><td>Yes</td><td>Which prior study, or an explicit "none available"</td></tr>
+        <tr><td>Technique &amp; limitations</td><td>Consultant</td><td>Yes</td><td>Yes</td><td>What the study could and could not answer</td></tr>
+        <tr><td>Findings</td><td>Consultant</td><td>Yes</td><td>Yes</td><td>Clinical register, for the patient's own doctor</td></tr>
+        <tr><td>Impression</td><td>Consultant</td><td>Yes</td><td>Yes</td><td>&mdash;</td></tr>
+        <tr><td><b>Finding category</b></td><td>Consultant</td><td>Yes</td><td>Yes</td><td>One of six. Drives the comparison column.</td></tr>
+        <tr><td><b>What this means for you</b></td><td><b>Consultant</b></td><td>Yes</td><td>Yes</td><td>Plain English. <b>Cannot be delegated.</b></td></tr>
+        <tr><td>Recommended next steps</td><td>Consultant</td><td>Yes</td><td>Yes</td><td>Ordered, specific, actionable</td></tr>
+        <tr><td>Urgency flag</td><td>Consultant</td><td>Yes</td><td>Indirectly</td><td>Triggers &sect;07, not a report field</td></tr>
+        <tr><td>Signature</td><td>Consultant</td><td>Yes</td><td>Yes</td><td>Name, GMC number, timestamp</td></tr>
+        <tr><td>QA record</td><td>Operations</td><td>Yes</td><td>No</td><td>Who checked, when, what for</td></tr>
+        <tr><td>Release record</td><td>Operations</td><td>Yes</td><td>No</td><td>Who released, when</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The six finding categories already exist in the patient portal: <em>confirms original finding</em>, <em>clarifies finding</em>, <em>additional finding</em>, <em>differing interpretation</em>, <em>no material difference</em>, and <em>change since your earlier scan</em>. The consultant picks one. It is not a label operations applies afterwards &mdash; it is a clinical judgement, and it is the single most consequential word in the whole report.</p>
+
+  <div class="note safety">
+    <h4>Two rows that cannot move</h4>
+    <p>The site tells patients the plain-English section is <em>"written in plain English by [consultant], and approved by them before release"</em>. If operations drafts that section &mdash; even well, even from the consultant's own findings &mdash; the sentence is false and the service is mis-selling. The same applies to the finding category. Everything else in the pipeline can be optimised; these two cannot be reassigned.</p>
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section id="s6">
+  <span class="sec-num">06</span>
+  <h2 class="sec">Two operating models &mdash; the decision that shapes everything</h2>
+
+  <p class="lede">A consultant radiologist has a reporting environment they already trust, with their hanging protocols, their voice recognition and their templates. Whether we ask them to leave it is the biggest product decision here.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Model A &mdash; authored in platform</h4>
+      <p>The consultant drafts, categorises and signs inside the console. Images open in an embedded viewer or are downloaded alongside.</p>
+      <p><strong>For:</strong> the structure is enforced, not hoped for. The plain-English section and the category are required fields. Versioning, audit and the clock are automatic. No file leaves the system.</p>
+      <p><strong>Against:</strong> harder to recruit consultants &mdash; you are asking them to work somewhere unfamiliar, at speed. Needs a real viewer, which is a serious build.</p>
+    </div>
+    <div class="card">
+      <h4>Model B &mdash; reported outside, returned to operations</h4>
+      <p>The consultant works in their own environment and returns a document. Operations uploads it against the case.</p>
+      <p><strong>For:</strong> consultants work the way they already work. Far easier to recruit and to scale. No viewer to build on day one.</p>
+      <p><strong>Against:</strong> what comes back is a conventional radiology report. The category and the patient-facing section are not in it, and ops cannot add them. Audit is weaker, the clock is manual, and identifiable documents travel by whatever channel the consultant chose.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <h4>The recommendation</h4>
+    <p><strong>Model B for the clinical body, Model A for the parts that make this product different.</strong> Let the consultant write findings and impression wherever they like and return it. But the <em>finding category</em>, the <em>plain-English section</em> and the <em>signature</em> are completed by the consultant in the console, against the uploaded document, before it can be signed. That is a short form &mdash; one dropdown, one paragraph, one button &mdash; not a reporting environment, so it does not fight their workflow. And it keeps the two fields that cannot be delegated with the person who has to own them.</p>
+    <p>This also answers the operational question directly: operations uploads the returned document, the system attaches it to the case as the clinical body, and the case cannot progress to <em>Signed</em> until the consultant has added the two fields and signed. Operations never types clinical content, and never signs.</p>
+  </div>
+
+  <h3>What the return channel has to be</h3>
+  <p>If documents come back from outside, the channel is part of the clinical system, not an afterthought. Email attachments to a shared inbox are the default answer and the wrong one: identifiable patient data, no audit trail, no guarantee of deletion. The minimum is an authenticated per-case upload link, valid for that case only, logged. This is the same pattern already specified for the GP/clinician invite in the patient flow &mdash; reuse it rather than inventing a second one.</p>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="s7">
+  <span class="sec-num">07</span>
+  <h2 class="sec">Urgent findings</h2>
+
+  <p class="lede">A second-opinion service will, sooner or later, be the first to see something that needs action today. The pipeline above takes hours and has a QA step in it. That is the wrong path for an urgent finding, and there has to be a defined other one.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Step</th><th>Who</th><th>Target</th></tr></thead>
+      <tbody>
+        <tr><td>Consultant flags the case as urgent, with a short reason</td><td>Consultant</td><td class="num">Immediate</td></tr>
+        <tr><td>Operations alerted by phone, not by queue</td><td>System</td><td class="num">&lt; 1 min</td></tr>
+        <tr><td>Named duty person acknowledges</td><td>Operations</td><td class="num">&lt; 15 min</td></tr>
+        <tr><td>Patient telephoned, with safety-netting advice and a named contact</td><td>Operations</td><td class="num">&lt; 1 hour</td></tr>
+        <tr><td>Report fast-tracked through QA and released</td><td>Operations</td><td class="num">Same day</td></tr>
+        <tr><td>Every step of the above recorded on the case</td><td>System</td><td class="num">&mdash;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note safety">
+    <h4>Three things this flow needs that the product does not yet have</h4>
+    <p><strong>A phone number that is answered.</strong> The site already publishes 09:00&ndash;20:00 seven days. A 12-hour turnaround sold at 20:00 means an urgent finding can surface overnight. Either the hours cover the product, or the product does not sell turnarounds that finish outside them.</p>
+    <p><strong>A named duty person.</strong> "Operations" cannot acknowledge anything. A rota with a name against each slot can.</p>
+    <p><strong>A documented escalation if the patient cannot be reached.</strong> Voicemail, then the registered email, then &mdash; with consent captured at intake &mdash; their GP. That consent has to be asked for at intake, which means a change to the patient flow.</p>
+  </div>
+</section>
+
+<!-- ============ 08 ============ -->
+<section id="s8">
+  <span class="sec-num">08</span>
+  <h2 class="sec">The clock, the buffer and the refund</h2>
+
+  <p class="lede">The site sells three turnarounds and promises a full refund if one is missed. That promise is only safe if the consultant's deadline is earlier than the patient's, by enough to absorb a QA round.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Product</th><th>Patient promise</th><th>Consultant due</th><th>QA + second read</th><th>Release</th></tr></thead>
+      <tbody>
+        <tr><td><b>Standard</b> &middot; £249</td><td class="num">48 h</td><td class="num">36 h</td><td class="num">8 h</td><td class="num">4 h</td></tr>
+        <tr><td><b>Next day</b> &middot; £299</td><td class="num">24 h</td><td class="num">16 h</td><td class="num">5 h</td><td class="num">3 h</td></tr>
+        <tr><td><b>Fastest</b> &middot; £349</td><td class="num">12 h</td><td class="num">7 h</td><td class="num">3 h</td><td class="num">2 h</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ul>
+    <li><strong>The clock starts at payment</strong>, not at matching. That is already what the patient is told, and it means time lost finding a consultant is the business's loss, not theirs.</li>
+    <li><strong>It pauses only in <em>Action needed</em></strong>, and the pause is visible to the patient with the reason. Nothing else stops it &mdash; not a decline, not an amendment round.</li>
+    <li><strong>The consultant sees their own deadline, not the patient's.</strong> Showing them 24 hours when the real internal target is 16 invites the whole buffer to be spent.</li>
+    <li><strong>Breach is detected and acted on by the system</strong>, not claimed by the patient. The refund is issued and the patient is told. Making someone ask for a promised refund is how the promise stops being worth anything.</li>
+  </ul>
+
+  <div class="note">
+    <h4>The 12-hour product is the one to watch</h4>
+    <p>Seven hours of consultant time, on a case that may need a prior study chasing, matched to a subspecialist who has to be awake and free. It carries the thinnest buffer and the highest refund exposure. Worth modelling how many of these can be sold per day against the panel's real availability before it is marketed as broadly as the other two.</p>
+  </div>
+</section>
+
+<!-- ============ 09 ============ -->
+<section id="s9">
+  <span class="sec-num">09</span>
+  <h2 class="sec">Exception paths</h2>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>What happens</th><th>System response</th><th>Patient sees</th></tr></thead>
+      <tbody>
+        <tr><td>Consultant declines</td><td>Back to <em>Ready to match</em>, offered to the next ranked consultant. Reason recorded.</td><td>No change &mdash; still <span class="chip mat">Being matched</span></td></tr>
+        <tr><td>Offer expires unanswered</td><td>Auto-withdrawn, reoffered. Repeated expiries affect ranking.</td><td>No change</td></tr>
+        <tr><td>Nobody accepts within half the buffer</td><td>Escalates to a named clinical lead to place by hand</td><td>No change</td></tr>
+        <tr><td>Conflict declared at acceptance</td><td>Returned to matching, that consultant excluded from this case permanently</td><td>No change</td></tr>
+        <tr><td>Consultant accepts then goes silent</td><td>At 75% of their deadline: nudge. At 100%: unassign and reoffer, carrying the draft if any.</td><td>No change</td></tr>
+        <tr><td>Study is unreadable or incomplete</td><td>Case to <em>Blocked</em>, patient asked for the missing item, clock pauses</td><td><span class="chip act">Action needed</span></td></tr>
+        <tr><td>QA returns the draft</td><td>Back to the same consultant with a specific reason. Round counted.</td><td>No change</td></tr>
+        <tr><td>Differing interpretation</td><td>Second read is mandatory before release</td><td>No change</td></tr>
+        <tr><td>Second reader disagrees with the first</td><td>Both opinions to the clinical lead. The patient gets one report, with the disagreement resolved &mdash; not two.</td><td>No change</td></tr>
+        <tr><td>Deadline breached</td><td>Refund issued automatically, patient told, report still delivered</td><td>Told, with an apology and the refund</td></tr>
+        <tr><td>Patient disputes the opinion</td><td>Complaints route, not the follow-up route. Needs a defined process &mdash; see &sect;11.</td><td>Acknowledged within 1 working day</td></tr>
+        <tr><td>Error found after release</td><td>Versioned addendum. The original is never silently replaced.</td><td>Told the report has been updated, and why</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="s10">
+  <span class="sec-num">10</span>
+  <h2 class="sec">Screens this implies</h2>
+
+  <p class="lede">Not designed yet &mdash; this is the list the above produces, for the Figma work that follows.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Consultant console &mdash; 7 screens</h4>
+      <ul>
+        <li><b>Offers</b> &mdash; anonymised cards, deadline and fee, accept / decline</li>
+        <li><b>Accept &amp; declare</b> &mdash; identity revealed, conflict question</li>
+        <li><b>My cases</b> &mdash; accepted work, own deadlines, sorted by urgency</li>
+        <li><b>Case workspace</b> &mdash; study, prior, original report, the question</li>
+        <li><b>Draft report</b> &mdash; the structured form, autosaved</li>
+        <li><b>Sign</b> &mdash; final read-through, name and GMC, immutability warning</li>
+        <li><b>Earnings</b> &mdash; completed cases, fees, payment status</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Admin console &mdash; 6 more</h4>
+      <ul>
+        <li><b>Dashboard</b> &mdash; built</li>
+        <li><b>Manage users</b> &mdash; built</li>
+        <li><b>Profile</b> &mdash; built</li>
+        <li><b>Case detail</b> &mdash; full history, every state change, who and when</li>
+        <li><b>Matching</b> &mdash; choose subspecialty, see who is free, offer</li>
+        <li><b>QA queue</b> &mdash; drafts awaiting check, with the checklist</li>
+        <li><b>Upload returned report</b> &mdash; Model B attachment against a case</li>
+        <li><b>Release</b> &mdash; final confirmation before the patient is notified</li>
+        <li><b>Urgent</b> &mdash; the &sect;07 escalation board</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 ============ -->
+<section id="s11">
+  <span class="sec-num">11</span>
+  <h2 class="sec">Open decisions</h2>
+
+  <p class="lede">These are business and clinical-governance calls, not design ones. Each changes the build.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>#</th><th>Decision</th><th>Why it blocks</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td><b>Model A, Model B, or the hybrid in &sect;06?</b></td><td>Determines whether a DICOM viewer is on the critical path, and how consultants are recruited</td></tr>
+        <tr><td class="num">2</td><td><b>Who is the clinical lead?</b></td><td>&sect;07 acknowledgement, second-read disagreements and hand-matching all need a named accountable clinician, distinct from operations</td></tr>
+        <tr><td class="num">3</td><td><b>Indemnity &mdash; platform-level or per consultant?</b></td><td>Changes onboarding, the contract, and what "approved consultant" means in Manage users</td></tr>
+        <tr><td class="num">4</td><td><b>Are consultants employed, or paid per case?</b></td><td>Per case needs an earnings screen, invoicing and a fee schedule; employed does not</td></tr>
+        <tr><td class="num">5</td><td><b>Is second read mandatory only for differing interpretations?</b></td><td>Wider rules cost margin; narrower ones carry more risk on exactly the highest-value reports</td></tr>
+        <tr><td class="num">6</td><td><b>Out-of-hours cover for urgent findings</b></td><td>Either support hours cover the turnarounds sold, or the 12-hour product is restricted. &sect;07 does not work otherwise.</td></tr>
+        <tr><td class="num">7</td><td><b>Consent to contact the patient's GP</b></td><td>Needed at intake for the &sect;07 escalation. A change to the patient flow, which is otherwise finished.</td></tr>
+        <tr><td class="num">8</td><td><b>Complaints and disagreement process</b></td><td>A patient who disputes the second opinion is not a follow-up question. Needs its own route, and a regulator-facing one.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note safety">
+    <h4>Standing note on the prototype</h4>
+    <p>Everything in the built prototype is demonstration content. The eleven consultants are real named people whose roles, hospitals and qualifications have not been verified, and every GMC number is the placeholder <code>7012345</code>. None of this is safe to show outside the project until the client has confirmed it.</p>
+  </div>
+</section>
+
+</main>
+</div>
+</div>
+</body>
+</html>
