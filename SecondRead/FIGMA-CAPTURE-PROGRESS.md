@@ -83,7 +83,8 @@ as the desktop width is the cheaper path if that is acceptable.
 | Frame | Node | Source |
 | --- | --- | --- |
 | Admin 1920 — Dashboard | 136:2 | `design/Admin.dc.html` |
-| Admin 1920 — Manage users | 138:2 | `design/Admin Users.dc.html` |
+| Admin 1920 — Manage users | 150:2 | `design/Admin Users.dc.html` |
+| Admin 1920 — Add user | 151:2 | `design/Admin Add User.dc.html` |
 | Admin 1920 — Profile | 139:2 | `design/Admin Profile.dc.html` |
 
 All three are 1920 × 1080 exactly, laid out in a row at y = 240.
@@ -124,3 +125,11 @@ operations power. Screens carry the lifecycle states from
 lifecycle line reused the same class name. The 2px line computed to 44px and
 imported as a solid block. Renamed to `.ln`. Worth grepping admin.css for a
 name before reusing it — it is one stylesheet across six screens now.
+
+## Section layout as it now stands
+
+- **Admin** `130:7` — Dashboard `136:2`, Manage users `150:2`, Add user `151:2`, Profile `139:2`
+- **Consultant** `130:877` — Dashboard `130:1615`, Cases assigned `130:1960`, Profile `130:1819`
+
+Hammad moved the consultant frames into their own section, which re-IDed them.
+Look frames up by name, not by a node id recorded earlier.
