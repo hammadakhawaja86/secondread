@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./portal.js?v=7"></script>
+<script src="./portal.js?v=8"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -58,37 +58,40 @@
     </div>
     <div style="max-width: 780px;">
       <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">Pricing</h1>
-      <p style="margin: 0; font-size: 18px; line-height: 1.65; color: #173B4F;">The price depends only on how fast you need it. Same consultant, same depth of report, either way.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.65; color: #173B4F;">One standard fee, one 48-hour turnaround. The only thing that changes the price is whether we are also reading your earlier scans alongside the new one.</p>
     </div>
   </div>
 </section>
 
 <section style="background: #FFFFFF; padding: 72px 32px;">
   <div style="max-width: 1200px; margin: 0 auto;">
-    <div data-r="pricetable" style="border: 1px solid #E2E9EC; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 8px rgba(10,31,44,0.06); background: #FFFFFF;">
-      <div style="display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; background: #F4F7F8; border-bottom: 1px solid #E2E9EC;">
-        <div style="padding: 26px 28px; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6B77; display: flex; align-items: flex-end;">Included</div>
-        <sc-for list="{{ tiers }}" as="tier" hint-placeholder-count="3">
-          <div style="padding: 26px 24px; text-align: center; background: {{ tier.headBg }}; border-left: 1px solid #E2E9EC;">
-            <div style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: {{ tier.headColor }};">{{ tier.speed }}</div>
-            <div style="min-height: 20px; margin-top: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: {{ tier.tagColor }};">{{ tier.tag }}</div>
-            <div style="margin-top: 10px; font-family: 'Montserrat', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.02em; color: {{ tier.priceColor }}; line-height: 1;">£{{ tier.price }}</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; align-items: stretch; margin-bottom: 32px;">
+      <sc-for list="{{ fees }}" as="fee" hint-placeholder-count="2">
+        <div style="background: {{ fee.bg }}; border: 2px solid {{ fee.border }}; border-radius: 22px; padding: 34px 32px; box-sizing: border-box; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(10,31,44,0.06); transition: transform 240ms cubic-bezier(0.16,1,0.3,1), box-shadow 240ms ease-out;" style-hover="transform: translateY(-5px); box-shadow: 0 20px 40px rgba(10,31,44,0.14);">
+          <div style="min-height: 22px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: {{ fee.tagColor }};">{{ fee.tag }}</div>
+          <h2 style="margin: 8px 0 6px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; color: {{ fee.headColor }}; letter-spacing: -0.01em;">{{ fee.title }}</h2>
+          <p style="margin: 0 0 20px; font-size: 15px; line-height: 1.6; color: {{ fee.mutedColor }};">{{ fee.blurb }}</p>
+          <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px;">
+            <span style="font-size: 20px; font-weight: 600; color: {{ fee.priceColor }}; align-self: flex-start; margin-top: 8px;">&pound;</span>
+            <span style="font-family: 'Montserrat', sans-serif; font-size: 52px; font-weight: 700; color: {{ fee.priceColor }}; letter-spacing: -0.03em; line-height: 1;">{{ fee.price }}</span>
           </div>
-        </sc-for>
-      </div>
-      <sc-for list="{{ rows }}" as="row" hint-placeholder-count="5">
-        <div style="display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; border-bottom: 1px solid #E2E9EC; transition: background 140ms ease-out;" style-hover="background: #FAFCFC;">
-          <div style="padding: 20px 28px; font-size: 15px; line-height: 1.5; color: #173B4F;">{{ row.feature }}</div>
-          <div style="padding: 20px; display: flex; align-items: center; justify-content: center; border-left: 1px solid #E2E9EC; color: #0D6E70;">{{ checkGlyph }}</div>
-          <div style="padding: 20px; display: flex; align-items: center; justify-content: center; border-left: 1px solid #E2E9EC; background: #F7FBFB; color: #0D6E70;">{{ checkGlyph }}</div>
-          <div style="padding: 20px; display: flex; align-items: center; justify-content: center; border-left: 1px solid #E2E9EC; color: #0D6E70;">{{ checkGlyph }}</div>
+          <div style="font-size: 14px; color: {{ fee.mutedColor }}; margin-bottom: 24px;">{{ fee.breakdown }}</div>
+          <a href="Start Flow.dc.html" style="margin-top: auto; width: 100%; min-height: 48px; padding: 13px 24px; border-radius: 999px; border: 1.5px solid {{ fee.buttonBorder }}; background: {{ fee.buttonBg }}; color: {{ fee.buttonColor }}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Start my second read</a>
         </div>
       </sc-for>
-      <div style="display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;">
-        <div style="padding: 22px 28px;"></div>
-        <sc-for list="{{ tiers }}" as="tier" hint-placeholder-count="3">
-          <div style="padding: 22px 20px; border-left: 1px solid #E2E9EC; background: {{ tier.footBg }};">
-            <a href="{{ tier.href }}" style="width: 100%; min-height: 46px; padding: 12px 18px; border-radius: 999px; border: 1.5px solid {{ tier.buttonBorder }}; background: {{ tier.buttonBg }}; color: {{ tier.buttonColor }}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Choose {{ tier.speed }}</a>
+    </div>
+
+    <div style="background: #F7FBFB; border: 1px solid #E2E9EC; border-radius: 20px; padding: 32px;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+        <span style="color: #0D6E70; display: inline-flex;">{{ clockGlyph }}</span>
+        <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">Every report, within 48 hours</h3>
+      </div>
+      <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.7; color: #173B4F; max-width: 760px;">There is one turnaround and it applies to every case. The clock starts when you pay, and if we miss it the fee comes back to you in full &mdash; you do not have to ask. Everything below is in the price.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px 24px;">
+        <sc-for list="{{ rows }}" as="row" hint-placeholder-count="5">
+          <div style="display: flex; gap: 11px; align-items: flex-start;">
+            <span style="flex-shrink: 0; color: #0D6E70; margin-top: 2px;">{{ checkGlyph }}</span>
+            <span style="font-size: 15px; line-height: 1.5; color: #173B4F;">{{ row.feature }}</span>
           </div>
         </sc-for>
       </div>
@@ -161,37 +164,36 @@
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
         <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
+        <a href="Cookies.dc.html" style="color: rgba(255,255,255,0.72);">Cookies</a>
+        <a href="Medical Disclaimer.dc.html" style="color: rgba(255,255,255,0.72);">Medical disclaimer</a>
       </div>
     </div>
   </div>
 </footer>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
-const PLAIN_TIER = {
-  headBg: '#F4F7F8', footBg: '#FFFFFF', headColor: '#0A1F2C', priceColor: '#0A1F2C',
-  tagColor: 'transparent', tag: '·',
-  buttonBg: '#FFFFFF', buttonColor: '#0A1F2C', buttonBorder: '#D4DDE0'
-};
-
-const FEATURED_TIER = {
-  headBg: '#E4F2F2', footBg: '#F7FBFB', headColor: '#06313A', priceColor: '#0D6E70',
-  tagColor: '#0D6E70', tag: 'Most chosen',
-  buttonBg: '#0D6E70', buttonColor: '#FFFFFF', buttonBorder: '#0D6E70'
-};
-
 class Component extends DCLogic {
   state = {
-    tiers: [
-      { id: '48', speed: '48 hours', price: '249', ...PLAIN_TIER },
-      { id: '24', speed: '24 hours', price: '299', ...FEATURED_TIER },
-      { id: '12', speed: '12 hours', price: '349', ...PLAIN_TIER }
+    fees: [
+      { id: 'standard', title: 'Standard report', price: '250',
+        blurb: 'A consultant who subspecialises in that body area reads your scan and writes the report.',
+        breakdown: 'Standard fee, per report',
+        tag: '\u00b7', tagColor: 'transparent',
+        bg: '#FFFFFF', border: '#E2E9EC', headColor: '#0A1F2C', priceColor: '#0A1F2C', mutedColor: '#5A6B77',
+        buttonBg: '#FFFFFF', buttonColor: '#0A1F2C', buttonBorder: '#D4DDE0' },
+      { id: 'comparison', title: 'With comparison studies', price: '300',
+        blurb: 'Your earlier scans of the same area are read alongside the new one, so change over time is part of the answer.',
+        breakdown: '\u00a3250 standard fee + \u00a350 for comparison studies',
+        tag: 'Most cases', tagColor: '#0D6E70',
+        bg: '#F7FBFB', border: '#0D6E70', headColor: '#06313A', priceColor: '#0D6E70', mutedColor: '#4A5C68',
+        buttonBg: '#0D6E70', buttonColor: '#FFFFFF', buttonBorder: '#0D6E70' }
     ],
     rows: [
-      { feature: 'Consultant subspecialist review' },
-      { feature: 'Comparison with one prior study' },
-      { feature: '“What this means for you” in plain English' },
+      { feature: 'Consultant subspecialist review, signed and named' },
+      { feature: '\u201cWhat this means for you\u201d in plain English' },
       { feature: 'Answers to your specific questions' },
-      { feature: 'Missed-deadline refund' }
+      { feature: 'A named GMC-registered consultant, confirmed before you pay' },
+      { feature: 'Full refund if we miss the 48-hour deadline' }
     ],
     addons: [
       { title: 'X-ray review', price: '79', description: 'Single-region plain film, 48-hour turnaround.' },
@@ -202,14 +204,19 @@ class Component extends DCLogic {
 
   renderVals() {
     return {
-      tiers: this.state.tiers.map(t => ({ ...t, href: 'Start Flow.dc.html?speed=' + encodeURIComponent(t.id) })),
+      fees: this.state.fees,
       rows: this.state.rows,
       addons: this.state.addons,
-      checkGlyph: React.createElement('svg', {
-        width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none',
-        stroke: 'currentColor', strokeWidth: 2.4, strokeLinecap: 'round', strokeLinejoin: 'round'
-      }, React.createElement('path', { d: 'M20 6 9 17l-5-5' }))
+      checkGlyph: this.glyph(18, ['M20 6 9 17l-5-5'], 2.4),
+      clockGlyph: this.glyph(20, ['M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z', 'M12 6v6l4 2'], 2.1)
     };
+  }
+
+  glyph(size, paths, width) {
+    return React.createElement('svg', {
+      width: size, height: size, viewBox: '0 0 24 24', fill: 'none',
+      stroke: 'currentColor', strokeWidth: width, strokeLinecap: 'round', strokeLinejoin: 'round'
+    }, paths.map((d, i) => React.createElement('path', { key: i, d })));
   }
 }
 </script>
