@@ -1550,7 +1550,7 @@ class Component extends DCLogic {
       doneSteps: (() => {
         const steps = [
           { n: 1, title: 'We check the images open cleanly',
-            body: 'Within the hour. If a series is missing, or the name on the images does not match your account, we move your case to Action needed and tell you exactly what to do. We never edit the identity details on your images.' }
+            body: 'If a series is missing, or the name on the images does not match your account, we move your case to Action needed and tell you exactly what to do. We never edit the identity details on your images.' }
         ];
         if (s.clinicianMode !== 'self' && s.clinicianEmail.trim()) {
           steps.push({ n: steps.length + 1, title: 'Your clinician adds their section',
