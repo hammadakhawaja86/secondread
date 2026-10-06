@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=8"></script>
+<script src="./consultants.js?v=9"></script>
+<script src="./portal.js?v=9"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -250,7 +250,7 @@
 
         <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
           <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #5A6B77;">Need to speak to someone?</h3>
-          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">Call us on <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>, 09:00&ndash;20:00, seven days. Quote {{ ref }}.</p>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">Call us on <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>, 08:00&ndash;18:00, Monday to Friday. Quote {{ ref }}.</p>
           <p style="margin: 0; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">If anything about your case is urgent, telling us on the phone is faster than a message.</p>
         </div>
 
@@ -313,8 +313,8 @@ const TICK = 'M20 6 9 17l-5-5';
 // shown as the amber panel above, and the second appears once a report lands.
 const PHASES = [
   { title: 'Submitted', body: 'Your images and report arrived and passed our checks for completeness and readability.' },
-  { title: 'Being matched', body: 'Your case goes to a consultant who subspecialises in this part of the body. You are not asked to choose them.' },
-  { title: 'Under expert review', body: 'Your consultant reads every image, writes the report, and it passes a clinical check before release.' },
+  { title: 'Being matched', body: 'Your case goes to a radiologist who subspecialises in this part of the body. You are not asked to choose them.' },
+  { title: 'Under expert review', body: 'Your radiologist reads every image, writes the report, and it passes a clinical check before release.' },
   { title: 'Report ready', body: 'Your report arrives in your account, with a plain-English explanation and a comparison against your original report.' }
 ];
 
@@ -369,7 +369,7 @@ class Component extends DCLogic {
       });
     }
 
-    const doc = c.consultant;
+    const doc = c.radiologist;
     const paused = c.statusId === 'action';
     const draftOk = this.state.draft.trim().length >= 3;
 
@@ -405,7 +405,7 @@ class Component extends DCLogic {
     }
 
     // Free text the patient wrote, shown back to them so they can see exactly
-    // what their consultant is working from.
+    // what their radiologist is working from.
     const context = [
       { label: 'Your symptoms', value: c.raw.symptoms },
       { label: 'When they began', value: c.raw.symptomsOnset },
@@ -423,7 +423,7 @@ class Component extends DCLogic {
       clockGlyph: icon(CLOCK, 13, 2),
       heading: paused ? 'Waiting on you' : c.status.title,
       subheading: paused
-        ? 'Your consultant has started on your scan and needs one more thing from you. Everything else is done.'
+        ? 'Your radiologist has started on your scan and needs one more thing from you. Everything else is done.'
         : (c.isDelivered
             ? 'Signed by ' + c.consultantName + ' and delivered ' + c.deliveredLong + '.'
             : c.status.support),
@@ -485,7 +485,7 @@ class Component extends DCLogic {
       sendCursor: draftOk ? 'pointer' : 'not-allowed',
       sendHint: draftOk ? 'We reply within one working day.' : 'Write your message, then send.',
 
-      docHeading: c.isDelivered ? 'Reported by' : (doc ? 'Your consultant' : 'Your consultant'),
+      docHeading: c.isDelivered ? 'Reported by' : (doc ? 'Your radiologist' : 'Your radiologist'),
       consultantName: c.consultantName,
       consultantRole: doc ? doc.role : 'Being matched now',
       docPortrait: doc && doc.photo
@@ -496,9 +496,9 @@ class Component extends DCLogic {
         : (doc ? doc.initials : '\u2014'),
       docBlurb: doc
         ? (doc.hospital ? doc.hospital + '. ' : '') + (doc.quals || '')
-        : 'We are matching your case to a consultant who subspecialises in this part of the body. Their name will appear here, usually within a couple of hours.',
+        : 'We are matching your case to a radiologist who subspecialises in this part of the body. Their name will appear here, usually within a couple of hours.',
       docHref: doc ? 'Specialist Profile.dc.html?id=' + encodeURIComponent(doc.id) : 'Specialists.dc.html',
-      docLinkLabel: doc ? 'See their full profile' : 'Meet our consultants'
+      docLinkLabel: doc ? 'See their full profile' : 'Meet our radiologists'
     });
   }
 
