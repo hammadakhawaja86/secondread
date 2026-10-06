@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=8"></script>
+<script src="./consultants.js?v=10"></script>
+<script src="./portal.js?v=10"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -42,7 +42,7 @@
     }
     [data-r="acctmenu"][open] > summary > [data-r="chev"] { transform: rotate(180deg); }
 
-    /* Portal focus ring — visible on both the white cards and the mint washes. */
+    /* Portal focus ring, visible on both the white cards and the mint washes. */
     [data-r="portalwrap"] a:focus-visible,
     [data-r="portalwrap"] button:focus-visible,
     [data-r="portalwrap"] input:focus-visible,
@@ -92,7 +92,7 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples. No real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <div data-r="portalwrap" style="max-width: 1180px; margin: 0 auto; padding: 36px 32px 40px;">
@@ -108,7 +108,7 @@
   <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
     <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 56px 40px; text-align: center; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
       <h2 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; color: #0A1F2C;">Nothing here yet</h2>
-      <p style="margin: 0 auto 26px; max-width: 460px; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">When you send us a scan, this is where you will follow it — from upload, through your consultant's review, to your finished report.</p>
+      <p style="margin: 0 auto 26px; max-width: 460px; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">When you send us a scan, this is where you will follow it, from upload, through your radiologist's review, to your finished report.</p>
       <a href="Start Flow.dc.html" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 50px; padding: 14px 30px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; box-shadow: 0 6px 20px rgba(13,110,112,0.3);" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start a new case</a>
       <p style="margin: 20px 0 0; font-size: 14px; color: #5A6B77;"><a href="How It Works.dc.html" style="font-weight: 600;">What you will need to hand</a></p>
     </div>
@@ -320,7 +320,7 @@ const CLOCK = 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 6v6l4 2';
 const ALERT = 'M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z';
 
 // Four fixed nodes. The current one is filled; everything after it is an
-// outline. There is no percentage anywhere — a number that does not move is
+// outline. There is no percentage anywhere, a number that does not move is
 // worse than a phase name that does.
 function timelineFor(c) {
   const at = c.position;
@@ -363,7 +363,7 @@ class Component extends DCLogic {
   greeting() {
     const h = new Date().getHours();
     const part = h < 12 ? 'Good morning' : (h < 18 ? 'Good afternoon' : 'Good evening');
-    // Greet on the first name alone — "Good afternoon, Hammad A." reads oddly.
+    // Greet on the first name alone, "Good afternoon, Hammad A." reads oddly.
     const first = (this.state.store.user.firstName || 'there').split(' ')[0];
     return part + ', ' + first;
   }
@@ -401,7 +401,7 @@ class Component extends DCLogic {
       });
     }));
 
-    // Latest message across every case — truncated hard, and never repeated
+    // Latest message across every case, truncated hard, and never repeated
     // in a notification.
     let last = null;
     cases.forEach(c => c.messages.forEach(m => {
@@ -440,9 +440,9 @@ class Component extends DCLogic {
         chip: c.status.chip,
         chipBg: c.status.bg, chipFg: c.status.fg, chipBorder: c.status.border,
         title: c.statusId === 'action' ? 'Waiting on you' : c.status.title,
-        consultantLine: c.consultant
+        consultantLine: c.radiologist
           ? c.consultantName + ' \u00B7 ' + c.consultantRole
-          : 'We are matching your case to a consultant now.',
+          : 'We are matching your case to a radiologist now.',
         scanLine: c.scanLine,
         createdShort: c.createdShort,
         speedLabel: c.speedLabel,
@@ -461,7 +461,7 @@ class Component extends DCLogic {
         deliveredLong: c.deliveredLong,
         reportHref: c.reportHref,
         caseHref: c.caseHref,
-        // The summary line the consultant wrote. Shown here so the dashboard
+        // The summary line the radiologist wrote. Shown here so the dashboard
         // answers "is it bad news?" without making anyone open a PDF first.
         inShort: c.report ? c.report.inShort : '',
         outcome: c.outcome ? c.outcome.label : 'Report delivered',

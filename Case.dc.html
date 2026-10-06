@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=8"></script>
+<script src="./consultants.js?v=10"></script>
+<script src="./portal.js?v=10"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -42,7 +42,7 @@
     }
     [data-r="acctmenu"][open] > summary > [data-r="chev"] { transform: rotate(180deg); }
 
-    /* Portal focus ring — visible on both the white cards and the mint washes. */
+    /* Portal focus ring, visible on both the white cards and the mint washes. */
     [data-r="portalwrap"] a:focus-visible,
     [data-r="portalwrap"] button:focus-visible,
     [data-r="portalwrap"] input:focus-visible,
@@ -92,7 +92,7 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples. No real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <div data-r="portalwrap" style="max-width: 1180px; margin: 0 auto; padding: 28px 32px 40px;">
@@ -250,7 +250,7 @@
 
         <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
           <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #5A6B77;">Need to speak to someone?</h3>
-          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">Call us on <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>, 09:00&ndash;20:00, seven days. Quote {{ ref }}.</p>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">Call us on <a href="tel:+441438904272" style="font-weight: 600;">01438 904272</a>, 08:00&ndash;18:00, Monday to Friday. Quote {{ ref }}.</p>
           <p style="margin: 0; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">If anything about your case is urgent, telling us on the phone is faster than a message.</p>
         </div>
 
@@ -307,14 +307,14 @@ const TICK = 'M20 6 9 17l-5-5';
 
 // The four tracked stages, named exactly as PORTAL.TIMELINE names them and as
 // the website, the confirmation screen and the emails name them. Clinical
-// quality check is deliberately folded into "Under expert review" — splitting
+// quality check is deliberately folded into "Under expert review". Splitting
 // it out only invites "why is it stuck in checking?". "Action needed" and
 // "Follow-up available" are not stages on this rail: the first is a pause,
 // shown as the amber panel above, and the second appears once a report lands.
 const PHASES = [
   { title: 'Submitted', body: 'Your images and report arrived and passed our checks for completeness and readability.' },
-  { title: 'Being matched', body: 'Your case goes to a consultant who subspecialises in this part of the body. You are not asked to choose them.' },
-  { title: 'Under expert review', body: 'Your consultant reads every image, writes the report, and it passes a clinical check before release.' },
+  { title: 'Being matched', body: 'Your case goes to a radiologist who subspecialises in this part of the body. You are not asked to choose them.' },
+  { title: 'Under expert review', body: 'Your radiologist reads every image, writes the report, and it passes a clinical check before release.' },
   { title: 'Report ready', body: 'Your report arrives in your account, with a plain-English explanation and a comparison against your original report.' }
 ];
 
@@ -369,7 +369,7 @@ class Component extends DCLogic {
       });
     }
 
-    const doc = c.consultant;
+    const doc = c.radiologist;
     const paused = c.statusId === 'action';
     const draftOk = this.state.draft.trim().length >= 3;
 
@@ -405,7 +405,7 @@ class Component extends DCLogic {
     }
 
     // Free text the patient wrote, shown back to them so they can see exactly
-    // what their consultant is working from.
+    // what their radiologist is working from.
     const context = [
       { label: 'Your symptoms', value: c.raw.symptoms },
       { label: 'When they began', value: c.raw.symptomsOnset },
@@ -423,7 +423,7 @@ class Component extends DCLogic {
       clockGlyph: icon(CLOCK, 13, 2),
       heading: paused ? 'Waiting on you' : c.status.title,
       subheading: paused
-        ? 'Your consultant has started on your scan and needs one more thing from you. Everything else is done.'
+        ? 'Your radiologist has started on your scan and needs one more thing from you. Everything else is done.'
         : (c.isDelivered
             ? 'Signed by ' + c.consultantName + ' and delivered ' + c.deliveredLong + '.'
             : c.status.support),
@@ -485,7 +485,7 @@ class Component extends DCLogic {
       sendCursor: draftOk ? 'pointer' : 'not-allowed',
       sendHint: draftOk ? 'We reply within one working day.' : 'Write your message, then send.',
 
-      docHeading: c.isDelivered ? 'Reported by' : (doc ? 'Your consultant' : 'Your consultant'),
+      docHeading: c.isDelivered ? 'Reported by' : (doc ? 'Your radiologist' : 'Your radiologist'),
       consultantName: c.consultantName,
       consultantRole: doc ? doc.role : 'Being matched now',
       docPortrait: doc && doc.photo
@@ -493,12 +493,12 @@ class Component extends DCLogic {
             src: doc.photo, alt: '',
             style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }
           })
-        : (doc ? doc.initials : '\u2014'),
+        : (doc ? doc.initials : ''),
       docBlurb: doc
         ? (doc.hospital ? doc.hospital + '. ' : '') + (doc.quals || '')
-        : 'We are matching your case to a consultant who subspecialises in this part of the body. Their name will appear here, usually within a couple of hours.',
+        : 'We are matching your case to a radiologist who subspecialises in this part of the body. Their name will appear here, usually within a couple of hours.',
       docHref: doc ? 'Specialist Profile.dc.html?id=' + encodeURIComponent(doc.id) : 'Specialists.dc.html',
-      docLinkLabel: doc ? 'See their full profile' : 'Meet our consultants'
+      docLinkLabel: doc ? 'See their full profile' : 'Meet our radiologists'
     });
   }
 

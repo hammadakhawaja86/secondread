@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=8"></script>
+<script src="./consultants.js?v=10"></script>
+<script src="./portal.js?v=10"></script>
 <script>window.PORTAL && PORTAL.guard('Account.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -42,7 +42,7 @@
     }
     [data-r="acctmenu"][open] > summary > [data-r="chev"] { transform: rotate(180deg); }
 
-    /* Portal focus ring — visible on both the white cards and the mint washes. */
+    /* Portal focus ring, visible on both the white cards and the mint washes. */
     [data-r="portalwrap"] a:focus-visible,
     [data-r="portalwrap"] button:focus-visible,
     [data-r="portalwrap"] input:focus-visible,
@@ -92,7 +92,7 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples. No real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <div data-r="portalwrap" style="max-width: 900px; margin: 0 auto; padding: 28px 32px 40px;">
@@ -159,11 +159,11 @@
 
     <section id="privacy" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 28px 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); scroll-margin-top: 90px;">
       <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Privacy &amp; your data</h2>
-      <p style="margin: 0 0 22px; font-size: 14.5px; line-height: 1.65; color: #4A5C68;">Your images and reports are held in the UK, encrypted, and never sent in an email or shown in a notification. Every time anyone opens your case &mdash; our team, your consultant, or a doctor you shared it with &mdash; it is logged, and you can ask to see that log.</p>
+      <p style="margin: 0 0 22px; font-size: 14.5px; line-height: 1.65; color: #4A5C68;">Your images and reports are held in the UK, encrypted, and never sent in an email or shown in a notification. Every time anyone opens your case, our team, your radiologist, or a doctor you shared it with, it is logged, and you can ask to see that log.</p>
 
       <div style="border: 1px solid #E2E9EC; border-radius: 14px; padding: 20px 22px; margin-bottom: 22px;">
         <h3 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #5A6B77;">What we send you, and what it says</h3>
-        <p style="margin: 0 0 16px; font-size: 13.5px; line-height: 1.6; color: #4A5C68;">One message per change of status. None of them names your scan, the part of your body, or anything your consultant found &mdash; not in the subject line, not in the preview, and not on a locked screen. To read anything, you sign in.</p>
+        <p style="margin: 0 0 16px; font-size: 13.5px; line-height: 1.6; color: #4A5C68;">One message per change of status. None of them names your scan, the part of your body, or anything your radiologist found, not in the subject line, not in the preview, and not on a locked screen. To read anything, you sign in.</p>
         <div style="display: flex; flex-direction: column;">
           <sc-for list="{{ notices }}" as="n" hint-placeholder-count="6">
             <div data-r="noticerow" style="display: flex; gap: 16px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #E2E9EC;">
@@ -216,7 +216,7 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 24px;">
         <div style="border: 1px solid #E2E9EC; border-radius: 14px; padding: 20px 22px;">
           <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Call us</h3>
-          <p style="margin: 0 0 10px; font-size: 14px; line-height: 1.6; color: #4A5C68;">09:00&ndash;20:00, seven days a week.</p>
+          <p style="margin: 0 0 10px; font-size: 14px; line-height: 1.6; color: #4A5C68;">08:00&ndash;18:00, Monday to Friday.</p>
           <a href="tel:+441438904272" style="font-size: 16px; font-weight: 700;">01438 904272</a>
         </div>
         <div style="border: 1px solid #E2E9EC; border-radius: 14px; padding: 20px 22px;">
@@ -226,14 +226,14 @@
         </div>
         <div style="border: 1px solid #E2E9EC; border-radius: 14px; padding: 20px 22px;">
           <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Common questions</h3>
-          <p style="margin: 0 0 10px; font-size: 14px; line-height: 1.6; color: #4A5C68;">Uploads, turnaround, refunds and what a second read can and cannot tell you.</p>
+          <p style="margin: 0 0 10px; font-size: 14px; line-height: 1.6; color: #4A5C68;">Uploads, turnaround and what a second read can and cannot tell you.</p>
           <a href="FAQs.dc.html" style="font-size: 15px; font-weight: 700;">Read the FAQs</a>
         </div>
       </div>
 
       <div style="background: #FDF2E2; border: 1px solid #E7CB97; border-radius: 14px; padding: 20px 22px;">
         <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #0A1F2C;">Prototype controls</h3>
-        <p style="margin: 0 0 14px; font-size: 13.5px; line-height: 1.65; color: #6E4711;">This demonstration keeps its cases in your browser. Resetting puts them back to their starting state &mdash; the paused case, the fresh report, and the older report &mdash; and signs you out.</p>
+        <p style="margin: 0 0 14px; font-size: 13.5px; line-height: 1.65; color: #6E4711;">This demonstration keeps its cases in your browser. Resetting puts them back to their starting state, the paused case, the fresh report, and the older report, and signs you out.</p>
         <button type="button" onClick="{{ resetDemo }}" style="min-height: 44px; padding: 11px 22px; border-radius: 999px; border: 1.5px solid #C68A2E; background: #FFFFFF; color: #8A5712; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out;" style-hover="background: #FBE8CC;">Reset the demonstration data</button>
       </div>
     </section>
@@ -348,19 +348,19 @@ class Component extends DCLogic {
           body: 'We need one thing from you before we can carry on. Sign in to see what it is.' },
         { status: 'Submitted', fg: '#4A5C68',
           subject: 'We have your case',
-          body: 'Everything arrived safely. There is nothing for you to do — we will write again when there is.' },
+          body: 'Everything arrived safely. There is nothing for you to do. We will write again when there is.' },
         { status: 'Being matched', fg: '#095458',
           subject: 'Your case has been matched',
-          body: 'A consultant subspecialist has taken your case. Sign in to see who they are.' },
+          body: 'A subspecialist radiologist has taken your case. Sign in to see who they are.' },
         { status: 'Under expert review', fg: '#095458',
-          subject: 'Your consultant has started',
+          subject: 'Your radiologist has started',
           body: 'Your case is being reviewed. We will tell you the moment it is finished.' },
         { status: 'Report ready', fg: '#1F6B45',
           subject: 'Your report is ready',
           body: 'It is waiting in your dashboard. Sign in to read it.' },
         { status: 'Follow-up available', fg: '#4A5C68',
           subject: 'Follow-up is available on your case',
-          body: 'You can send written questions to your consultant, or book a call.' }
+          body: 'You can send written questions to your radiologist, or book a call.' }
       ],
 
       retention: [
@@ -373,7 +373,7 @@ class Component extends DCLogic {
       consents: [
         {
           title: 'Keep my images for future comparison',
-          body: 'Optional. If you send us another scan of the same area later, your consultant can compare the two. Turning this off changes nothing about the service you get.',
+          body: 'Optional. If you send us another scan of the same area later, your radiologist can compare the two. Turning this off changes nothing about the service you get.',
           on: this.state.consents.retain,
           toggle: e => this.setState({
             consents: Object.assign({}, this.state.consents, { retain: e.target.checked })

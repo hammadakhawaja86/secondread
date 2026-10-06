@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=8"></script>
+<script src="./consultants.js?v=10"></script>
+<script src="./portal.js?v=10"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -42,7 +42,7 @@
     }
     [data-r="acctmenu"][open] > summary > [data-r="chev"] { transform: rotate(180deg); }
 
-    /* Portal focus ring — visible on both the white cards and the mint washes. */
+    /* Portal focus ring, visible on both the white cards and the mint washes. */
     [data-r="portalwrap"] a:focus-visible,
     [data-r="portalwrap"] button:focus-visible,
     [data-r="portalwrap"] input:focus-visible,
@@ -92,7 +92,7 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples. No real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <div data-r="portalwrap" style="max-width: 1180px; margin: 0 auto; padding: 28px 32px 40px;">
@@ -194,7 +194,7 @@
     <sc-if value="{{ noComparison }}" hint-placeholder-val="{{ false }}">
       <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 26px 30px; margin-bottom: 34px;">
         <h2 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">No comparison in this report</h2>
-        <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #4A5C68;">We did not receive an original report for this scan, so there is nothing to compare against. Your consultant has given you a full independent read instead.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #4A5C68;">We did not receive an original report for this scan, so there is nothing to compare against. Your radiologist has given you a full independent read instead.</p>
       </div>
     </sc-if>
 
@@ -204,7 +204,7 @@
 
         <section id="report" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 30px 34px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); scroll-margin-top: 90px;">
           <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #0A1F2C;">The full report</h2>
-          <p style="margin: 0 0 24px; font-size: 14px; line-height: 1.6; color: #5A6B77;">In clinical language, exactly as your consultant wrote it. This is the version to give a doctor.</p>
+          <p style="margin: 0 0 24px; font-size: 14px; line-height: 1.6; color: #5A6B77;">In clinical language, exactly as your radiologist wrote it. This is the version to give a doctor.</p>
           <sc-for list="{{ sections }}" as="s" hint-placeholder-count="4">
             <div style="margin-bottom: 24px;">
               <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: #095458;">{{ s.title }}</h3>
@@ -217,7 +217,7 @@
 
         <section id="means" style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 30px 34px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); scroll-margin-top: 90px;">
           <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.015em; color: #0A1F2C;">What this means for you</h2>
-          <p style="margin: 0 0 22px; font-size: 14px; line-height: 1.6; color: #5A6B77;">The same findings in plain English, written by {{ consultantName }} — not a summary produced by software.</p>
+          <p style="margin: 0 0 22px; font-size: 14px; line-height: 1.6; color: #5A6B77;">The same findings in plain English, written by {{ consultantName }}, not a summary produced by software.</p>
           <sc-for list="{{ means }}" as="p" hint-placeholder-count="4">
             <p style="margin: 0 0 14px; font-size: 16.5px; line-height: 1.75; color: #173B4F;">{{ p.text }}</p>
           </sc-for>
@@ -260,7 +260,7 @@
             </label>
             <label style="display: flex; flex-direction: column; gap: 6px;">
               <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Their role</span>
-              <input type="text" value="{{ shareRole }}" onChange="{{ onShareRole }}" placeholder="GP, or treating consultant" style="min-height: 48px; padding: 12px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+              <input type="text" value="{{ shareRole }}" onChange="{{ onShareRole }}" placeholder="GP, or treating radiologist" style="min-height: 48px; padding: 12px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
             </label>
             <label style="display: flex; flex-direction: column; gap: 6px;">
               <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Their email</span>
@@ -284,7 +284,7 @@
             <div style="border: 1px solid #C3E0DE; background: #F7FBFB; border-radius: 16px; padding: 22px 24px;">
               <div style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #095458; margin-bottom: 8px;">Included</div>
               <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: #0A1F2C;">Three written questions</h3>
-              <p style="margin: 0 0 16px; font-size: 14px; line-height: 1.65; color: #4A5C68;">Answered by the consultant who wrote your report, usually within two working days. For understanding this report — not a new opinion on new images.</p>
+              <p style="margin: 0 0 16px; font-size: 14px; line-height: 1.65; color: #4A5C68;">Answered by the radiologist who wrote your report, usually within two working days. For understanding this report, not a new opinion on new images.</p>
               <a href="{{ askHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 46px; padding: 12px 24px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Ask a question</a>
             </div>
 
@@ -439,7 +439,7 @@ class Component extends DCLogic {
         backHref: 'Dashboard.dc.html', backLabel: 'Back to your dashboard',
         notFoundTitle: c ? 'This report is not ready yet' : 'We cannot find that report',
         notFoundBody: c
-          ? 'Your consultant is still reviewing this scan. We will email you the moment your report is available, and it will appear on your dashboard.'
+          ? 'Your radiologist is still reviewing this scan. We will email you the moment your report is available, and it will appear on your dashboard.'
           : 'The link may be out of date, or the report may belong to a different account. Your own reports are all on your dashboard.',
         ref: '', deliveredLong: '', meta: [], inShort: '', anchors: [],
         hasComparison: false, noComparison: false, columns: [], items: [],
@@ -461,7 +461,7 @@ class Component extends DCLogic {
 
     const r = c.report;
     const cmp = c.comparison;
-    const doc = c.consultant;
+    const doc = c.radiologist;
     const cat = k => PORTAL.CATEGORY[k] || PORTAL.CATEGORY.clarifies;
     const outcome = cmp && cmp.available ? cat(cmp.overallOutcome) : null;
     const reassuring = cmp && cmp.overallOutcome === 'no_material';
@@ -514,7 +514,7 @@ class Component extends DCLogic {
         },
         {
           title: 'What we found',
-          source: 'Independent review by ' + c.consultantName + ', ' + (doc ? doc.role : 'Consultant Radiologist') + '.'
+          source: 'Independent review by ' + c.consultantName + ', ' + (doc ? doc.role : 'consultant radiologist') + '.'
         },
         {
           title: 'What is different',
@@ -557,7 +557,7 @@ class Component extends DCLogic {
             src: doc.photo, alt: '',
             style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }
           })
-        : (doc ? doc.initials : '\u2014'),
+        : (doc ? doc.initials : ''),
       docHref: doc ? 'Specialist Profile.dc.html?id=' + encodeURIComponent(doc.id) : 'Specialists.dc.html',
 
       downloadName: 'SecondRead-' + c.ref + '.pdf',
@@ -599,7 +599,7 @@ class Component extends DCLogic {
       callBg: this.state.slot >= 0 ? '#0D6E70' : '#A9BFC4',
       callCursor: this.state.slot >= 0 ? 'pointer' : 'not-allowed',
       callConfirmation: this.state.slot >= 0
-        ? SLOTS[this.state.slot] + ' with ' + c.consultantName + '. We have sent a confirmation with a join link — it contains the time only, nothing about your scan.'
+        ? SLOTS[this.state.slot] + ' with ' + c.consultantName + '. We have sent a confirmation with a join link. It contains the time only, nothing about your scan.'
         : ''
     });
   }

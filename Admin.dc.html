@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin — SecondRead</title>
+<title>Admin · SecondRead</title>
 <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
 <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
 <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
@@ -19,7 +19,7 @@
     <a href="index.html"><img class="side-logo" src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height:46px;width:184px"></a>
     <nav class="nav">
       <a class="on" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Dashboard</a>
-      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Consultant activity</a>
+      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Radiologist activity</a>
       <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>Manage users</a>
       <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
     </nav>
@@ -32,7 +32,7 @@
   <div class="main">
     <div class="demobar">
       <div class="demotag">Demonstration</div>
-      <p>Prototype only. Every patient, case reference and consultant assignment below is a written example — no real patient and no real clinical content. Nothing here is connected to a backend.</p>
+      <p>Prototype only. Every patient, case reference and radiologist assignment below is a written example. No real patient and no real clinical content. Nothing here is connected to a backend.</p>
     </div>
 
     <div class="inner">
@@ -46,12 +46,12 @@
 
       <div class="top">
         <div class="stats">
-          <div class="stat lead"><div class="lab">Unassigned cases</div><div><div class="num">129</div><div class="delta">Awaiting a consultant</div></div></div>
+          <div class="stat lead"><div class="lab">Unassigned cases</div><div><div class="num">129</div><div class="delta">Awaiting a radiologist</div></div></div>
           <div class="stat"><div class="lab">In progress</div><div><div class="num">17</div><div class="delta">Being read now</div></div></div>
           <div class="stat"><div class="lab">Reports delivered</div><div><div class="num">58</div><div class="delta">This month</div></div></div>
           <div class="stat"><div class="lab">Archived</div><div><div class="num">59</div><div class="delta">Closed cases</div></div></div>
-          <div class="stat"><div class="lab">Consultant approvals</div><div><div class="num">01</div><div class="delta">Pending review</div></div></div>
-          <div class="stat"><div class="lab">Consultants rejected</div><div><div class="num">02</div><div class="delta">Last 30 days</div></div></div>
+          <div class="stat"><div class="lab">Radiologist approvals</div><div><div class="num">01</div><div class="delta">Pending review</div></div></div>
+          <div class="stat"><div class="lab">Radiologists rejected</div><div><div class="num">02</div><div class="delta">Last 30 days</div></div></div>
         </div>
 
         <div class="chart">
@@ -60,7 +60,7 @@
             <div class="donut-mid"><b>264</b><span>cases total</span></div>
           </div>
           <div style="flex:1;min-width:0;">
-            <div class="toggle"><span class="on">Cases</span><span>Consultants</span></div>
+            <div class="toggle"><span class="on">Cases</span><span>Radiologists</span></div>
             <div class="legend">
               <div class="row"><span class="dot" style="background:#0D6E70"></span>Unassigned<span class="val">129 · 48.9%</span></div>
               <div class="row"><span class="dot" style="background:#6FE3C5"></span>In progress<span class="val">17 · 6.4%</span></div>
@@ -86,12 +86,12 @@
           <th>Patient</th><th>Status</th><th>Email</th><th>Body area</th><th>Submitted</th><th>Waiting</th><th style="text-align:right">Actions</th>
         </tr></thead>
         <tbody>
-          <tr class="warn"><td>A. Khawaja</td><td><span class="pill p-unassigned"><span class="d" style="background:#C98A2C"></span>Unassigned</span></td><td>a.khawaja@example.com</td><td>Brain &amp; spine</td><td>01/10/2026, 07:47</td><td><span class="wait over">&gt; 48 hrs</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Assign consultant</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
-          <tr class="warn"><td>T. Mensah</td><td><span class="pill p-unassigned"><span class="d" style="background:#C98A2C"></span>Unassigned</span></td><td>t.mensah@example.com</td><td>Chest &amp; heart</td><td>01/10/2026, 11:02</td><td><span class="wait over">&gt; 48 hrs</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Assign consultant</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
-          <tr><td>R. Okafor</td><td><span class="pill p-matching"><span class="d" style="background:#0D6E70"></span>Being matched</span></td><td>r.okafor@example.com</td><td>Bones &amp; joints</td><td>03/10/2026, 09:15</td><td><span class="wait">26 hrs</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Assign consultant</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
-          <tr><td>S. Idris</td><td><span class="pill p-with"><span class="d" style="background:#2B5E86"></span>With consultant</span></td><td>s.idris@example.com</td><td>Abdomen &amp; pelvis</td><td>04/10/2026, 16:40</td><td><span class="wait">19 hrs</span></td><td><div class="acts"><a class="btn btn-ghost" href="#">Send reminder</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
+          <tr class="warn"><td>A. Khawaja</td><td><span class="pill p-unassigned"><span class="d" style="background:#C98A2C"></span>Unassigned</span></td><td>a.khawaja@example.com</td><td>Brain &amp; spine</td><td>01/10/2026, 07:47</td><td><span class="wait over">&gt; 48 hrs</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Assign radiologist</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
+          <tr class="warn"><td>T. Mensah</td><td><span class="pill p-unassigned"><span class="d" style="background:#C98A2C"></span>Unassigned</span></td><td>t.mensah@example.com</td><td>Chest &amp; heart</td><td>01/10/2026, 11:02</td><td><span class="wait over">&gt; 48 hrs</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Assign radiologist</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
+          <tr><td>R. Okafor</td><td><span class="pill p-matching"><span class="d" style="background:#0D6E70"></span>Being matched</span></td><td>r.okafor@example.com</td><td>Bones &amp; joints</td><td>03/10/2026, 09:15</td><td><span class="wait">26 hrs</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Assign radiologist</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
+          <tr><td>S. Idris</td><td><span class="pill p-with"><span class="d" style="background:#2B5E86"></span>With radiologist</span></td><td>s.idris@example.com</td><td>Abdomen &amp; pelvis</td><td>04/10/2026, 16:40</td><td><span class="wait">19 hrs</span></td><td><div class="acts"><a class="btn btn-ghost" href="#">Send reminder</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
           <tr><td>L. Whitfield</td><td><span class="pill p-ready"><span class="d" style="background:#06313A"></span>Report ready</span></td><td>l.whitfield@example.com</td><td>Head &amp; neck</td><td>05/10/2026, 06:12</td><td><span class="wait">4 hrs</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Release report</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
-          <tr><td>M. Doyle</td><td><span class="pill p-matching"><span class="d" style="background:#0D6E70"></span>Being matched</span></td><td>m.doyle@example.com</td><td>Breast</td><td>05/10/2026, 08:55</td><td><span class="wait">2 hrs</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Assign consultant</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
+          <tr><td>M. Doyle</td><td><span class="pill p-matching"><span class="d" style="background:#0D6E70"></span>Being matched</span></td><td>m.doyle@example.com</td><td>Breast</td><td>05/10/2026, 08:55</td><td><span class="wait">2 hrs</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Assign radiologist</a><a class="btn btn-ghost" href="#">View</a></div></td></tr>
         </tbody>
       </table>
 

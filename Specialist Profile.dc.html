@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=8"></script>
+<script src="./consultants.js?v=10"></script>
+<script src="./portal.js?v=10"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -128,7 +128,7 @@
             </div>
           </sc-for>
         </div>
-        <p style="margin: 16px 0 0; font-size: 12.5px; line-height: 1.55; color: #5A6B77;">Deadlines you select at checkout. Miss one and the fee is refunded in full.</p>
+        <p style="margin: 16px 0 0; font-size: 12.5px; line-height: 1.55; color: #5A6B77;">Every report is signed and returned within 48 hours.</p>
       </div>
       <sc-if value="{{ hasReview }}" hint-placeholder-val="{{ true }}">
         <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 18px; padding: 30px 32px;">
@@ -140,7 +140,7 @@
       <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 26px 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
         <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Not the right fit?</div>
         <p style="margin: 0 0 16px; font-size: 15px; line-height: 1.65; color: #4A5C68;">{{ peerLine }}</p>
-        <a href="Specialists.dc.html" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #0D6E70; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">See all consultants</a>
+        <a href="Specialists.dc.html" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #0D6E70; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: background 140ms ease-out, color 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">See all radiologists</a>
       </div>
     </div>
   </div>
@@ -169,7 +169,7 @@
         <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85);">
           <a href="mailto:info@secondopinionradiology.co.uk" style="color: rgba(255,255,255,0.85);">info@secondopinionradiology.co.uk</a>
           <a href="tel:+441438904272" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>01438 904272</a>
-          <span style="color: rgba(255,255,255,0.72);">Mon–Sun, 09:00–20:00</span>
+          <span style="color: rgba(255,255,255,0.72);">Mon–Fri, 08:00–18:00</span>
         </div>
       </div>
     </div>
@@ -187,10 +187,10 @@
 </footer>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
-/* This page renders any consultant from the shared roster in consultants.js,
+/* This page renders any radiologist from the shared roster in consultants.js,
    selected by the `id` query parameter:  Specialist Profile.dc.html?id=mallon
    Before this, the page was hardcoded to one person while every card on the
-   site linked here, so all seven consultants opened Dr Mallon's profile. */
+   site linked here, so all seven radiologists opened Dr Mallon's profile. */
 
 const AREA_LABELS = {
   brain: 'brain and spine imaging',
@@ -202,8 +202,8 @@ const AREA_LABELS = {
   children: 'children’s imaging'
 };
 
-// One service level, the same for every consultant and every study. The first
-// concept showed invented per-consultant median turnarounds here; those were
+// One service level, the same for every radiologist and every study. The first
+// concept showed invented per-radiologist median turnarounds here; those were
 // not real numbers, so they are gone.
 const TURNAROUND = [
   { study: 'Every report', time: '48 hours' }
@@ -252,16 +252,16 @@ class Component extends DCLogic {
     // visitor to the directory rather than silently showing someone else.
     if (!c) {
       return {
-        name: 'not found', surname: 'not found', role: 'Consultant not found',
-        intro: 'We could not find that consultant. They may have been removed from the panel. Browse the full list and we will match you with the right subspecialist.',
+        name: 'not found', surname: 'not found', role: 'Radiologist not found',
+        intro: 'We could not find that radiologist. They may have been removed from the panel. Browse the full list and we will match you with the right subspecialist.',
         portrait: null, credentials: [], helpWith: [], background: [],
         turnaround: TURNAROUND, tickGlyph: this.icon(13),
         availability: '', requested: false, hasReview: false,
-        reviewQuote: '', reviewSource: '', gmc: '—', hospital: '—',
-        ctaLabel: 'See all consultants', ctaBg: '#0D6E70',
+        reviewQuote: '', reviewSource: '', gmc: ', ', hospital: ', ',
+        ctaLabel: 'See all radiologists', ctaBg: '#0D6E70',
         toggleRequest: () => { window.location.href = 'Specialists.dc.html'; },
         startHref: 'Start Flow.dc.html',
-        peerLine: CONSULTANTS.length + ' consultants read across every body area.'
+        peerLine: CONSULTANTS.length + ' radiologists read across every body area.'
       };
     }
 
@@ -293,8 +293,8 @@ class Component extends DCLogic {
       peerLine: peers.length === 0
         ? 'Dr ' + surname + ' is our subspecialist for ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '. Tell us the body area during your order and we will match you.'
         : (peers.length === 1
-            ? 'One other consultant reads ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.'
-            : peers.length + ' other consultants read ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.'),
+            ? 'One other radiologist reads ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.'
+            : peers.length + ' other radiologists read ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.'),
 
       requested: this.state.requested,
       ctaLabel: this.state.requested ? 'Dr ' + surname + ' requested' : 'Request Dr ' + surname + ' · £250',

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=8"></script>
+<script src="./consultants.js?v=10"></script>
+<script src="./portal.js?v=10"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -56,7 +56,7 @@
     <nav aria-label="Breadcrumb" style="font-size: 13px; color: #5A6B77; margin-bottom: 22px;"><a href="index.html" style="color: #5A6B77;">Home</a> &nbsp;/&nbsp; <span style="color: #0A1F2C; font-weight: 600;">Meet the team</span></nav>
     <span style="display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; background: #D7F2F3; border: 1px solid #C3E0DE; border-radius: 999px; padding: 6px 14px; margin-bottom: 18px;">Meet the team</span>
     <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C; max-width: 760px;">The people behind SecondRead</h1>
-    <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #4A5C68; max-width: 640px;">Health-technology leadership, NHS clinical governance, and the consultant radiologists who read the scans.</p>
+    <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #4A5C68; max-width: 640px;">Health-technology leadership, NHS clinical governance, and the radiologists who read the scans.</p>
   </div>
 </section>
 
@@ -89,7 +89,7 @@
     <div data-r="teamhow" style="background: #06313A; border-radius: 22px; padding: 44px 48px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;">
       <div>
         <h2 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 25px; font-weight: 700; letter-spacing: -0.02em; color: #FFFFFF;">The radiologist who reads your scan</h2>
-        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.78); max-width: 560px;">You are not asked to choose one. Tell us what was scanned and what you want answered, and we match your case to the consultant who subspecialises in it &mdash; named, with their GMC number, before you pay.</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.78); max-width: 560px;">You are not asked to choose one. Tell us what was scanned and what you want answered, and we match your case to the radiologist who subspecialises in it.</p>
       </div>
       <div style="display: flex; gap: 12px; flex-wrap: wrap;">
         <a href="Specialists.dc.html" style="min-height: 50px; padding: 14px 26px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,0.35); background: transparent; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #7FD8D4; background: rgba(255,255,255,0.08); color: #FFFFFF; text-decoration: none;">See the specialists</a>
@@ -122,7 +122,7 @@
         <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85);">
           <a href="mailto:info@secondopinionradiology.co.uk" style="color: rgba(255,255,255,0.85);">info@secondopinionradiology.co.uk</a>
           <a href="tel:+441438904272" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>01438 904272</a>
-          <span style="color: rgba(255,255,255,0.72);">Mon–Sun, 09:00–20:00</span>
+          <span style="color: rgba(255,255,255,0.72);">Mon–Fri, 08:00–18:00</span>
         </div>
       </div>
     </div>
@@ -144,15 +144,15 @@
    Meet the team
 
    This list is deliberately local to this page. consultants.js is the reporting
-   roster — it drives the specialist directory, the landing carousel and the
-   profile pages — and the people below are mostly not on it. Adding them there
+   roster, it drives the specialist directory, the landing carousel and the
+   profile pages, and the people below are mostly not on it. Adding them there
    would put the leadership team into the "find a radiologist" filters.
 
    Dr Rajakulasingam appears in both. His entry is read from consultants.js so
    his details cannot drift from his profile page; only the paragraph written
    for this page lives here.
 
-   CONTENT STATUS — for the client, before launch:
+   CONTENT STATUS, for the client, before launch:
      · The three biographies are the client's own copy, reproduced verbatim.
      · All four headshots are exported from the Figma file (node 100-14) at
        3x and resized to 496px, which is 2x the size they are shown at. They
@@ -188,9 +188,9 @@ const TEAM = [
     // Written out rather than concatenated from his roster fields, which
     // produced lowercased modalities and repeated the hospital. Every fact
     // here is from that entry; nothing is added to it.
-    bio: 'Consultant musculoskeletal and sarcoma radiologist at RNOH Stanmore, FRCR. '
-       + 'Reports bones, joints and soft tissue \u2014 including sarcoma and complex '
-       + 'orthopaedic imaging \u2014 across MRI, CT and ultrasound.',
+    bio: 'Musculoskeletal and sarcoma radiologist at RNOH Stanmore, FRCR. '
+       + 'Reports bones, joints and soft tissue, including sarcoma and complex '
+       + 'orthopaedic imaging, across MRI, CT and ultrasound.',
     profileId: RR.id || 'rajakulasingam',
     profileLabel: 'Read Dr ' + (typeof consultantSurname === 'function' && RR.name ? consultantSurname(RR) : 'Rajakulasingam') + '’s full profile'
   }

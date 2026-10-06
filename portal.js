@@ -1,4 +1,4 @@
-/* SecondRead — patient portal store.
+/* SecondRead, patient portal store.
  *
  * Single source of truth for the signed-in patient, their cases and their
  * reports. Loaded as a plain synchronous script BEFORE support.js so that
@@ -10,10 +10,10 @@
  * Everything lives in localStorage on this device, and every portal page
  * carries a visible notice saying so. Nothing here is a security boundary.
  *
- * CONTENT STATUS — for the client:
+ * CONTENT STATUS, for the client:
  *   · The two delivered reports are written demonstration content. They are
  *     not real reports and describe no real patient.
- *   · Consultant names come from consultants.js and carry the same placeholder
+ *   · Radiologist names come from consultants.js and carry the same placeholder
  *     GMC number (7012345) as the rest of the prototype.
  */
 (function (root) {
@@ -42,7 +42,7 @@
       id: 'submitted',
       chip: 'Submitted',
       title: "We've got everything",
-      support: "Your scan and details are safely with us. We're getting your case ready for a consultant.",
+      support: "Your scan and details are safely with us. We're getting your case ready for a radiologist.",
       position: 1,
       action: 'View your case',
       bg: '#EEF2F4', fg: '#4A5C68', border: '#D4DDE0',
@@ -52,7 +52,7 @@
       id: 'matching',
       chip: 'Being matched',
       title: 'Finding the right specialist',
-      support: "We're matching your scan to a consultant who specialises in this part of the body.",
+      support: "We're matching your scan to a radiologist who specialises in this part of the body.",
       position: 2,
       action: 'View your case',
       bg: '#E4F2F2', fg: '#095458', border: '#C3E0DE',
@@ -61,7 +61,7 @@
     review: {
       id: 'review',
       chip: 'Under expert review',
-      title: 'Your consultant is reviewing your scan',
+      title: 'Your radiologist is reviewing your scan',
       support: 'They are reading your images in full.',
       position: 3,
       action: 'View your case',
@@ -72,7 +72,7 @@
       id: 'ready',
       chip: 'Report ready',
       title: 'Your second opinion is ready',
-      support: "Your consultant's full report is here, with a plain-English explanation of what it means.",
+      support: "Your radiologist's full report is here, with a plain-English explanation of what it means.",
       position: 4,
       action: 'Read my report',
       bg: '#E3F3EA', fg: '#1F6B45', border: '#B7DEC8',
@@ -82,7 +82,7 @@
       id: 'followup',
       chip: 'Follow-up available',
       title: 'Questions about your report?',
-      support: 'You can send written questions to your consultant, or book a call.',
+      support: 'You can send written questions to your radiologist, or book a call.',
       position: 4,
       action: 'Ask a question',
       bg: '#EEF2F4', fg: '#4A5C68', border: '#D4DDE0',
@@ -92,13 +92,13 @@
 
   /* The four tracked stages, named exactly as they are named on the website,
    * in the confirmation screen and in the emails. "Action needed" sits outside
-   * the rail because it is a pause, not a stage — the case keeps the position
+   * the rail because it is a pause, not a stage, the case keeps the position
    * it had when it stopped. "Follow-up available" sits after the rail is full.
    */
   var TIMELINE = ['Submitted', 'Being matched', 'Under expert review', 'Report ready'];
 
   /* -------------------------------------------------------- comparison keys
-   * A closed clinical vocabulary. The consultant picks one; the label they
+   * A closed clinical vocabulary. The radiologist picks one; the label they
    * pick is the exact label the patient reads. No other value is valid.
    */
   var CATEGORY = {
@@ -137,7 +137,7 @@
     return {
       signedIn: false,
       // Emails that already belong to an account. Starting a case with one of
-      // these is not an error to recover from — it is a sign-in.
+      // these is not an error to recover from. It is a sign-in.
       accounts: ['hammad.khawaja@31g.co.uk'],
       pending: null,
       user: {
@@ -170,14 +170,14 @@
           tasks: [
             {
               id: 't1',
-              title: 'Your consultant needs one more thing',
+              title: 'Your radiologist needs one more thing',
               body: 'Dr Mallon has started reviewing your scan and needs a little more information before finishing your report.',
               ask: 'When did your headaches first start, and have they changed in the last three months?',
               placeholder: 'For example: they started around November, and have been worse in the mornings since February.'
             }
           ],
           messages: [
-            { from: 'SecondRead clinical team', role: 'team', offsetH: -8.5, text: 'Thanks — your images came through complete and readable. We have matched your case to Dr Mallon, Consultant Neuroradiologist.' }
+            { from: 'SecondRead clinical team', role: 'team', offsetH: -8.5, text: 'Thanks. Your images came through complete and readable. We have matched your case to Dr Mallon, Radiologist Neuroradiologist.' }
           ],
           report: null,
           comparison: null
@@ -203,7 +203,7 @@
             { from: 'SecondRead clinical team', role: 'team', offsetH: -120, text: 'Your images and original report are with Dr Al-Sanjari. Your report is due within 48 hours.' }
           ],
           report: {
-            inShort: 'The nodule in your right lung is there, and your consultant agrees with the original description of it. Its appearance is the kind that is very unlikely to be cancer, and the recommended next step is a single repeat scan in twelve months rather than anything sooner.',
+            inShort: 'The nodule in your right lung is there, and your radiologist agrees with the original description of it. Its appearance is the kind that is very unlikely to be cancer, and the recommended next step is a single repeat scan in twelve months rather than anything sooner.',
             clinicalHistory: 'Incidental pulmonary nodule identified on CT performed for investigation of a persistent cough. No smoking history. No weight loss.',
             technique: 'Non-contrast volumetric CT of the thorax, 1 mm reconstructions, reviewed on lung and mediastinal windows. Multiplanar reformats reviewed.',
             findings: [
@@ -220,10 +220,10 @@
               'Interval CT at 12 months is sufficient. Shorter-interval imaging is not indicated on radiological grounds.'
             ],
             meansForYou: [
-              'You have one small spot in the upper part of your right lung, just under 6 mm across — about the size of a grain of rice. It is really there; this is not something the first scan got wrong.',
-              'What your consultant was able to add is the reason it looks the way it does. There is a small patch of calcium — essentially chalk — sitting in the middle of it. Calcium in that pattern is the fingerprint of an old, healed infection that your body dealt with, very possibly years ago without you knowing. It is not the pattern that lung cancers make.',
+              'You have one small spot in the upper part of your right lung, just under 6 mm across, about the size of a grain of rice. It is really there; this is not something the first scan got wrong.',
+              'What your radiologist was able to add is the reason it looks the way it does. There is a small patch of calcium, essentially chalk, sitting in the middle of it. Calcium in that pattern is the fingerprint of an old, healed infection that your body dealt with, very possibly years ago without you knowing. It is not the pattern that lung cancers make.',
               'The edges matter too. This nodule has smooth, clean borders. The nodules that worry radiologists tend to have spiky, irregular edges that reach into the surrounding lung. Yours does not.',
-              'That is why your consultant is comfortable recommending a single check-up scan in a year rather than in three months. The one-year scan is there to confirm it has stayed the same, which is what is expected.'
+              'That is why your radiologist is comfortable recommending a single check-up scan in a year rather than in three months. The one-year scan is there to confirm it has stayed the same, which is what is expected.'
             ],
             nextSteps: [
               { n: '1', text: 'Share this report with your GP or the doctor who ordered your original scan.' },
@@ -235,7 +235,7 @@
           comparison: {
             available: true,
             overallOutcome: 'clarifies',
-            overallSummary: 'Your consultant found the same nodule the original report described, and agrees it is there. What they were able to add is a specific feature — the pattern of calcium inside it — that makes it very unlikely to be anything serious, and that changes how often it needs checking.',
+            overallSummary: 'Your radiologist found the same nodule the original report described, and agrees it is there. What they were able to add is a specific feature, the pattern of calcium inside it, that makes it very unlikely to be anything serious, and that changes how often it needs checking.',
             original: {
               sourceLabel: 'Supplied by you',
               providerName: 'Royal Free Hospital',
@@ -244,17 +244,17 @@
             },
             items: [
               {
-                region: 'Right upper lobe nodule — presence and size',
+                region: 'Right upper lobe nodule, presence and size',
                 before: 'A small solid nodule in the right upper lobe measuring approximately 6 mm.',
                 found: 'A solid nodule in the posterior segment of the right upper lobe measuring 5.8 x 5.1 mm, with smooth, well-defined margins.',
                 category: 'confirms',
                 differenceNote: '',
-                meansForYou: 'Both consultants see the same thing in the same place, at the same size. The measurement is simply more precise here because it was taken on thin reconstructions.'
+                meansForYou: 'Both radiologists see the same thing in the same place, at the same size. The measurement is simply more precise here because it was taken on thin reconstructions.'
               },
               {
                 region: 'Pattern of calcification',
                 before: 'Not mentioned.',
-                found: 'A small focus of dense, uniform central calcification within the nodule — a pattern characteristic of a healed granuloma.',
+                found: 'A small focus of dense, uniform central calcification within the nodule, a pattern characteristic of a healed granuloma.',
                 category: 'additional',
                 differenceNote: 'This feature is visible on the original images but is not described in the original report. It is the single most useful piece of information about this nodule, because central calcification of this type is strongly associated with a benign cause.',
                 meansForYou: 'This is the finding that does the work in your report. The calcium sitting in the middle of the nodule is the sign of an old infection your body has already healed. It is not what a cancer looks like.'
@@ -265,7 +265,7 @@
                 found: 'Interval CT at 12 months is sufficient. Shorter-interval imaging is not indicated on radiological grounds.',
                 category: 'differing',
                 differenceNote: 'The original recommendation is the correct and appropriate one for a nodule described as indeterminate. Once the benign calcification pattern is taken into account, published guidance supports a longer interval. Both recommendations are reasonable readings of the images; they differ because they rest on different characterisations of the nodule.',
-                meansForYou: 'You were told to come back in three months. Your consultant thinks a year is enough, because of the calcium pattern. This is a judgement call between two specialists, not a mistake — take this report to your doctor and decide together.'
+                meansForYou: 'You were told to come back in three months. Your radiologist thinks a year is enough, because of the calcium pattern. This is a judgement call between two specialists, not a mistake, take this report to your doctor and decide together.'
               },
               {
                 region: 'Rest of the chest',
@@ -297,7 +297,7 @@
           tasks: [],
           messages: [],
           report: {
-            inShort: 'Your consultant read your knee MRI independently and reached the same conclusions as the original report. There is a tear in the back part of the inner meniscus, and the rest of the knee is in good condition. Nothing was found that changes the picture you were given.',
+            inShort: 'Your radiologist read your knee MRI independently and reached the same conclusions as the original report. There is a tear in the back part of the inner meniscus, and the rest of the knee is in good condition. Nothing was found that changes the picture you were given.',
             clinicalHistory: 'Medial-sided right knee pain following a twisting injury. Locking reported. Query meniscal tear.',
             technique: 'MRI right knee, 1.5T. Sagittal, coronal and axial proton density and fat-suppressed sequences reviewed.',
             findings: [
@@ -315,7 +315,7 @@
             meansForYou: [
               'There is a tear in the back section of the meniscus on the inner side of your right knee. The meniscus is a C-shaped pad of cartilage that acts as a shock absorber between the two bones of the knee joint.',
               'The tear runs sideways through the pad and reaches the underneath surface. That is the type of tear that can catch as the knee moves, which fits the locking you described.',
-              'The good news in this scan is everything that is not damaged. Your cruciate ligaments — the ones that hold the knee stable and that take much longer to recover from — are intact. Your cartilage surfaces are in good condition for your age, with no worn-through areas. The other meniscus is fine.',
+              'The good news in this scan is everything that is not damaged. Your cruciate ligaments, the ones that hold the knee stable and that take much longer to recover from, are intact. Your cartilage surfaces are in good condition for your age, with no worn-through areas. The other meniscus is fine.',
               'Whether this needs an operation is a decision for your surgeon rather than a radiologist, and it depends on your symptoms as much as on the scan. What this report can tell you is that the scan finding is real, it is the only significant finding, and the rest of the knee is in a good state to recover.'
             ],
             nextSteps: [
@@ -327,7 +327,7 @@
           comparison: {
             available: true,
             overallOutcome: 'no_material',
-            overallSummary: 'Your consultant reviewed your images independently and reached the same conclusions as the original report. That is a meaningful result: two specialists, working separately, agree on what your scan shows.',
+            overallSummary: 'Your radiologist reviewed your images independently and reached the same conclusions as the original report. That is a meaningful result: two specialists, working separately, agree on what your scan shows.',
             original: {
               sourceLabel: 'Supplied by you',
               providerName: 'Nuffield Health Brentwood',
@@ -341,7 +341,7 @@
                 found: 'Horizontal-oblique tear of the posterior horn of the medial meniscus, surfacing inferiorly, approximately 11 mm in length.',
                 category: 'confirms',
                 differenceNote: '',
-                meansForYou: 'Both consultants describe the same tear, in the same place, reaching the same surface. The length measurement is added detail, not a different finding.'
+                meansForYou: 'Both radiologists describe the same tear, in the same place, reaching the same surface. The length measurement is added detail, not a different finding.'
               },
               {
                 region: 'Ligaments',
@@ -405,7 +405,7 @@
     return h12 + ':' + (m < 10 ? '0' : '') + m + ' ' + suffix;
   }
 
-  // "Friday 15 March, 4:00 pm" — an absolute moment, never a countdown.
+  // "Friday 15 March, 4:00 pm", an absolute moment, never a countdown.
   function fmtLong(d) {
     return DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + ', ' + clock(d);
   }
@@ -415,7 +415,7 @@
     return d.getDate() + ' ' + MONTHS[d.getMonth()].slice(0, 3) + ' ' + d.getFullYear();
   }
 
-  // "2 days ago" — only ever used for things that have already happened.
+  // "2 days ago", only ever used for things that have already happened.
   function fmtAgo(d) {
     var mins = Math.round((Date.now() - d.getTime()) / 60000);
     if (mins < 2) return 'just now';
@@ -431,7 +431,7 @@
   function at(offsetH) { return new Date(Date.now() + offsetH * HOUR); }
 
   /* --------------------------------------------------------------- decorate
-   * Turns a stored case into everything a view needs: resolved consultant,
+   * Turns a stored case into everything a view needs: resolved radiologist,
    * resolved status, live dates. Stored data stays minimal; this is where the
    * derived values live, so no view has to recompute them.
    */
@@ -446,7 +446,7 @@
   }
 
   // The deadline, with any paused time added back on. A case sitting in
-  // "Action needed" is not burning its own clock — §4.6 of the spec.
+  // "Action needed" is not burning its own clock, §4.6 of the spec.
   function due(c) {
     var speed = SPEEDS[c.speed] || SPEEDS['48'];
     var base = created(c).getTime() + speed.hours * HOUR;
@@ -457,7 +457,7 @@
 
   function decorate(c) {
     var st = STATUS[c.status] || STATUS.submitted;
-    var doc = (root.CONSULTANT_BY_ID || {})[c.consultant] || null;
+    var doc = (root.CONSULTANT_BY_ID || {})[c.radiologist] || null;
     var speed = SPEEDS[c.speed] || SPEEDS['48'];
     var createdAt = created(c);
     var deliveredAt = delivered(c);
@@ -485,7 +485,7 @@
       needsAction: c.status === 'action' && (c.tasks || []).length > 0,
       consultant: doc,
       consultantName: doc ? 'Dr ' + doc.name : 'Being matched',
-      consultantSurname: doc ? 'Dr ' + doc.name.split(' ').slice(-1)[0] : 'your consultant',
+      consultantSurname: doc ? 'Dr ' + doc.name.split(' ').slice(-1)[0] : 'your radiologist',
       consultantRole: doc ? doc.role : '',
       scan: c.scan,
       areaLabel: AREA_LABELS[c.area] || 'Not specified',
@@ -544,7 +544,7 @@
     return load().accounts.indexOf(e) !== -1;
   }
 
-  // { ok: true, code } — or { ok: false, reason: 'exists' } when the address is
+  // { ok: true, code }, or { ok: false, reason: 'exists' } when the address is
   // already an account, which the caller turns into a sign-in prompt.
   function startPending(first, last, email) {
     var e = normaliseEmail(email);
@@ -640,7 +640,7 @@
       from: 'SecondRead clinical team',
       role: 'team',
       ts: new Date().toISOString(),
-      text: 'Thanks — we have everything we need. We are checking your images are complete and readable, then matching your case to a consultant.'
+      text: 'Thanks. We have everything we need. We are checking your images are complete and readable, then matching your case to a radiologist.'
     }];
     // An invited clinician is a real dependency, not a nicety: the case does
     // not move to matching until their section is in, so say so here.
@@ -658,7 +658,7 @@
       status: 'submitted',
       scan: order.scan || 'MRI',
       area: order.area || 'brain',
-      consultant: order.consultant || '',
+      consultant: order.radiologist || '',
       speed: order.speed || '48',
       createdISO: new Date().toISOString(),
       scanDate: order.scanDate || '',
@@ -670,7 +670,7 @@
       history: order.history || '',
       hasOriginalReport: order.hasOriginalReport !== false,
       priorStudy: order.priorStudy || null,
-      // 'self' | 'invite' | 'both' — see the clinician invite in the case flow.
+      // 'self' | 'invite' | 'both', see the clinician invite in the case flow.
       clinician: order.clinician || null,
       demo: false,
       tasks: [],
@@ -771,7 +771,7 @@
   function guard() {
     if (isSignedIn()) return true;
     // Send them back to what they were actually aiming at, not to a generic
-    // dashboard — a bookmarked report should still open the report.
+    // dashboard, a bookmarked report should still open the report.
     var here = root.location.pathname.split('/').pop() + root.location.search;
     root.location.replace('Sign In.dc.html?next=' + encodeURIComponent(safeNext(decodeURIComponent(here))));
     return false;
@@ -817,9 +817,8 @@
     hashDone = true;
     var id = root.location.hash.slice(1);
     // Arriving at a section by link should simply put you there, so this jump
-    // is instant rather than animated. The first paint is not the last one —
-    // the runtime keeps rendering, images and fonts land, and an early scroll
-    // gets undone — so land it again as the page settles.
+    // is instant rather than animated. The first paint is not the last one, // the runtime keeps rendering, images and fonts land, and an early scroll
+    // gets undone, so land it again as the page settles.
     function go() {
       var target = root.document.getElementById(id);
       if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });

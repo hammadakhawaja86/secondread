@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=8"></script>
-<script src="./portal.js?v=8"></script>
+<script src="./consultants.js?v=10"></script>
+<script src="./portal.js?v=10"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -52,15 +52,15 @@
 </header>
 
 <section style="position: relative; background-color: #D8EEEA; overflow: hidden; border-bottom: 1px solid #E2E9EC;">
-  <img src="uploads/Generated image 1 (5).png" alt="Consultant reviewing MRI images beside a scanner" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% center; opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;">
+  <img src="uploads/Generated image 1 (5).png" alt="Radiologist reviewing MRI images beside a scanner" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% center; opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;">
   <div style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(216,238,234,0.97) 0%, rgba(216,238,234,0.92) 34%, rgba(216,238,234,0.55) 52%, rgba(216,238,234,0.08) 68%, rgba(216,238,234,0) 100%); opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;"></div>
   <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 72px 32px 0;">
     <div onMouseEnter="{{ pauseCarousel }}" onMouseLeave="{{ resumeCarousel }}" onFocus="{{ pauseCarousel }}" onBlur="{{ resumeCarousel }}" style="display: grid; align-items: stretch;">
     <div style="grid-area: 1 / 1; display: grid; grid-template-columns: minmax(320px, 1.05fr) 0.95fr; gap: 56px; align-items: center; padding-bottom: 56px; min-height: 520px; opacity: {{ slide1Opacity }}; pointer-events: {{ slide1Events }}; transform: translateY({{ slide1Shift }}); transition: opacity 620ms ease-out, transform 620ms cubic-bezier(0.16,1,0.3,1);">
       <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
-        <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Reports today from 14 UK consultants</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Reports today from {{ consultantCount }} UK radiologists</span>
         <h1 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 48px; line-height: 1.04; letter-spacing: -0.025em; color: #0A1F2C;">Your scan, read again by the right specialist.</h1>
-        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 560px;">Upload the MRI, CT, ultrasound or X-ray you already have. A GMC-registered consultant who subspecialises in that body area reviews it and writes you a report in plain English — £250, within 48 hours.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 560px;">Upload the MRI, CT, ultrasound or X-ray you already have. A GMC-registered radiologist who subspecialises in that body area reviews it and writes you a report in plain English, £250, within 48 hours.</p>
         <div style="display: flex; gap: 14px; flex-wrap: wrap;">
           <a href="Start Flow.dc.html" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.32); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Start my second read</a>
           <a href="Sample Report.dc.html" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out, transform 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;" style-active="transform: translateY(1px);">See a real sample report <span>→</span></a>
@@ -69,8 +69,6 @@
           <span>No GP referral needed</span>
           <span style="color: #6C7C87;">·</span>
           <span>No appointment</span>
-          <span style="color: #6C7C87;">·</span>
-          <span>Refund if we miss the deadline</span>
         </div>
       </div>
       <div style="display: flex; align-items: flex-end; justify-content: flex-end; height: 100%; min-height: 260px;">
@@ -87,7 +85,7 @@
       <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
         <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Start in under a minute</span>
         <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.06; letter-spacing: -0.025em; color: #0A1F2C;">Two questions and we know who reads your scan.</h2>
-        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 520px;">No card needed yet, and you can stop at any step. Tell us what was scanned and we name the subspecialist before you upload anything.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 520px;">No card needed yet, and you can stop at any step. Tell us what was scanned and we take it from there.</p>
         <div style="display: flex; flex-direction: column; gap: 12px;">
           <sc-for list="{{ quickAssurances }}" as="item" hint-placeholder-count="3">
             <div style="display: flex; gap: 11px; align-items: center;">
@@ -110,11 +108,7 @@
             <option value="{{ area.id }}">{{ area.label }}</option>
           </sc-for>
         </select>
-        <div style="margin: 18px 0 20px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 14px; padding: 16px 18px;">
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 7px;">Matched</div>
-          <div style="font-size: 15px; line-height: 1.6; color: #06313A;">{{ quickMatch }}</div>
-        </div>
-        <a href="{{ quickHref }}" style="display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 28px; border-radius: 14px; background: #0D6E70; color: #FFFFFF; font-size: 16px; font-weight: 600; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
+        <a href="{{ quickHref }}" style="margin-top: 20px; display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 28px; border-radius: 14px; background: #0D6E70; color: #FFFFFF; font-size: 16px; font-weight: 600; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
       </div>
     </div>
     </div>
@@ -129,8 +123,8 @@
         <div style="margin-top: 8px; font-size: 14px; color: #4A5C68;">second reads change the original finding</div>
       </div>
       <div style="background: #FFFFFF; padding: 26px 28px;">
-        <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #095458; line-height: 1;">12 hrs</div>
-        <div style="margin-top: 8px; font-size: 14px; color: #4A5C68;">fastest signed consultant report</div>
+        <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #095458; line-height: 1;">48 hrs</div>
+        <div style="margin-top: 8px; font-size: 14px; color: #4A5C68;">every report, signed and returned</div>
       </div>
       <div style="background: #FFFFFF; padding: 26px 28px;">
         <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #095458; line-height: 1;">4.9 ★</div>
@@ -144,7 +138,7 @@
   <div style="max-width: 1200px; margin: 0 auto; display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; align-items: center; font-size: 13px; font-weight: 600; color: #4A5C68;">
     <span>CQC registered</span>
     <span style="width: 1px; height: 18px; background: #D4DDE0;"></span>
-    <span>GMC · FRCR consultants</span>
+    <span>GMC · FRCR radiologists</span>
     <span style="width: 1px; height: 18px; background: #D4DDE0;"></span>
     <span>ICO · UK GDPR</span>
     <span style="width: 1px; height: 18px; background: #D4DDE0;"></span>
@@ -157,7 +151,7 @@
     <div style="text-align: center; max-width: 640px; margin: 0 auto 44px;">
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">How it works</div>
       <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Three steps, and we do the matching.</h2>
-      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">You are never asked to choose a radiologist. Tell us about your case and we match it to the right consultant subspecialist — confirmed before you pay.</p>
+      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">You are never asked to choose a radiologist. Tell us about your case and we match it to the right subspecialist radiologist.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-bottom: 44px;">
       <sc-for list="{{ howSteps }}" as="step" hint-placeholder-count="3">
@@ -208,9 +202,8 @@
                label pinned to the image, not as a chip floating above it. -->
           <span style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.94); color: #06313A; border-radius: 999px; padding: 6px 13px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;">{{ s.tag }}</span>
           <span style="position: relative; display: flex; flex-direction: column; flex: 1; align-items: center; text-align: center;">
-            <!-- Both reserved heights — two title lines and one credit line —
-                 keep every card's button on the same baseline across the row,
-                 whether or not that service names a lead consultant. -->
+            <!-- Both reserved heights, two title lines and one credit line, keep every card's button on the same baseline across the row,
+                 whether or not that service names a lead radiologist. -->
             <span style="min-height: 59px; max-width: 252px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.22; letter-spacing: -0.58px; color: #FFFFFF;">{{ s.title }}</span>
             <span style="margin-top: 5px; margin-bottom: 14px; min-height: 18px; font-size: 12.5px; line-height: 1.4; color: rgba(255,255,255,0.82);">{{ s.credit }}</span>
             <span style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 56px; border-radius: 12px; background: #FFFFFF; color: #06313A; font-size: 15px; font-weight: 600; transition: background 140ms ease-out;" style-hover="background: #E4F2F2;">Get started {{ arrowSmallGlyph }}</span>
@@ -234,18 +227,18 @@
     <div data-r="spechead" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 34px;">
       <div style="max-width: 620px;">
         <span style="display: inline-flex; align-items: center; background: #E4F2F2; color: #06313A; border-radius: 6px; padding: 6px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">The specialists</span>
-        <h2 style="margin: 16px 0 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; color: #0A1F2C;">Fourteen consultants. One will read yours.</h2>
-        <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: #4A5C68;">Every report is signed by a named, GMC-registered subspecialist — you see who before you pay.</p>
+        <h2 style="margin: 16px 0 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; color: #0A1F2C;">Fourteen radiologists. One will read yours.</h2>
+        <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: #4A5C68;">Every report is signed by a GMC-registered subspecialist in that body area.</p>
       </div>
       <div data-r="specnav" style="display: flex; gap: 12px; flex-shrink: 0; padding-bottom: 4px;">
-        <button type="button" onClick="{{ specPrev }}" aria-label="Previous consultants" style="appearance: none; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid #D4DDE0; background: none; color: #0A1F2C; display: flex; align-items: center; justify-content: center; cursor: {{ specPrevCursor }}; opacity: {{ specPrevOpacity }}; transition: background 140ms ease-out, border-color 140ms ease-out, opacity 200ms ease-out, transform 140ms ease-out;" style-hover="background: #E4F2F2; border-color: #0D6E70;" style-active="transform: scale(0.94);">{{ arrowLeftGlyph }}</button>
-        <button type="button" onClick="{{ specNext }}" aria-label="Next consultants" style="appearance: none; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid #D4DDE0; background: none; color: #0A1F2C; display: flex; align-items: center; justify-content: center; cursor: {{ specNextCursor }}; opacity: {{ specNextOpacity }}; transition: background 140ms ease-out, border-color 140ms ease-out, opacity 200ms ease-out, transform 140ms ease-out;" style-hover="background: #E4F2F2; border-color: #0D6E70;" style-active="transform: scale(0.94);">{{ arrowRightGlyph }}</button>
+        <button type="button" onClick="{{ specPrev }}" aria-label="Previous radiologists" style="appearance: none; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid #D4DDE0; background: none; color: #0A1F2C; display: flex; align-items: center; justify-content: center; cursor: {{ specPrevCursor }}; opacity: {{ specPrevOpacity }}; transition: background 140ms ease-out, border-color 140ms ease-out, opacity 200ms ease-out, transform 140ms ease-out;" style-hover="background: #E4F2F2; border-color: #0D6E70;" style-active="transform: scale(0.94);">{{ arrowLeftGlyph }}</button>
+        <button type="button" onClick="{{ specNext }}" aria-label="Next radiologists" style="appearance: none; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid #D4DDE0; background: none; color: #0A1F2C; display: flex; align-items: center; justify-content: center; cursor: {{ specNextCursor }}; opacity: {{ specNextOpacity }}; transition: background 140ms ease-out, border-color 140ms ease-out, opacity 200ms ease-out, transform 140ms ease-out;" style-hover="background: #E4F2F2; border-color: #0D6E70;" style-active="transform: scale(0.94);">{{ arrowRightGlyph }}</button>
       </div>
     </div>
   </div>
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
-    <div id="spec-track" data-r="spectrack" onScroll="{{ specOnScroll }}" role="region" aria-label="Our consultants" tabIndex="0" style="display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: calc(50% - 50vw); padding: 4px 32px 10px 0;">
+    <div id="spec-track" data-r="spectrack" onScroll="{{ specOnScroll }}" role="region" aria-label="Our radiologists" tabIndex="0" style="display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: calc(50% - 50vw); padding: 4px 32px 10px 0;">
       <sc-for list="{{ specialists }}" as="specialist" hint-placeholder-count="6">
         <a href="{{ specialist.profileHref }}" data-r="speccard" style="flex: 0 0 340px; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; overflow: hidden; scroll-snap-align: start; box-shadow: 0 2px 8px rgba(10,31,44,0.06); transition: transform 260ms cubic-bezier(0.16,1,0.3,1), box-shadow 260ms ease-out, border-color 260ms ease-out;" style-hover="transform: translateY(-6px); box-shadow: 0 22px 44px rgba(10,31,44,0.16); border-color: #C3E0DE; text-decoration: none;">
           <span style="display: flex; flex-direction: column; gap: 5px; padding: 28px 28px 22px;">
@@ -286,7 +279,7 @@
           <span aria-hidden="true" style="width: 110px; height: 1px; background: #C3E0DE;"></span>
         </div>
         <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.022em; color: #0A1F2C;">One price. A 48-hour turnaround.</h2>
-        <p style="margin: 14px 0 0; font-size: 16.5px; line-height: 1.6; color: #4A5C68; max-width: 620px;">&pound;250 for a consultant report, or &pound;300 if we are also comparing your earlier scans. No consultation fee, no subscription, nothing added later.</p>
+        <p style="margin: 14px 0 0; font-size: 16.5px; line-height: 1.6; color: #4A5C68; max-width: 620px;">&pound;250 for a radiologist report, or &pound;300 if we are also comparing your earlier scans. No consultation fee, no subscription, nothing added later.</p>
       </div>
       <div data-r="prtag" aria-hidden="true" style="flex-shrink: 0; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #0D6E70; line-height: 1.95;">Clear answers<br>faster</div>
     </div>
@@ -394,7 +387,7 @@
       <div>
         <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Sample report</div>
         <h2 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #0A1F2C; letter-spacing: -0.01em;">A report written twice: once for your doctor, once for you.</h2>
-        <p style="margin: 0 0 26px; font-size: 16px; line-height: 1.6; color: #173B4F; max-width: 620px;">Every report carries the clinical detail your GP or consultant needs, plus a plain-English section that answers the question you actually asked.</p>
+        <p style="margin: 0 0 26px; font-size: 16px; line-height: 1.6; color: #173B4F; max-width: 620px;">Every report carries the clinical detail your GP or radiologist needs, plus a plain-English section that answers the question you actually asked.</p>
         <div style="background: #F4F7F8; border: 1px solid #E2E9EC; border-radius: 16px; padding: 28px 30px; margin-bottom: 26px;">
           <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #5A6B77; margin-bottom: 12px;">What this means for you</div>
           <p style="margin: 0 0 20px; font-size: 15px; line-height: 1.75; color: #173B4F;">The area described in your first report is a normal variant of a blood vessel, not a tumour. Nothing here needs urgent treatment. I would repeat the scan in twelve months to confirm it is unchanged.</p>
@@ -463,7 +456,7 @@
     <div>
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #6FE3C5; margin-bottom: 12px;">Ask first, pay later</div>
       <h2 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #FFFFFF; letter-spacing: -0.01em;">Not sure whether a second read will help?</h2>
-      <p style="margin: 0 0 26px; color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.6;">Tell us your question and what you already have. We will tell you honestly whether a review is worth your money — free, within one working day. If the answer is no, we will say so.</p>
+      <p style="margin: 0 0 26px; color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.6;">Tell us your question and what you already have. We will tell you honestly whether a review is worth your money, free, within one working day. If the answer is no, we will say so.</p>
       <div style="display: flex; flex-direction: column; gap: 14px;">
         <sc-for list="{{ enquiryPoints }}" as="pt" hint-placeholder-count="3">
           <div style="display: flex; gap: 11px; align-items: flex-start;">
@@ -472,15 +465,15 @@
           </div>
         </sc-for>
       </div>
-      <p style="margin: 26px 0 0; font-size: 14.5px; color: rgba(255,255,255,0.66);">Would rather talk? Call <a href="tel:+441438904272" style="color: #6FE3C5; font-weight: 600;">01438 904272</a>, 09:00–20:00, seven days.</p>
+      <p style="margin: 26px 0 0; font-size: 14.5px; color: rgba(255,255,255,0.66);">Would rather talk? Call <a href="tel:+441438904272" style="color: #6FE3C5; font-weight: 600;">01438 904272</a>, 08:00–18:00, Monday to Friday.</p>
     </div>
 
     <div style="background: #FFFFFF; border-radius: 20px; padding: 32px; box-shadow: 0 22px 50px rgba(0,0,0,0.28);">
       <sc-if value="{{ enquirySent }}" hint-placeholder-val="{{ false }}">
         <div style="text-align: center; padding: 24px 8px;">
           <span style="display: inline-flex; width: 52px; height: 52px; border-radius: 50%; background: #0D6E70; color: #FFFFFF; align-items: center; justify-content: center; margin-bottom: 18px;">{{ sentGlyph }}</span>
-          <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Thank you — that is with us</h3>
-          <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.65; color: #4A5C68;">A consultant radiologist reads every enquiry personally. You will hear back by email within one working day, and there is nothing to pay either way.</p>
+          <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Thank you. That is with us</h3>
+          <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.65; color: #4A5C68;">A radiologist reads every enquiry personally. You will hear back by email within one working day, and there is nothing to pay either way.</p>
           <button type="button" onClick="{{ resetEnquiry }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Send another</button>
         </div>
       </sc-if>
@@ -530,7 +523,7 @@
         <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85);">
           <a href="mailto:info@secondopinionradiology.co.uk" style="color: rgba(255,255,255,0.85);">info@secondopinionradiology.co.uk</a>
           <a href="tel:+441438904272" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>01438 904272</a>
-          <span style="color: rgba(255,255,255,0.72);">Mon–Sun, 09:00–20:00</span>
+          <span style="color: rgba(255,255,255,0.72);">Mon–Fri, 08:00–18:00</span>
         </div>
       </div>
     </div>
@@ -565,7 +558,7 @@ const PATHS = {
 
 const CAROUSELS = {
   svc:  { trackId: 'svc-track',  dots: 6, label: 'services',    activeDot: '#6FE3C5', idleDot: 'rgba(255,255,255,0.3)' },
-  spec: { trackId: 'spec-track', dots: 7, label: 'consultants', activeDot: '#0D6E70', idleDot: '#D4DDE0' }
+  spec: { trackId: 'spec-track', dots: 7, label: 'radiologists', activeDot: '#0D6E70', idleDot: '#D4DDE0' }
 };
 
 const PLAIN = {
@@ -591,13 +584,7 @@ const QUICK_AREAS = [
   { id: 'abdomen', label: 'Abdomen or pelvis', consultant: 'tamimi' },
   { id: 'breast', label: 'Breast', consultant: null },
   { id: 'headneck', label: 'Head or neck', consultant: 'wassati' }
-].map(function (a) {
-  var c = CONSULTANT_BY_ID[a.consultant];
-  a.match = c
-    ? 'Dr ' + c.name + ', ' + c.role.replace(/^Consultant /, '').toLowerCase() + ', ' + c.hospital + '. Report within 48 hours.'
-    : 'We match your subspecialist once we see the study. Report within 48 hours.';
-  return a;
-});
+];
 
 class Component extends DCLogic {
   state = {
@@ -620,10 +607,10 @@ class Component extends DCLogic {
         description: 'Upload your original scan images, ideally as a DICOM folder or ZIP file, along with your original radiology report and any earlier related scans. DICOM is simply the format hospitals store scan images in.',
         note: 'Do not have your images yet? We show you exactly how to request them from the hospital or imaging provider.' },
       { number: '02', icon: 'ClipboardList', title: 'Tell us about your case',
-        description: 'We read the scan type and body area from your images, then ask about your symptoms, relevant history, and what you would like our consultant to review. You can also invite your GP or treating clinician to add clinical information.',
-        note: 'We use this to match your case with the appropriate consultant subspecialist. Before payment, we confirm who will review your case, their relevant expertise, and your report delivery timeframe.' },
+        description: 'We read the scan type and body area from your images, then ask about your symptoms, relevant history, and what you would like our radiologist to review. You can also invite your GP or treating clinician to add clinical information.',
+        note: 'We use this to match your case with the appropriate subspecialist radiologist. Before payment, we confirm who will review your case, their relevant expertise, and your report delivery timeframe.' },
       { number: '03', icon: 'FileText', title: 'Get your expert report',
-        description: 'An independent consultant report with the findings, a plain-English "What this means for you" explanation, comparison with any prior scan where available, and recommended next steps.',
+        description: 'An independent radiologist report with the findings, a plain-English "What this means for you" explanation, comparison with any prior scan where available, and recommended next steps.',
         note: 'Your report is securely available in your patient dashboard, where you can download it, share it with your GP or treating clinician, and arrange available follow-up support.' }
     ],
     svcIndex: 0,
@@ -651,10 +638,9 @@ class Component extends DCLogic {
       { photo: 'services/abdomen.jpg', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Specialist Profile.dc.html?id=tamimi',
         gradient: 'linear-gradient(155deg, #095458 0%, #12938F 42%, #06313A 100%)' }
     ],
-    // Portraits are ordinary files now, not the base64 blob in portraits/data.js —
-    // swapping a headshot is a one-file drop-in. GMC numbers are placeholders and
+    // Portraits are ordinary files now, not the base64 blob in portraits/data.js, // swapping a headshot is a one-file drop-in. GMC numbers are placeholders and
     // must be replaced with the real registrations before launch.
-    // Sourced from consultants.js — the same roster the directory and the
+    // Sourced from consultants.js, the same roster the directory and the
     // profile pages read, so a card can never point at the wrong person.
     specialists: FEATURED_CONSULTANTS,
     // One turnaround at one standard fee. The only thing that moves the base
@@ -666,14 +652,13 @@ class Component extends DCLogic {
         blurb: 'Your earlier scans read alongside the new one' }
     ],
     packageFeatures: [
-      { label: 'Consultant subspecialist review, signed and named' },
+      { label: 'Subspecialist radiologist review, signed and named' },
       { label: '\u201cWhat this means for you\u201d in plain English' },
       { label: 'Answers to your specific questions' },
-      { label: 'Full refund if we miss the 48-hour deadline' }
     ],
     pricingAddons: [
-      { id: 'questions', title: 'Three written questions', note: 'Answered by the same consultant', price: 50, icon: 'FileText' },
-      { id: 'call', title: '10-minute video call', note: 'Talk it through with your consultant', price: 150, icon: 'Video' }
+      { id: 'questions', title: 'Three written questions', note: 'Answered by the same radiologist', price: 50, icon: 'FileText' },
+      { id: 'call', title: '10-minute video call', note: 'Talk it through with your radiologist', price: 150, icon: 'Video' }
     ],
     testimonials: [
       { quote: 'After a confusing NHS report no one would take my calls. The response to my emails was prompt, the service fast, and the report exceptional.', author: 'Benjamin B', scan: 'Spine MRI' },
@@ -681,11 +666,10 @@ class Component extends DCLogic {
       { quote: 'Clear communication throughout and ultimately a report that gave the understanding I needed.', author: 'Kilo D', scan: 'Spine MRI' }
     ],
     faqData: [
-      { q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly. If you would like your GP or consultant copied into the report, tell us their email at upload and we will send it to them at the same time as you.' },
-      { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report — they can usually supply a disc or a secure download. Start your case now and add the images when they arrive; nothing is charged until the last step. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
+      { q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly. If you would like your GP or radiologist copied into the report, tell us their email at upload and we will send it to them at the same time as you.' },
+      { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report. They can usually supply a disc or a secure download. Start your case now and add the images when they arrive; nothing is charged until the last step. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
       { q: 'Which scans can you review?', a: 'MRI, CT, ultrasound, X-ray, PET-CT and mammography, across neuro, musculoskeletal, breast, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
-      { q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we are ICO registered. Only the reporting consultant and our clinical governance lead can access your study.' },
-      { q: 'What happens if you miss the deadline?', a: 'You get a full refund and the report anyway. The deadline you see at checkout is a real date and time, not an estimate.' }
+      { q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we are ICO registered. Only the reporting radiologist and our clinical governance lead can access your study.' },
     ]
   };
 
@@ -866,8 +850,7 @@ class Component extends DCLogic {
         go: () => this.setState({ slide: i })
       })),
       quickAssurances: [
-        { text: 'No card needed yet — nothing is charged until step three' },
-        { text: 'You see the consultant’s name and GMC number before you pay' },
+        { text: 'No card needed yet. Nothing is charged until step three' },
         { text: 'Do not have the images? We show you how to request them' }
       ],
       quickScans: ['MRI', 'CT', 'X-ray', 'Ultrasound', 'PET-CT', 'Not sure'].map(t => {
@@ -884,11 +867,6 @@ class Component extends DCLogic {
       quickAreas: QUICK_AREAS,
       quickArea: this.state.quickArea,
       onQuickArea: e => this.setState({ quickArea: e.target.value }),
-      quickMatch: (() => {
-        const a = QUICK_AREAS.find(x => x.id === this.state.quickArea) || QUICK_AREAS[0];
-        if (this.state.quickScan === 'Not sure') return 'Tell us the body area and we pick the right subspecialist — ' + a.match;
-        return a.match;
-      })(),
       // The hero asked two questions; checkout used to ignore both answers and
       // open on MRI / brain regardless. Now they travel with the visitor.
       quickHref: 'Start Flow.dc.html?' + new URLSearchParams({
@@ -910,7 +888,7 @@ class Component extends DCLogic {
       resetEnquiry: () => this.setState({ enquirySent: false, enquiryEmail: '', enquiryMessage: '', enquiryError: '' }),
       sentGlyph: this.icon('Check', 26),
       enquiryPoints: [
-        { text: 'Read by a consultant radiologist, not a call centre' },
+        { text: 'Read by a radiologist, not a call centre' },
         { text: 'A straight answer within one working day' },
         { text: 'Free, and we will tell you if a second read would not change anything' }
       ],
@@ -923,7 +901,7 @@ class Component extends DCLogic {
       arrowSmallGlyph: this.icon('ArrowRight', 16),
       ...this.carouselVals('svc'),
       ...this.carouselVals('spec'),
-      // Each card links to its own consultant. Every card used to carry the
+      // Each card links to its own radiologist. Every card used to carry the
       // same hardcoded href, so all seven opened Dr Mallon's profile.
       specialists: this.state.specialists.map(c => {
         var sp = c.name.indexOf(' ');
@@ -939,6 +917,9 @@ class Component extends DCLogic {
          Every visual state here is derived from two pieces of state, so the
          cards, the checkboxes, the order lines and the total can never
          disagree about what is selected. */
+      // Counted from the roster rather than typed, so it cannot go stale
+      // the next time a radiologist is added or removed.
+      consultantCount: CONSULTANTS.length,
       packages: this.state.packages.map(p => {
         const on = this.state.pkg === p.id;
         return {
@@ -985,7 +966,7 @@ class Component extends DCLogic {
         const on = this.state.pkgAddons.includes(a.id);
         return {
           label: a.title,
-          value: on ? '+\u00a3' + a.price : '\u2014',
+          value: on ? '+\u00a3' + a.price : 'Not added',
           weight: on ? 600 : 400,
           color: on ? '#0A1F2C' : '#A3B0B8'
         };
@@ -993,7 +974,7 @@ class Component extends DCLogic {
       orderTotal: this.pricingTotal(),
       totalScale: this.state.totalBump ? 1.045 : 1,
       totalNote: this.state.pkg === 'comparison'
-        ? 'Includes the \u00a350 comparison fee. Confirmed before you pay.'
+        ? 'Includes the \u00a350 comparison fee for reading your earlier scans.'
         : 'Add earlier scans in the next step and the \u00a350 comparison fee is added then.',
       orderHref: 'Start Flow.dc.html',
       tickSmall: this.icon('Check', 14),
