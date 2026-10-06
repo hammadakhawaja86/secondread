@@ -1529,15 +1529,15 @@ class Component extends DCLogic {
       },
       nextLabel: s.step === 1
         ? 'Next: tell us about your case'
-        : (s.step === 2 ? 'Next: get your expert report' : 'Pay ' + priceText + ' and start the clock'),
+        : (s.step === 2 ? 'Next: get your expert report' : 'Pay to proceed'),
       nextBlocked: blocker ? 'true' : 'false',
       nextBg: blocker ? '#9BB3B4' : '#0D6E70',
       nextCursor: blocker ? 'not-allowed' : 'pointer',
       nextHoverBg: blocker ? '#9BB3B4' : '#095458',
       nextShadow: blocker ? 'none' : '0 6px 20px rgba(13,110,112,0.3)',
-      nextNote: blocker || (s.step === 3
-        ? 'Card or Apple Pay'
-        : 'Nothing is charged yet'),
+      // Step 3 says nothing beside the button: a payment-method note is a
+      // claim about what we accept, and it is not ours to make here.
+      nextNote: blocker || (s.step === 3 ? '' : 'Nothing is charged yet'),
       nextNoteColor: blocker ? '#B4462F' : '#5A6B77',
 
       saveDraft: () => this.saveDraft(),
