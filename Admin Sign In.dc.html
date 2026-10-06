@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in — SecondRead console</title>
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="admin.css?v=5">
+</head>
+<body>
+<div class="auth">
+
+  <div class="auth-brand">
+    <span class="glow"></span>
+    <div class="inner">
+      <a href="index.html" class="auth-home" title="Back to secondopinionradiology.co.uk"><img src="logo-secondread-light.svg" alt="SecondOpinion Radiology" style="height:56px;width:224px;display:block"></a>
+      <div class="auth-eyebrow">Internal console</div>
+      <h1>Where a case<br>finds its consultant.</h1>
+      <p class="lede">Matching, review, sign-off and release — the working side of SecondRead, for the people who run it.</p>
+
+      <div class="auth-points">
+        <div class="auth-point">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M2 21v-1a6 6 0 0 1 6-6h2"/><path d="M17.5 17.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="m22 22-2.1-2.1"/></svg></span>
+          <div><b>Operations</b><span>Match a case, chase a clock, handle an exception.</span></div>
+        </div>
+        <div class="auth-point">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z"/><path d="M8 12h8"/><path d="M8 16h5"/></svg></span>
+          <div><b>Consultants</b><span>Read the cases offered to you, draft and sign the report.</span></div>
+        </div>
+        <div class="auth-point">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <div><b>Clinical lead</b><span>Second-read sign-off and urgent-finding escalation.</span></div>
+        </div>
+      </div>
+
+      <p class="foot">Access is granted by an administrator, never self-service. Every sign-in, every case opened and every report signed is logged against your name.</p>
+    </div>
+  </div>
+
+  <div class="auth-form">
+    <div class="auth-card">
+      <h2>Sign in</h2>
+      <p class="sub">Use the work address your account was created with. We will email you a six-digit code.</p>
+
+      <label class="auth-label" for="auth-email">Work email address</label>
+      <input class="auth-input" id="auth-email" type="email" placeholder="you@secondopinionradiology.co.uk" autocomplete="email">
+      <p class="auth-hint">Personal addresses are not accepted. If you have changed address, an administrator has to move your account first.</p>
+
+      <button class="auth-btn" type="button">Email me a sign-in code
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+
+      <div class="auth-rule"><span></span><b>Why no password</b><span></span></div>
+
+      <div class="auth-note">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2Z"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <p>SecondRead has no passwords, on either side of the service. A code that expires in ten minutes cannot be reused, shared or left in a browser on a ward computer.</p>
+      </div>
+
+      <p class="auth-help">Cannot get in? Email <a href="mailto:info@secondopinionradiology.co.uk">info@secondopinionradiology.co.uk</a> and an administrator will check your account.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
