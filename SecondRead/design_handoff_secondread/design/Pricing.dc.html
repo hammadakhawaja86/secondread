@@ -86,7 +86,7 @@
         <span style="color: #0D6E70; display: inline-flex;">{{ clockGlyph }}</span>
         <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">Every report, within 48 hours</h3>
       </div>
-      <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.7; color: #173B4F; max-width: 760px;">There is one turnaround and it applies to every case. The clock starts when you pay, and if we miss it the fee comes back to you in full &mdash; you do not have to ask. Everything below is in the price.</p>
+      <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.7; color: #173B4F; max-width: 760px;">There is one turnaround and it applies to every case. The clock starts when you pay. Everything below is in the price.</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px 24px;">
         <sc-for list="{{ rows }}" as="row" hint-placeholder-count="5">
           <div style="display: flex; gap: 11px; align-items: flex-start;">
@@ -192,8 +192,6 @@ class Component extends DCLogic {
       { feature: 'Consultant subspecialist review, signed and named' },
       { feature: '\u201cWhat this means for you\u201d in plain English' },
       { feature: 'Answers to your specific questions' },
-      { feature: 'A named GMC-registered consultant, confirmed before you pay' },
-      { feature: 'Full refund if we miss the 48-hour deadline' }
     ],
     addons: [
       { title: 'X-ray review', price: '79', description: 'Single-region plain film, 48-hour turnaround.' },

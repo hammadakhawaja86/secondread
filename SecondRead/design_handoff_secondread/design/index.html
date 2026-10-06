@@ -69,8 +69,6 @@
           <span>No GP referral needed</span>
           <span style="color: #6C7C87;">·</span>
           <span>No appointment</span>
-          <span style="color: #6C7C87;">·</span>
-          <span>Refund if we miss the deadline</span>
         </div>
       </div>
       <div style="display: flex; align-items: flex-end; justify-content: flex-end; height: 100%; min-height: 260px;">
@@ -87,7 +85,7 @@
       <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
         <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Start in under a minute</span>
         <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.06; letter-spacing: -0.025em; color: #0A1F2C;">Two questions and we know who reads your scan.</h2>
-        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 520px;">No card needed yet, and you can stop at any step. Tell us what was scanned and we name the subspecialist before you upload anything.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 520px;">No card needed yet, and you can stop at any step. Tell us what was scanned and we take it from there.</p>
         <div style="display: flex; flex-direction: column; gap: 12px;">
           <sc-for list="{{ quickAssurances }}" as="item" hint-placeholder-count="3">
             <div style="display: flex; gap: 11px; align-items: center;">
@@ -110,11 +108,7 @@
             <option value="{{ area.id }}">{{ area.label }}</option>
           </sc-for>
         </select>
-        <div style="margin: 18px 0 20px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 14px; padding: 16px 18px;">
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 7px;">Matched</div>
-          <div style="font-size: 15px; line-height: 1.6; color: #06313A;">{{ quickMatch }}</div>
-        </div>
-        <a href="{{ quickHref }}" style="display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 28px; border-radius: 14px; background: #0D6E70; color: #FFFFFF; font-size: 16px; font-weight: 600; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
+        <a href="{{ quickHref }}" style="margin-top: 20px; display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 28px; border-radius: 14px; background: #0D6E70; color: #FFFFFF; font-size: 16px; font-weight: 600; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
       </div>
     </div>
     </div>
@@ -130,7 +124,7 @@
       </div>
       <div style="background: #FFFFFF; padding: 26px 28px;">
         <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #095458; line-height: 1;">48 hrs</div>
-        <div style="margin-top: 8px; font-size: 14px; color: #4A5C68;">every report, or the fee comes back</div>
+        <div style="margin-top: 8px; font-size: 14px; color: #4A5C68;">every report, signed and returned</div>
       </div>
       <div style="background: #FFFFFF; padding: 26px 28px;">
         <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #095458; line-height: 1;">4.9 ★</div>
@@ -157,7 +151,7 @@
     <div style="text-align: center; max-width: 640px; margin: 0 auto 44px;">
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">How it works</div>
       <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Three steps, and we do the matching.</h2>
-      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">You are never asked to choose a radiologist. Tell us about your case and we match it to the right consultant subspecialist — confirmed before you pay.</p>
+      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">You are never asked to choose a radiologist. Tell us about your case and we match it to the right consultant subspecialist.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-bottom: 44px;">
       <sc-for list="{{ howSteps }}" as="step" hint-placeholder-count="3">
@@ -235,7 +229,7 @@
       <div style="max-width: 620px;">
         <span style="display: inline-flex; align-items: center; background: #E4F2F2; color: #06313A; border-radius: 6px; padding: 6px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">The specialists</span>
         <h2 style="margin: 16px 0 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; color: #0A1F2C;">Fourteen consultants. One will read yours.</h2>
-        <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: #4A5C68;">Every report is signed by a named, GMC-registered subspecialist — you see who before you pay.</p>
+        <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: #4A5C68;">Every report is signed by a GMC-registered subspecialist in that body area.</p>
       </div>
       <div data-r="specnav" style="display: flex; gap: 12px; flex-shrink: 0; padding-bottom: 4px;">
         <button type="button" onClick="{{ specPrev }}" aria-label="Previous consultants" style="appearance: none; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid #D4DDE0; background: none; color: #0A1F2C; display: flex; align-items: center; justify-content: center; cursor: {{ specPrevCursor }}; opacity: {{ specPrevOpacity }}; transition: background 140ms ease-out, border-color 140ms ease-out, opacity 200ms ease-out, transform 140ms ease-out;" style-hover="background: #E4F2F2; border-color: #0D6E70;" style-active="transform: scale(0.94);">{{ arrowLeftGlyph }}</button>
@@ -591,13 +585,7 @@ const QUICK_AREAS = [
   { id: 'abdomen', label: 'Abdomen or pelvis', consultant: 'tamimi' },
   { id: 'breast', label: 'Breast', consultant: null },
   { id: 'headneck', label: 'Head or neck', consultant: 'wassati' }
-].map(function (a) {
-  var c = CONSULTANT_BY_ID[a.consultant];
-  a.match = c
-    ? 'Dr ' + c.name + ', ' + c.role.replace(/^Consultant /, '').toLowerCase() + ', ' + c.hospital + '. Report within 48 hours.'
-    : 'We match your subspecialist once we see the study. Report within 48 hours.';
-  return a;
-});
+];
 
 class Component extends DCLogic {
   state = {
@@ -669,7 +657,6 @@ class Component extends DCLogic {
       { label: 'Consultant subspecialist review, signed and named' },
       { label: '\u201cWhat this means for you\u201d in plain English' },
       { label: 'Answers to your specific questions' },
-      { label: 'Full refund if we miss the 48-hour deadline' }
     ],
     pricingAddons: [
       { id: 'questions', title: 'Three written questions', note: 'Answered by the same consultant', price: 50, icon: 'FileText' },
@@ -685,7 +672,6 @@ class Component extends DCLogic {
       { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report — they can usually supply a disc or a secure download. Start your case now and add the images when they arrive; nothing is charged until the last step. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
       { q: 'Which scans can you review?', a: 'MRI, CT, ultrasound, X-ray, PET-CT and mammography, across neuro, musculoskeletal, breast, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
       { q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we are ICO registered. Only the reporting consultant and our clinical governance lead can access your study.' },
-      { q: 'What happens if you miss the deadline?', a: 'You get a full refund and the report anyway. The deadline you see at checkout is a real date and time, not an estimate.' }
     ]
   };
 
@@ -867,7 +853,6 @@ class Component extends DCLogic {
       })),
       quickAssurances: [
         { text: 'No card needed yet — nothing is charged until step three' },
-        { text: 'You see the consultant’s name and GMC number before you pay' },
         { text: 'Do not have the images? We show you how to request them' }
       ],
       quickScans: ['MRI', 'CT', 'X-ray', 'Ultrasound', 'PET-CT', 'Not sure'].map(t => {
@@ -884,11 +869,6 @@ class Component extends DCLogic {
       quickAreas: QUICK_AREAS,
       quickArea: this.state.quickArea,
       onQuickArea: e => this.setState({ quickArea: e.target.value }),
-      quickMatch: (() => {
-        const a = QUICK_AREAS.find(x => x.id === this.state.quickArea) || QUICK_AREAS[0];
-        if (this.state.quickScan === 'Not sure') return 'Tell us the body area and we pick the right subspecialist — ' + a.match;
-        return a.match;
-      })(),
       // The hero asked two questions; checkout used to ignore both answers and
       // open on MRI / brain regardless. Now they travel with the visitor.
       quickHref: 'Start Flow.dc.html?' + new URLSearchParams({
@@ -996,7 +976,7 @@ class Component extends DCLogic {
       orderTotal: this.pricingTotal(),
       totalScale: this.state.totalBump ? 1.045 : 1,
       totalNote: this.state.pkg === 'comparison'
-        ? 'Includes the \u00a350 comparison fee. Confirmed before you pay.'
+        ? 'Includes the \u00a350 comparison fee for reading your earlier scans.'
         : 'Add earlier scans in the next step and the \u00a350 comparison fee is added then.',
       orderHref: 'Start Flow.dc.html',
       tickSmall: this.icon('Check', 14),
