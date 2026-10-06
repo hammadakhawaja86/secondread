@@ -67,7 +67,7 @@
           </div>
         </sc-for>
       </div>
-      <a href="sample-report-secondread.pdf" download="SecondRead-sample-report.pdf" type="application/pdf" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 50px; padding: 14px 30px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Download the full sample (PDF)<span style="margin-left: 10px; font-weight: 500; opacity: 0.75;">2 pages · 5 KB</span></a>
+      <a href="sample-report-secondread.pdf" download="SecondRead-sample-report.pdf" type="application/pdf" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 50px; padding: 14px 30px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Download the full sample (PDF)<span style="margin-left: 10px; font-weight: 500; opacity: 0.75;">3 pages &middot; 90 KB</span></a>
     </div>
   </div>
 </section>
@@ -76,7 +76,7 @@
   <div style="max-width: 900px; margin: 0 auto; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; box-shadow: 0 12px 36px rgba(10,31,44,0.1); overflow: hidden;">
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 26px 40px; border-bottom: 2px solid #0D6E70;">
       <img src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height: 55px; width: 220px; display: block">
-      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5A6B77; letter-spacing: 0.02em;">SR-2026-0418 · 4 August 2026, 14:02</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5A6B77; letter-spacing: 0.02em;">SR-2026-0418 · 6 October 2026, 14:02</span>
     </div>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #E2E9EC;">
       <sc-for list="{{ meta }}" as="field" hint-placeholder-count="4">
@@ -86,29 +86,55 @@
         </div>
       </sc-for>
     </div>
-    <div style="padding: 32px 40px; border-top: 1px solid #E2E9EC;">
-      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 10px;">Clinical question</div>
-      <p style="margin: 0; font-size: 15.5px; line-height: 1.7; color: #173B4F;">Previous report raised a “possible left temporal lesion”. Patient asks whether this is a tumour and whether it has changed since 2024.</p>
+    <div style="padding: 32px 40px 0; border-top: 1px solid #E2E9EC;">
+      <sc-for list="{{ sections }}" as="sec" hint-placeholder-count="4">
+        <div style="margin-bottom: 30px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 10px;">{{ sec.label }}</div>
+          <sc-for list="{{ sec.paras }}" as="p" hint-placeholder-count="3">
+            <p style="margin: 0 0 13px; font-size: 15.5px; line-height: 1.7; color: #173B4F;">{{ p.text }}</p>
+          </sc-for>
+        </div>
+      </sc-for>
     </div>
-    <div style="padding: 0 40px 32px;">
-      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 10px;">Findings</div>
-      <p style="margin: 0; font-size: 15.5px; line-height: 1.7; color: #173B4F;">The area described in the left temporal region corresponds to a prominent developmental venous anomaly, measuring 8mm, unchanged from the 2024 study (8mm). No mass effect, no restricted diffusion, no abnormal enhancement. Remaining brain parenchyma, ventricles and skull base are normal for age.</p>
-    </div>
-    <div style="margin: 0 40px 32px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 16px; padding: 28px 30px;">
-      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 10px;">What this means for you</div>
-      <p style="margin: 0; font-size: 16px; line-height: 1.75; color: #06313A;">The thing seen on your scan is a normal variation in the way a small vein has formed. It is not a tumour and it has not grown since 2024. It does not need treatment and it is not the cause of your headaches. I would not repeat the scan unless your symptoms change.</p>
-    </div>
-    <div style="padding: 0 40px 32px;">
-      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 14px;">Recommended next steps</div>
-      <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; counter-reset: step;">
-        <sc-for list="{{ nextSteps }}" as="step" hint-placeholder-count="3">
+
+    <div style="padding: 0 40px 30px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 14px;">Conclusion</div>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+        <sc-for list="{{ conclusion }}" as="c" hint-placeholder-count="5">
           <li style="display: flex; gap: 12px; align-items: flex-start;">
-            <span style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: #E4F2F2; color: #095458; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px;">{{ step.n }}</span>
-            <span style="font-size: 15.5px; line-height: 1.6; color: #173B4F;">{{ step.text }}</span>
+            <span aria-hidden="true" style="flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%; background: #0D6E70; margin-top: 9px;"></span>
+            <span style="font-size: 15.5px; line-height: 1.65; color: #173B4F;">{{ c.text }}</span>
           </li>
         </sc-for>
-      </ol>
+      </ul>
     </div>
+
+    <div style="padding: 0 40px 32px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 10px;">Recommendations</div>
+      <sc-for list="{{ recommendations }}" as="r" hint-placeholder-count="2">
+        <p style="margin: 0 0 13px; font-size: 15.5px; line-height: 1.7; color: #173B4F;">{{ r.text }}</p>
+      </sc-for>
+    </div>
+
+    <div style="margin: 0 40px 32px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 16px; padding: 28px 30px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">What this means for you</div>
+      <sc-for list="{{ plainEnglish }}" as="p" hint-placeholder-count="6">
+        <p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #06313A;">{{ p.text }}</p>
+      </sc-for>
+    </div>
+
+    <div style="padding: 0 40px 30px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-top: 26px; border-top: 1px solid #E2E9EC;">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #5A6B77; margin-bottom: 8px;">Reported and signed by</div>
+          <div style="font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; color: #0A1F2C;">{{ signName }}</div>
+          <div style="margin-top: 3px; font-size: 14px; color: #4A5C68;">{{ signRole }}</div>
+          <div style="margin-top: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5A6B77;">{{ signGmc }}</div>
+        </div>
+        <div style="text-align: right; font-size: 12.5px; line-height: 1.6; color: #5A6B77;">{{ signWhen }}</div>
+      </div>
+    </div>
+
     <div style="padding: 22px 40px 28px; border-top: 1px solid #E2E9EC; background: #FAFCFC;">
       <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #5A6B77;">This report is a radiological opinion based on the images supplied and does not replace clinical assessment by your treating doctor.</p>
     </div>
@@ -157,23 +183,60 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;1024px&quot;}}">
 class Component extends DCLogic {
+  /* The sample is a real report in shape and in language: one study, the
+     question it was asked, what was seen, what that adds up to, what to do
+     about it, and then the same thing again without the vocabulary. No real
+     patient appears here. */
   state = {
     guarantees: [
       { text: 'Named consultant, GMC number, date and time signed' },
-      { text: 'Comparison with prior imaging, with measurements' },
+      { text: 'Comparison with your earlier scans, where you have them' },
       { text: 'Direct answers to the questions you asked' },
       { text: 'Recommended next steps, in order' }
     ],
     meta: [
       { label: 'Patient', value: 'A. A., DOB 12/04/1974' },
-      { label: 'Reporting consultant', value: 'Dr D. Mallon, FRCR, GMC 7012345' },
-      { label: 'Study', value: 'MRI brain with contrast, 18/01/2026' },
-      { label: 'Compared with', value: 'MRI brain, 03/2024' }
+      { label: 'Reporting consultant', value: 'Dr R. Rajakulasingam, FRCR, GMC 7012345' },
+      { label: 'Study', value: 'MRI right knee, 18/01/2026' },
+      { label: 'Comparison', value: 'No prior examination available' }
     ],
-    nextSteps: [
-      { n: '1', text: 'Share this report with your GP.' },
-      { n: '2', text: 'Ask your GP to review headache causes unrelated to imaging.' },
-      { n: '3', text: 'No further imaging required on radiological grounds.' }
+    sections: [
+      { label: 'Clinical indication', paras: [
+        { text: 'Ongoing right knee pain. Evaluation for internal derangement and ligamentous injury.' }
+      ]},
+      { label: 'Technique', paras: [
+        { text: 'Multiplanar, multisequence MRI of the right knee performed without intravenous contrast, including sagittal, coronal and axial proton-density, T1-weighted and fluid-sensitive fat-suppressed sequences.' }
+      ]},
+      { label: 'Findings', paras: [
+        { text: 'There is a complete, full-thickness tear of the medial collateral ligament (MCL), with disruption of the normal low-signal ligament fibres and loss of ligamentous continuity. The ligament is markedly thickened, heterogeneous and irregular at the site of injury, with a focal gap between the disrupted fibres. There is extensive surrounding fluid-sensitive oedema along the medial aspect of the knee, extending through the adjacent periligamentous soft tissues. Associated oedema and injury of the deep medial capsuloligamentous structures is also present. There is no significant retraction of the torn ligament fibres or discrete intervening soft-tissue mass. Overall appearances are consistent with a grade 3 MCL injury.' },
+        { text: 'There is also a high-grade, full-thickness tear of the anterior cruciate ligament (ACL). The normal continuous low-signal ACL fibres are substantially disrupted, with marked heterogeneity, fibre discontinuity and abnormal laxity and poor definition of the ligament along its expected course. The appearances are compatible with essentially complete ACL disruption.' },
+        { text: 'There is associated bone marrow oedema involving the lateral femoral condyle and posterolateral tibial plateau, in a characteristic distribution for a pivot-shift mechanism of injury associated with ACL disruption. No acute displaced fracture or significant cortical disruption is identified.' },
+        { text: 'The posterior cruciate ligament remains intact with preserved calibre and normal signal. The lateral collateral ligament complex and posterolateral corner structures are intact without evidence of a high-grade tear. The quadriceps and patellar tendons are intact, and the extensor mechanism is maintained.' },
+        { text: 'The medial and lateral menisci maintain their overall morphology. No definite displaced meniscal fragment or bucket-handle tear is identified. No convincing unstable meniscal tear is demonstrated on the current examination.' },
+        { text: 'There is mild chondral irregularity without a large focal full-thickness articular cartilage defect or unstable osteochondral fragment. No significant focal osteochondral lesion is identified.' },
+        { text: 'There is a moderate knee joint effusion with associated post-traumatic synovial fluid. No definite intra-articular loose body is identified.' },
+        { text: 'Extensive post-traumatic soft-tissue oedema is present predominantly along the medial aspect of the knee, centred on the disrupted MCL and adjacent medial capsuloligamentous structures. No discrete drainable collection or soft-tissue mass is demonstrated.' }
+      ]}
+    ],
+    conclusion: [
+      { text: 'Complete, full-thickness tear of the medial collateral ligament (grade 3 MCL injury) with complete disruption of the ligament fibres and extensive surrounding medial soft-tissue oedema. Associated injury and sprain of the deep medial capsuloligamentous structures.' },
+      { text: 'High-grade, full-thickness tear of the anterior cruciate ligament, with essentially complete disruption of the normal ACL fibres.' },
+      { text: 'Associated bone marrow oedema of the lateral femoral condyle and posterolateral tibial plateau, compatible with a pivot-shift injury pattern.' },
+      { text: 'Moderate knee joint effusion.' },
+      { text: 'No acute displaced fracture or definite displaced or unstable meniscal tear identified.' }
+    ],
+    recommendations: [
+      { text: 'Orthopaedic or sports medicine assessment is recommended given the combination of complete MCL and ACL injuries. Clinical assessment should specifically evaluate the degree of valgus and rotational or anterior instability.' },
+      { text: 'Management should be guided by the patient’s symptoms, clinical stability, functional requirements and desired activity level. Initial treatment may include protection of the healing MCL, appropriate bracing, control of pain and swelling, restoration of range of motion and structured physiotherapy. The ACL injury should subsequently be assessed by an orthopaedic knee specialist to determine whether operative reconstruction is appropriate, particularly if significant instability persists or the patient wishes to return to pivoting, running or high-demand sporting activities.' }
+    ],
+    plainEnglish: [
+      { text: 'The MRI shows two important ligament injuries in your right knee.' },
+      { text: 'The MCL, which is the major ligament on the inner side of the knee, is completely torn. This is described as a full-thickness or grade 3 MCL tear. Because the ligament is completely disrupted, the inner side of the knee may feel unstable, particularly when the knee is subjected to a sideways or “knock-kneed” force.' },
+      { text: 'The MRI also shows a tear of the ACL, an important ligament located in the centre of the knee. The ACL helps prevent the shin bone from moving excessively forward and helps control rotational stability. A complete ACL tear can therefore cause a sensation that the knee is giving way, buckling or shifting, particularly during turning, pivoting, running or sports activities.' },
+      { text: 'There is also bruising and swelling within the bones in a pattern commonly seen when the knee undergoes the type of twisting movement that can injure the ACL. The knee contains a moderate amount of extra fluid, an effusion, which is another common consequence of a significant ligament injury.' },
+      { text: 'Importantly, the MRI does not show an obvious displaced fracture or a definite displaced meniscal tear.' },
+      { text: 'These findings do not automatically mean that surgery is required. Treatment depends on factors such as your age, activity level, symptoms, degree of instability, physical examination and whether you wish to return to activities involving running, pivoting or rapid changes of direction.' },
+      { text: 'A knee specialist or orthopaedic surgeon should review the MRI together with your examination. Treatment may initially focus on controlling swelling, restoring knee movement and strength, protecting the healing MCL and undergoing structured physiotherapy. The ACL injury may subsequently require further discussion regarding reconstruction, particularly if the knee remains unstable or you wish to return to pivoting sports.' }
     ]
   };
 
@@ -181,7 +244,14 @@ class Component extends DCLogic {
     return {
       guarantees: this.state.guarantees,
       meta: this.state.meta,
-      nextSteps: this.state.nextSteps,
+      sections: this.state.sections,
+      conclusion: this.state.conclusion,
+      recommendations: this.state.recommendations,
+      plainEnglish: this.state.plainEnglish,
+      signName: 'Dr Ramanan Rajakulasingam',
+      signRole: 'Consultant musculoskeletal radiologist',
+      signGmc: 'FRCR \u00b7 GMC 7012345',
+      signWhen: 'Signed 6 October 2026, 14:02',
       checkGlyph: React.createElement('svg', {
         width: 13, height: 13, viewBox: '0 0 24 24', fill: 'none',
         stroke: 'currentColor', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round'
