@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=9"></script>
-<script src="./portal.js?v=9"></script>
+<script src="./consultants.js?v=10"></script>
+<script src="./portal.js?v=10"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -60,7 +60,7 @@
       <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
         <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Reports today from {{ consultantCount }} UK radiologists</span>
         <h1 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 48px; line-height: 1.04; letter-spacing: -0.025em; color: #0A1F2C;">Your scan, read again by the right specialist.</h1>
-        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 560px;">Upload the MRI, CT, ultrasound or X-ray you already have. A GMC-registered radiologist who subspecialises in that body area reviews it and writes you a report in plain English — £250, within 48 hours.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 560px;">Upload the MRI, CT, ultrasound or X-ray you already have. A GMC-registered radiologist who subspecialises in that body area reviews it and writes you a report in plain English, £250, within 48 hours.</p>
         <div style="display: flex; gap: 14px; flex-wrap: wrap;">
           <a href="Start Flow.dc.html" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.32); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Start my second read</a>
           <a href="Sample Report.dc.html" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out, transform 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;" style-active="transform: translateY(1px);">See a real sample report <span>→</span></a>
@@ -202,8 +202,7 @@
                label pinned to the image, not as a chip floating above it. -->
           <span style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.94); color: #06313A; border-radius: 999px; padding: 6px 13px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;">{{ s.tag }}</span>
           <span style="position: relative; display: flex; flex-direction: column; flex: 1; align-items: center; text-align: center;">
-            <!-- Both reserved heights — two title lines and one credit line —
-                 keep every card's button on the same baseline across the row,
+            <!-- Both reserved heights, two title lines and one credit line, keep every card's button on the same baseline across the row,
                  whether or not that service names a lead radiologist. -->
             <span style="min-height: 59px; max-width: 252px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.22; letter-spacing: -0.58px; color: #FFFFFF;">{{ s.title }}</span>
             <span style="margin-top: 5px; margin-bottom: 14px; min-height: 18px; font-size: 12.5px; line-height: 1.4; color: rgba(255,255,255,0.82);">{{ s.credit }}</span>
@@ -457,7 +456,7 @@
     <div>
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #6FE3C5; margin-bottom: 12px;">Ask first, pay later</div>
       <h2 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #FFFFFF; letter-spacing: -0.01em;">Not sure whether a second read will help?</h2>
-      <p style="margin: 0 0 26px; color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.6;">Tell us your question and what you already have. We will tell you honestly whether a review is worth your money — free, within one working day. If the answer is no, we will say so.</p>
+      <p style="margin: 0 0 26px; color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.6;">Tell us your question and what you already have. We will tell you honestly whether a review is worth your money, free, within one working day. If the answer is no, we will say so.</p>
       <div style="display: flex; flex-direction: column; gap: 14px;">
         <sc-for list="{{ enquiryPoints }}" as="pt" hint-placeholder-count="3">
           <div style="display: flex; gap: 11px; align-items: flex-start;">
@@ -473,7 +472,7 @@
       <sc-if value="{{ enquirySent }}" hint-placeholder-val="{{ false }}">
         <div style="text-align: center; padding: 24px 8px;">
           <span style="display: inline-flex; width: 52px; height: 52px; border-radius: 50%; background: #0D6E70; color: #FFFFFF; align-items: center; justify-content: center; margin-bottom: 18px;">{{ sentGlyph }}</span>
-          <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Thank you — that is with us</h3>
+          <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Thank you. That is with us</h3>
           <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.65; color: #4A5C68;">A radiologist reads every enquiry personally. You will hear back by email within one working day, and there is nothing to pay either way.</p>
           <button type="button" onClick="{{ resetEnquiry }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Send another</button>
         </div>
@@ -639,10 +638,9 @@ class Component extends DCLogic {
       { photo: 'services/abdomen.jpg', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Specialist Profile.dc.html?id=tamimi',
         gradient: 'linear-gradient(155deg, #095458 0%, #12938F 42%, #06313A 100%)' }
     ],
-    // Portraits are ordinary files now, not the base64 blob in portraits/data.js —
-    // swapping a headshot is a one-file drop-in. GMC numbers are placeholders and
+    // Portraits are ordinary files now, not the base64 blob in portraits/data.js, // swapping a headshot is a one-file drop-in. GMC numbers are placeholders and
     // must be replaced with the real registrations before launch.
-    // Sourced from consultants.js — the same roster the directory and the
+    // Sourced from consultants.js, the same roster the directory and the
     // profile pages read, so a card can never point at the wrong person.
     specialists: FEATURED_CONSULTANTS,
     // One turnaround at one standard fee. The only thing that moves the base
@@ -669,7 +667,7 @@ class Component extends DCLogic {
     ],
     faqData: [
       { q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly. If you would like your GP or radiologist copied into the report, tell us their email at upload and we will send it to them at the same time as you.' },
-      { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report — they can usually supply a disc or a secure download. Start your case now and add the images when they arrive; nothing is charged until the last step. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
+      { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report. They can usually supply a disc or a secure download. Start your case now and add the images when they arrive; nothing is charged until the last step. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
       { q: 'Which scans can you review?', a: 'MRI, CT, ultrasound, X-ray, PET-CT and mammography, across neuro, musculoskeletal, breast, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
       { q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we are ICO registered. Only the reporting radiologist and our clinical governance lead can access your study.' },
     ]
@@ -852,7 +850,7 @@ class Component extends DCLogic {
         go: () => this.setState({ slide: i })
       })),
       quickAssurances: [
-        { text: 'No card needed yet — nothing is charged until step three' },
+        { text: 'No card needed yet. Nothing is charged until step three' },
         { text: 'Do not have the images? We show you how to request them' }
       ],
       quickScans: ['MRI', 'CT', 'X-ray', 'Ultrasound', 'PET-CT', 'Not sure'].map(t => {
@@ -968,7 +966,7 @@ class Component extends DCLogic {
         const on = this.state.pkgAddons.includes(a.id);
         return {
           label: a.title,
-          value: on ? '+\u00a3' + a.price : '\u2014',
+          value: on ? '+\u00a3' + a.price : 'Not added',
           weight: on ? 600 : 400,
           color: on ? '#0A1F2C' : '#A3B0B8'
         };

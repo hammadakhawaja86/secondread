@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
-   SecondRead — radiologist roster (single source of truth)
+   SecondRead, radiologist roster (single source of truth)
 
    Previously this roster was duplicated in three files with three different
    shapes, which is why every "View profile" link pointed at the same person.
@@ -15,7 +15,7 @@
      background   long-form prose for the profile page; omit if not supplied
      review       verified patient quote; omit unless the review is genuinely on file
 
-   CONTENT STATUS — for the client, before launch:
+   CONTENT STATUS, for the client, before launch:
      · Every `gmc` below is the placeholder 7012345. Replace with the real
        registration for each radiologist, or remove the field entirely. A wrong
        GMC number next to a named doctor is worse than no number at all.
@@ -69,7 +69,7 @@
       intro: 'Radiologist at the National Hospital for Neurology and Neurosurgery, UCLH. Reads brain, spine and skull-base imaging every working day.',
       background: [
         'Biochemistry and medicine at Bristol, PhD at Cambridge, then joint academic and clinical radiology training at Imperial College Healthcare, including an Academic Clinical Fellowship and a Clinical Lectureship at Imperial College London.',
-        'Now a substantive neuroradiologist at NHNN, part of UCLH — one of the largest neurological referral centres in Europe.'
+        'Now a substantive neuroradiologist at NHNN, part of UCLH, one of the largest neurological referral centres in Europe.'
       ],
       helpWith: [
         'Unclear brain MRI findings',
@@ -80,7 +80,7 @@
         'Skull-base and pituitary lesions'
       ],
       review: {
-        quote: 'The report I received from Dr Mallon was exceptional — clear understanding and the information I needed.',
+        quote: 'The report I received from Dr Mallon was exceptional, clear understanding and the information I needed.',
         source: 'Verified patient · spine MRI'
       },
       availability: 'Available today', rank: 0
@@ -262,7 +262,7 @@
       intro: 'Uroradiologist at The Royal Marsden, one of the world’s leading cancer centres, specialising in prostate, kidney and bladder imaging.',
       background: [
         'Trained in medicine at Imperial College London before undertaking radiology training at Guy’s and St Thomas’ and University College London Hospitals, where he developed subspecialist experience in urological and oncological imaging.',
-        'Clinical practice is focused particularly on prostate MRI — screening, lesion identification and PI-RADS scoring, biopsy planning, staging and treatment planning, and assessment following treatment. Wider practice includes renal and bladder imaging, general oncological imaging, and whole-body MRI for advanced malignancy, cancer screening and preventative health assessment.',
+        'Clinical practice is focused particularly on prostate MRI, screening, lesion identification and PI-RADS scoring, biopsy planning, staging and treatment planning, and assessment following treatment. Wider practice includes renal and bladder imaging, general oncological imaging, and whole-body MRI for advanced malignancy, cancer screening and preventative health assessment.',
         'An active academic interest in prostate cancer imaging spans the pathway from diagnosis to treatment response assessment, with extensive publication in urological and oncological imaging and contributions to major international research and consensus work. President-Elect of the British Society of Urogenital Radiology, an active member of the European Society of Urogenital Radiology working groups for prostate, bladder and renal imaging, and a former member of the Prostate Cancer UK Research Advisory Committee. He teaches regularly on specialist prostate MRI courses in the UK and Europe.'
       ],
       helpWith: [
@@ -317,7 +317,7 @@
       background: [
         'Graduated from Imperial College London with triple distinction, and was the highest scoring student for both his undergraduate BSc and postgraduate MSc.',
         'Awarded numerous prizes for scientific presentations and peer-reviewed publications, including from the Royal College of Radiologists and the Radiological Society of North America.',
-        'A wide-ranging skillset with particular expertise in nuclear medicine — including PET/CT, SPECT/CT and radioligand therapy — DEXA, whole-body and oncological imaging covering the entire thorax, abdomen and pelvis (CT, MR, x-ray and ultrasound), emergency imaging and cardiac imaging. A key member of a number of specialist cancer and non-cancer multidisciplinary team meetings.',
+        'A wide-ranging skillset with particular expertise in nuclear medicine, including PET/CT, SPECT/CT and radioligand therapy, DEXA, whole-body and oncological imaging covering the entire thorax, abdomen and pelvis (CT, MR, x-ray and ultrasound), emergency imaging and cardiac imaging. A key member of a number of specialist cancer and non-cancer multidisciplinary team meetings.',
         'Holds a variety of roles encompassing radiation safety, training, and sharing learning from errors, alongside national and international society committee positions with NICE, RSNA and EANM. A recognised educator who speaks regularly at international meetings.',
         'Focuses on delivering accurate, comprehensive, timely and patient-centred care.'
       ],
@@ -340,6 +340,6 @@
   root.CONSULTANT_BY_ID = byId;
   root.FEATURED_CONSULTANTS = CONSULTANTS.filter(function (c) { return c.featured; });
 
-  // Surname only — used for CTA labels like "Request Dr Mallon".
+  // Surname only, used for CTA labels like "Request Dr Mallon".
   root.consultantSurname = function (c) { return c.name.split(' ').slice(-1)[0]; };
 })(window);

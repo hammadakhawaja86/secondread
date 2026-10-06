@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=9"></script>
-<script src="./portal.js?v=9"></script>
+<script src="./consultants.js?v=10"></script>
+<script src="./portal.js?v=10"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -42,7 +42,7 @@
     }
     [data-r="acctmenu"][open] > summary > [data-r="chev"] { transform: rotate(180deg); }
 
-    /* Portal focus ring — visible on both the white cards and the mint washes. */
+    /* Portal focus ring, visible on both the white cards and the mint washes. */
     [data-r="portalwrap"] a:focus-visible,
     [data-r="portalwrap"] button:focus-visible,
     [data-r="portalwrap"] input:focus-visible,
@@ -92,7 +92,7 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</div>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples — no real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples. No real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <div data-r="portalwrap" style="max-width: 1180px; margin: 0 auto; padding: 28px 32px 40px;">
@@ -307,7 +307,7 @@ const TICK = 'M20 6 9 17l-5-5';
 
 // The four tracked stages, named exactly as PORTAL.TIMELINE names them and as
 // the website, the confirmation screen and the emails name them. Clinical
-// quality check is deliberately folded into "Under expert review" — splitting
+// quality check is deliberately folded into "Under expert review". Splitting
 // it out only invites "why is it stuck in checking?". "Action needed" and
 // "Follow-up available" are not stages on this rail: the first is a pause,
 // shown as the amber panel above, and the second appears once a report lands.
@@ -493,7 +493,7 @@ class Component extends DCLogic {
             src: doc.photo, alt: '',
             style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }
           })
-        : (doc ? doc.initials : '\u2014'),
+        : (doc ? doc.initials : ''),
       docBlurb: doc
         ? (doc.hospital ? doc.hospital + '. ' : '') + (doc.quals || '')
         : 'We are matching your case to a radiologist who subspecialises in this part of the body. Their name will appear here, usually within a couple of hours.',

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./portal.js?v=9"></script>
+<script src="./portal.js?v=10"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -94,7 +94,7 @@
     <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
       <div style="background: #FFFFFF; border: 1px dashed #D4DDE0; border-radius: 16px; padding: 44px 32px; text-align: center;">
         <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">Nothing matches that</h3>
-        <p style="margin: 0 0 20px; font-size: 14.5px; color: #4A5C68;">Try a different word, or just call us — we answer in about 40 seconds.</p>
+        <p style="margin: 0 0 20px; font-size: 14.5px; color: #4A5C68;">Try a different word, or just call us. We answer in about 40 seconds.</p>
         <button type="button" onClick="{{ clearAll }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF;">Clear search</button>
       </div>
     </sc-if>
@@ -170,10 +170,10 @@ const CATEGORIES = ['Before you order', 'Getting your images', 'Your report', 'P
 const FAQS = [
   { id: 'gp-referral', category: 'Before you order', q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly and order without seeing anyone first. If you would like your GP or radiologist copied into the report, give us their email at upload and we send it to them at the same time as you.' },
   { id: 'nhs-scan', category: 'Getting your images', q: 'Can I use a scan done on the NHS?', a: 'Yes. The images belong to you under your right of access, and a second opinion on an NHS scan is entirely legitimate. Reporting on NHS imaging is routine for us and does not affect your NHS care in any way.' },
-  { id: 'no-images', category: 'Getting your images', q: 'What if I do not have the images?', a: 'You have a legal right to a copy of your own scan images. Ring the radiology department at the hospital where the scan was done — or medical records — and ask for the images themselves rather than just the written report. They can usually supply a disc or a secure download, and under UK data protection law they should respond within one month. If the scan was private or done abroad, ask the clinic for the download link they issued you. Start your case now and add the images when they arrive: nothing is charged until the last step. We cannot make the request on your behalf, because it has to come from you, but call us and we will talk you through it.' },
+  { id: 'no-images', category: 'Getting your images', q: 'What if I do not have the images?', a: 'You have a legal right to a copy of your own scan images. Ring the radiology department at the hospital where the scan was done, or medical records, and ask for the images themselves rather than just the written report. They can usually supply a disc or a secure download, and under UK data protection law they should respond within one month. If the scan was private or done abroad, ask the clinic for the download link they issued you. Start your case now and add the images when they arrive: nothing is charged until the last step. We cannot make the request on your behalf, because it has to come from you, but call us and we will talk you through it.' },
   { id: 'bad-news', category: 'Your report', q: 'Will you tell me I have cancer over email?', a: 'Never as a surprise line in a PDF. If the radiologist finds something serious or urgent, we call you before the report is released and offer a video call with the reporting radiologist at no extra cost, so you hear it from a doctor who can answer your questions.' },
   { id: 'who-sees', category: 'Privacy', q: 'Who can see my images?', a: 'Only the reporting radiologist and our clinical governance lead. Images are stored encrypted on UK servers under UK GDPR and we are ICO registered. We never share your study with insurers, employers or third parties, and you can ask us to delete it at any time.' },
-  { id: 'outside-uk', category: 'Before you order', q: 'I am outside the UK — can you still help?', a: 'Yes. We accept images from any country and report in English. Payment is in pounds sterling and the deadline you see at checkout is shown in your local time as well as UK time.' }
+  { id: 'outside-uk', category: 'Before you order', q: 'I am outside the UK, can you still help?', a: 'Yes. We accept images from any country and report in English. Payment is in pounds sterling and the deadline you see at checkout is shown in your local time as well as UK time.' }
 ];
 
 class Component extends DCLogic {
