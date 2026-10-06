@@ -1849,7 +1849,7 @@ class Component extends DCLogic {
       summary: [
         { label: 'Scan type', value: s.scanType, color: '#0A1F2C' },
         { label: 'Body area', value: area ? area.label : 'From step 2', color: area ? '#0A1F2C' : '#A3B0B8' },
-        { label: 'Report in', value: speed ? speed.label : '48 hours', color: '#0A1F2C' }
+        { label: 'Report expected', value: speed ? speed.label : '48 hours', color: '#0A1F2C' }
       ],
       total: (total.isFrom ? 'From £' : '£') + total.amount
     };
