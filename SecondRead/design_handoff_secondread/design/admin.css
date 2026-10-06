@@ -372,3 +372,10 @@ table.compact tbody td { padding:11px 18px; }
   .auth-note p { margin:0; font-size:13.5px; line-height:1.6; color:var(--teal-dark); }
   .auth-help { margin:24px 0 0; font-size:13.5px; line-height:1.6; color:var(--muted); text-align:center; }
   .auth-help a { color:var(--teal-dark); font-weight:600; text-decoration:underline; text-underline-offset:3px; }
+  /* align-self keeps the hit area the width of the logo: .inner is a flex
+     column, so a stretched link would give a 512px invisible target and a
+     focus ring far wider than anything visible. */
+  .auth-home { display:block; width:224px; align-self:flex-start; margin-bottom:64px;
+               border-radius:8px; transition:opacity 140ms ease-out; }
+  .auth-home:hover { opacity:.78; }
+  .auth-home:focus-visible { outline:3px solid #6FE3C5; outline-offset:6px; }
