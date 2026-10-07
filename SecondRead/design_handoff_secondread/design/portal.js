@@ -50,9 +50,9 @@
     },
     matching: {
       id: 'matching',
-      chip: 'Being matched',
+      chip: 'Being assigned',
       title: 'Finding the right specialist',
-      support: "We're matching your scan to a radiologist who specialises in this part of the body.",
+      support: 'Your scan is being assigned to a radiologist who specialises in this part of the body.',
       position: 2,
       action: 'View your case',
       bg: '#E4F2F2', fg: '#095458', border: '#C3E0DE',
@@ -95,7 +95,7 @@
    * the rail because it is a pause, not a stage, the case keeps the position
    * it had when it stopped. "Follow-up available" sits after the rail is full.
    */
-  var TIMELINE = ['Submitted', 'Being matched', 'Under expert review', 'Report ready'];
+  var TIMELINE = ['Submitted', 'Being assigned', 'Under expert review', 'Report ready'];
 
   /* -------------------------------------------------------- comparison keys
    * A closed clinical vocabulary. The radiologist picks one; the label they
@@ -177,7 +177,7 @@
             }
           ],
           messages: [
-            { from: 'Second Opinion Radiology clinical team', role: 'team', offsetH: -8.5, text: 'Thanks. Your images came through complete and readable. We have matched your case to Dr Mallon, Radiologist Neuroradiologist.' }
+            { from: 'Second Opinion Radiology clinical team', role: 'team', offsetH: -8.5, text: 'Thanks. Your images came through complete and readable. Your case has been assigned to Dr Mallon, consultant neuroradiologist.' }
           ],
           report: null,
           comparison: null
@@ -484,7 +484,7 @@
       isActive: !isDelivered,
       needsAction: c.status === 'action' && (c.tasks || []).length > 0,
       consultant: doc,
-      consultantName: doc ? 'Dr ' + doc.name : 'Being matched',
+      consultantName: doc ? 'Dr ' + doc.name : 'Being assigned',
       consultantSurname: doc ? 'Dr ' + doc.name.split(' ').slice(-1)[0] : 'your radiologist',
       consultantRole: doc ? doc.role : '',
       scan: c.scan,
@@ -640,10 +640,10 @@
       from: 'Second Opinion Radiology clinical team',
       role: 'team',
       ts: new Date().toISOString(),
-      text: 'Thanks. We have everything we need. We are checking your images are complete and readable, then matching your case to a radiologist.'
+      text: 'Thanks. We have everything we need. We are checking your images are complete and readable, then assigning your case to a radiologist.'
     }];
     // An invited clinician is a real dependency, not a nicety: the case does
-    // not move to matching until their section is in, so say so here.
+    // not move to assignment until their section is in, so say so here.
     if (order.clinician && order.clinician.mode !== 'self' && order.clinician.email) {
       messages.push({
         from: 'Second Opinion Radiology clinical team',

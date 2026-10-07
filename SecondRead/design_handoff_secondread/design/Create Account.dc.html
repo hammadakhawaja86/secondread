@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=12"></script>
-<script src="./portal.js?v=11"></script>
+<script src="./consultants.js?v=15"></script>
+<script src="./portal.js?v=12"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -147,7 +147,7 @@
         <a href="index.html" style="color: rgba(255,255,255,0.85);">Main site</a>
         <a href="How It Works.dc.html" style="color: rgba(255,255,255,0.85);">How it works</a>
         <a href="FAQs.dc.html" style="color: rgba(255,255,255,0.85);">FAQs</a>
-        <a href="tel:+441438904272" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>01438 904272</a>
+        <a href="tel:+447947834584" style="display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.85);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>+44 7947 834584</a>
       </div>
     </div>
     <div style="padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
@@ -191,7 +191,7 @@ class Component extends DCLogic {
   sendCode() {
     const s = this.state;
     if (!s.first.trim()) return this.setState({ error: 'We need your first name so your case is labelled correctly.', errorSignIn: false });
-    if (!s.last.trim()) return this.setState({ error: 'We need your last name so we can match your scan to your report.', errorSignIn: false });
+    if (!s.last.trim()) return this.setState({ error: 'We need your last name so we can link your scan to your report.', errorSignIn: false });
     if (!EMAIL_RE.test(s.email.trim())) {
       return this.setState({ error: 'That does not look like an email address. Check for a missing @ or a typo in the domain.', errorSignIn: false });
     }
