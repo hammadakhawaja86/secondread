@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=12"></script>
-<script src="./portal.js?v=10"></script>
+<script src="./portal.js?v=11"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -270,7 +270,7 @@
 
           <label style="display: flex; align-items: flex-start; gap: 11px; cursor: pointer; margin-bottom: 16px;">
             <input type="checkbox" checked="{{ shareConsent }}" onChange="{{ onShareConsent }}" style="width: 19px; height: 19px; margin: 2px 0 0; accent-color: #0D6E70; cursor: pointer; flex-shrink: 0;">
-            <span style="font-size: 14px; line-height: 1.55; color: #173B4F;">I am happy for SecondRead to share my report with this person.</span>
+            <span style="font-size: 14px; line-height: 1.55; color: #173B4F;">I am happy for Second Opinion Radiology to share my report with this person.</span>
           </label>
 
           <button type="button" onClick="{{ sendShare }}" style="min-height: 48px; padding: 13px 26px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out;" style-hover="background: #095458;">Send report</button>
@@ -360,7 +360,7 @@
       </div>
     </div>
     <div style="padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>&copy; 2026 SecondRead Ltd &middot; Registered in England &middot; Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>&copy; 2026 Second Opinion Radiology Ltd &middot; Registered in England &middot; Not an emergency service. If you are unwell, contact 111 or 999.</span>
       <div style="display: flex; gap: 18px;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -560,7 +560,7 @@ class Component extends DCLogic {
         : (doc ? doc.initials : ''),
       docHref: doc ? 'Specialist Profile.dc.html?id=' + encodeURIComponent(doc.id) : 'Specialists.dc.html',
 
-      downloadName: 'SecondRead-' + c.ref + '.pdf',
+      downloadName: 'SecondOpinionRadiology-' + c.ref + '.pdf',
       askHref: c.caseHref + '#messages',
       downloadGlyph: icon(DOWNLOAD, 16, 2),
       shareGlyph: icon(SHARE, 16, 2),
