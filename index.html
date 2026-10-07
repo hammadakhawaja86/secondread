@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=16"></script>
-<script src="./portal.js?v=12"></script>
+<script src="./consultants.js?v=19"></script>
+<script src="./portal.js?v=13"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -590,7 +590,6 @@ const QUICK_AREAS = [
   { id: 'chest', label: 'Chest or heart', consultant: 'alsanjari' },
   { id: 'bones', label: 'Bones or joints', consultant: 'rajakulasingam' },
   { id: 'abdomen', label: 'Abdomen or pelvis', consultant: 'tamimi' },
-  { id: 'breast', label: 'Breast', consultant: null },
   { id: 'headneck', label: 'Head or neck', consultant: 'wassati' }
 ];
 
@@ -676,7 +675,7 @@ class Component extends DCLogic {
     faqData: [
       { q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly. If you would like your GP or radiologist copied into the report, tell us their email at upload and we will send it to them at the same time as you.' },
       { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report. They can usually supply a disc or a secure download. Start your case now and add the images when they arrive; nothing is charged until the last step. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
-      { q: 'Which scans can you review?', a: 'MRI, CT, ultrasound, X-ray, PET-CT and mammography, across neuro, musculoskeletal, breast, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
+      { q: 'Which scans can you review?', a: 'MRI, CT, ultrasound, X-ray and PET-CT, across neuro, musculoskeletal, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
       { q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we are ICO registered. Only the reporting radiologist and our clinical governance lead can access your study.' },
     ]
   };
