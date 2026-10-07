@@ -13,8 +13,7 @@
  * CONTENT STATUS, for the client:
  *   · The two delivered reports are written demonstration content. They are
  *     not real reports and describe no real patient.
- *   · Radiologist names come from consultants.js and carry the same placeholder
- *     GMC number (7012345) as the rest of the prototype.
+ *   · Radiologist names and GMC numbers come from consultants.js.
  */
 (function (root) {
   'use strict';

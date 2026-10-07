@@ -16,9 +16,10 @@
      review       verified patient quote; omit unless the review is genuinely on file
 
    CONTENT STATUS, for the client, before launch:
-     · Every `gmc` below is the placeholder 7012345. Replace with the real
-       registration for each radiologist, or remove the field entirely. A wrong
-       GMC number next to a named doctor is worse than no number at all.
+     · GMC numbers were supplied by the client on 2026-10-07, sourced from the
+       GMC register (gmc-uk.org/registration-and-licensing/our-registers).
+       They have not been re-checked against the register here. A wrong GMC
+       number next to a named doctor is worse than no number at all.
      · `hospital`, `role` and `quals` are carried over from the original handoff
        and have not been verified against each radiologist's own listing.
      · Only Dr Mallon carries a `review`, inherited from the first concept and
@@ -39,7 +40,7 @@
       role: 'Consultant cardiothoracic radiologist',
       hospital: 'NHNN',
       quals: 'FRCR · Level III cardiac MRI & CT · NHNN',
-      gmc: '7012345',
+      gmc: '7486030',
       photo: 'portraits/senan-alsanjari.jpg', featured: true,
       areas: ['chest'], modalities: ['CT', 'PET-CT', 'MRI'],
       tags: ['Heart', 'Chest CT', 'PET-CT'],
@@ -60,7 +61,7 @@
       role: 'Consultant neuroradiologist',
       hospital: 'NHNN, UCLH',
       quals: 'FRCR · PhD Cambridge · UCLH',
-      gmc: '7012345',
+      gmc: '7042054',
       photo: 'portraits/dermot-mallon.jpg', featured: true,
       areas: ['brain'], modalities: ['MRI', 'CT'],
       tags: ['Brain MRI', 'Spine', 'Stroke'],
@@ -90,7 +91,7 @@
       role: 'Consultant musculoskeletal and sarcoma radiologist',
       hospital: 'RNOH Stanmore',
       quals: 'FRCR · RNOH Stanmore',
-      gmc: '7012345',
+      gmc: '7134655',
       photo: 'portraits/ramanan-rajakulasingam.jpg', featured: true,
       areas: ['bones'], modalities: ['MRI', 'CT', 'Ultrasound'],
       tags: ['Joints', 'Sarcoma', 'Sports injury'],
@@ -111,7 +112,7 @@
       role: 'Consultant gastrointestinal and abdominal radiologist',
       hospital: 'Imperial',
       quals: 'FRCR · Imperial College',
-      gmc: '7012345',
+      gmc: '7411645',
       photo: 'portraits/asad-tamimi.jpg', featured: true,
       areas: ['abdomen', 'chest'], modalities: ['CT', 'MRI', 'PET-CT'],
       tags: ['Liver', 'Bowel', 'Prostate'],
@@ -132,7 +133,7 @@
       role: 'Consultant gynaecological radiologist',
       hospital: 'Imperial',
       quals: 'FRCR · Imperial College',
-      gmc: '7012345',
+      gmc: '7517214',
       photo: 'portraits/geetanjali-kakar.jpg', featured: true,
       areas: ['abdomen'], modalities: ['MRI', 'Ultrasound'],
       tags: ['Pelvic MRI', 'Endometriosis', 'Ultrasound'],
@@ -157,7 +158,7 @@
       role: 'Consultant head & neck neuroradiology',
       hospital: 'King’s College Hospital',
       quals: 'FRCR · Head & neck imaging',
-      gmc: '7012345',
+      gmc: '7251947',
       photo: 'portraits/husam-wassati.jpg', featured: true,
       areas: ['brain', 'headneck'], modalities: ['MRI', 'CT', 'Ultrasound'],
       tags: ['Neck', 'Thyroid', 'Skull base'],
@@ -178,7 +179,7 @@
       role: 'Consultant paediatric neuroradiologist',
       hospital: 'Great Ormond Street',
       quals: 'FRCR · Paediatric neuroradiology',
-      gmc: '7012345',
+      gmc: '7509440',
       photo: 'portraits/felice-darco.jpg', featured: true,
       areas: ['brain', 'children', 'headneck'], modalities: ['MRI'],
       tags: ['Children', 'Inner ear', 'Epilepsy'],
@@ -199,7 +200,7 @@
       role: 'Consultant cardiothoracic radiologist',
       hospital: 'Guy’s and St Thomas’',
       quals: 'FRCR · MD(Res) Imperial · Guy’s and St Thomas’',
-      gmc: '7012345',
+      gmc: '7419365',
       photo: 'portraits/nishanth-sivarasan.jpg', featured: true,
       areas: ['chest'], modalities: ['CT', 'PET-CT', 'MRI'],
       tags: ['Lung cancer', 'Interstitial lung disease', 'Airways'],
@@ -226,7 +227,7 @@
       role: 'Consultant gastrointestinal radiologist',
       hospital: 'The Royal Marsden',
       quals: 'GI fellowship, St Mark’s · The Royal Marsden',
-      gmc: '7012345',
+      gmc: '7492405',
       photo: 'portraits/william-weston.jpg', featured: true,
       areas: ['abdomen'], modalities: ['CT', 'MRI'],
       tags: ['Bowel', 'Liver & pancreas', 'Neuroendocrine'],
@@ -253,7 +254,7 @@
       role: 'Consultant uroradiologist',
       hospital: 'The Royal Marsden',
       quals: 'President-Elect, BSUR · The Royal Marsden',
-      gmc: '7012345',
+      gmc: '7419265',
       photo: 'portraits/sam-withey.jpg', featured: true,
       areas: ['abdomen'], modalities: ['MRI', 'CT', 'Ultrasound'],
       tags: ['Prostate MRI', 'Kidney', 'Bladder'],
@@ -280,7 +281,7 @@
       role: 'Consultant musculoskeletal radiologist',
       hospital: 'Royal National Orthopaedic Hospital',
       quals: 'MSK fellowship, RNOH · UCLH training',
-      gmc: '7012345',
+      gmc: '7277408',
       photo: 'portraits/danielle-forster.jpg', featured: true,
       areas: ['bones'], modalities: ['MRI', 'CT', 'Ultrasound'],
       tags: ['Joints', 'Spine', 'Image-guided'],
@@ -307,7 +308,7 @@
       role: 'Consultant radiologist in nuclear medicine',
       hospital: 'Imperial College Healthcare',
       quals: 'PET/CT, SPECT/CT · Imperial College Healthcare',
-      gmc: '7012345',
+      gmc: '7419275',
       photo: 'portraits/mitesh-naik.jpg', featured: true,
       areas: ['chest', 'abdomen'], modalities: ['CT', 'PET-CT', 'MRI', 'Ultrasound'],
       tags: ['PET-CT', 'Whole-body imaging', 'Cardiac'],

@@ -201,7 +201,7 @@ d.rule(LINE, 0.8, 10)
 d.label('Reported and signed by')
 d.para('Dr Ramanan Rajakulasingam', 12.6, 'F2', NAVY, lead=17)
 d.para('Consultant musculoskeletal radiologist', 9.6, 'F1', MUTED, lead=13)
-d.para('FRCR · GMC 7012345 · ' + signed.replace('Signed ', 'Signed '), 9.6, 'F1', MUTED, lead=13)
+d.para('FRCR · GMC 7134655 · ' + signed.replace('Signed ', 'Signed '), 9.6, 'F1', MUTED, lead=13)
 d.y -= 10
 d.para('This report is a radiological opinion based on the images supplied and does not replace '
        'clinical assessment by your treating doctor.', 8.4, 'F1', MUTED, lead=11.4)
