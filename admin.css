@@ -107,6 +107,11 @@
   .p-matching   { background:var(--mint-soft); border:1px solid var(--mint-line); color:var(--teal-dark); }
   .p-with       { background:#EEF4FA; border:1px solid #CFE0EE; color:#2B5E86; }
   .p-ready      { background:var(--mint); border:1px solid var(--mint-line); color:var(--teal-deep); }
+  /* Taken from the design: a flagged case is the one state on this table that
+     is a judgement by a person rather than a position in the pipeline, so it
+     is the only red pill. */
+  .p-flagged    { background:#FEF2F2; border:1px solid #FECACA; color:#991B1B; }
+  .p-signed     { background:var(--mint); border:1px solid var(--mint-line); color:var(--teal-deep); }
   .wait { display:inline-block; padding:4px 11px; border-radius:999px; font-size:12px; font-weight:600;
           font-variant-numeric:tabular-nums; background:#F4F7F8; border:1px solid var(--line); color:var(--muted); }
   .wait.over { background:var(--alert-bg); border-color:var(--alert-line); color:var(--alert); }
@@ -379,3 +384,19 @@ table.compact tbody td { padding:11px 18px; }
                border-radius:8px; transition:opacity 140ms ease-out; }
   .auth-home:hover { opacity:.78; }
   .auth-home:focus-visible { outline:3px solid #6FE3C5; outline-offset:6px; }
+
+  /* --------------------------------- study columns (Admin dashboard only)
+     Modality and the PACS link belong with the study, so they sit beside
+     Body area rather than out by the actions. Nine columns at 1920 is tight,
+     so this table alone tightens its cells. */
+  .t-study th, .t-study td { padding:12px 14px; }
+  .t-study th:nth-child(5) { white-space:nowrap; }
+  .mod { display:inline-flex; align-items:center; height:24px; padding:0 10px; border-radius:7px;
+         background:var(--mint-soft); border:1px solid var(--mint-line); color:var(--teal-dark);
+         font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; letter-spacing:.04em; }
+  .pacs { display:inline-flex; align-items:center; gap:7px; height:30px; padding:0 12px; border-radius:8px;
+          border:1px solid var(--line); background:var(--white); color:var(--teal-dark);
+          font-size:12.5px; font-weight:600; white-space:nowrap;
+          transition:border-color 140ms ease-out, background 140ms ease-out; }
+  .pacs:hover { border-color:var(--teal); background:var(--mint-soft); }
+  .pacs svg { flex-shrink:0; }

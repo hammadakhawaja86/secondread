@@ -36,7 +36,7 @@
   var CONSULTANTS = [
     {
       id: 'alsanjari', name: 'Senan Alsanjari', initials: 'SA',
-      role: 'Cardiothoracic radiologist',
+      role: 'Consultant cardiothoracic radiologist',
       hospital: 'NHNN',
       quals: 'FRCR · Level III cardiac MRI & CT · NHNN',
       gmc: '7012345',
@@ -57,7 +57,7 @@
     },
     {
       id: 'mallon', name: 'Dermot Mallon', initials: 'DM',
-      role: 'Neuroradiologist',
+      role: 'Consultant neuroradiologist',
       hospital: 'NHNN, UCLH',
       quals: 'FRCR · PhD Cambridge · UCLH',
       gmc: '7012345',
@@ -66,7 +66,7 @@
       tags: ['Brain MRI', 'Spine', 'Stroke'],
       bio: 'Advanced stroke imaging, vasculitis, neurodegeneration and skull-base disorders. PhD, Cambridge.',
       credentials: ['FRCR', 'PhD Cambridge', 'Reports since 2019'],
-      intro: 'Radiologist at the National Hospital for Neurology and Neurosurgery, UCLH. Reads brain, spine and skull-base imaging every working day.',
+      intro: 'Consultant radiologist at the National Hospital for Neurology and Neurosurgery, UCLH. Reads brain, spine and skull-base imaging every working day.',
       background: [
         'Biochemistry and medicine at Bristol, PhD at Cambridge, then joint academic and clinical radiology training at Imperial College Healthcare, including an Academic Clinical Fellowship and a Clinical Lectureship at Imperial College London.',
         'Now a substantive neuroradiologist at NHNN, part of UCLH, one of the largest neurological referral centres in Europe.'
@@ -87,7 +87,7 @@
     },
     {
       id: 'rajakulasingam', name: 'Ramanan Rajakulasingam', initials: 'RR',
-      role: 'Musculoskeletal and sarcoma radiologist',
+      role: 'Consultant musculoskeletal and sarcoma radiologist',
       hospital: 'RNOH Stanmore',
       quals: 'FRCR · RNOH Stanmore',
       gmc: '7012345',
@@ -108,7 +108,7 @@
     },
     {
       id: 'tamimi', name: 'Asad Tamimi', initials: 'AT',
-      role: 'Gastrointestinal and abdominal radiologist',
+      role: 'Consultant gastrointestinal and abdominal radiologist',
       hospital: 'Imperial',
       quals: 'FRCR · Imperial College',
       gmc: '7012345',
@@ -129,7 +129,7 @@
     },
     {
       id: 'kakar', name: 'Geetanjali Kakar', initials: 'GK',
-      role: 'Gynaecological radiologist',
+      role: 'Consultant gynaecological radiologist',
       hospital: 'Imperial',
       quals: 'FRCR · Imperial College',
       gmc: '7012345',
@@ -154,7 +154,7 @@
            `photo` + `featured` to bring one forward. --- */
     {
       id: 'wassati', name: 'Husam Wassati', initials: 'HW',
-      role: 'Head & neck and neuroradiology',
+      role: 'Consultant head & neck and neuroradiology',
       hospital: 'King’s College Hospital',
       quals: 'FRCR · Head & neck imaging',
       gmc: '7012345',
@@ -175,7 +175,7 @@
     },
     {
       id: 'darco', name: 'Felice D’Arco', initials: 'FD',
-      role: 'Paediatric neuroradiologist',
+      role: 'Consultant paediatric neuroradiologist',
       hospital: 'Great Ormond Street',
       quals: 'FRCR · Paediatric neuroradiology',
       gmc: '7012345',
@@ -196,7 +196,7 @@
     },
     {
       id: 'sivarasan', name: 'Nishanth Sivarasan', initials: 'NS',
-      role: 'Cardiothoracic radiologist',
+      role: 'Consultant cardiothoracic radiologist',
       hospital: 'Guy’s and St Thomas’',
       quals: 'FRCR · MD(Res) Imperial · Guy’s and St Thomas’',
       gmc: '7012345',
@@ -205,7 +205,7 @@
       tags: ['Lung cancer', 'Interstitial lung disease', 'Airways'],
       bio: 'Interstitial lung disease, lung cancer and advanced airways disease. National Treasure Fellow in thoracic radiology at Royal Brompton.',
       credentials: ['FRCR', 'MD(Res) Imperial', 'Thoracic fellowship, Royal Brompton'],
-      intro: 'Cardiothoracic radiologist at Guy’s and St Thomas’, and Responsible Radiologist for the South East London Lung Cancer Screening Programme.',
+      intro: 'Consultant cardiothoracic radiologist at Guy’s and St Thomas’, and Responsible Radiologist for the South East London Lung Cancer Screening Programme.',
       background: [
         'Graduated from Imperial College London in 2013 as an academic award winner and trained in radiology at Guy’s and St Thomas’, achieving Fellowship of the Royal College of Radiologists in 2018.',
         'Completed higher specialist training in thoracic radiology as the National Treasure Fellow at Royal Brompton Hospital from 2019 to 2021, and was awarded an MD(Res) from Imperial College London for research into CT morphological phenotypes in pulmonary sarcoidosis.',
@@ -223,7 +223,7 @@
     },
     {
       id: 'weston', name: 'William Weston', initials: 'WW',
-      role: 'Gastrointestinal radiologist',
+      role: 'Consultant gastrointestinal radiologist',
       hospital: 'The Royal Marsden',
       quals: 'GI fellowship, St Mark’s · The Royal Marsden',
       gmc: '7012345',
@@ -232,7 +232,7 @@
       tags: ['Bowel', 'Liver & pancreas', 'Neuroendocrine'],
       bio: 'Bowel, liver, pancreatic and biliary imaging, including neuroendocrine tumours. Benign and malignant gastrointestinal disease.',
       credentials: ['GI fellowship, St Mark’s', 'PG qualification in clinical education'],
-      intro: 'Radiologist at The Royal Marsden with broad expertise in gastrointestinal and abdominal imaging.',
+      intro: 'Consultant radiologist at The Royal Marsden with broad expertise in gastrointestinal and abdominal imaging.',
       background: [
         'Trained in radiology across several London teaching hospitals, including Guy’s and St Thomas’ and University College London Hospital, before completing a specialist fellowship in gastrointestinal imaging at St Mark’s Hospital.',
         'Practice covers both benign and malignant gastrointestinal conditions, with particular interests in bowel, liver, pancreatic and biliary imaging as well as neuroendocrine tumours. Working at a high-volume specialist centre, he has extensive experience in CT and MRI for diagnosis, treatment planning, response assessment and follow-up.',
@@ -250,7 +250,7 @@
     },
     {
       id: 'withey', name: 'Sam Withey', initials: 'SW',
-      role: 'Uroradiologist',
+      role: 'Consultant uroradiologist',
       hospital: 'The Royal Marsden',
       quals: 'President-Elect, BSUR · The Royal Marsden',
       gmc: '7012345',
@@ -259,7 +259,7 @@
       tags: ['Prostate MRI', 'Kidney', 'Bladder'],
       bio: 'Prostate, kidney and bladder imaging, including PI-RADS scoring, biopsy planning, staging and post-treatment assessment.',
       credentials: ['President-Elect, BSUR', 'Prostate MRI and PI-RADS'],
-      intro: 'Uroradiologist at The Royal Marsden, one of the world’s leading cancer centres, specialising in prostate, kidney and bladder imaging.',
+      intro: 'Consultant uroradiologist at The Royal Marsden, one of the world’s leading cancer centres, specialising in prostate, kidney and bladder imaging.',
       background: [
         'Trained in medicine at Imperial College London before undertaking radiology training at Guy’s and St Thomas’ and University College London Hospitals, where he developed subspecialist experience in urological and oncological imaging.',
         'Clinical practice is focused particularly on prostate MRI, screening, lesion identification and PI-RADS scoring, biopsy planning, staging and treatment planning, and assessment following treatment. Wider practice includes renal and bladder imaging, general oncological imaging, and whole-body MRI for advanced malignancy, cancer screening and preventative health assessment.',
@@ -277,7 +277,7 @@
     },
     {
       id: 'forster', name: 'Danielle Forster', initials: 'DF',
-      role: 'Musculoskeletal radiologist',
+      role: 'Consultant musculoskeletal radiologist',
       hospital: 'Royal National Orthopaedic Hospital',
       quals: 'MSK fellowship, RNOH · UCLH training',
       gmc: '7012345',
@@ -286,7 +286,7 @@
       tags: ['Joints', 'Spine', 'Image-guided'],
       bio: 'Musculoskeletal imaging and image-guided procedures, at one of the UK’s leading specialist orthopaedic centres.',
       credentials: ['MSK fellowship, RNOH', 'Musculoskeletal radiology'],
-      intro: 'Musculoskeletal radiologist at the Royal National Orthopaedic Hospital, Stanmore.',
+      intro: 'Consultant musculoskeletal radiologist at the Royal National Orthopaedic Hospital, Stanmore.',
       background: [
         'Qualified in medicine from the University of Glasgow and undertook specialist radiology training in London, completing subspecialty training in musculoskeletal radiology at University College London Hospital.',
         'Subsequently undertook a fellowship at the Royal National Orthopaedic Hospital, one of the UK’s leading specialist orthopaedic centres, before being appointed there as a musculoskeletal radiologist.',
@@ -304,7 +304,7 @@
     },
     {
       id: 'naik', name: 'Mitesh Naik', initials: 'MN',
-      role: 'Radiologist',
+      role: 'Consultant radiologist',
       hospital: 'Imperial College Healthcare',
       quals: 'Nuclear medicine · PET/CT, SPECT/CT · Imperial College Healthcare',
       gmc: '7012345',
@@ -313,7 +313,7 @@
       tags: ['PET-CT', 'Whole-body imaging', 'Cardiac'],
       bio: 'Nuclear medicine, whole-body and oncological imaging across the thorax, abdomen and pelvis. PET/CT, SPECT/CT and radioligand therapy.',
       credentials: ['Imperial College London', 'RCR and RSNA prizes', 'NICE, RSNA and EANM committees'],
-      intro: 'Radiologist at Imperial College Healthcare NHS Trust, with particular expertise in nuclear medicine and whole-body oncological imaging.',
+      intro: 'Consultant radiologist at Imperial College Healthcare NHS Trust, with particular expertise in nuclear medicine and whole-body oncological imaging.',
       background: [
         'Graduated from Imperial College London with triple distinction, and was the highest scoring student for both his undergraduate BSc and postgraduate MSc.',
         'Awarded numerous prizes for scientific presentations and peer-reviewed publications, including from the Royal College of Radiologists and the Radiological Society of North America.',

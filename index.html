@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=10"></script>
+<script src="./consultants.js?v=12"></script>
 <script src="./portal.js?v=10"></script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -227,7 +227,7 @@
     <div data-r="spechead" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 34px;">
       <div style="max-width: 620px;">
         <span style="display: inline-flex; align-items: center; background: #E4F2F2; color: #06313A; border-radius: 6px; padding: 6px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">The specialists</span>
-        <h2 style="margin: 16px 0 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; color: #0A1F2C;">Fourteen radiologists. One will read yours.</h2>
+        <h2 style="margin: 16px 0 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; color: #0A1F2C;">{{ rosterWord }} radiologists. One will read yours.</h2>
         <p style="margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: #4A5C68;">Every report is signed by a GMC-registered subspecialist in that body area.</p>
       </div>
       <div data-r="specnav" style="display: flex; gap: 12px; flex-shrink: 0; padding-bottom: 4px;">
@@ -577,6 +577,14 @@ const FEATURED = {
   buttonBg: '#6FE3C5', buttonColor: '#06313A', buttonBorder: '#6FE3C5'
 };
 
+/* Spelled out in the heading, counted everywhere else. Both read from the
+   roster so neither can go stale when a radiologist is added or removed. */
+const NUMBER_WORDS = {
+  8: 'Eight', 9: 'Nine', 10: 'Ten', 11: 'Eleven', 12: 'Twelve', 13: 'Thirteen',
+  14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen', 17: 'Seventeen', 18: 'Eighteen',
+  19: 'Nineteen', 20: 'Twenty'
+};
+
 const QUICK_AREAS = [
   { id: 'brain', label: 'Brain or spine', consultant: 'mallon' },
   { id: 'chest', label: 'Chest or heart', consultant: 'alsanjari' },
@@ -920,6 +928,7 @@ class Component extends DCLogic {
       // Counted from the roster rather than typed, so it cannot go stale
       // the next time a radiologist is added or removed.
       consultantCount: CONSULTANTS.length,
+      rosterWord: NUMBER_WORDS[CONSULTANTS.length] || String(CONSULTANTS.length),
       packages: this.state.packages.map(p => {
         const on = this.state.pkg === p.id;
         return {
