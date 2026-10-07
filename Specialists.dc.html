@@ -60,7 +60,7 @@
     </div>
     <div style="max-width: 780px;">
       <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">Find a specialist</h1>
-      <p style="margin: 0; font-size: 18px; line-height: 1.65; color: #173B4F;">You do not have to choose. Tell us the body area during your order and the right subspecialist is assigned for you. This page is for people who want to see who will read their scan.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.65; color: #173B4F;">You do not have to choose. Tell us the body area during your order and the right subspecialist is assigned for you. This page is for people who want to see who will read their scan. Our specialists cover all major imaging modalities, including MRI, CT, PET-CT and Ultrasound.</p>
     </div>
   </div>
 </section>
@@ -72,19 +72,13 @@
         <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #0A1F2C;">Body area</h2>
         <button type="button" onClick="{{ clearFilters }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #5A6B77; cursor: pointer; transition: color 140ms ease-out;" style-hover="color: #0D6E70;">Reset</button>
       </div>
-      <div data-r="arealist" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px;">
+      <div data-r="arealist" style="display: flex; flex-direction: column; gap: 4px;">
         <sc-for list="{{ areaOptions }}" as="area" hint-placeholder-count="7">
           <button type="button" onClick="{{ area.select }}" style="appearance: none; width: 100%; display: flex; align-items: center; gap: 10px; padding: 9px 10px; border: none; border-radius: 10px; background: {{ area.rowBg }}; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: background 140ms ease-out;" style-hover="background: #EEF7F7;">
             <span style="flex-shrink: 0; width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid {{ area.boxBorder }}; background: {{ area.boxBg }}; color: #FFFFFF; display: flex; align-items: center; justify-content: center;">{{ area.tick }}</span>
             <span style="flex: 1; font-size: 14px; font-weight: {{ area.weight }}; color: {{ area.labelColor }};">{{ area.label }}</span>
             <span style="font-size: 12px; color: #5A6B77;">{{ area.count }}</span>
           </button>
-        </sc-for>
-      </div>
-      <h2 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #0A1F2C;">Modality</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-        <sc-for list="{{ modalityOptions }}" as="mod" hint-placeholder-count="4">
-          <button type="button" onClick="{{ mod.toggle }}" style="appearance: none; padding: 8px 15px; border-radius: 999px; border: 1.5px solid {{ mod.border }}; background: {{ mod.bg }}; color: {{ mod.color }}; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ mod.label }}</button>
         </sc-for>
       </div>
     </aside>
@@ -122,9 +116,9 @@
       </div>
       <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
         <div style="background: #FFFFFF; border: 1px dashed #D4DDE0; border-radius: 18px; padding: 44px 32px; text-align: center;">
-          <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">No radiologist matches that combination</h3>
-          <p style="margin: 0 0 20px; font-size: 14.5px; color: #4A5C68;">Loosen the modality filter, or just tell us the body area during your order.</p>
-          <button type="button" onClick="{{ clearFilters }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer;" style-hover="background: #0D6E70; color: #FFFFFF;">Reset filters</button>
+          <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">No radiologist listed for that body area</h3>
+          <p style="margin: 0 0 20px; font-size: 14.5px; color: #4A5C68;">Choose another body area, or just tell us during your order and the right subspecialist is assigned for you.</p>
+          <button type="button" onClick="{{ clearFilters }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer;" style-hover="background: #0D6E70; color: #FFFFFF;">Show all radiologists</button>
         </div>
       </sc-if>
       <sc-if value="{{ selectedDoctor }}" hint-placeholder-val="{{ false }}">
@@ -191,7 +185,6 @@ const AREAS = [
   { id: 'children', label: 'Children' }
 ];
 
-const MODALITIES = ['MRI', 'CT', 'PET-CT', 'Ultrasound'];
 
 /* The roster lives in consultants.js so this page, the landing carousel and
    the profile pages can never drift apart. */
@@ -220,7 +213,7 @@ function startFlowHref(extra) {
 }
 
 class Component extends DCLogic {
-  state = { area: inboundOrder().area || 'brain', modalities: [], requested: '' };
+  state = { area: inboundOrder().area || 'brain', requested: '' };
 
   tick(size, width) {
     return React.createElement('svg', {
@@ -246,9 +239,7 @@ class Component extends DCLogic {
   }
 
   matches(d) {
-    const areaOk = !this.state.area || d.areas.includes(this.state.area);
-    const modOk = this.state.modalities.length === 0 || this.state.modalities.every(m => d.modalities.includes(m));
-    return areaOk && modOk;
+    return !this.state.area || d.areas.includes(this.state.area);
   }
 
   renderVals() {
@@ -258,7 +249,7 @@ class Component extends DCLogic {
 
     return {
       tickGlyph: this.tick(13),
-      clearFilters: () => this.setState({ area: '', modalities: [], requested: '' }),
+      clearFilters: () => this.setState({ area: '', requested: '' }),
       areaOptions: AREAS.map(a => {
         const on = s.area === a.id;
         return {
@@ -271,19 +262,6 @@ class Component extends DCLogic {
           weight: on ? 600 : 500,
           labelColor: on ? '#06313A' : '#173B4F',
           select: () => this.setState(st => ({ area: st.area === a.id ? '' : a.id, requested: '' }))
-        };
-      }),
-      modalityOptions: MODALITIES.map(m => {
-        const on = s.modalities.includes(m);
-        return {
-          label: m,
-          bg: on ? '#0D6E70' : '#FFFFFF',
-          color: on ? '#FFFFFF' : '#173B4F',
-          border: on ? '#0D6E70' : '#D4DDE0',
-          toggle: () => this.setState(st => ({
-            modalities: st.modalities.includes(m) ? st.modalities.filter(x => x !== m) : st.modalities.concat(m),
-            requested: ''
-          }))
         };
       }),
       resultHeading: visible.length + (visible.length === 1 ? ' radiologist reads ' : ' radiologists read ') + (areaLabel ? areaLabel.toLowerCase() + ' imaging' : 'across all body areas'),
