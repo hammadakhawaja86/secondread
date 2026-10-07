@@ -91,20 +91,20 @@
         <sc-for list="{{ visibleDoctors }}" as="doc" hint-placeholder-count="3">
           <div style="background: #FFFFFF; border: 1px solid {{ doc.cardBorder }}; border-radius: 18px; padding: 24px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); display: grid; grid-template-columns: 132px 1fr; gap: 24px; align-items: start; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out, border-color 220ms ease-out;" style-hover="transform: translateY(-3px); box-shadow: 0 16px 34px rgba(10,31,44,0.13); border-color: #C3E0DE;">
             <div data-r="docphoto" style="width: 132px; height: 156px; border-radius: 14px; overflow: hidden; background: #D7F2F3;">{{ doc.portrait }}</div>
-            <div>
-              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 6px;">
-                <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Dr {{ doc.name }}</h3>
+            <div data-r="doccontent">
+              <div data-r="dochead" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px 20px; margin-bottom: 14px;">
+                <div style="flex: 1 1 240px; min-width: 0;">
+                  <h3 style="margin: 0 0 4px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Dr {{ doc.name }}</h3>
+                  <p style="margin: 0; font-size: 14px; color: #4A5C68;">{{ doc.role }} · {{ doc.hospital }}</p>
+                </div>
+                <a href="{{ doc.profileHref }}" style="flex-shrink: 0; min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Profile</a>
               </div>
-              <p style="margin: 0 0 14px; font-size: 14px; color: #4A5C68;">{{ doc.role }} · {{ doc.hospital }}</p>
               <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px;">
                 <sc-for list="{{ doc.tags }}" as="tag" hint-placeholder-count="3">
                   <span style="background: #F4F7F8; border: 1px solid #E2E9EC; border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 500; color: #173B4F;">{{ tag }}</span>
                 </sc-for>
               </div>
-              <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.65; color: #4A5C68; max-width: 620px;">{{ doc.bio }}</p>
-              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <a href="{{ doc.profileHref }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Profile</a>
-              </div>
+              <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #4A5C68; max-width: 620px;">{{ doc.bio }}</p>
             </div>
           </div>
         </sc-for>

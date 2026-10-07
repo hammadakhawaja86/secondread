@@ -60,13 +60,13 @@
       <span>/</span>
       <span style="color: #0A1F2C; font-weight: 600;">Dr {{ name }}</span>
     </div>
-    <div data-r="profhero" style="display: grid; grid-template-columns: 240px 1fr; gap: 44px; align-items: start;">
+    <div data-r="profhero" style="display: grid; grid-template-columns: 240px 1fr; gap: 44px; align-items: center;">
       <div data-r="profphoto" style="width: 240px; height: 292px; border-radius: 18px; overflow: hidden; background: #D7F2F3; box-shadow: 0 12px 30px rgba(10,31,44,0.14);">{{ portrait }}</div>
       <div>
         <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">{{ role }}</div>
         <h1 style="margin: 0 0 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 40px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">Dr {{ name }}</h1>
         <p style="margin: 0 0 24px; font-size: 17.5px; line-height: 1.6; color: #173B4F; max-width: 660px;">{{ intro }}</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
           <sc-for list="{{ credentials }}" as="cred" hint-placeholder-count="4">
             <span style="background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 999px; padding: 7px 15px; font-size: 12.5px; font-weight: 600; color: #095458;">{{ cred.label }}</span>
           </sc-for>
