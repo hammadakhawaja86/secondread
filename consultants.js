@@ -29,8 +29,8 @@
        they are generated portraits standing in for real named doctors.
        Replace them with real photographs before any client-facing use.
      · No radiologist currently covers breast imaging. The Breast body area is
-       still offered in the pickers and falls back to "we match your
-       subspecialist", so add a breast radiologist here or drop the area.
+       still offered in the pickers and falls back to "your subspecialist is assigned", so add a
+       breast radiologist here or drop the area.
 --------------------------------------------------------------------------- */
 (function (root) {
   var CONSULTANTS = [
@@ -154,7 +154,7 @@
            `photo` + `featured` to bring one forward. --- */
     {
       id: 'wassati', name: 'Husam Wassati', initials: 'HW',
-      role: 'Consultant head & neck and neuroradiology',
+      role: 'Consultant head & neck neuroradiology',
       hospital: 'King’s College Hospital',
       quals: 'FRCR · Head & neck imaging',
       gmc: '7012345',
@@ -304,9 +304,9 @@
     },
     {
       id: 'naik', name: 'Mitesh Naik', initials: 'MN',
-      role: 'Consultant radiologist',
+      role: 'Consultant radiologist in nuclear medicine',
       hospital: 'Imperial College Healthcare',
-      quals: 'Nuclear medicine · PET/CT, SPECT/CT · Imperial College Healthcare',
+      quals: 'PET/CT, SPECT/CT · Imperial College Healthcare',
       gmc: '7012345',
       photo: 'portraits/mitesh-naik.jpg', featured: true,
       areas: ['chest', 'abdomen'], modalities: ['CT', 'PET-CT', 'MRI', 'Ultrasound'],
