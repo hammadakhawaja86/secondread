@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=16"></script>
-<script src="./portal.js?v=12"></script>
+<script src="./consultants.js?v=19"></script>
+<script src="./portal.js?v=13"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -71,21 +71,6 @@
             <span style="background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 999px; padding: 7px 15px; font-size: 12.5px; font-weight: 600; color: #095458;">{{ cred.label }}</span>
           </sc-for>
         </div>
-        <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
-          <button type="button" onClick="{{ toggleRequest }}" style="min-height: 52px; padding: 15px 32px; border-radius: 999px; border: none; background: {{ ctaBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">{{ ctaLabel }}</button>
-          <sc-if value="{{ availability }}" hint-placeholder-val="{{ true }}">
-            <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #095458;">
-              <span style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; display: flex; align-items: center; justify-content: center;">{{ tickGlyph }}</span>
-              <span>{{ availability }}</span>
-            </div>
-          </sc-if>
-        </div>
-        <sc-if value="{{ requested }}" hint-placeholder-val="{{ false }}">
-          <div style="margin-top: 20px; background: #FFFFFF; border: 1px solid #C3E0DE; border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
-            <span style="font-size: 15px; font-weight: 600; color: #06313A;">Dr {{ surname }} is reserved for your study.</span>
-            <a href="{{ startHref }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
-          </div>
-        </sc-if>
       </div>
     </div>
   </div>
@@ -197,7 +182,6 @@ const AREA_LABELS = {
   chest: 'chest and heart imaging',
   bones: 'bone and joint imaging',
   abdomen: 'abdominal and pelvic imaging',
-  breast: 'breast imaging',
   headneck: 'head and neck imaging',
   children: 'children’s imaging'
 };
@@ -216,7 +200,7 @@ function currentConsultant() {
 }
 
 class Component extends DCLogic {
-  state = { requested: false };
+  state = {};
 
   icon(size, width) {
     return React.createElement('svg', {
@@ -256,11 +240,8 @@ class Component extends DCLogic {
         intro: 'We could not find that radiologist. They may have been removed from the panel. Browse the full list, or tell us the body area during your order and the right subspecialist is assigned for you.',
         portrait: null, credentials: [], helpWith: [], background: [],
         turnaround: TURNAROUND, tickGlyph: this.icon(13),
-        availability: '', requested: false, hasReview: false,
+        hasReview: false,
         reviewQuote: '', reviewSource: '', gmc: ', ', hospital: ', ',
-        ctaLabel: 'See all radiologists', ctaBg: '#0D6E70',
-        toggleRequest: () => { window.location.href = 'Specialists.dc.html'; },
-        startHref: 'Start Flow.dc.html',
         peerLine: CONSULTANTS.length + ' radiologists read across every body area.'
       };
     }
@@ -276,7 +257,6 @@ class Component extends DCLogic {
       gmc: c.gmc,
       intro: c.intro || c.bio,
       portrait: this.portrait(c),
-      availability: c.availability,
       tickGlyph: this.icon(13),
 
       credentials: [{ label: 'GMC ' + c.gmc }].concat(
@@ -294,16 +274,8 @@ class Component extends DCLogic {
         ? 'Dr ' + surname + ' is our subspecialist for ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '. Tell us the body area during your order and they are assigned for you.'
         : (peers.length === 1
             ? 'One other radiologist reads ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.'
-            : peers.length + ' other radiologists read ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.'),
+            : peers.length + ' other radiologists read ' + (AREA_LABELS[c.areas[0]] || 'this body area') + '.')
 
-      requested: this.state.requested,
-      ctaLabel: this.state.requested ? 'Dr ' + surname + ' requested' : 'Request Dr ' + surname + ' · £250',
-      ctaBg: this.state.requested ? '#095458' : '#0D6E70',
-      toggleRequest: () => this.setState(s => ({ requested: !s.requested })),
-
-      // Carries the body area, not the name. Patients are not asked to pick a
-      // radiologist: the case is assigned from the body area and confirmed before payment.
-      startHref: 'Start Flow.dc.html' + (c.areas && c.areas.length ? '?area=' + encodeURIComponent(c.areas[0]) : '')
     };
   }
 }

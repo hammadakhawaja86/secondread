@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=16"></script>
-<script src="./portal.js?v=12"></script>
+<script src="./consultants.js?v=19"></script>
+<script src="./portal.js?v=13"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -86,7 +86,6 @@
     <div>
       <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
         <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; color: #0A1F2C; letter-spacing: -0.01em;">{{ resultHeading }}</h2>
-        <span style="font-size: 13px; color: #5A6B77;">Sorted by soonest availability</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <sc-for list="{{ visibleDoctors }}" as="doc" hint-placeholder-count="3">
@@ -95,9 +94,6 @@
             <div>
               <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 6px;">
                 <h3 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Dr {{ doc.name }}</h3>
-                <sc-if value="{{ doc.availability }}" hint-placeholder-val="{{ true }}">
-                  <span style="display: inline-flex; align-items: center; gap: 6px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 999px; padding: 4px 12px; font-size: 12px; font-weight: 600; color: #095458;">{{ tickGlyph }} {{ doc.availability }}</span>
-                </sc-if>
               </div>
               <p style="margin: 0 0 14px; font-size: 14px; color: #4A5C68;">{{ doc.role }} · {{ doc.hospital }}</p>
               <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px;">
@@ -107,7 +103,6 @@
               </div>
               <p style="margin: 0 0 18px; font-size: 14.5px; line-height: 1.65; color: #4A5C68; max-width: 620px;">{{ doc.bio }}</p>
               <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button type="button" onClick="{{ doc.request }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid {{ doc.ctaBorder }}; background: {{ doc.ctaBg }}; color: {{ doc.ctaColor }}; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out, border-color 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; border-color: #095458; color: #FFFFFF;" style-active="transform: translateY(1px);">{{ doc.ctaLabel }}</button>
                 <a href="{{ doc.profileHref }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Profile</a>
               </div>
             </div>
@@ -119,15 +114,6 @@
           <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">No radiologist listed for that body area</h3>
           <p style="margin: 0 0 20px; font-size: 14.5px; color: #4A5C68;">Choose another body area, or just tell us during your order and the right subspecialist is assigned for you.</p>
           <button type="button" onClick="{{ clearFilters }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer;" style-hover="background: #0D6E70; color: #FFFFFF;">Show all radiologists</button>
-        </div>
-      </sc-if>
-      <sc-if value="{{ selectedDoctor }}" hint-placeholder-val="{{ false }}">
-        <div style="margin-top: 24px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 18px; padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
-          <div>
-            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #095458; margin-bottom: 6px;">Requested</div>
-            <div style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #06313A;">Dr {{ selectedDoctor }} will read your scan</div>
-          </div>
-          <a href="{{ continueHref }}" style="min-height: 46px; padding: 12px 26px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 6px 18px rgba(13,110,112,0.3); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Continue to upload</a>
         </div>
       </sc-if>
     </div>
@@ -180,7 +166,6 @@ const AREAS = [
   { id: 'chest', label: 'Chest & heart' },
   { id: 'bones', label: 'Bones & joints' },
   { id: 'abdomen', label: 'Abdomen & pelvis' },
-  { id: 'breast', label: 'Breast' },
   { id: 'headneck', label: 'Head & neck' },
   { id: 'children', label: 'Children' }
 ];
@@ -204,16 +189,9 @@ function inboundOrder() {
   return out;
 }
 
-function startFlowHref(extra) {
-  var params = Object.assign(inboundOrder(), extra || {});
-  var q = new URLSearchParams();
-  Object.keys(params).forEach(function (k) { if (params[k]) q.set(k, params[k]); });
-  var qs = q.toString();
-  return 'Start Flow.dc.html' + (qs ? '?' + qs : '');
-}
 
 class Component extends DCLogic {
-  state = { area: inboundOrder().area || 'brain', requested: '' };
+  state = { area: inboundOrder().area || 'brain' };
 
   tick(size, width) {
     return React.createElement('svg', {
@@ -249,7 +227,7 @@ class Component extends DCLogic {
 
     return {
       tickGlyph: this.tick(13),
-      clearFilters: () => this.setState({ area: '', requested: '' }),
+      clearFilters: () => this.setState({ area: '' }),
       areaOptions: AREAS.map(a => {
         const on = s.area === a.id;
         return {
@@ -261,27 +239,17 @@ class Component extends DCLogic {
           tick: on ? this.tick(11) : null,
           weight: on ? 600 : 500,
           labelColor: on ? '#06313A' : '#173B4F',
-          select: () => this.setState(st => ({ area: st.area === a.id ? '' : a.id, requested: '' }))
+          select: () => this.setState(st => ({ area: st.area === a.id ? '' : a.id }))
         };
       }),
       resultHeading: visible.length + (visible.length === 1 ? ' radiologist reads ' : ' radiologists read ') + (areaLabel ? areaLabel.toLowerCase() + ' imaging' : 'across all body areas'),
       noResults: visible.length === 0,
-      selectedDoctor: s.requested,
-      continueHref: startFlowHref({ consultant: (DOCTORS.find(d => d.name === s.requested) || {}).id }),
-      visibleDoctors: visible.map(d => {
-        const on = s.requested === d.name;
-        return {
-          ...d,
-          portrait: this.portrait(d),
-          profileHref: 'Specialist Profile.dc.html?id=' + encodeURIComponent(d.id),
-          cardBorder: on ? '#0D6E70' : '#E2E9EC',
-          ctaLabel: on ? 'Requested' : 'Request Dr ' + consultantSurname(d),
-          ctaBg: on ? '#0D6E70' : '#FFFFFF',
-          ctaColor: on ? '#FFFFFF' : '#095458',
-          ctaBorder: '#0D6E70',
-          request: () => this.setState(st => ({ requested: st.requested === d.name ? '' : d.name }))
-        };
-      })
+      visibleDoctors: visible.map(d => ({
+        ...d,
+        portrait: this.portrait(d),
+        profileHref: 'Specialist Profile.dc.html?id=' + encodeURIComponent(d.id),
+        cardBorder: '#E2E9EC'
+      }))
     };
   }
 }

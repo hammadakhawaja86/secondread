@@ -124,7 +124,6 @@
     chest: 'Chest or heart',
     bones: 'Bones or joints',
     abdomen: 'Abdomen or pelvis',
-    breast: 'Breast',
     headneck: 'Head or neck'
   };
 

@@ -29,9 +29,9 @@
        NOT: three of the four source layers are named "ChatGPT Image", i.e.
        they are generated portraits standing in for real named doctors.
        Replace them with real photographs before any client-facing use.
-     · No radiologist currently covers breast imaging. The Breast body area is
-       still offered in the pickers and falls back to "your subspecialist is assigned", so add a
-       breast radiologist here or drop the area.
+     · Breast was dropped as a body area on 2026-10-07 because no radiologist
+       on the panel reads it. Add it back to the pickers only alongside a
+       breast radiologist.
 --------------------------------------------------------------------------- */
 (function (root) {
   var CONSULTANTS = [
@@ -54,7 +54,7 @@
         'Suspected cardiomyopathy',
         'Post-treatment chest imaging'
       ],
-      availability: 'Available today', rank: 0
+      rank: 0
     },
     {
       id: 'mallon', name: 'Dermot Mallon', initials: 'DM',
@@ -84,7 +84,7 @@
         quote: 'The report I received from Dr Mallon was exceptional, clear understanding and the information I needed.',
         source: 'Verified patient · spine MRI'
       },
-      availability: 'Available today', rank: 0
+      rank: 0
     },
     {
       id: 'rajakulasingam', name: 'Ramanan Rajakulasingam', initials: 'RR',
@@ -105,7 +105,7 @@
         'Bone lesions of uncertain cause',
         'Complex orthopaedic follow-up'
       ],
-      availability: '', rank: 2
+      rank: 2
     },
     {
       id: 'tamimi', name: 'Asad Tamimi', initials: 'AT',
@@ -126,7 +126,7 @@
         'Pancreatic and biliary findings',
         'Prostate MRI'
       ],
-      availability: '', rank: 3
+      rank: 3
     },
     {
       id: 'kakar', name: 'Geetanjali Kakar', initials: 'GK',
@@ -147,7 +147,7 @@
         'Gynaecological staging MRI',
         'Pelvic ultrasound review'
       ],
-      availability: 'Next slot tomorrow', rank: 1
+      rank: 1
     },
 
     /* --- No headshot supplied yet: these render an initials tile and are kept
@@ -172,7 +172,7 @@
         'Head & neck staging',
         'Post-treatment neck imaging'
       ],
-      availability: 'Next slot tomorrow', rank: 1
+      rank: 1
     },
     {
       id: 'darco', name: 'Felice D’Arco', initials: 'FD',
@@ -193,7 +193,7 @@
         'Paediatric head & neck masses',
         'Second opinion on a child’s scan'
       ],
-      availability: '', rank: 2
+      rank: 2
     },
     {
       id: 'sivarasan', name: 'Nishanth Sivarasan', initials: 'NS',
@@ -220,7 +220,7 @@
         'Lung cancer screening findings',
         'Post-treatment chest imaging'
       ],
-      availability: '', rank: 2
+      rank: 2
     },
     {
       id: 'weston', name: 'William Weston', initials: 'WW',
@@ -247,7 +247,7 @@
         'Treatment response assessment',
         'Surveillance and follow-up scans'
       ],
-      availability: '', rank: 2
+      rank: 2
     },
     {
       id: 'withey', name: 'Sam Withey', initials: 'SW',
@@ -274,7 +274,7 @@
         'Post-treatment urology imaging',
         'Whole-body MRI screening'
       ],
-      availability: '', rank: 2
+      rank: 2
     },
     {
       id: 'forster', name: 'Danielle Forster', initials: 'DF',
@@ -301,7 +301,7 @@
         'Bone lesions',
         'Image-guided procedures'
       ],
-      availability: '', rank: 2
+      rank: 2
     },
     {
       id: 'naik', name: 'Mitesh Naik', initials: 'MN',
@@ -330,7 +330,7 @@
         'Cardiac imaging',
         'A second look at an emergency scan'
       ],
-      availability: '', rank: 2
+      rank: 2
     }
   ];
 
@@ -341,6 +341,6 @@
   root.CONSULTANT_BY_ID = byId;
   root.FEATURED_CONSULTANTS = CONSULTANTS.filter(function (c) { return c.featured; });
 
-  // Surname only, used for CTA labels like "Request Dr Mallon".
+  // Surname only, for sentences like "Dr Mallon has signed your report".
   root.consultantSurname = function (c) { return c.name.split(' ').slice(-1)[0]; };
 })(window);
