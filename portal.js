@@ -1,4 +1,4 @@
-/* SecondRead, patient portal store.
+/* Second Opinion Radiology, patient portal store.
  *
  * Single source of truth for the signed-in patient, their cases and their
  * reports. Loaded as a plain synchronous script BEFORE support.js so that
@@ -177,7 +177,7 @@
             }
           ],
           messages: [
-            { from: 'SecondRead clinical team', role: 'team', offsetH: -8.5, text: 'Thanks. Your images came through complete and readable. We have matched your case to Dr Mallon, Radiologist Neuroradiologist.' }
+            { from: 'Second Opinion Radiology clinical team', role: 'team', offsetH: -8.5, text: 'Thanks. Your images came through complete and readable. We have matched your case to Dr Mallon, Radiologist Neuroradiologist.' }
           ],
           report: null,
           comparison: null
@@ -200,7 +200,7 @@
           demo: true,
           tasks: [],
           messages: [
-            { from: 'SecondRead clinical team', role: 'team', offsetH: -120, text: 'Your images and original report are with Dr Al-Sanjari. Your report is due within 48 hours.' }
+            { from: 'Second Opinion Radiology clinical team', role: 'team', offsetH: -120, text: 'Your images and original report are with Dr Al-Sanjari. Your report is due within 48 hours.' }
           ],
           report: {
             inShort: 'The nodule in your right lung is there, and your radiologist agrees with the original description of it. Its appearance is the kind that is very unlikely to be cancer, and the recommended next step is a single repeat scan in twelve months rather than anything sooner.',
@@ -637,7 +637,7 @@
     var s = load();
     s.signedIn = true;
     var messages = [{
-      from: 'SecondRead clinical team',
+      from: 'Second Opinion Radiology clinical team',
       role: 'team',
       ts: new Date().toISOString(),
       text: 'Thanks. We have everything we need. We are checking your images are complete and readable, then matching your case to a radiologist.'
@@ -646,7 +646,7 @@
     // not move to matching until their section is in, so say so here.
     if (order.clinician && order.clinician.mode !== 'self' && order.clinician.email) {
       messages.push({
-        from: 'SecondRead clinical team',
+        from: 'Second Opinion Radiology clinical team',
         role: 'team',
         ts: new Date().toISOString(),
         text: 'We have sent a secure, single-case link to ' + order.clinician.email +

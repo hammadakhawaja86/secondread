@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=12"></script>
-<script src="./portal.js?v=10"></script>
+<script src="./portal.js?v=11"></script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
@@ -249,7 +249,7 @@
               <span>Dr {{ specialist.nameFirst }}</span>
               <span>{{ specialist.nameLast }}</span>
             </span>
-            <span style="height: 44px; font-size: 15px; line-height: 1.45; color: #173B4F; overflow: hidden;">{{ specialist.role }}</span>
+            <span style="height: 44px; font-size: 15px; line-height: 1.45; color: #173B4F; overflow: hidden;"><span style="display: block;">{{ specialist.roleGrade }}</span><span style="display: block; font-size: {{ specialist.roleSize }}; white-space: nowrap; overflow: hidden;">{{ specialist.roleSpecialty }}</span></span>
             <span style="height: 42px; font-size: 14.5px; line-height: 1.45; color: #4A5C68; overflow: hidden;">{{ specialist.quals }}</span>
             <span style="margin-top: 3px; font-size: 14.5px; color: #095458; text-decoration: underline; text-underline-offset: 3px;">GMC: {{ specialist.gmc }}</span>
           </span>
@@ -528,7 +528,7 @@
       </div>
     </div>
     <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>© 2026 SecondRead Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>© 2026 Second Opinion Radiology Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
       <div style="display: flex; gap: 18px; flex-wrap: wrap; row-gap: 10px;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -918,7 +918,20 @@ class Component extends DCLogic {
           focus: c.focus || '50% 50%',
           profileHref: 'Specialist Profile.dc.html?id=' + encodeURIComponent(c.id),
           nameFirst: sp === -1 ? c.name : c.name.slice(0, sp),
-          nameLast: sp === -1 ? '' : c.name.slice(sp + 1)
+          nameLast: sp === -1 ? '' : c.name.slice(sp + 1),
+          /* The grade goes on its own line so every card's title is two lines
+             deep, whatever the specialty is called. Left whole, nine of the
+             twelve sat on one line and three on two, and the cards stopped
+             lining up with each other. */
+          roleGrade: /^Consultant /.test(c.role) ? 'Consultant' : '',
+          roleSpecialty: c.role.replace(/^Consultant /, ''),
+          /* Two of the twelve specialties are long enough to wrap a second
+             time at this card width, which would make the title three lines
+             deep. They step down a size instead of wrapping or being cut. */
+          roleSize: (() => {
+            const n = c.role.replace(/^Consultant /, '').length;
+            return n > 40 ? '12.8px' : n > 36 ? '13.6px' : '15px';
+          })()
         };
       }),
       /* ---- pricing configurator ----

@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
-   SecondRead, radiologist roster (single source of truth)
+   Second Opinion Radiology, radiologist roster (single source of truth)
 
    Previously this roster was duplicated in three files with three different
    shapes, which is why every "View profile" link pointed at the same person.
