@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="admin.css?v=9">
+<link rel="stylesheet" href="admin.css?v=61">
 </head>
 <body>
 <div class="auth">
@@ -47,13 +47,15 @@
       <h2>Sign in</h2>
       <p class="sub">Use the work address your account was created with. We will email you a six-digit code.</p>
 
-      <label class="auth-label" for="auth-email">Work email address</label>
+      <form id="auth-form" novalidate><label class="auth-label" for="auth-email">Work email address</label>
       <input class="auth-input" id="auth-email" type="email" placeholder="you@secondopinionradiology.co.uk" autocomplete="email">
       <p class="auth-hint">Personal addresses are not accepted. If you have changed address, an administrator has to move your account first.</p>
 
-      <button class="auth-btn" type="button">Email me a sign-in code
+      <button class="auth-btn" type="submit">Email me a sign-in code
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </button>
+      <p class="auth-err" id="auth-err" role="alert" hidden></p>
+      </form>
 
       <div class="auth-rule"><span></span><b>Why no password</b><span></span></div>
 
@@ -62,10 +64,17 @@
         <p>Second Opinion Radiology has no passwords, on either side of the service. A code that expires in ten minutes cannot be reused, shared or left in a browser on a ward computer.</p>
       </div>
 
+      <div class="auth-demo">
+        <b>Two demonstration sign-ins</b>
+        <button type="button" data-fill="admin@31g.co.uk"><span>admin@31g.co.uk</span>Operations console</button>
+        <button type="button" data-fill="rad@31g.co.uk"><span>rad@31g.co.uk</span>Radiologist console</button>
+      </div>
+
       <p class="auth-help">Cannot get in? Email <a href="mailto:info@secondopinionradiology.co.uk">info@secondopinionradiology.co.uk</a> and an administrator will check your account.</p>
     </div>
   </div>
 
 </div>
+<script src="console-signin.js?v=1"></script>
 </body>
 </html>

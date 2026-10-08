@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radiologist activity · Second Opinion Radiology</title>
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
+<link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="admin.css?v=61">
+<script>try{if(localStorage.getItem("secondread:console:nav")==="collapsed")document.documentElement.classList.add("nav-collapsed")}catch(e){}</script>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="side">
+    <div class="side-top">
+      <a class="side-brand" href="index.html" title="SecondOpinion Radiology"><img class="side-logo full" src="logo-secondread.svg" alt="SecondOpinion Radiology"><img class="side-logo mark" src="logo-secondread-mark.svg" alt=""></a>
+      <button class="nav-toggle" type="button" aria-label="Collapse navigation" aria-expanded="true" title="Collapse navigation"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    </div>
+    <nav class="nav">
+      <a href="Admin.dc.html" title="Dashboard"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span class="lbl">Dashboard</span></a>
+      <a class="on" href="Admin%20Activity.dc.html" title="Radiologist activity"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="lbl">Radiologist activity</span></a>
+      <a href="Admin%20Users.dc.html" title="Manage users"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="lbl">Manage users</span></a>
+      <a href="Admin%20Profile.dc.html" title="Profile"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="lbl">Profile</span></a>
+    </nav>
+    <div class="side-foot">
+      <a class="logout" href="Admin%20Sign%20In.dc.html" title="Log out"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg><span class="lbl">Log out</span></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="demobar">
+      <div class="demotag">Demonstration</div>
+      <p>Prototype only. Every patient, case reference and radiologist assignment below is a written example. No real patient and no real clinical content. Nothing here is connected to a backend.</p>
+    </div>
+
+    <div class="inner">
+      <div class="head">
+        <div>
+          <h1>Radiologist activity</h1>
+          <p class="who">Who is reading right now, and how long each patient has been waiting</p>
+        </div>
+        <div class="hd-acts">
+          <div class="search"><input placeholder="Search here…"><button><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button></div>
+          <a class="refresh" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Refresh</a>
+        </div>
+      </div>
+
+      <div class="tiles tiles-2">
+        <button class="tile" type="button" data-view="reading" aria-pressed="false" data-title="Radiologists reading today" data-sub="Who has a case open right now, how much is on their desk and how fast they are turning it round." data-count="Showing 6 of 9 radiologists">
+          <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <div class="foot"><span class="nm">Radiologists reading today</span><span class="big">09</span></div>
+        </button>
+        <button class="tile lead" type="button" data-view="cases" aria-pressed="true" data-title="Cases in progress" data-sub="Every case that has reached a radiologist. Response time is how long the patient has been waiting since they paid, not since the case was picked up." data-count="Showing 6 of 17 cases in progress">
+          <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <div class="foot"><span class="nm">Cases with a radiologist</span><span class="big">17</span></div>
+        </button>
+      </div>
+
+      <div class="sect">
+        <div>
+          <h2 class="sect-title">Cases in progress</h2>
+          <p class="sect-sub">Every case that has reached a radiologist. Response time is how long the patient has been waiting since they paid, not since the case was picked up.</p>
+        </div>
+      </div>
+
+      <div class="tablewrap" data-table="cases" style="--tmin:1020px">
+        <table class="compact">
+          <thead><tr>
+            <th>Radiologist</th><th>Patient</th><th><span class="thf-lab">Status</span><span class="thf"><select class="thf-sel" data-col="status" aria-label="Filter by status"><option value="">All statuses</option><option value="Ongoing">Ongoing</option><option value="Report ready">Report ready</option><option value="Completed">Completed</option></select><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></th><th><span class="thf-lab">Body area</span><span class="thf"><select class="thf-sel" data-col="area" aria-label="Filter by body area"><option value="">All body areas</option><option value="Brain &amp; spine">Brain &amp; spine</option><option value="Chest &amp; heart">Chest &amp; heart</option><option value="Bones &amp; joints">Bones &amp; joints</option><option value="Abdomen &amp; pelvis">Abdomen &amp; pelvis</option><option value="Head &amp; neck">Head &amp; neck</option></select><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></th><th>Last activity</th><th>Response time</th><th class="th-acts">Actions</th>
+          </tr></thead>
+          <tbody>
+            <tr data-status="Ongoing" data-area="Brain &amp; spine"><td><a class="who-link" href="Specialist%20Profile.dc.html?id=mallon">Dr Dermot Mallon<span class="who-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>View profile</span></a></td><td>A. Khawaja</td><td><span class="pill p-with"><span class="d"></span>Ongoing</span></td><td>Brain &amp; spine</td><td>06/10/2026, 09:12</td><td><span class="wait mid">12–24 hrs</span></td><td><div class="acts"><button class="icon-act" type="button" aria-label="View details" title="View details" data-detail='{"name":"Dr Dermot Mallon","initials":"DM","area":"Brain & spine","done":38,"avg":"9 hrs 12 m","avgState":"","rating":"4.8","status":"Active","gmc":"7042054","sub":"Neuroradiology","email":"d.mallon@secondopinionradiology.co.uk","href":"Specialist%20Profile.dc.html?id=mallon"}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+            <tr data-status="Ongoing" data-area="Chest &amp; heart"><td><a class="who-link" href="Specialist%20Profile.dc.html?id=alsanjari">Dr Senan Alsanjari<span class="who-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>View profile</span></a></td><td>T. Mensah</td><td><span class="pill p-with"><span class="d"></span>Ongoing</span></td><td>Chest &amp; heart</td><td>06/10/2026, 08:40</td><td><span class="wait over">&gt; 48 hrs</span></td><td><div class="acts"><button class="icon-act" type="button" aria-label="View details" title="View details" data-detail='{"name":"Dr Senan Alsanjari","initials":"SA","area":"Chest & heart","done":27,"avg":"51 hrs 04 m","avgState":"over","rating":"4.6","status":"Active","gmc":"7486030","sub":"Cardiothoracic","email":"s.alsanjari@secondopinionradiology.co.uk","href":"Specialist%20Profile.dc.html?id=alsanjari"}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+            <tr data-status="Ongoing" data-area="Bones &amp; joints"><td><a class="who-link" href="Specialist%20Profile.dc.html?id=rajakulasingam">Dr Ramanan Rajakulasingam<span class="who-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>View profile</span></a></td><td>R. Okafor</td><td><span class="pill p-with"><span class="d"></span>Ongoing</span></td><td>Bones &amp; joints</td><td>06/10/2026, 07:55</td><td><span class="wait">4–12 hrs</span></td><td><div class="acts"><button class="icon-act" type="button" aria-label="View details" title="View details" data-detail='{"name":"Dr Ramanan Rajakulasingam","initials":"RR","area":"Bones & joints","done":41,"avg":"6 hrs 48 m","avgState":"","rating":"4.9","status":"Active","gmc":"7134655","sub":"Musculoskeletal","email":"r.rajakulasingam@secondopinionradiology.co.uk","href":"Specialist%20Profile.dc.html?id=rajakulasingam"}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+            <tr data-status="Report ready" data-area="Abdomen &amp; pelvis"><td><a class="who-link" href="Specialist%20Profile.dc.html?id=tamimi">Dr Asad Tamimi<span class="who-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>View profile</span></a></td><td>S. Idris</td><td><span class="pill p-ready"><span class="d"></span>Report ready</span></td><td>Abdomen &amp; pelvis</td><td>05/10/2026, 18:20</td><td><span class="wait">&lt; 4 hrs</span></td><td><div class="acts"><button class="icon-act" type="button" aria-label="View details" title="View details" data-detail='{"name":"Dr Asad Tamimi","initials":"AT","area":"Abdomen & pelvis","done":19,"avg":"14 hrs 22 m","avgState":"mid","rating":"4.7","status":"Active","gmc":"7411645","sub":"Abdominal & pelvic","email":"a.tamimi@secondopinionradiology.co.uk","href":"Specialist%20Profile.dc.html?id=tamimi"}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+            <tr data-status="Completed" data-area="Head &amp; neck"><td><a class="who-link" href="Specialist%20Profile.dc.html?id=wassati">Dr Husam Wassati<span class="who-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>View profile</span></a></td><td>L. Whitfield</td><td><span class="pill p-signed"><span class="d"></span>Completed</span></td><td>Head &amp; neck</td><td>05/10/2026, 16:02</td><td><span class="wait">&lt; 4 hrs</span></td><td><div class="acts"><button class="icon-act" type="button" aria-label="View details" title="View details" data-detail='{"name":"Dr Husam Wassati","initials":"HW","area":"Head & neck","done":33,"avg":"7 hrs 55 m","avgState":"","rating":"4.8","status":"Active","gmc":"7251947","sub":"Head & neck","email":"h.wassati@secondopinionradiology.co.uk","href":"Specialist%20Profile.dc.html?id=wassati"}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+            <tr data-status="Completed" data-area="Abdomen &amp; pelvis"><td><a class="who-link" href="Specialist%20Profile.dc.html?id=sivarasan">Dr Arjun Sivarasan<span class="who-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>View profile</span></a></td><td>M. Doyle</td><td><span class="pill p-signed"><span class="d"></span>Completed</span></td><td>Abdomen &amp; pelvis</td><td>03/10/2026, 14:31</td><td><span class="wait mid">12–24 hrs</span></td><td><div class="acts"><button class="icon-act" type="button" aria-label="View details" title="View details" data-detail='{"name":"Dr Arjun Sivarasan","initials":"AS","area":"Abdomen & pelvis","done":22,"avg":"16 hrs 09 m","avgState":"mid","rating":"4.5","status":"Active","gmc":"7419365","sub":"Abdominal & pelvic","email":"a.sivarasan@secondopinionradiology.co.uk","href":"Specialist%20Profile.dc.html?id=sivarasan"}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+          </tbody>
+        </table>
+        <p class="tempty" hidden>No case on this page matches these filters. Clear one, or try another page.</p>
+      </div>
+
+      <div class="tablewrap" data-table="reading" style="--tmin:960px" hidden>
+        <table class="compact">
+          <thead><tr>
+            <th>Radiologist</th><th>Status</th><th>Subspecialty</th><th>Cases open</th><th>Average response</th><th>Last activity</th><th class="th-acts">Actions</th>
+          </tr></thead>
+          <tbody>
+            <tr><td>Dr Dermot Mallon</td><td><span class="pill p-with"><span class="d"></span>Reading now</span></td><td>Neuroradiology</td><td>02</td><td><span class="wait">09 hrs 12 m</span></td><td>06/10/2026, 09:12</td><td><div class="acts"><a class="icon-act" href="Specialist%20Profile.dc.html?id=mallon" aria-label="Open profile" title="Open profile"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></a></div></td></tr>
+            <tr><td>Dr Senan Alsanjari</td><td><span class="pill p-with"><span class="d"></span>Reading now</span></td><td>Cardiothoracic</td><td>01</td><td><span class="wait over">51 hrs 04 m</span></td><td>06/10/2026, 08:40</td><td><div class="acts"><a class="icon-act" href="Specialist%20Profile.dc.html?id=alsanjari" aria-label="Open profile" title="Open profile"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></a></div></td></tr>
+            <tr><td>Dr Ramanan Rajakulasingam</td><td><span class="pill p-with"><span class="d"></span>Reading now</span></td><td>Musculoskeletal</td><td>03</td><td><span class="wait">06 hrs 48 m</span></td><td>06/10/2026, 07:55</td><td><div class="acts"><a class="icon-act" href="Specialist%20Profile.dc.html?id=rajakulasingam" aria-label="Open profile" title="Open profile"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></a></div></td></tr>
+            <tr><td>Dr Asad Tamimi</td><td><span class="pill p-ready"><span class="d"></span>Report ready</span></td><td>Abdominal &amp; pelvic</td><td>01</td><td><span class="wait mid">14 hrs 22 m</span></td><td>05/10/2026, 18:20</td><td><div class="acts"><a class="icon-act" href="Specialist%20Profile.dc.html?id=tamimi" aria-label="Open profile" title="Open profile"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></a></div></td></tr>
+            <tr><td>Dr Husam Wassati</td><td><span class="pill p-signed"><span class="d"></span>Free</span></td><td>Head &amp; neck</td><td>00</td><td><span class="wait">07 hrs 55 m</span></td><td>05/10/2026, 16:02</td><td><div class="acts"><a class="icon-act" href="Specialist%20Profile.dc.html?id=wassati" aria-label="Open profile" title="Open profile"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></a></div></td></tr>
+            <tr><td>Dr Arjun Sivarasan</td><td><span class="pill p-signed"><span class="d"></span>Free</span></td><td>Abdominal &amp; pelvic</td><td>00</td><td><span class="wait mid">16 hrs 09 m</span></td><td>03/10/2026, 14:31</td><td><div class="acts"><a class="icon-act" href="Specialist%20Profile.dc.html?id=sivarasan" aria-label="Open profile" title="Open profile"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></a></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="foot-note"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span><b>Response time is the patient&rsquo;s clock.</b> A case past 48 hours is breaching the turnaround the patient paid for, whoever is holding it. Chase the radiologist before the patient has to ask.</span></div>
+      <div class="tfoot">
+        <span class="count" data-noun="cases" data-all="Showing 6 of 17 cases in progress">Showing 6 of 17 cases in progress</span><button class="clearf" type="button" hidden>Clear filters</button>
+        <div class="pager"><span>Prev</span><span class="on">1</span><span>2</span><span>3</span><span>Next</span></div>
+      </div>
+
+      <p class="page-note">© 2026 Second Opinion Radiology Ltd · Internal console &middot; Not an emergency service.</p>
+
+    </div>
+  </div>
+
+
+  <dialog class="modal" id="detail" aria-labelledby="detail-name">
+    <button class="modal-x" type="button" data-close aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    <div class="modal-head">
+      <span class="modal-av" data-f="initials"></span>
+      <h2 id="detail-name" data-f="name"></h2>
+      <span class="modal-area" data-f="area"></span>
+    </div>
+    <div class="modal-stats">
+      <div><span class="k">Completed cases</span><b data-f="done"></b></div>
+      <div><span class="k">Average response time</span><span class="wait" data-f="avg"></span></div>
+      <div><span class="k">Patient rating</span><b class="modal-star"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><span data-f="rating"></span></b></div>
+    </div>
+    <dl class="modal-rows">
+      <div><dt>Status</dt><dd class="good" data-f="status"></dd></div>
+      <div><dt>GMC number</dt><dd data-f="gmc"></dd></div>
+      <div><dt>Subspecialty</dt><dd data-f="sub"></dd></div>
+      <div><dt>Work email</dt><dd data-f="email"></dd></div>
+      <div><dt>Date of birth</dt><dd class="nil">Not held</dd></div>
+      <div><dt>Gender</dt><dd class="nil">Not held</dd></div>
+      <div><dt>Postcode</dt><dd class="nil">Not held</dd></div>
+      <div><dt>Mobile number</dt><dd class="nil">Not held</dd></div>
+    </dl>
+    <p class="modal-note">Personal details sit with HR, not in this console. Operations needs the GMC number and the work address, and nothing further.</p>
+    <div class="modal-foot">
+      <a class="btn btn-primary" data-f-href="href" href="#">Open full profile</a>
+      <button class="btn btn-ghost" type="button" data-close>Close</button>
+    </div>
+  </dialog>
+</div>
+<script src="console-nav.js?v=1"></script>
+<script src="console-tips.js?v=1"></script>
+<script src="console-search.js?v=1"></script>
+<script src="console-colfilter.js?v=6"></script>
+<script src="console-modal.js?v=1"></script>
+<script src="console-tiles.js?v=1"></script>
+</body>
+</html>

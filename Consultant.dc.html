@@ -8,21 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="admin.css?v=9">
+<link rel="stylesheet" href="admin.css?v=61">
+<script>try{if(localStorage.getItem("secondread:console:nav")==="collapsed")document.documentElement.classList.add("nav-collapsed")}catch(e){}</script>
 </head>
 <body>
 <div class="shell">
 
   <aside class="side">
-    <a href="index.html"><img class="side-logo" src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height:46px;width:184px"></a>
+    <div class="side-top">
+      <a class="side-brand" href="index.html" title="SecondOpinion Radiology"><img class="side-logo full" src="logo-secondread.svg" alt="SecondOpinion Radiology"><img class="side-logo mark" src="logo-secondread-mark.svg" alt=""></a>
+      <button class="nav-toggle" type="button" aria-label="Collapse navigation" aria-expanded="true" title="Collapse navigation"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    </div>
     <nav class="nav">
-      <a class="on" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Dashboard</a>
-      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>Cases assigned</a>
-      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+      <a class="on" href="Consultant.dc.html" title="Dashboard"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span class="lbl">Dashboard</span></a>
+      <a href="Consultant%20Cases.dc.html" title="Cases assigned"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg><span class="lbl">Cases assigned</span></a>
+      <a href="Consultant%20Profile.dc.html" title="Profile"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="lbl">Profile</span></a>
     </nav>
     <div class="side-foot">
-      <a class="logout" href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Log out</a>
-      <p class="side-note">© 2026 Second Opinion Radiology Ltd · Radiologist console<br>Dr Dermot Mallon · GMC 7042054</p>
+      <a class="logout" href="Admin%20Sign%20In.dc.html" title="Log out"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg><span class="lbl">Log out</span></a>
     </div>
   </aside>
 
@@ -38,48 +41,173 @@
           <h1>Good afternoon, Dr Mallon</h1>
           <p class="who">Neuroradiology · four cases with you · Monday 5 October 2026</p>
         </div>
-        <a class="refresh" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Refresh</a>
+        <div class="hd-acts">
+          <div class="search"><input placeholder="Search your cases…"><button><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button></div>
+          <a class="refresh" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Refresh</a>
+        </div>
       </div>
 
       <div class="next">
         <div><div class="lab">Next deadline</div><div class="clock">5h 10m</div></div>
         <div class="mid"><b>SR-2026-6723 &middot; MRI brain, interval change</b><span>Your draft is due before the patient's 48-hour promise. Submit by 19:30.</span></div>
-        <a class="go" href="#">Open case <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a class="go" href="Consultant%20Cases.dc.html?case=SR-2026-6723">Open case <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
 
       <div class="offer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        <span class="t"><b>One new offer.</b> MRI brain or spine, 48-hour turnaround, &pound;140. Expires in 38 minutes.</span>
-        <a class="btn btn-primary" href="#">Review offer</a>
-        <a class="btn btn-ghost" href="#">Decline</a>
+        <span class="t"><b>One new case allocated.</b> MRI brain or spine, 48-hour turnaround, &pound;140. Expires in 38 minutes.</span>
+        <button class="btn btn-primary offer-yes" type="button">Review case</button>
+        <button class="btn btn-ghost offer-no" type="button">Decline</button>
       </div>
 
-      <div class="stats" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:28px;">
-        <div class="stat"><div class="lab">Offered to you</div><div><div class="num">01</div><div class="delta">Awaiting your answer</div></div></div>
-        <div class="stat"><div class="lab">In review</div><div><div class="num">02</div><div class="delta">States 06&ndash;07</div></div></div>
-        <div class="stat"><div class="lab">Flagged to Admin</div><div><div class="num">01</div><div class="delta">State 10</div></div></div>
-        <div class="stat"><div class="lab">Signed this month</div><div><div class="num">23</div><div class="delta">State 11 onward</div></div></div>
+      <div class="statgrid cols-5" role="group" aria-label="Filter your cases">
+        <button class="statf on" type="button" data-filter="all" aria-pressed="true" data-title="Your cases" data-sub="Every case assigned to you, soonest deadline first. Your deadline sits before the patient’s, to leave room for checking and release." data-count="Showing 4 of 4 cases with you"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></span><span class="t"><span class="lab">Your cases</span><span class="num">04</span><span class="delta">Everything with you</span></span></button>
+        <button class="statf" type="button" data-filter="offers" aria-pressed="false" data-title="Offered to you" data-sub="Accept and it is yours, with the clock already running. Decline and it goes back to the queue, with no mark against you." data-count="Showing 1 of 1 offer"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span class="t"><span class="lab">Offered to you</span><span class="num">01</span><span class="delta">Awaiting your answer</span></span></button>
+        <button class="statf" type="button" data-filter="review" aria-pressed="false" data-title="In review" data-sub="Open on your desk now. The deadline shown is yours, not the patient’s." data-count="Showing 2 of 4 cases with you"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="t"><span class="lab">In review</span><span class="num">02</span><span class="delta">Open on your desk</span></span></button>
+        <button class="statf" type="button" data-filter="flagged" aria-pressed="false" data-title="Flagged to admin" data-sub="You have raised something on these. They do not move until operations answers." data-count="Showing 1 of 4 cases with you"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg></span><span class="t"><span class="lab">Flagged to admin</span><span class="num">01</span><span class="delta">Waiting on operations</span></span></button>
+        <button class="statf" type="button" data-filter="signed" aria-pressed="false" data-title="Signed this month" data-sub="Signed and released. Kept for the record, and for your monthly statement." data-count="Showing 1 of 23 signed cases"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t"><span class="lab">Signed this month</span><span class="num">23</span><span class="delta">Released to the patient</span></span></button>
       </div>
 
       <div class="sect">
         <div>
-          <h2>Your cases</h2>
-          <p>Your deadline, not the patient's, theirs sits later, to leave room for checking and release.</p>
+          <h2 class="sect-title">Your cases</h2>
+          <p class="sect-sub">Every case assigned to you, soonest deadline first. Your deadline sits before the patient’s, to leave room for checking and release.</p>
         </div>
       </div>
 
-      <table>
-        <thead><tr><th>Case</th><th>Body area</th><th>Modality</th><th>Your deadline</th><th>Lifecycle state</th><th style="text-align:right">Actions</th></tr></thead>
-        <tbody>
-          <tr><td>SR-2026-6723</td><td>Brain or spine</td><td>MRI</td><td><span class="wait over">In 5 h 10 m</span></td><td><span class="st st-review"><span class="n">07</span> In review</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Open case</a></div></td></tr>
-          <tr><td>SR-2026-6701</td><td>Brain or spine</td><td>CT</td><td><span class="wait">In 14 h</span></td><td><span class="st st-review"><span class="n">07</span> In review</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Open case</a></div></td></tr>
-          <tr><td>SR-2026-6688</td><td>Head or neck</td><td>Ultrasound</td><td><span class="wait">In 22 h</span></td><td><span class="st st-amend"><span class="n">10</span> Flagged</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Open case</a></div></td></tr>
-          <tr><td>SR-2026-6654</td><td>Brain or spine</td><td>MRI</td><td><span class="wait">Signed 4 Oct</span></td><td><span class="st st-signed"><span class="n">11</span> Signed</span></td><td><div class="acts"><a class="btn btn-primary" href="#">Open case</a></div></td></tr>
-        </tbody>
-      </table>
+      <div class="tablewrap" data-table="cases" style="--tmin:980px">
+        <table class="compact">
+          <thead><tr>
+            <th>Case</th><th>Patient</th><th><span class="thf-lab">Body area</span><span class="thf"><select class="thf-sel" data-col="area" aria-label="Filter by body area"><option value="">All body areas</option><option value="Brain or spine">Brain or spine</option><option value="Head or neck">Head or neck</option></select><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></th><th><span class="thf-lab">Modality</span><span class="thf"><select class="thf-sel" data-col="mod" aria-label="Filter by modality"><option value="">All modalities</option><option value="MRI">MRI</option><option value="CT">CT</option><option value="Ultrasound">Ultrasound</option></select><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></th><th>Your deadline</th><th>Lifecycle state</th><th class="th-acts">Actions</th>
+          </tr></thead>
+          <tbody>
+            <tr data-sets="all review" data-area="Brain or spine" data-mod="MRI"><td class="caseid">SR-2026-6723</td><td>A. Khawaja</td><td>Brain or spine</td><td>MRI</td><td><span class="wait over">In 5 h 10 m</span></td><td><span class="st st-review"><span class="n">07</span> In review</span></td><td><div class="acts"><span class="actwrap"><select class="actsel" aria-label="Action for SR-2026-6723"><option>Open case</option><option selected>Submit draft</option><option>Flag to admin</option><option>Return to queue</option></select><svg class="actch" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span><button class="icon-act" type="button" aria-label="View case" title="View case" data-case='{"id":"SR-2026-6723","patient":"A. Khawaja","area":"Brain or spine","mod":"MRI","state":"In review","title":"MRI brain, interval change","ask":"Please review whether this scan explains the headaches I have had since June, and the numbness in my left hand.","file":"GP referral letter.pdf","at":"01 October 2026, 07:47","deadline":"In 5 h 10 m","signed":false}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+            <tr data-sets="all review" data-area="Brain or spine" data-mod="CT"><td class="caseid">SR-2026-6701</td><td>T. Mensah</td><td>Brain or spine</td><td>CT</td><td><span class="wait">In 14 h</span></td><td><span class="st st-review"><span class="n">07</span> In review</span></td><td><div class="acts"><span class="actwrap"><select class="actsel" aria-label="Action for SR-2026-6701"><option>Open case</option><option selected>Submit draft</option><option>Flag to admin</option><option>Return to queue</option></select><svg class="actch" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span><button class="icon-act" type="button" aria-label="View case" title="View case" data-case='{"id":"SR-2026-6701","patient":"T. Mensah","area":"Brain or spine","mod":"CT","state":"In review","title":"CT head, post-trauma","ask":"I would like a second opinion on the shadow my GP mentioned on this scan.","file":"Discharge summary.pdf","at":"01 October 2026, 11:02","deadline":"In 14 h","signed":false}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+            <tr data-sets="all flagged" data-area="Head or neck" data-mod="Ultrasound"><td class="caseid">SR-2026-6688</td><td>L. Whitfield</td><td>Head or neck</td><td>Ultrasound</td><td><span class="wait">In 22 h</span></td><td><span class="st st-amend"><span class="n">10</span> Flagged</span></td><td><div class="acts"><span class="actwrap"><select class="actsel" aria-label="Action for SR-2026-6688"><option selected>Open case</option><option>Submit draft</option><option>Flag to admin</option><option>Return to queue</option></select><svg class="actch" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span><button class="icon-act" type="button" aria-label="View case" title="View case" data-case='{"id":"SR-2026-6688","patient":"L. Whitfield","area":"Head or neck","mod":"Ultrasound","state":"Flagged","title":"Neck ultrasound, lymph nodes","ask":"I would like the report explained in plain language, and told whether anything needs following up.","file":"Original report.pdf","at":"02 October 2026, 14:20","deadline":"In 22 h","signed":false}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+            <tr data-sets="all signed" data-area="Brain or spine" data-mod="MRI"><td class="caseid">SR-2026-6654</td><td>M. Doyle</td><td>Brain or spine</td><td>MRI</td><td><span class="wait">Signed 4 Oct</span></td><td><span class="st st-signed"><span class="n">11</span> Signed</span></td><td><div class="acts"><span class="actwrap"><select class="actsel" aria-label="Action for SR-2026-6654"><option selected>Open case</option><option>Submit draft</option><option>Flag to admin</option><option>Return to queue</option></select><svg class="actch" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span><button class="icon-act" type="button" aria-label="View case" title="View case" data-case='{"id":"SR-2026-6654","patient":"M. Doyle","area":"Brain or spine","mod":"MRI","state":"Signed","title":"MRI spine, follow-up","ask":"Please check whether this scan agrees with the report I was given.","file":"Clinic letter.pdf","at":"29 September 2026, 08:55","deadline":"Signed 4 Oct","signed":true}'><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></button></div></td></tr>
+          </tbody>
+        </table>
+        <p class="tempty" hidden>No case of yours is in this view. Try another card, or clear the filters.</p>
+      </div>
+
+      <div class="tablewrap" data-table="offers" style="--tmin:900px" hidden>
+        <table class="compact">
+          <thead><tr>
+            <th>Offer</th><th>Body area</th><th>Modality</th><th>Turnaround</th><th>Fee</th><th>Expires</th><th class="th-acts">Actions</th>
+          </tr></thead>
+          <tbody>
+            <tr><td class="caseid">SR-2026-6744</td><td>Brain or spine</td><td>MRI</td><td>48 hours</td><td>&pound;140</td><td><span class="wait over">In 38 m</span></td><td><div class="acts"><button class="btn btn-primary offer-yes" type="button">Accept</button><button class="btn btn-ghost offer-no" type="button">Decline</button></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="tfoot">
+        <span class="count" data-noun="cases" data-all="Showing 4 of 4 cases with you">Showing 4 of 4 cases with you</span><button class="clearf" type="button" hidden>Clear filters</button>
+        <div class="pager"><span>Prev</span><span class="on">1</span><span>Next</span></div>
+      </div>
+
+      <p class="page-note">© 2026 Second Opinion Radiology Ltd · Radiologist console &middot; Dr Dermot Mallon · GMC 7042054</p>
 
     </div>
   </div>
 
 </div>
+
+  <dialog class="modal modal-case" id="offer" aria-labelledby="offer-title">
+    <div class="case-bar">
+      <h2 id="offer-title">New case &middot; <span>SR-2026-6744</span></h2>
+      <button class="case-x" type="button" data-oclose aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    </div>
+
+    <p class="case-meta">Brain or spine &middot; MRI &middot; 48-hour turnaround &middot; &pound;140 &middot; <span class="wait over">Expires in 38 m</span></p>
+
+    <div class="case-thread">
+      <div class="osum">
+        <div><span class="k">Study</span><span class="v">MRI brain with contrast, 02/10/2026</span></div>
+        <div><span class="k">Referred by</span><span class="v">Royal Free Hospital</span></div>
+        <div><span class="k">Prior study</span><span class="v">MRI brain, March 2024 &middot; available</span></div>
+        <div><span class="k">Patient</span><span class="v">K. Varma &middot; 41</span></div>
+        <div><span class="k">Images</span><span class="v">512 images &middot; 2.4 GB</span></div>
+        <div><span class="k">Your draft due</span><span class="v">08/10/2026, 19:00</span></div>
+      </div>
+
+      <div class="msg">
+        <span class="msg-av">KV</span>
+        <div class="msg-body">
+          <p class="msg-q">What the patient asked</p>
+          <p class="msg-t">&ldquo;My scan was reported as showing a small change near the front of my brain. I would like to know whether that is serious, and whether it has grown since 2024.&rdquo;</p>
+        </div>
+      </div>
+
+      <div class="case-due">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span><b>Accepting starts the clock.</b> The patient&rsquo;s 48 hours runs from now, and your draft is due before it, to leave room for checking and release.</span>
+      </div>
+
+      <form class="decline-box" id="decline-box" hidden>
+        <h3>Why are you declining?</h3>
+        <p class="dsub">This goes to operations so the case can be placed quickly. It is not held against you.</p>
+        <label class="fld"><span>Reason</span>
+          <select class="inp" name="reason">
+            <option value="">Choose a reason</option>
+            <option>Outside what I read</option>
+            <option>No capacity before the deadline</option>
+            <option>Prior study missing or unreadable</option>
+            <option>Possible conflict of interest</option>
+            <option>Other</option>
+          </select></label>
+        <label class="fld"><span>Anything else? <i>Optional</i></span>
+          <textarea class="inp" name="note" rows="2" placeholder="A line is enough."></textarea></label>
+        <p class="auth-err" id="decline-err" role="alert" hidden></p>
+      </form>
+    </div>
+
+    <p class="modal-note">Written example. No real patient, no real images and no real clinical content.</p>
+
+    <div class="case-foot">
+      <button class="btn btn-primary" type="button" id="offer-accept"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Accept case</button>
+      <button class="btn btn-ghost" type="button" id="offer-decline">Decline</button>
+    </div>
+  </dialog>
+
+  <dialog class="modal modal-case" id="case" aria-labelledby="case-title">
+    <div class="case-bar">
+      <h2 id="case-title">Case <span data-f="id"></span></h2>
+      <button class="case-x" type="button" data-close aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    </div>
+
+    <p class="case-meta"><span data-f="patient"></span> &middot; <span data-f="area"></span> &middot; <span data-f="mod"></span> &middot; <span data-f="title"></span></p>
+
+    <div class="case-thread">
+      <div class="msg">
+        <span class="msg-av" data-f="ini"></span>
+        <div class="msg-body">
+          <p class="msg-q">What the patient asked you to look at</p>
+          <p class="msg-t" data-f="ask"></p>
+          <a class="msg-file" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h5"/></svg><span data-f="file"></span></a>
+          <p class="msg-at"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-f="at"></span></p>
+        </div>
+      </div>
+
+      <div class="case-due">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span><b>Your deadline: <span data-f="deadline"></span>.</b> The patient&rsquo;s 48 hours runs out later, to leave room for checking and release.</span>
+      </div>
+    </div>
+
+    <p class="modal-note">Written example. No real patient, no real images and no real clinical content.</p>
+
+    <div class="case-foot">
+      <button class="btn btn-primary" type="button" id="case-open"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>Open in the viewer</button>
+      <button class="btn btn-ghost" type="button" id="case-draft">Submit draft</button>
+    </div>
+  </dialog>
+
+<script src="console-nav.js?v=1"></script>
+<script src="console-tips.js?v=1"></script>
+<script src="console-search.js?v=1"></script>
+<script src="console-colfilter.js?v=6"></script>
+<script src="console-tiles.js?v=1"></script>
+<script src="console-rad.js?v=4"></script>
 </body>
 </html>

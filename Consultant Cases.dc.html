@@ -8,21 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="admin.css?v=9">
+<link rel="stylesheet" href="admin.css?v=61">
+<script>try{if(localStorage.getItem("secondread:console:nav")==="collapsed")document.documentElement.classList.add("nav-collapsed")}catch(e){}</script>
 </head>
 <body>
 <div class="shell">
 
   <aside class="side">
-    <a href="index.html"><img class="side-logo" src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height:46px;width:184px"></a>
+    <div class="side-top">
+      <a class="side-brand" href="index.html" title="SecondOpinion Radiology"><img class="side-logo full" src="logo-secondread.svg" alt="SecondOpinion Radiology"><img class="side-logo mark" src="logo-secondread-mark.svg" alt=""></a>
+      <button class="nav-toggle" type="button" aria-label="Collapse navigation" aria-expanded="true" title="Collapse navigation"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    </div>
     <nav class="nav">
-      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Dashboard</a>
-      <a class="on" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>Cases assigned</a>
-      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+      <a href="Consultant.dc.html" title="Dashboard"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span class="lbl">Dashboard</span></a>
+      <a class="on" href="Consultant%20Cases.dc.html" title="Cases assigned"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg><span class="lbl">Cases assigned</span></a>
+      <a href="Consultant%20Profile.dc.html" title="Profile"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="lbl">Profile</span></a>
     </nav>
     <div class="side-foot">
-      <a class="logout" href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Log out</a>
-      <p class="side-note">© 2026 Second Opinion Radiology Ltd · Radiologist console<br>Dr Dermot Mallon · GMC 7042054</p>
+      <a class="logout" href="Admin%20Sign%20In.dc.html" title="Log out"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg><span class="lbl">Log out</span></a>
     </div>
   </aside>
 
@@ -38,26 +41,29 @@
           <h1>Cases assigned</h1>
           <p class="who">Pick a case, read the study, write your opinion</p>
         </div>
-        <a class="refresh" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Refresh</a>
+        <div class="hd-acts">
+          <div class="search"><input placeholder="Find a case…"><button><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button></div>
+          <a class="refresh" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Refresh</a>
+        </div>
       </div>
 
       <div class="split">
 
         <div class="clist">
           <div class="hd">4 cases with you</div>
-          <a class="citem on" href="#"><div class="r1"><span class="ref">SR-2026-6723</span><span class="st st-review"><span class="n">07</span> In review</span></div><div class="r2">MRI · Brain or spine &nbsp;·&nbsp; due 5h 10m</div></a>
-          <a class="citem" href="#"><div class="r1"><span class="ref">SR-2026-6701</span><span class="st st-review"><span class="n">07</span> In review</span></div><div class="r2">CT · Brain or spine &nbsp;·&nbsp; due 14h</div></a>
-          <a class="citem" href="#"><div class="r1"><span class="ref">SR-2026-6688</span><span class="st st-amend"><span class="n">10</span> Flagged</span></div><div class="r2">MRI · Head or neck &nbsp;·&nbsp; due 22h</div></a>
-          <a class="citem" href="#"><div class="r1"><span class="ref">SR-2026-6654</span><span class="st st-signed"><span class="n">11</span> Signed</span></div><div class="r2">MRI · Brain or spine &nbsp;·&nbsp; due, </div></a>
+          <button class="citem on" type="button" data-case='{"id":"SR-2026-6723","patient":"A. Khawaja","study":"MRI brain with contrast, 18/01/2026 \u00b7 Royal Free Hospital \u00b7 prior MRI 03/2024 available","due":"Your draft due in 5h 10m","tight":true,"step":2,"state":"In review","ask":"My report mentioned a possible lesion, is it a tumour, and has it changed since my last scan?","images":"480 images \u00b7 2.1 GB","prior":"MRI brain, March 2024","report":"Royal Free, 20/01/2026"}'><div class="r1"><span class="ref">SR-2026-6723</span><span class="st st-review"><span class="n">07</span> In review</span></div><div class="r2">MRI · Brain or spine &nbsp;·&nbsp; due 5h 10m</div></button>
+          <button class="citem" type="button" data-case='{"id":"SR-2026-6701","patient":"T. Mensah","study":"CT head without contrast, 24/09/2026 \u00b7 St Thomas\u2019 Hospital \u00b7 no prior study","due":"Your draft due in 14h","tight":false,"step":2,"state":"In review","ask":"I was told there was a shadow on the scan. Nobody has explained what it means.","images":"212 images \u00b7 0.8 GB","prior":"No prior study on file","report":"St Thomas\u2019, 25/09/2026"}'><div class="r1"><span class="ref">SR-2026-6701</span><span class="st st-review"><span class="n">07</span> In review</span></div><div class="r2">CT · Brain or spine &nbsp;·&nbsp; due 14h</div></button>
+          <button class="citem" type="button" data-case='{"id":"SR-2026-6688","patient":"L. Whitfield","study":"Ultrasound neck, 30/09/2026 \u00b7 Guy\u2019s Hospital \u00b7 prior ultrasound 11/2025","due":"Flagged to admin \u00b7 clock paused","tight":false,"step":2,"state":"Flagged","ask":"Please explain the report in plain language and tell me whether anything needs following up.","images":"64 images \u00b7 0.2 GB","prior":"Ultrasound neck, November 2025","report":"Guy\u2019s, 01/10/2026"}'><div class="r1"><span class="ref">SR-2026-6688</span><span class="st st-amend"><span class="n">10</span> Flagged</span></div><div class="r2">MRI · Head or neck &nbsp;·&nbsp; due 22h</div></button>
+          <button class="citem" type="button" data-case='{"id":"SR-2026-6654","patient":"M. Doyle","study":"MRI lumbar spine, 12/09/2026 \u00b7 UCLH \u00b7 prior MRI 08/2023","due":"Signed 4 October","tight":false,"step":4,"state":"Signed","ask":"Please check whether this scan agrees with the report I was given.","images":"318 images \u00b7 1.4 GB","prior":"MRI spine, August 2023","report":"UCLH, 14/09/2026"}'><div class="r1"><span class="ref">SR-2026-6654</span><span class="st st-signed"><span class="n">11</span> Signed</span></div><div class="r2">MRI · Brain or spine &nbsp;·&nbsp; due, </div></button>
         </div>
 
         <div class="detail">
           <div class="dhead">
             <div>
-              <h2>SR-2026-6723 &nbsp;&middot;&nbsp; A. Khawaja</h2>
-              <div class="sub">MRI brain with contrast, 18/01/2026 &middot; Royal Free Hospital &middot; prior MRI 03/2024 available</div>
+              <h2><span data-d="id">SR-2026-6723</span> &nbsp;&middot;&nbsp; <span data-d="patient">A. Khawaja</span></h2>
+              <div class="sub" data-d="study">MRI brain with contrast, 18/01/2026 &middot; Royal Free Hospital &middot; prior MRI 03/2024 available</div>
             </div>
-            <span class="due tight"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Your draft due in 5h 10m</span>
+            <span class="due tight"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-d="due">Your draft due in 5h 10m</span></span>
           </div>
 
           <div class="lc">
@@ -73,14 +79,14 @@
           </div>
 
           <div class="study">
-            <a href="#"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.6-4.6a2 2 0 0 0-2.8 0L3 21"/></svg></span><span><b>Open study</b><span>480 images &middot; 2.1 GB</span></span></a>
-            <a href="#"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span><span><b>Prior study</b><span>MRI brain, March 2024</span></span></a>
-            <a href="#"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/></svg></span><span><b>Original report</b><span>Royal Free, 20/01/2026</span></span></a>
+            <a href="#"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.6-4.6a2 2 0 0 0-2.8 0L3 21"/></svg></span><span><b>Open study</b><span data-d="images">480 images &middot; 2.1 GB</span></span></a>
+            <a href="#"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span><span><b>Prior study</b><span data-d="prior">MRI brain, March 2024</span></span></a>
+            <a href="#"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/></svg></span><span><b>Original report</b><span data-d="report">Royal Free, 20/01/2026</span></span></a>
           </div>
 
           <div class="qcard">
             <div class="lab">What the patient asked</div>
-            <p>&ldquo;My report mentioned a possible lesion, is it a tumour, and has it changed since my last scan?&rdquo;</p>
+            <p>&ldquo;<span data-d="ask"></span>&rdquo;</p>
           </div>
 
           <div class="form2">
@@ -101,18 +107,24 @@
           </div>
 
           <div class="bar">
-            <a class="big-btn btn-ghost" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg> Save draft</a>
-            <a class="big-btn btn-primary" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg> Submit for checking</a>
-            <a class="big-btn btn-warn" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Flag as urgent</a>
+            <button class="big-btn btn-ghost" type="button" data-act="save"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg> Save draft</button>
+            <button class="big-btn btn-primary" type="button" data-act="submit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg> Submit for checking</button>
+            <button class="big-btn btn-warn" type="button" data-act="flag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Flag to admin</button>
             <span class="sp">Autosaved 14:06 &middot; you sign after checking, not now</span>
           </div>
         </div>
 
       </div>
 
+      <p class="page-note">© 2026 Second Opinion Radiology Ltd · Radiologist console &middot; Dr Dermot Mallon · GMC 7042054</p>
+
     </div>
   </div>
 
 </div>
+<script src="console-nav.js?v=1"></script>
+<script src="console-tips.js?v=1"></script>
+<script src="console-search.js?v=1"></script>
+<script src="console-caselist.js?v=4"></script>
 </body>
 </html>
