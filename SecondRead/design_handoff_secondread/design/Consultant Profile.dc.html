@@ -8,21 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="admin.css?v=9">
+<link rel="stylesheet" href="admin.css?v=61">
+<script>try{if(localStorage.getItem("secondread:console:nav")==="collapsed")document.documentElement.classList.add("nav-collapsed")}catch(e){}</script>
 </head>
 <body>
 <div class="shell">
 
   <aside class="side">
-    <a href="index.html"><img class="side-logo" src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height:46px;width:184px"></a>
+    <div class="side-top">
+      <a class="side-brand" href="index.html" title="SecondOpinion Radiology"><img class="side-logo full" src="logo-secondread.svg" alt="SecondOpinion Radiology"><img class="side-logo mark" src="logo-secondread-mark.svg" alt=""></a>
+      <button class="nav-toggle" type="button" aria-label="Collapse navigation" aria-expanded="true" title="Collapse navigation"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    </div>
     <nav class="nav">
-      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Dashboard</a>
-      <a href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>Cases assigned</a>
-      <a class="on" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+      <a href="Consultant.dc.html" title="Dashboard"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span class="lbl">Dashboard</span></a>
+      <a href="Consultant%20Cases.dc.html" title="Cases assigned"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg><span class="lbl">Cases assigned</span></a>
+      <a class="on" href="Consultant%20Profile.dc.html" title="Profile"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="lbl">Profile</span></a>
     </nav>
     <div class="side-foot">
-      <a class="logout" href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Log out</a>
-      <p class="side-note">© 2026 Second Opinion Radiology Ltd · Radiologist console<br>Dr Dermot Mallon · GMC 7042054</p>
+      <a class="logout" href="Admin%20Sign%20In.dc.html" title="Log out"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg><span class="lbl">Log out</span></a>
     </div>
   </aside>
 
@@ -43,12 +46,12 @@
 
       <div class="panel">
         <nav class="rail">
-          <a class="on" href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Your registration</a>
-          <a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg> Work you accept</a>
-          <a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Sign-in &amp; security</a>
+          <button class="on" type="button" data-pane="registration"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Your registration</button>
+          <button class="" type="button" data-pane="work"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg> Work you accept</button>
+          <button class="" type="button" data-pane="security"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Sign-in &amp; security</button>
         </nav>
 
-        <div class="pane">
+        <div class="pane" id="pane-registration">
           <div class="ident">
             <span class="av"><img src="portraits/dermot-mallon.jpg" alt=""></span>
             <div>
@@ -72,16 +75,86 @@
 
           <div class="rule"></div>
 
-          <h2 style="font-size:21px;">Taking new cases</h2>
+          <form class="prof-form" id="avail-form"><h2 style="font-size:21px;">Taking new cases</h2>
           <p class="lede" style="font-size:15px;">Turn this off and you will stop being offered cases. Anything already accepted stays with you.</p>
-          <div class="toggle-row"><span class="sw"></span><div><div class="v" style="font-weight:600;">Available for new offers</div><div class="k" style="margin:2px 0 0;">Offers expire after 45 minutes if unanswered</div></div></div>
-          <div class="toggle-row"><span class="sw off"></span><div><div class="v" style="font-weight:600;">Accept urgent escalations</div><div class="k" style="margin:2px 0 0;">Cases the clinical lead flags as urgent, off by default</div></div></div>
+          <div class="opt"><div><b>Available for new offers</b><span>Offers expire after 45 minutes if unanswered.</span></div><label class="sw"><input type="checkbox" name="available" checked><i></i></label></div>
+          <div class="opt"><div><b>Accept urgent escalations</b><span>Cases the clinical lead flags as urgent. Off by default.</span></div><label class="sw"><input type="checkbox" name="urgent"><i></i></label></div><div class="bar"><button class="cta sm" type="submit" disabled>Save changes</button><button class="btn btn-ghost" type="reset">Discard</button></div></form>
+        </div>
+
+        <div class="pane" id="pane-work" hidden>
+          <h2>Work you accept</h2>
+          <p class="lede">What you are offered, and how much of it at once. Narrowing this does not affect a case already with you.</p>
+
+          <form class="prof-form" id="work-form">
+            <h3 class="fld-h">Body areas</h3>
+            <div class="picks">
+              <label class="pick"><input type="checkbox" name="a_brain" checked><span>Brain or spine</span></label>
+              <label class="pick"><input type="checkbox" name="a_head" checked><span>Head or neck</span></label>
+              <label class="pick"><input type="checkbox" name="a_chest"><span>Chest or heart</span></label>
+              <label class="pick"><input type="checkbox" name="a_bones"><span>Bones or joints</span></label>
+              <label class="pick"><input type="checkbox" name="a_abdo"><span>Abdomen or pelvis</span></label>
+              <label class="pick"><input type="checkbox" name="a_child"><span>Children</span></label>
+            </div>
+
+            <h3 class="fld-h">Modalities</h3>
+            <div class="picks">
+              <label class="pick"><input type="checkbox" name="m_mri" checked><span>MRI</span></label>
+              <label class="pick"><input type="checkbox" name="m_ct" checked><span>CT</span></label>
+              <label class="pick"><input type="checkbox" name="m_pet" checked><span>PET-CT</span></label>
+              <label class="pick"><input type="checkbox" name="m_us"><span>Ultrasound</span></label>
+              <label class="pick"><input type="checkbox" name="m_xr"><span>X-ray</span></label>
+            </div>
+
+            <div class="pane-grid">
+              <label class="fld"><span>Most cases open at once</span>
+                <select class="inp" name="cap"><option>02</option><option selected>04</option><option>06</option><option>08</option></select></label>
+              <label class="fld"><span>Reading hours</span>
+                <select class="inp" name="hours"><option selected>Evenings and weekends</option><option>Weekdays, daytime</option><option>Any time</option></select></label>
+            </div>
+
+            <div class="note">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <p>You are the only radiologist on the panel reading <b>Children</b> alongside Dr D&rsquo;Arco. Turning it off leaves that area on one pair of hands.</p>
+            </div>
+
+            <div class="bar"><button class="cta sm" type="submit" disabled>Save changes</button><button class="btn btn-ghost" type="reset">Discard</button></div>
+          </form>
+        </div>
+
+        <div class="pane" id="pane-security" hidden>
+          <h2>Sign-in &amp; security</h2>
+          <p class="lede">There is no password on either side of this service. You sign in with a six-digit code sent to your registered address, so there is nothing to remember and nothing to leak.</p>
+
+          <div class="field">
+            <label>Registered email</label>
+            <div class="readonly"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>d.mallon@secondopinionradiology.co.uk</div>
+          </div>
+
+          <div class="note">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p>Your address is tied to your GMC registration. Changing it is done by the clinical lead, not here, because moving a sign-in address is how an account gets taken over.</p>
+          </div>
+
+          <div class="rule"></div>
+
+          <h2 style="font-size:21px;">Where you are signed in</h2>
+          <p class="lede" style="font-size:15px;">Every sign-in, every case opened and every report signed is logged against your name.</p>
+          <div class="sess">
+            <div class="r"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>This device &middot; London<span class="meta">Active now</span></div>
+            <div class="r"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>iPad &middot; London<span class="meta">4 October, 21:10</span></div>
+          </div>
+          <a class="cta sm" style="margin-top:20px;" href="#" id="signout-all"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>Sign out everywhere else</a>
         </div>
       </div>
+
+      <p class="page-note">© 2026 Second Opinion Radiology Ltd · Radiologist console &middot; Dr Dermot Mallon · GMC 7042054</p>
 
     </div>
   </div>
 
 </div>
+<script src="console-nav.js?v=1"></script>
+<script src="console-tips.js?v=1"></script>
+<script src="console-profile.js?v=3"></script>
 </body>
 </html>
