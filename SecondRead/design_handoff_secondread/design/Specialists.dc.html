@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=19"></script>
+<script src="./consultants.js?v=20"></script>
 <script src="./portal.js?v=13"></script>
 <script src="./support.js?v=3"></script>
 </head>
@@ -95,7 +95,7 @@
               <div data-r="dochead" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px 20px; margin-bottom: 14px;">
                 <div style="flex: 1 1 240px; min-width: 0;">
                   <h3 style="margin: 0 0 4px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Dr {{ doc.name }}</h3>
-                  <p style="margin: 0; font-size: 14px; color: #4A5C68;">{{ doc.role }} · {{ doc.hospital }}</p>
+                  <p style="margin: 0; font-size: 14px; color: #4A5C68;">{{ doc.roleLine }}</p>
                 </div>
                 <a href="{{ doc.profileHref }}" style="flex-shrink: 0; min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Profile</a>
               </div>
@@ -247,6 +247,9 @@ class Component extends DCLogic {
       visibleDoctors: visible.map(d => ({
         ...d,
         portrait: this.portrait(d),
+        // Not every radiologist names a hospital, so the separator travels
+        // with it rather than being left dangling after the role.
+        roleLine: d.role + (d.hospital ? ' · ' + d.hospital : ''),
         profileHref: 'Specialist Profile.dc.html?id=' + encodeURIComponent(d.id),
         cardBorder: '#E2E9EC'
       }))

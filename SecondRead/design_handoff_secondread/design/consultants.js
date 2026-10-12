@@ -38,8 +38,8 @@
     {
       id: 'alsanjari', name: 'Senan Alsanjari', initials: 'SA',
       role: 'Consultant cardiothoracic radiologist',
-      hospital: 'NHNN',
-      quals: 'FRCR · Level III cardiac MRI & CT · NHNN',
+      hospital: '',
+      quals: 'FRCR · Level III cardiac MRI & CT',
       gmc: '7486030',
       photo: 'portraits/senan-alsanjari.jpg', featured: true,
       areas: ['chest'], modalities: ['CT', 'PET-CT', 'MRI'],
@@ -59,7 +59,7 @@
     {
       id: 'mallon', name: 'Dermot Mallon', initials: 'DM',
       role: 'Consultant neuroradiologist',
-      hospital: 'NHNN, UCLH',
+      hospital: 'UCLH',
       quals: 'FRCR · PhD Cambridge · UCLH',
       gmc: '7042054',
       photo: 'portraits/dermot-mallon.jpg', featured: true,
@@ -70,7 +70,7 @@
       intro: 'Consultant radiologist at the National Hospital for Neurology and Neurosurgery, UCLH. Reads brain, spine and skull-base imaging every working day.',
       background: [
         'Biochemistry and medicine at Bristol, PhD at Cambridge, then joint academic and clinical radiology training at Imperial College Healthcare, including an Academic Clinical Fellowship and a Clinical Lectureship at Imperial College London.',
-        'Now a substantive neuroradiologist at NHNN, part of UCLH, one of the largest neurological referral centres in Europe.'
+        'Now a substantive neuroradiologist at UCLH, one of the largest neurological referral centres in Europe.'
       ],
       helpWith: [
         'Unclear brain MRI findings',
