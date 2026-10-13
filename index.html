@@ -1,25 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<title>A second opinion on your scan, from a UK subspecialist | Second Opinion Radiology</title>
+<meta name="description" content="Upload an MRI, CT, ultrasound or X-ray you already have and a GMC-registered radiologist who subspecialises in that body area reads it again. £250, within 48 hours.">
+<link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=20"></script>
 <script src="./portal.js?v=13"></script>
+<link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
+<link rel="preload" as="script" href="vendor/react-dom-18.3.1.min.js">
+<script>
+  /* The runtime pulls React from unpkg by default. Its own hook points it at
+     our copies instead: same files, same SRI digests, one origin. */
+  window.__resources = Object.assign({}, window.__resources, {
+    "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "vendor/react-18.3.1.min.js",
+    "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "vendor/react-dom-18.3.1.min.js"
+  });
+</script>
 <script src="./support.js?v=3"></script>
 </head>
 <body>
 <x-dc>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0A1F2C"/><rect x="60" y="60" width="80" height="80" rx="18" fill="#007071"/><circle cx="90" cy="90" r="18" fill="#5EA2A3"/><circle cx="111" cy="111" r="18" fill="#29E6C4"/></svg></template>
 <helmet>
-  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/fonts.css">
-  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/colors.css">
-  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/typography.css">
-  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/spacing.css">
-  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/tokens/effects.css">
-  <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
-  <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=27">
+  <link rel="stylesheet" href="responsive.css?v=28">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -52,7 +58,7 @@
 </header>
 
 <section style="position: relative; background-color: #D8EEEA; overflow: hidden; border-bottom: 1px solid #E2E9EC;">
-  <img src="uploads/Generated image 1 (5).png" alt="Radiologist reviewing MRI images beside a scanner" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% center; opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;">
+  <img src="hero-radiologist-mri.webp" alt="Radiologist reviewing MRI images beside a scanner" width="1600" height="800" fetchpriority="high" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% center; opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;">
   <div style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(216,238,234,0.97) 0%, rgba(216,238,234,0.92) 34%, rgba(216,238,234,0.55) 52%, rgba(216,238,234,0.08) 68%, rgba(216,238,234,0) 100%); opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;"></div>
   <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 72px 32px 0;">
     <div onMouseEnter="{{ pauseCarousel }}" onMouseLeave="{{ resumeCarousel }}" onFocus="{{ pauseCarousel }}" onBlur="{{ resumeCarousel }}" style="display: grid; align-items: stretch;">
@@ -67,7 +73,7 @@
         </div>
         <div style="display: flex; gap: 22px; flex-wrap: wrap; font-size: 13px; color: #4A5C68;">
           <span>No GP referral needed</span>
-          <span style="color: #6C7C87;">·</span>
+          <span style="color: #627079;">·</span>
           <span>No appointment</span>
         </div>
       </div>
@@ -103,7 +109,7 @@
           </sc-for>
         </div>
         <h3 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">Which part of the body?</h3>
-        <select value="{{ quickArea }}" onChange="{{ onQuickArea }}" style="width: 100%; min-height: 50px; padding: 13px 16px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; color: #0A1F2C; box-sizing: border-box; cursor: pointer; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
+        <select value="{{ quickArea }}" onChange="{{ onQuickArea }}" aria-label="Which part of the body was scanned?" style="width: 100%; min-height: 50px; padding: 13px 16px; border-radius: 12px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; color: #0A1F2C; box-sizing: border-box; cursor: pointer; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
           <sc-for list="{{ quickAreas }}" as="area" hint-placeholder-count="6">
             <option value="{{ area.id }}">{{ area.label }}</option>
           </sc-for>
@@ -158,7 +164,7 @@
         <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 28px; box-shadow: 0 1px 3px rgba(10,31,44,0.06); height: 100%; box-sizing: border-box; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 34px rgba(10,31,44,0.14);">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
             <span style="width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, #0D6E70 0%, #12938F 55%, #6FE3C5 100%); display: flex; align-items: center; justify-content: center; color: #FFFFFF; box-shadow: 0 6px 16px rgba(13,110,112,0.28); transition: transform 220ms cubic-bezier(0.16,1,0.3,1);" style-hover="transform: scale(1.08) rotate(-4deg);">{{ step.glyph }}</span>
-            <span style="font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; color: #D4DDE0; line-height: 1;">{{ step.number }}</span>
+            <span style="font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; color: #7E8D97; line-height: 1;">{{ step.number }}</span>
           </div>
           <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 19px; color: #0A1F2C;">{{ step.title }}</h3>
           <p style="margin: 0 0 14px; font-size: 14px; line-height: 1.6; color: #4A5C68;">{{ step.description }}</p>
@@ -195,7 +201,7 @@
                so the gradient stays visible as a frame on all four sides. The
                source files are square; the 332:244 window crops them centrally. -->
           <span data-r="svcphoto" style="position: relative; display: block; margin-top: 8px; width: 100%; aspect-ratio: 332 / 244; border-radius: 30px; overflow: hidden; background: #06131C;">
-            <img src="{{ s.photo }}" alt="" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+            <img src="{{ s.photo }}" alt="" loading="lazy" width="760" height="760" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
           </span>
           <span aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,19,28,0) 54%, rgba(6,19,28,0.26) 100%); pointer-events: none;"></span>
           <!-- Deliberately straddles the top edge of the scan: it reads as a
@@ -214,9 +220,9 @@
   </div>
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
-    <div data-r="svcdots" style="display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 26px;">
+    <div data-r="svcdots" style="display: flex; align-items: center; justify-content: center; gap: 17px; margin-top: 26px;">
       <sc-for list="{{ svcDots }}" as="dot" hint-placeholder-count="6">
-        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; padding: 0; height: 7px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
+        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; box-sizing: border-box; padding: 9px 0; height: 25px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; background-clip: content-box; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
       </sc-for>
     </div>
   </div>
@@ -262,9 +268,9 @@
   </div>
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
-    <div data-r="specdots" style="display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 26px;">
+    <div data-r="specdots" style="display: flex; align-items: center; justify-content: center; gap: 17px; margin-top: 26px;">
       <sc-for list="{{ specDots }}" as="dot" hint-placeholder-count="6">
-        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; padding: 0; height: 7px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
+        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; box-sizing: border-box; padding: 9px 0; height: 25px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; background-clip: content-box; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
       </sc-for>
     </div>
   </div>
@@ -493,7 +499,7 @@
             <div role="alert" style="font-size: 14px; line-height: 1.5; color: #B4462F;">{{ enquiryError }}</div>
           </sc-if>
           <button type="button" onClick="{{ sendEnquiry }}" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Send my question</button>
-          <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #6C7C87;">We use your email only to answer this question. Read how we handle your data in our <a href="Privacy.dc.html" style="font-weight: 600;">privacy notice</a>.</p>
+          <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #627079;">We use your email only to answer this question. Read how we handle your data in our <a href="Privacy.dc.html" style="font-weight: 600;">privacy notice</a>.</p>
         </div>
       </sc-if>
     </div>
@@ -632,17 +638,17 @@ class Component extends DCLogic {
     // stop positions come straight from the Figma card; only the colours vary
     // down the row, which is what gives the carousel its movement.
     services: [
-      { photo: 'services/mri-ct.jpg', tag: 'MRI & CT', title: 'A second read of your scan', credit: '', href: 'Pricing.dc.html',
+      { photo: 'services/mri-ct.webp', tag: 'MRI & CT', title: 'A second read of your scan', credit: '', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #12938F 9%, #0D6E70 45%, #06313A 91%)' },
-      { photo: 'services/xray.jpg', tag: 'X-ray', title: 'Clear answers on your X-ray', credit: '', href: 'Pricing.dc.html',
+      { photo: 'services/xray.webp', tag: 'X-ray', title: 'Clear answers on your X-ray', credit: '', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #6FE3C5 -12%, #12938F 40%, #095458 100%)' },
-      { photo: 'services/musculoskeletal.jpg', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Pricing.dc.html',
+      { photo: 'services/musculoskeletal.webp', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #0D6E70 0%, #12938F 38%, #06313A 100%)' },
-      { photo: 'services/cardiac.jpg', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Pricing.dc.html',
+      { photo: 'services/cardiac.webp', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #12938F -8%, #095458 46%, #0A1F2C 100%)' },
-      { photo: 'services/neuroradiology.jpg', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Pricing.dc.html',
+      { photo: 'services/neuroradiology.webp', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #6FE3C5 -16%, #0D6E70 42%, #06313A 100%)' },
-      { photo: 'services/abdomen.jpg', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Pricing.dc.html',
+      { photo: 'services/abdomen.webp', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #095458 0%, #12938F 42%, #06313A 100%)' }
     ],
     // Portraits are ordinary files now, not the base64 blob in portraits/data.js, // swapping a headshot is a one-file drop-in. GMC numbers are placeholders and
@@ -990,7 +996,7 @@ class Component extends DCLogic {
           label: a.title,
           value: on ? '+\u00a3' + a.price : 'Not added',
           weight: on ? 600 : 400,
-          color: on ? '#0A1F2C' : '#A3B0B8'
+          color: on ? '#0A1F2C' : '#627079'
         };
       })),
       orderTotal: this.pricingTotal(),
