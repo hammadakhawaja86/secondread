@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=25">
+  <link rel="stylesheet" href="responsive.css?v=27">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -85,7 +85,7 @@
       <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
         <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Start in under a minute</span>
         <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.06; letter-spacing: -0.025em; color: #0A1F2C;">Two questions and we know who reads your scan.</h2>
-        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 520px;">No card needed yet, and you can stop at any step. Tell us what was scanned and we take it from there.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 520px;">Tell us what was scanned. You see the fixed price before you pay, and upload straight after.</p>
         <div style="display: flex; flex-direction: column; gap: 12px;">
           <sc-for list="{{ quickAssurances }}" as="item" hint-placeholder-count="3">
             <div style="display: flex; gap: 11px; align-items: center;">
@@ -373,7 +373,7 @@
 
         <div style="margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 12.5px; color: #5A6B77;">
           <span aria-hidden="true" style="display: inline-flex; color: #0D6E70;">{{ lockGlyph }}</span>
-          <span>Nothing is charged until you confirm.</span>
+          <span>You see the fixed price before you pay.</span>
         </div>
       </div>
 
@@ -636,13 +636,13 @@ class Component extends DCLogic {
         gradient: 'linear-gradient(155deg, #12938F 9%, #0D6E70 45%, #06313A 91%)' },
       { photo: 'services/xray.jpg', tag: 'X-ray', title: 'Clear answers on your X-ray', credit: '', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #6FE3C5 -12%, #12938F 40%, #095458 100%)' },
-      { photo: 'services/musculoskeletal.jpg', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Specialist Profile.dc.html?id=rajakulasingam',
+      { photo: 'services/musculoskeletal.jpg', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #0D6E70 0%, #12938F 38%, #06313A 100%)' },
-      { photo: 'services/cardiac.jpg', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Specialist Profile.dc.html?id=alsanjari',
+      { photo: 'services/cardiac.jpg', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #12938F -8%, #095458 46%, #0A1F2C 100%)' },
-      { photo: 'services/neuroradiology.jpg', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Specialist Profile.dc.html?id=mallon',
+      { photo: 'services/neuroradiology.jpg', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #6FE3C5 -16%, #0D6E70 42%, #06313A 100%)' },
-      { photo: 'services/abdomen.jpg', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Specialist Profile.dc.html?id=tamimi',
+      { photo: 'services/abdomen.jpg', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #095458 0%, #12938F 42%, #06313A 100%)' }
     ],
     // Portraits are ordinary files now, not the base64 blob in portraits/data.js, // swapping a headshot is a one-file drop-in. GMC numbers are placeholders and
@@ -674,7 +674,7 @@ class Component extends DCLogic {
     ],
     faqData: [
       { q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly. If you would like your GP or radiologist copied into the report, tell us their email at upload and we will send it to them at the same time as you.' },
-      { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report. They can usually supply a disc or a secure download. Start your case now and add the images when they arrive; nothing is charged until the last step. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
+      { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report. They can usually supply a disc or a secure download. You can start your case now and add the images when they arrive. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
       { q: 'Which scans can you review?', a: 'MRI, CT, ultrasound, X-ray and PET-CT, across neuro, musculoskeletal, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
       { q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we are ICO registered. Only the reporting radiologist and our clinical governance lead can access your study.' },
     ]
@@ -857,7 +857,8 @@ class Component extends DCLogic {
         go: () => this.setState({ slide: i })
       })),
       quickAssurances: [
-        { text: 'No card needed yet. Nothing is charged until step three' },
+        { text: '\u00a3250 subspecialist report, back within 48 hours' },
+        { text: 'Full refund if we cannot read your images' },
         { text: 'Do not have the images? We show you how to request them' }
       ],
       quickScans: ['MRI', 'CT', 'X-ray', 'Ultrasound', 'PET-CT', 'Not sure'].map(t => {

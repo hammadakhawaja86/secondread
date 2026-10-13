@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=25">
+  <link rel="stylesheet" href="responsive.css?v=27">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -152,7 +152,7 @@
     </div>
     <div style="padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
       <span>&copy; 2026 Second Opinion Radiology Ltd &middot; Registered in England &middot; Not an emergency service. If you are unwell, contact 111 or 999.</span>
-      <div style="display: flex; gap: 18px;">
+      <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
         <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
@@ -227,7 +227,7 @@ class Component extends DCLogic {
       codeBorder: s.error && s.stage === 'code' ? '#C97D76' : '#D4DDE0',
       pendingEmail: pend ? pend.email : s.email,
       demoCode: pend ? pend.code : s.demoCode,
-      signInHref: 'Sign In.dc.html' + (next ? '?next=' + encodeURIComponent(next) : ''),
+      signInHref: 'Sign In.dc.html?next=Dashboard.dc.html',
       onFirst: e => this.setState({ first: e.target.value, error: '' }),
       onLast: e => this.setState({ last: e.target.value, error: '' }),
       onEmail: e => this.setState({ email: e.target.value, error: '', errorSignIn: false }),

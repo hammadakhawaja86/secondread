@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=25">
+  <link rel="stylesheet" href="responsive.css?v=27">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -67,7 +67,7 @@
 
     <sc-if value="{{ atEmail }}" hint-placeholder-val="{{ true }}">
       <div style="margin-bottom: 26px;">
-        <h1 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.14; letter-spacing: -0.02em; color: #0A1F2C;">Sign in to your dashboard</h1>
+        <h1 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.14; letter-spacing: -0.02em; color: #0A1F2C;">Welcome back</h1>
         <p style="margin: 0; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">Track your case, read your report, and message the team. There is no password. We email you a six-digit code.</p>
       </div>
 
@@ -75,7 +75,7 @@
         <div style="display: flex; flex-direction: column; gap: 18px;">
 
           <sc-if value="{{ hasError }}" hint-placeholder-val="{{ true }}">
-            <div role="alert" style="background: #FBEEEC; border: 1px solid #E7BDB8; border-radius: 11px; padding: 13px 15px; font-size: 14px; line-height: 1.55; color: #7E2B26;">{{ error }}<sc-if value="{{ errorCreate }}" hint-placeholder-val="{{ false }}"> <a href="{{ createHref }}" style="font-weight: 600; color: #7E2B26; text-decoration: underline;">Create an account and start your case</a>.</sc-if></div>
+            <div role="alert" style="background: #FBEEEC; border: 1px solid #E7BDB8; border-radius: 11px; padding: 13px 15px; font-size: 14px; line-height: 1.55; color: #7E2B26;">{{ error }}<sc-if value="{{ errorCreate }}" hint-placeholder-val="{{ false }}"> <a href="{{ createHref }}" style="font-weight: 600; color: #7E2B26; text-decoration: underline;">Book a second opinion</a>.</sc-if></div>
           </sc-if>
 
           <label style="display: flex; flex-direction: column; gap: 7px;">
@@ -88,8 +88,8 @@
       </div>
 
       <div style="margin-top: 22px; background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 16px; padding: 22px 24px; text-align: center;">
-        <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.6; color: #06313A;">First time here? Start a case and we will set your account up as you go.</p>
-        <a href="{{ createHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 48px; padding: 13px 26px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: background 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Start a new case</a>
+        <p style="margin: 0 0 12px; font-size: 15px; line-height: 1.6; color: #06313A;">New here? We set your account up as you book, so there is nothing to sign up for first.</p>
+        <a href="{{ createHref }}" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 48px; padding: 13px 26px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: background 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF; text-decoration: none;">Book a second opinion</a>
       </div>
     </sc-if>
 
@@ -108,7 +108,7 @@
             <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Six-digit code</span>
             <input type="text" inputmode="numeric" autocomplete="one-time-code" value="{{ code }}" onChange="{{ onCode }}" placeholder="000000" style="min-height: 56px; padding: 14px 16px; border-radius: 11px; border: 1.5px solid {{ codeBorder }}; background: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: 0.28em; color: #0A1F2C; box-sizing: border-box; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);">
           </label>
-          <button type="button" onClick="{{ verify }}" style="min-height: 52px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Verify and open my dashboard</button>
+          <button type="button" onClick="{{ verify }}" style="min-height: 52px; padding: 14px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458;" style-active="transform: translateY(1px);">Continue my case</button>
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
             <button type="button" onClick="{{ resend }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #095458; cursor: pointer; text-decoration: underline;">Send it again</button>
             <button type="button" onClick="{{ changeEmail }}" style="appearance: none; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #5A6B77; cursor: pointer; text-decoration: underline;">Use a different email</button>
@@ -138,7 +138,7 @@
     </div>
     <div style="padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
       <span>&copy; 2026 Second Opinion Radiology Ltd &middot; Registered in England &middot; Not an emergency service. If you are unwell, contact 111 or 999.</span>
-      <div style="display: flex; gap: 18px;">
+      <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
         <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
@@ -212,7 +212,7 @@ class Component extends DCLogic {
       codeBorder: s.error && s.stage === 'code' ? '#C97D76' : '#D4DDE0',
       pendingEmail: pend ? pend.email : s.email,
       demoCode: pend ? pend.code : s.demoCode,
-      createHref: 'Create Account.dc.html' + (next ? '?next=' + encodeURIComponent(next) : ''),
+      createHref: 'Start Flow.dc.html',
       onEmail: e => this.setState({ email: e.target.value, error: '', errorCreate: false }),
       onCode: e => this.setState({ code: e.target.value, error: '' }),
       sendCode: () => this.sendCode(),

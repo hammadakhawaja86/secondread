@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/styles.css">
   <script src="_ds/31g-design-system-5eefacab-b944-4f73-bcd6-31e00a39bb45/_ds_bundle.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=25">
+  <link rel="stylesheet" href="responsive.css?v=27">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -112,7 +112,7 @@
       <sc-for list="{{ contacts }}" as="contact" hint-placeholder-count="3">
         <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 28px; box-shadow: 0 2px 8px rgba(10,31,44,0.06); height: 100%; box-sizing: border-box; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 34px rgba(10,31,44,0.13);">
           <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #5A6B77; margin-bottom: 12px;">{{ contact.label }}</div>
-          <div style="font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 700; color: #0A1F2C; line-height: 1.4; margin-bottom: 8px;">{{ contact.value }}</div>
+          <div style="font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 700; color: #0A1F2C; line-height: 1.4; margin-bottom: 8px; overflow-wrap: anywhere;">{{ contact.value }}</div>
           <div style="font-size: 13.5px; line-height: 1.55; color: #4A5C68;">{{ contact.note }}</div>
         </div>
       </sc-for>
@@ -153,7 +153,7 @@
     </div>
     <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
       <span>© 2026 Second Opinion Radiology Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
-      <div style="display: flex; gap: 18px;">
+      <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
         <a href="Terms.dc.html" style="color: rgba(255,255,255,0.72);">Terms</a>
@@ -170,7 +170,7 @@ const CATEGORIES = ['Before you order', 'Getting your images', 'Your report', 'P
 const FAQS = [
   { id: 'gp-referral', category: 'Before you order', q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly and order without seeing anyone first. If you would like your GP or radiologist copied into the report, give us their email at upload and we send it to them at the same time as you.' },
   { id: 'nhs-scan', category: 'Getting your images', q: 'Can I use a scan done on the NHS?', a: 'Yes. The images belong to you under your right of access, and a second opinion on an NHS scan is entirely legitimate. Reporting on NHS imaging is routine for us and does not affect your NHS care in any way.' },
-  { id: 'no-images', category: 'Getting your images', q: 'What if I do not have the images?', a: 'You have a legal right to a copy of your own scan images. Ring the radiology department at the hospital where the scan was done, or medical records, and ask for the images themselves rather than just the written report. They can usually supply a disc or a secure download, and under UK data protection law they should respond within one month. If the scan was private or done abroad, ask the clinic for the download link they issued you. Start your case now and add the images when they arrive: nothing is charged until the last step. We cannot make the request on your behalf, because it has to come from you, but call us and we will talk you through it.' },
+  { id: 'no-images', category: 'Getting your images', q: 'What if I do not have the images?', a: 'You have a legal right to a copy of your own scan images. Ring the radiology department at the hospital where the scan was done, or medical records, and ask for the images themselves rather than just the written report. They can usually supply a disc or a secure download, and under UK data protection law they should respond within one month. If the scan was private or done abroad, ask the clinic for the download link they issued you. You can start your case now and add the images when they arrive. We cannot make the request on your behalf, because it has to come from you, but call us and we will talk you through it.' },
   { id: 'bad-news', category: 'Your report', q: 'Will you tell me I have cancer over email?', a: 'Never as a surprise line in a PDF. If the radiologist finds something serious or urgent, we call you before the report is released and offer a video call with the reporting radiologist at no extra cost, so you hear it from a doctor who can answer your questions.' },
   { id: 'who-sees', category: 'Privacy', q: 'Who can see my images?', a: 'Only the reporting radiologist and our clinical governance lead. Images are stored encrypted on UK servers under UK GDPR and we are ICO registered. We never share your study with insurers, employers or third parties, and you can ask us to delete it at any time.' },
   { id: 'outside-uk', category: 'Before you order', q: 'I am outside the UK, can you still help?', a: 'Yes. We accept images from any country and report in English. Payment is in pounds sterling and the deadline you see at checkout is shown in your local time as well as UK time.' }

@@ -893,3 +893,32 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
   .pr-pkg:hover, .pr-pkg:active,
   .pr-addon:active, .pr-cta:hover { transform: none !important; }
 }
+
+/* ---------------------------------------- 12. the two-step order flow ---- */
+
+/* The stepper's segments stopped being buttons when the flow lost its
+   jump-back-a-step behaviour, so the rules that size them follow the div. */
+[data-r="stepper"] > div { min-width: 0; }
+
+@media (max-width: 1024px) {
+  /* A grid child defaults to min-width:auto, so anything inside the form
+     column that will not shrink sets the whole column's floor and the page
+     scrolls sideways. Let the columns shrink instead. */
+  [data-r="flowgrid"] > *,
+  [data-r="profilegrid"] > * { min-width: 0 !important; }
+  [data-r="flowaside"] { position: static !important; }
+}
+
+@media (max-width: 860px) {
+  [data-r="profilegrid"] { grid-template-columns: minmax(0, 1fr) !important; }
+}
+
+@media (max-width: 620px) {
+  [data-r="stepper"] > div { padding-left: 4px !important; padding-right: 4px !important; gap: 8px !important; }
+  [data-r="stepper"] > div > span:last-child { font-size: 12.5px !important; line-height: 1.25; }
+  [data-r="scangrid"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  [data-r="namerow"],
+  [data-r="cardrow"],
+  [data-r="docrow"] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-r="trackrow"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 18px 14px !important; }
+}
