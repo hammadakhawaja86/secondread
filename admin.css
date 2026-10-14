@@ -259,6 +259,10 @@ button.tile:active { transform:scale(.995); }
 
 /* master-detail */
 .split { display:grid; grid-template-columns:360px minmax(0,1fr); gap:24px; align-items:start; }
+/* A grid item defaults to min-width:auto, so a wide table inside the second
+   column pushes the whole track past the viewport instead of scrolling. */
+.split > * { min-width:0; }
+.tablewrap { max-width:100%; overflow-x:auto; }
 .clist { background:var(--white); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:0 2px 8px rgba(10,31,44,.06); }
 .clist .hd { padding:14px 18px; background:#FAFCFC; border-bottom:1px solid var(--line);
              font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--teal-dark); }
@@ -295,7 +299,7 @@ button.tile:active { transform:scale(.995); }
        font-family:'Inter',sans-serif; font-size:14px; line-height:1.55; color:var(--navy); padding:11px 13px; resize:none; }
 .fld .fake { min-height:44px; display:flex; align-items:center; justify-content:space-between; color:var(--navy); }
 .fld .fake.ph { color:var(--faint); }
-.bar { display:flex; align-items:center; gap:12px; margin-top:20px; padding-top:18px; border-top:1px solid var(--line); }
+.bar { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:20px; padding-top:18px; border-top:1px solid var(--line); }
 .bar .sp { margin-left:auto; font-size:13px; color:var(--muted); }
 .big-btn { display:inline-flex; align-items:center; gap:9px; height:50px; padding:0 26px; border-radius:999px; font-size:15px; font-weight:600; }
 
@@ -940,3 +944,58 @@ button.big-btn { cursor:pointer; font-family:'Inter',sans-serif; }
                 font-size:13.5px; font-weight:600; cursor:pointer; padding:0; }
 .toast button:hover { text-decoration:underline; }
 @media (prefers-reduced-motion: reduce) { .tip, .toast { transition:none; } }
+
+/* ------------------------------------------------- the workspace on a phone
+   The action bar under the report draft is a flex row that never wrapped, so
+   three buttons and the autosave note held the page at about 1000px on a
+   375px screen. The existing wrap rule only covered bars inside .pane. */
+@media (max-width:860px) {
+  .bar { flex-wrap:wrap; }
+  .bar .sp { margin-left:0; flex:1 1 100%; }
+  .big-btn { padding:0 18px; }
+
+  /* The case list and the open case sit side by side at 360px + the rest.
+     Stacked, the second column keeps the fixed track and overflows, so the
+     grid drops to one column and every child is allowed to shrink. */
+  .split { grid-template-columns:minmax(0,1fr); }
+  .split > *, .detail, .detail > * { min-width:0; }
+  .dhead { flex-wrap:wrap; gap:12px; }
+  .lc .steps { overflow-x:auto; }
+
+  /* Three file links across is two too many at this width, and the file names
+     inside them have no space to wrap. */
+  .study { grid-template-columns:minmax(0,1fr); }
+  .study a { min-width:0; }
+  .study b, .study span { min-width:0; overflow-wrap:anywhere; }
+
+  /* The all-cases table keeps its columns and scrolls inside its own card
+     rather than stretching the page. */
+  .tablewrap, .tblwrap { max-width:100%; overflow-x:auto; }
+
+  /* Two form columns at 375px leave the "Required" tag nowhere to sit. */
+  .form2 { grid-template-columns:minmax(0,1fr); }
+  .fld label { flex-wrap:wrap; }
+}
+
+/* 320px: the narrowest screen still in use. Everything that was still holding a
+   desk-width minimum is allowed to wrap or shrink. */
+@media (max-width:380px) {
+  .stats, .tiles, .tiles-2, .roles, .grid2 { grid-template-columns:minmax(0,1fr) !important; }
+  .head, .sect, .hd-acts, .tools, .acts, .next, .offer, .dhead { flex-wrap:wrap !important; }
+  .inner { padding-left:14px !important; padding-right:14px !important; }
+  .topleft, .main, .shell > * { min-width:0 !important; }
+  .big-btn { padding:0 14px !important; font-size:14px !important; }
+}
+
+/* The Cases / Radiologists toggle is a fixed pair of labels; at 320px the row
+   that holds it has to be allowed to wrap. */
+@media (max-width:380px) {
+  .chart, .chart > *, .legend { flex-wrap:wrap !important; min-width:0 !important; }
+  .toggle { flex-wrap:wrap; max-width:100%; }
+  .toggle > * { flex:1 1 auto; min-width:0; text-align:center; }
+
+  /* .next .mid is flex:1 with min-width:0, so it shrinks to 9px and its text
+     spills out instead of wrapping inside it. */
+  .next .mid { flex:1 1 100% !important; }
+  .next .mid span, .offer .mid span { overflow-wrap:anywhere; }
+}

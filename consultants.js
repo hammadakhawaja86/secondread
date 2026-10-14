@@ -37,7 +37,7 @@
   var CONSULTANTS = [
     {
       id: 'alsanjari', name: 'Senan Alsanjari', initials: 'SA',
-      role: 'Consultant cardiothoracic radiologist',
+      role: 'Consultant Cardiothoracic Radiologist',
       hospital: '',
       quals: 'FRCR · Level III cardiac MRI & CT',
       gmc: '7486030',
@@ -58,7 +58,7 @@
     },
     {
       id: 'mallon', name: 'Dermot Mallon', initials: 'DM',
-      role: 'Consultant neuroradiologist',
+      role: 'Consultant Neuroradiologist',
       hospital: 'UCLH',
       quals: 'FRCR · PhD Cambridge · UCLH',
       gmc: '7042054',
@@ -88,7 +88,7 @@
     },
     {
       id: 'rajakulasingam', name: 'Ramanan Rajakulasingam', initials: 'RR',
-      role: 'Consultant musculoskeletal and sarcoma radiologist',
+      role: 'Consultant Musculoskeletal and Sarcoma Radiologist',
       hospital: 'RNOH Stanmore',
       quals: 'FRCR · RNOH Stanmore',
       gmc: '7134655',
@@ -109,7 +109,7 @@
     },
     {
       id: 'tamimi', name: 'Asad Tamimi', initials: 'AT',
-      role: 'Consultant gastrointestinal and abdominal radiologist',
+      role: 'Consultant Gastrointestinal and Abdominal Radiologist',
       hospital: 'Imperial',
       quals: 'FRCR · Imperial College',
       gmc: '7411645',
@@ -130,14 +130,14 @@
     },
     {
       id: 'kakar', name: 'Geetanjali Kakar', initials: 'GK',
-      role: 'Consultant gynaecological radiologist',
+      role: 'Consultant Gynaecological Radiologist',
       hospital: 'Imperial',
       quals: 'FRCR · Imperial College',
       gmc: '7517214',
       photo: 'portraits/geetanjali-kakar.jpg', featured: true,
       areas: ['abdomen'], modalities: ['MRI', 'Ultrasound'],
       tags: ['Pelvic MRI', 'Endometriosis', 'Ultrasound'],
-      bio: 'Pelvic MRI and ultrasound. Endometriosis and gynaecological oncology.',
+      bio: 'Pelvic MRI and Ultrasound. Endometriosis and gynaecological oncology.',
       credentials: ['FRCR', 'Gynaecological oncology'],
       helpWith: [
         'Suspected endometriosis',
@@ -155,7 +155,7 @@
            `photo` + `featured` to bring one forward. --- */
     {
       id: 'wassati', name: 'Husam Wassati', initials: 'HW',
-      role: 'Consultant head & neck neuroradiology',
+      role: 'Consultant Head & Neck Neuroradiologist',
       hospital: 'King’s College Hospital',
       quals: 'FRCR · Head & neck imaging',
       gmc: '7251947',
@@ -176,7 +176,7 @@
     },
     {
       id: 'darco', name: 'Felice D’Arco', initials: 'FD',
-      role: 'Consultant paediatric neuroradiologist',
+      role: 'Consultant Paediatric Neuroradiologist',
       hospital: 'Great Ormond Street',
       quals: 'FRCR · Paediatric neuroradiology',
       gmc: '7509440',
@@ -197,7 +197,7 @@
     },
     {
       id: 'sivarasan', name: 'Nishanth Sivarasan', initials: 'NS',
-      role: 'Consultant cardiothoracic radiologist',
+      role: 'Consultant Cardiothoracic Radiologist',
       hospital: 'Guy’s and St Thomas’',
       quals: 'FRCR · MD(Res) Imperial · Guy’s and St Thomas’',
       gmc: '7419365',
@@ -224,7 +224,7 @@
     },
     {
       id: 'weston', name: 'William Weston', initials: 'WW',
-      role: 'Consultant gastrointestinal radiologist',
+      role: 'Consultant Gastrointestinal Radiologist',
       hospital: 'The Royal Marsden',
       quals: 'GI fellowship, St Mark’s · The Royal Marsden',
       gmc: '7492405',
@@ -251,7 +251,7 @@
     },
     {
       id: 'withey', name: 'Sam Withey', initials: 'SW',
-      role: 'Consultant uroradiologist',
+      role: 'Consultant Uroradiologist',
       hospital: 'The Royal Marsden',
       quals: 'President-Elect, BSUR · The Royal Marsden',
       gmc: '7419265',
@@ -278,7 +278,7 @@
     },
     {
       id: 'forster', name: 'Danielle Forster', initials: 'DF',
-      role: 'Consultant musculoskeletal radiologist',
+      role: 'Consultant Musculoskeletal Radiologist',
       hospital: 'Royal National Orthopaedic Hospital',
       quals: 'MSK fellowship, RNOH · UCLH training',
       gmc: '7277408',
@@ -305,7 +305,7 @@
     },
     {
       id: 'naik', name: 'Mitesh Naik', initials: 'MN',
-      role: 'Consultant radiologist in nuclear medicine',
+      role: 'Consultant Radiologist in Nuclear Medicine',
       hospital: 'Imperial College Healthcare',
       quals: 'PET/CT, SPECT/CT · Imperial College Healthcare',
       gmc: '7419275',
@@ -318,7 +318,7 @@
       background: [
         'Graduated from Imperial College London with triple distinction, and was the highest scoring student for both his undergraduate BSc and postgraduate MSc.',
         'Awarded numerous prizes for scientific presentations and peer-reviewed publications, including from the Royal College of Radiologists and the Radiological Society of North America.',
-        'A wide-ranging skillset with particular expertise in nuclear medicine, including PET/CT, SPECT/CT and radioligand therapy, DEXA, whole-body and oncological imaging covering the entire thorax, abdomen and pelvis (CT, MR, x-ray and ultrasound), emergency imaging and cardiac imaging. A key member of a number of specialist cancer and non-cancer multidisciplinary team meetings.',
+        'A wide-ranging skillset with particular expertise in nuclear medicine, including PET/CT, SPECT/CT and radioligand therapy, DEXA, whole-body and oncological imaging covering the entire thorax, abdomen and pelvis (CT, MR, X-ray and Ultrasound), emergency imaging and cardiac imaging. A key member of a number of specialist cancer and non-cancer multidisciplinary team meetings.',
         'Holds a variety of roles encompassing radiation safety, training, and sharing learning from errors, alongside national and international society committee positions with NICE, RSNA and EANM. A recognised educator who speaks regularly at international meetings.',
         'Focuses on delivering accurate, comprehensive, timely and patient-centred care.'
       ],

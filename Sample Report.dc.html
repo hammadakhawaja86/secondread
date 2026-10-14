@@ -6,7 +6,7 @@
 <meta name="description" content="See exactly what you get: a full subspecialist report written in plain English, with the findings, what they mean and what to do next.">
 <link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./portal.js?v=13"></script>
+<script src="./portal.js?v=14"></script>
 <link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
 <link rel="preload" as="script" href="vendor/react-dom-18.3.1.min.js">
 <script>
@@ -23,7 +23,7 @@
 <x-dc>
 <helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=28">
+  <link rel="stylesheet" href="responsive.css?v=37">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -64,7 +64,7 @@
     </div>
     <div style="max-width: 820px;">
       <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">This is exactly what you get</h1>
-      <p style="margin: 0 0 32px; font-size: 18px; line-height: 1.65; color: #173B4F;">A real report, anonymised with the patient's written consent. Two audiences, one document: the clinical section your doctor needs, then the section written for you.</p>
+      <p style="margin: 0 0 32px; font-size: 18px; line-height: 1.65; color: #173B4F;">An example report. Two audiences, one document: the clinical section your doctor needs, then the section written for you.</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px 28px; margin-bottom: 32px; max-width: 760px;">
         <sc-for list="{{ guarantees }}" as="item" hint-placeholder-count="4">
           <div style="display: flex; gap: 11px; align-items: flex-start;">
@@ -142,7 +142,7 @@
     </div>
 
     <div style="padding: 22px 40px 28px; border-top: 1px solid #E2E9EC; background: #FAFCFC;">
-      <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #5A6B77;">This report is a radiological opinion based on the images supplied and does not replace clinical assessment by your treating doctor.</p>
+      <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: #5A6B77;">This report is a radiological opinion based on the images supplied and doesn’t replace clinical assessment by your treating doctor.</p>
     </div>
   </div>
 </section>
@@ -175,7 +175,7 @@
       </div>
     </div>
     <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>© 2026 Second Opinion Radiology Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>© 2026 Secondread Ltd, trading as Second Opinion Radiology. Registered in England and Wales, company number 17360526. · Not an emergency service. If you are unwell, contact NHS 111 or 999.</span>
       <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -240,8 +240,8 @@ class Component extends DCLogic {
       { text: 'The MCL, which is the major ligament on the inner side of the knee, is completely torn. This is described as a full-thickness or grade 3 MCL tear. Because the ligament is completely disrupted, the inner side of the knee may feel unstable, particularly when the knee is subjected to a sideways or “knock-kneed” force.' },
       { text: 'The MRI also shows a tear of the ACL, an important ligament located in the centre of the knee. The ACL helps prevent the shin bone from moving excessively forward and helps control rotational stability. A complete ACL tear can therefore cause a sensation that the knee is giving way, buckling or shifting, particularly during turning, pivoting, running or sports activities.' },
       { text: 'There is also bruising and swelling within the bones in a pattern commonly seen when the knee undergoes the type of twisting movement that can injure the ACL. The knee contains a moderate amount of extra fluid, an effusion, which is another common consequence of a significant ligament injury.' },
-      { text: 'Importantly, the MRI does not show an obvious displaced fracture or a definite displaced meniscal tear.' },
-      { text: 'These findings do not automatically mean that surgery is required. Treatment depends on factors such as your age, activity level, symptoms, degree of instability, physical examination and whether you wish to return to activities involving running, pivoting or rapid changes of direction.' },
+      { text: 'Importantly, the MRI doesn’t show an obvious displaced fracture or a definite displaced meniscal tear.' },
+      { text: 'These findings don’t automatically mean that surgery is required. Treatment depends on factors such as your age, activity level, symptoms, degree of instability, physical examination and whether you wish to return to activities involving running, pivoting or rapid changes of direction.' },
       { text: 'A knee specialist or orthopaedic surgeon should review the MRI together with your examination. Treatment may initially focus on controlling swelling, restoring knee movement and strength, protecting the healing MCL and undergoing structured physiotherapy. The ACL injury may subsequently require further discussion regarding reconstruction, particularly if the knee remains unstable or you wish to return to pivoting sports.' }
     ]
   };
@@ -255,7 +255,7 @@ class Component extends DCLogic {
       recommendations: this.state.recommendations,
       plainEnglish: this.state.plainEnglish,
       signName: 'Dr Ramanan Rajakulasingam',
-      signRole: 'Consultant musculoskeletal radiologist',
+      signRole: 'Consultant Musculoskeletal and Sarcoma Radiologist',
       signGmc: 'FRCR \u00b7 GMC 7134655',
       signWhen: 'Signed 6 October 2026, 14:02',
       checkGlyph: React.createElement('svg', {

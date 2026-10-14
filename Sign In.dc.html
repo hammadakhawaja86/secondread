@@ -5,8 +5,8 @@
 <title>Sign in · Second Opinion Radiology</title>
 <link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=20"></script>
-<script src="./portal.js?v=13"></script>
+<script src="./consultants.js?v=21"></script>
+<script src="./portal.js?v=14"></script>
 <link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
 <link rel="preload" as="script" href="vendor/react-dom-18.3.1.min.js">
 <script>
@@ -22,7 +22,7 @@
 <body>
 <x-dc><helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=28">
+  <link rel="stylesheet" href="responsive.css?v=37">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -64,7 +64,7 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</span>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples. No real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples. No real patient, and no real clinical content. Sign-in isn’t real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <section data-r="portalwrap" style="padding: 56px 32px 80px;">
@@ -142,7 +142,7 @@
       </div>
     </div>
     <div style="padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>&copy; 2026 Second Opinion Radiology Ltd &middot; Registered in England &middot; Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>&copy; 2026 Secondread Ltd, trading as Second Opinion Radiology. Registered in England and Wales, company number 17360526. &middot; Not an emergency service. If you are unwell, contact NHS 111 or 999.</span>
       <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -184,7 +184,7 @@ class Component extends DCLogic {
     const email = this.state.email.trim();
     if (!email) return this.setState({ error: 'Enter the email address you used when you started your case.', errorCreate: false });
     if (!EMAIL_RE.test(email)) {
-      return this.setState({ error: 'That does not look like an email address. Check for a missing @ or a typo in the domain.', errorCreate: false });
+      return this.setState({ error: 'That doesn’t look like an email address. Check for a missing @ or a typo in the domain.', errorCreate: false });
     }
     const res = PORTAL.startSignIn(email);
     if (!res.ok) {
@@ -196,7 +196,7 @@ class Component extends DCLogic {
   verify() {
     const res = PORTAL.verifyPending(this.state.code);
     if (!res.ok) {
-      return this.setState({ error: 'That code did not match. Check the six digits, or send yourself a new one.' });
+      return this.setState({ error: 'That code didn’t match. Check the six digits, or send yourself a new one.' });
     }
     window.location.href = PORTAL.safeNext(PORTAL.param('next'));
   }

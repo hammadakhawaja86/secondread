@@ -6,7 +6,7 @@
 <meta name="description" content="From a hospital CD to a plain-English answer: how a second read works, what we need from you, and what you get back within 48 hours.">
 <link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./portal.js?v=13"></script>
+<script src="./portal.js?v=14"></script>
 <link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
 <link rel="preload" as="script" href="vendor/react-dom-18.3.1.min.js">
 <script>
@@ -24,7 +24,7 @@
 <template id="__bundler_thumbnail" data-bg-color="#E4F2F2"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#E4F2F2"/><rect x="58" y="58" width="84" height="84" rx="22" fill="#0D6E70"/><path d="M84 100l11 11 22-22" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></template>
 <helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=28">
+  <link rel="stylesheet" href="responsive.css?v=37">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&amp;display=swap">
@@ -65,7 +65,7 @@
     </div>
     <div style="max-width: 780px;">
       <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">From a hospital CD to a plain-English answer.</h1>
-      <p style="margin: 0; font-size: 18px; line-height: 1.65; color: #173B4F;">Three steps, and you are never asked to pick a radiologist. If you do not have your images yet, start here anyway, getting hold of them is the part most people get stuck on, and we will show you exactly how.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.65; color: #173B4F;">Three steps. We handle everything after your upload. You’re never asked to pick a radiologist. If you don’t have your images yet, start anyway. Getting hold of them is where most people get stuck, and we’ll show you exactly how.</p>
     </div>
   </div>
 </section>
@@ -75,7 +75,7 @@
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="max-width: 640px; margin-bottom: 40px;">
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">The whole thing, in three steps</div>
-      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; color: #0A1F2C; letter-spacing: -0.01em;">You do two of them. The rest is automatic.</h2>
+      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; color: #0A1F2C; letter-spacing: -0.01em;">Three steps. We handle everything after your upload.</h2>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
       <sc-for list="{{ threeSteps }}" as="t" hint-placeholder-count="3">
@@ -125,7 +125,7 @@
         <div style="position: relative;">
           <span style="display: inline-flex; width: 54px; height: 54px; border-radius: 16px; background: #FFFFFF; border: 1px solid #C3E0DE; color: #0D6E70; align-items: center; justify-content: center; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(13,110,112,0.14); transition: transform 320ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out, color 260ms ease-out;" style-hover="transform: translateY(-4px) rotate(-6deg); background: #0D6E70; color: #FFFFFF;">{{ bento1Glyph }}</span>
           <h3 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.18; letter-spacing: -0.02em; color: #06313A;">Submitted, and your images checked</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #1B4A52;">A radiographer confirms the study is complete and readable. If anything is missing we tell you first. Your deadline does not begin until the images are good.</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #1B4A52;">A radiographer confirms the study is complete and readable. If anything is missing we tell you first. Your 48 hours start once your images have passed our checks.</p>
         </div>
       </div>
 
@@ -136,7 +136,7 @@
             <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #5A6B77;">Checkpoint</span>
           </div>
           <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.01em; color: #0A1F2C;">Routed to your subspecialist</h3>
-          <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #4A5C68; max-width: 460px;">We tell you their name, subspecialty and hospital before any reporting begins. You are not asked to choose them.</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #4A5C68; max-width: 460px;">We tell you their name, subspecialty and hospital before any reporting begins. You’re not asked to choose them.</p>
         </div>
         <div style="display: flex; align-items: center; gap: 14px; margin-top: 24px; padding: 14px 18px; background: #F4F7F8; border: 1px solid #E2E9EC; border-radius: 14px; max-width: 400px; transition: background 260ms ease-out, border-color 260ms ease-out, transform 320ms cubic-bezier(0.16,1,0.3,1);" style-hover="background: #E4F2F2; border-color: #C3E0DE; transform: translateX(6px);">
           <span style="width: 40px; height: 40px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; color: #095458; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">DM</span>
@@ -171,7 +171,7 @@
           <span style="width: 38px; height: 38px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; color: #0D6E70; display: flex; align-items: center; justify-content: center; transition: transform 320ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out, color 260ms ease-out;" style-hover="transform: rotate(45deg); background: #0D6E70; color: #FFFFFF;">{{ arrowGlyph }}</span>
         </div>
         <h3 style="position: relative; margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: #06313A;">Report ready in your dashboard</h3>
-        <p style="position: relative; margin: 0; font-size: 14.5px; line-height: 1.6; color: #1B4A52;">Secure PDF, downloadable forever, shareable with your GP in one click. We email to say it is ready, never what it says.</p>
+        <p style="position: relative; margin: 0; font-size: 14.5px; line-height: 1.6; color: #1B4A52;">Secure PDF, downloadable for as long as we hold your records, shareable with your GP in one click. We email to say it is ready, never what it says.</p>
       </div>
 
     </div>
@@ -181,8 +181,8 @@
 <section style="background: #FFFFFF;">
   <div style="max-width: 1200px; margin: 0 auto; padding: 64px 32px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; border-top: 1px solid #E2E9EC;">
     <div style="max-width: 640px;">
-      <h2 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 28px; color: #0A1F2C; letter-spacing: -0.01em;">Do not have your images yet?</h2>
-      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A5C68;">Start anyway. You have a right to a copy of your own images, and we will show you exactly how to ask for them. You can add them once they arrive.</p>
+      <h2 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 28px; color: #0A1F2C; letter-spacing: -0.01em;">Don’t have your images yet?</h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A5C68;">Start anyway. You have a right to a copy of your own images, and we’ll show you exactly how to ask for them. You can add them once they arrive.</p>
     </div>
     <div style="display: flex; gap: 14px; flex-wrap: wrap;">
       <a href="Start Flow.dc.html" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 50px; padding: 14px 30px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; box-shadow: 0 6px 20px rgba(13,110,112,0.3); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Start my second read</a>
@@ -219,7 +219,7 @@
       </div>
     </div>
     <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>© 2026 Second Opinion Radiology Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>© 2026 Secondread Ltd, trading as Second Opinion Radiology. Registered in England and Wales, company number 17360526. · Not an emergency service. If you are unwell, contact NHS 111 or 999.</span>
       <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -245,26 +245,26 @@ const PATHS = {
 class Component extends DCLogic {
   state = {
     threeSteps: [
-      { n: '1', title: 'Upload your scans',
+      { n: '1', title: 'Tell us about your case',
+        body: 'You tell us the scan type and body area and we confirm it from the images, then we ask about your symptoms, relevant history, and what you would like our radiologist to review.',
+        note: 'We use this to assign your case to the appropriate subspecialist radiologist.' },
+      { n: '2', title: 'Upload your scans',
         body: 'Your original scan images, ideally as a DICOM folder or ZIP file, along with your original radiology report and any earlier related scans. DICOM is the format hospitals store scan images in, a folder of files ending .dcm.',
         note: 'No images yet? Start anyway. We show you exactly how to request them from the hospital or imaging provider.' },
-      { n: '2', title: 'Tell us about your case',
-        body: 'We read the scan type and body area from your images, then ask about your symptoms, relevant history, and what you would like our radiologist to review. You can invite your GP or treating clinician to add clinical information.',
-        note: 'We use this to assign your case to the appropriate subspecialist radiologist. Before payment, we confirm who will review your case, their relevant expertise, and your report delivery timeframe.' },
       { n: '3', title: 'Get your expert report',
-        body: 'An independent radiologist report with the findings, a plain-English "What this means for you" explanation, comparison with any prior scan where available, and recommended next steps.',
+        body: 'An independent radiologist report with the findings, a plain-English “What this means for you” explanation, comparison with any prior scan where available, and recommended next steps.',
         note: 'Your report is securely available in your patient dashboard, where you can download it, share it with your GP or treating clinician, and arrange available follow-up support.' }
     ],
     routes: [
-      { icon: 'Disc', title: 'You already have a CD or download', description: 'Drop the whole folder in. You do not need to know which files matter.' },
-      { icon: 'Hospital', title: 'Your scan is on an NHS system', description: 'You have a legal right to a copy of your images. Ring the radiology department where the scan was done and ask for the images, not just the report, a disc or a secure download. They should respond within one month.' },
+      { icon: 'Disc', title: 'You already have a CD or download', description: 'Drop the whole folder in. You don’t need to know which files matter.' },
+      { icon: 'Hospital', title: 'Your scan is on an NHS system', description: 'You have a legal right to a copy of your images. Ring the radiology department where the scan was done and ask for the images themselves (on a disc or as a secure download), not just the report. They should respond within one month.' },
       { icon: 'Globe', title: 'Your scan was done privately or abroad', description: 'Forward the clinic\u2019s download link. We accept images from any country and report in English.' }
     ],
     stages: [
-      { number: '01', title: 'Submitted, images checked within the hour', description: 'A radiographer confirms the study is complete and readable. If anything is missing we tell you before the clock starts.' },
-      { number: '02', title: 'Routed to your subspecialist', description: 'We tell you their name, subspecialty and hospital. You are not asked to choose them.' },
+      { number: '01', title: 'Submitted, images checked within the hour', description: 'A radiographer confirms the study is complete and readable. If anything is missing we tell you before your 48 hours start.' },
+      { number: '02', title: 'Routed to your subspecialist', description: 'We tell you their name, subspecialty and hospital. You’re not asked to choose them.' },
       { number: '03', title: 'Under expert review', description: 'Findings, comparison with prior studies, and the plain-English section.' },
-      { number: '04', title: 'Report ready in your dashboard', description: 'Secure PDF, downloadable forever, shareable with your GP in one click.' }
+      { number: '04', title: 'Report ready in your dashboard', description: 'Secure PDF, downloadable for as long as we hold your records, shareable with your GP in one click.' }
     ]
   };
 

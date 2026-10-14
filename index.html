@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <title>A second opinion on your scan, from a UK subspecialist | Second Opinion Radiology</title>
-<meta name="description" content="Upload an MRI, CT, ultrasound or X-ray you already have and a GMC-registered radiologist who subspecialises in that body area reads it again. £250, within 48 hours.">
+<meta name="description" content="Upload an MRI, CT, Ultrasound or X-ray you already have and a GMC-registered radiologist who subspecialises in that body area reads it again. £250, within 48 hours.">
 <link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=20"></script>
-<script src="./portal.js?v=13"></script>
+<script src="./consultants.js?v=21"></script>
+<script src="./portal.js?v=14"></script>
 <link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
 <link rel="preload" as="script" href="vendor/react-dom-18.3.1.min.js">
 <script>
@@ -25,7 +25,7 @@
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0A1F2C"/><rect x="60" y="60" width="80" height="80" rx="18" fill="#007071"/><circle cx="90" cy="90" r="18" fill="#5EA2A3"/><circle cx="111" cy="111" r="18" fill="#29E6C4"/></svg></template>
 <helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=28">
+  <link rel="stylesheet" href="responsive.css?v=37">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -58,26 +58,26 @@
 </header>
 
 <section style="position: relative; background-color: #D8EEEA; overflow: hidden; border-bottom: 1px solid #E2E9EC;">
-  <img src="hero-radiologist-mri.webp" alt="Radiologist reviewing MRI images beside a scanner" width="1600" height="800" fetchpriority="high" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% center; opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;">
-  <div style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(216,238,234,0.97) 0%, rgba(216,238,234,0.92) 34%, rgba(216,238,234,0.55) 52%, rgba(216,238,234,0.08) 68%, rgba(216,238,234,0) 100%); opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;"></div>
-  <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 72px 32px 0;">
+  <img data-r="heroimg" src="hero-radiologist-mri.webp" alt="Radiologist reviewing MRI images beside a scanner" width="1600" height="800" fetchpriority="high" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% center; opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;">
+  <div data-r="heroscrim" style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(216,238,234,0.97) 0%, rgba(216,238,234,0.92) 34%, rgba(216,238,234,0.55) 52%, rgba(216,238,234,0.08) 68%, rgba(216,238,234,0) 100%); opacity: {{ slide1Opacity }}; transition: opacity 620ms ease-out;"></div>
+  <div data-r="herowrap" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 72px 32px 0;">
     <div onMouseEnter="{{ pauseCarousel }}" onMouseLeave="{{ resumeCarousel }}" onFocus="{{ pauseCarousel }}" onBlur="{{ resumeCarousel }}" style="display: grid; align-items: stretch;">
-    <div style="grid-area: 1 / 1; display: grid; grid-template-columns: minmax(320px, 1.05fr) 0.95fr; gap: 56px; align-items: center; padding-bottom: 56px; min-height: 520px; opacity: {{ slide1Opacity }}; pointer-events: {{ slide1Events }}; transform: translateY({{ slide1Shift }}); transition: opacity 620ms ease-out, transform 620ms cubic-bezier(0.16,1,0.3,1);">
-      <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
-        <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Reports today from {{ consultantCount }} UK radiologists</span>
-        <h1 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 48px; line-height: 1.04; letter-spacing: -0.025em; color: #0A1F2C;">Your scan, read again by the right specialist.</h1>
-        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 560px;">Upload the MRI, CT, ultrasound or X-ray you already have. A GMC-registered radiologist who subspecialises in that body area reviews it and writes you a report in plain English, £250, within 48 hours.</p>
-        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+    <div data-r="heroslide" style="grid-area: 1 / 1; display: grid; grid-template-columns: minmax(320px, 1.05fr) 0.95fr; gap: 56px; align-items: center; padding-bottom: 56px; min-height: 520px; opacity: {{ slide1Opacity }}; pointer-events: {{ slide1Events }}; transform: translateY({{ slide1Shift }}); transition: opacity 620ms ease-out, transform 620ms cubic-bezier(0.16,1,0.3,1);">
+      <div data-r="herocopy" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Expert UK consultant radiologist</span>
+        <h1 data-r="heroh1" style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 48px; line-height: 1.04; letter-spacing: -0.025em; color: #0A1F2C;">Your scan, read again by the right specialist.</h1>
+        <p data-r="herolead" style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 560px;">Upload the MRI, CT, Ultrasound or X-ray you already have. A GMC-registered radiologist who subspecialises in that body area reviews it and writes you a report in plain English, £250, within 48 hours.</p>
+        <div data-r="herocta" style="display: flex; gap: 14px; flex-wrap: wrap;">
           <a href="Start Flow.dc.html" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.32); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Start my second read</a>
           <a href="Sample Report.dc.html" style="min-height: 50px; padding: 14px 30px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; box-sizing: border-box; transition: border-color 140ms ease-out, color 140ms ease-out, transform 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;" style-active="transform: translateY(1px);">See a real sample report <span>→</span></a>
         </div>
-        <div style="display: flex; gap: 22px; flex-wrap: wrap; font-size: 13px; color: #4A5C68;">
-          <span>No GP referral needed</span>
-          <span style="color: #627079;">·</span>
-          <span>No appointment</span>
+        <div data-r="heroassure" style="display: flex; gap: 22px; flex-wrap: wrap; font-size: 13px; color: #4A5C68;">
+          <span style="white-space: nowrap;">No GP referral needed</span>
+          <span aria-hidden="true" style="color: #627079;">·</span>
+          <span style="white-space: nowrap;">No appointment</span>
         </div>
       </div>
-      <div style="display: flex; align-items: flex-end; justify-content: flex-end; height: 100%; min-height: 260px;">
+      <div data-r="heroturn" style="display: flex; align-items: flex-end; justify-content: flex-end; height: 100%; min-height: 260px;">
         <div style="max-width: 340px; background: rgba(255,255,255,0.96); border-radius: 16px; padding: 16px 18px; box-shadow: 0 10px 28px rgba(10,31,44,0.18); display: flex; align-items: center; gap: 12px;">
           <span style="width: 42px; height: 42px; border-radius: 11px; background: linear-gradient(135deg, #0D6E70 0%, #12938F 55%, #6FE3C5 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #FFFFFF;">{{ heroGlyph }}</span>
           <div style="min-width: 0;">
@@ -87,12 +87,12 @@
         </div>
       </div>
     </div>
-    <div style="grid-area: 1 / 1; display: grid; grid-template-columns: minmax(320px, 1.05fr) 0.95fr; gap: 56px; align-items: center; padding-bottom: 56px; min-height: 520px; opacity: {{ slide2Opacity }}; pointer-events: {{ slide2Events }}; transform: translateY({{ slide2Shift }}); transition: opacity 620ms ease-out, transform 620ms cubic-bezier(0.16,1,0.3,1);">
-      <div style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
-        <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Start in under a minute</span>
-        <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.06; letter-spacing: -0.025em; color: #0A1F2C;">Two questions and we know who reads your scan.</h2>
-        <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 520px;">Tell us what was scanned. You see the fixed price before you pay, and upload straight after.</p>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
+    <div data-r="heroslide" style="grid-area: 1 / 1; display: grid; grid-template-columns: minmax(320px, 1.05fr) 0.95fr; gap: 56px; align-items: center; padding-bottom: 56px; min-height: 520px; opacity: {{ slide2Opacity }}; pointer-events: {{ slide2Events }}; transform: translateY({{ slide2Shift }}); transition: opacity 620ms ease-out, transform 620ms cubic-bezier(0.16,1,0.3,1);">
+      <div data-r="herocopy" style="display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background: #E4F2F2; color: #095458; border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em;">Start in two questions</span>
+        <h2 data-r="heroh1" style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.06; letter-spacing: -0.025em; color: #0A1F2C;">Two questions and we know who reads your scan.</h2>
+        <p data-r="herolead" style="margin: 0; font-size: 18px; line-height: 1.6; color: #173B4F; max-width: 520px;">Tell us what was scanned. You see the fixed price before you pay, and upload straight after.</p>
+        <div data-r="heroticks" style="display: flex; flex-direction: column; gap: 12px;">
           <sc-for list="{{ quickAssurances }}" as="item" hint-placeholder-count="3">
             <div style="display: flex; gap: 11px; align-items: center;">
               <span style="flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; border: 1px solid #C3E0DE; display: flex; align-items: center; justify-content: center; color: #0D6E70;">{{ checkGlyph }}</span>
@@ -101,9 +101,9 @@
           </sc-for>
         </div>
       </div>
-      <div style="background: rgba(255,255,255,0.96); border: 1px solid #C3E0DE; border-radius: 22px; padding: 30px 32px; box-shadow: 0 16px 40px rgba(10,31,44,0.16);">
+      <div data-r="heropicker" style="background: rgba(255,255,255,0.96); border: 1px solid #C3E0DE; border-radius: 22px; padding: 30px 32px; box-shadow: 0 16px 40px rgba(10,31,44,0.16);">
         <h3 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #0A1F2C;">What kind of scan do you have?</h3>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px;">
+        <div data-r="heroscangrid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px;">
           <sc-for list="{{ quickScans }}" as="opt" hint-placeholder-count="6">
             <button type="button" onClick="{{ opt.select }}" style="appearance: none; min-height: 50px; padding: 12px 10px; border-radius: 12px; border: 1.5px solid {{ opt.border }}; background: {{ opt.bg }}; color: {{ opt.color }}; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: border-color 140ms ease-out, background 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70;">{{ opt.tick }}{{ opt.label }}</button>
           </sc-for>
@@ -118,9 +118,9 @@
       </div>
     </div>
     </div>
-    <div style="display: flex; align-items: center; gap: 10px; padding-bottom: 28px;">
+    <div data-r="herodots" style="display: flex; align-items: center; gap: 10px; padding-bottom: 28px;">
       <sc-for list="{{ carouselDots }}" as="dot" hint-placeholder-count="2">
-        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; padding: 0; height: 6px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
+        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; background: none; padding: 9px 3px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><span style="display: block; height: 6px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></span></button>
       </sc-for>
     </div>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #D4DDE0; border-radius: 16px 16px 0 0; overflow: hidden; border: 1px solid #D4DDE0; border-bottom: none;">
@@ -133,8 +133,8 @@
         <div style="margin-top: 8px; font-size: 14px; color: #4A5C68;">every report, signed and returned</div>
       </div>
       <div style="background: #FFFFFF; padding: 26px 28px;">
-        <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #095458; line-height: 1;">4.9 ★</div>
-        <div style="margin-top: 8px; font-size: 14px; color: #4A5C68;">across 120 patient reviews</div>
+        <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #095458; line-height: 1;">4.7 ★</div>
+        <div style="margin-top: 8px; font-size: 14px; color: #4A5C68;">across 47 patient reviews</div>
       </div>
     </div>
   </div>
@@ -156,8 +156,8 @@
   <div style="max-width: 1200px; margin: 0 auto;">
     <div style="text-align: center; max-width: 640px; margin: 0 auto 44px;">
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">How it works</div>
-      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Three steps, and the rest is automatic.</h2>
-      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">You are never asked to choose a radiologist. Tell us about your case and it goes straight to the right subspecialist radiologist.</p>
+      <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Three steps. We handle everything after your upload.</h2>
+      <p style="margin: 14px 0 0; font-size: 16px; color: #4A5C68;">You’re never asked to choose a radiologist. Tell us about your case and it goes straight to the right subspecialist radiologist.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-bottom: 44px;">
       <sc-for list="{{ howSteps }}" as="step" hint-placeholder-count="3">
@@ -220,9 +220,9 @@
   </div>
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
-    <div data-r="svcdots" style="display: flex; align-items: center; justify-content: center; gap: 17px; margin-top: 26px;">
+    <div data-r="svcdots" style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 26px;">
       <sc-for list="{{ svcDots }}" as="dot" hint-placeholder-count="6">
-        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; box-sizing: border-box; padding: 9px 0; height: 25px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; background-clip: content-box; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
+        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; background: none; padding: 9px 2px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><span style="display: block; height: 7px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></span></button>
       </sc-for>
     </div>
   </div>
@@ -268,9 +268,9 @@
   </div>
 
   <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
-    <div data-r="specdots" style="display: flex; align-items: center; justify-content: center; gap: 17px; margin-top: 26px;">
+    <div data-r="specdots" style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 26px;">
       <sc-for list="{{ specDots }}" as="dot" hint-placeholder-count="6">
-        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; box-sizing: border-box; padding: 9px 0; height: 25px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; background-clip: content-box; cursor: pointer; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></button>
+        <button type="button" onClick="{{ dot.go }}" aria-label="{{ dot.aria }}" style="appearance: none; border: none; background: none; padding: 9px 2px; display: flex; align-items: center; justify-content: center; cursor: pointer;"><span style="display: block; height: 7px; width: {{ dot.width }}; border-radius: 999px; background: {{ dot.bg }}; transition: width 420ms cubic-bezier(0.16,1,0.3,1), background 260ms ease-out;"></span></button>
       </sc-for>
     </div>
   </div>
@@ -285,9 +285,8 @@
           <span aria-hidden="true" style="width: 110px; height: 1px; background: #C3E0DE;"></span>
         </div>
         <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 38px; line-height: 1.1; letter-spacing: -0.022em; color: #0A1F2C;">One price. A 48-hour turnaround.</h2>
-        <p style="margin: 14px 0 0; font-size: 16.5px; line-height: 1.6; color: #4A5C68; max-width: 620px;">&pound;250 for a radiologist report, or &pound;300 if we are also comparing your earlier scans. No consultation fee, no subscription, nothing added later.</p>
+        <p style="margin: 14px 0 0; font-size: 16.5px; line-height: 1.6; color: #4A5C68; max-width: 620px;">&pound;250 for a radiologist report, or &pound;300 if we’re also comparing your earlier scans. No consultation fee, no subscription, nothing added later.</p>
       </div>
-      <div data-r="prtag" aria-hidden="true" style="flex-shrink: 0; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #0D6E70; line-height: 1.95;">Clear answers<br>faster</div>
     </div>
 
     <div data-r="prgrid" style="display: grid; grid-template-columns: 1.62fr 1fr; gap: 20px; align-items: start;">
@@ -401,15 +400,6 @@
         </div>
         <a href="Sample Report.dc.html" style="min-height: 48px; padding: 13px 28px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 6px 20px rgba(13,110,112,0.28); transition: background 140ms ease-out, transform 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;" style-active="transform: translateY(1px);">Read a full sample report (PDF)</a>
       </div>
-      <div style="display: flex; align-items: flex-end; height: 100%; padding-bottom: 74px; box-sizing: border-box;">
-        <div style="background: #E4F2F2; border: 1px solid #C3E0DE; border-radius: 16px; padding: 30px 32px; box-shadow: 0 1px 3px rgba(10,31,44,0.06); width: 100%; position: relative; overflow: hidden; box-sizing: border-box;">
-          <div style="position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, #0D6E70 0%, #12938F 55%, #6FE3C5 100%); opacity: 0.14;"></div>
-          <div style="position: relative;">
-            <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 50px; line-height: 1; color: #0D6E70; letter-spacing: -0.02em;">1 in 5</div>
-            <div style="margin-top: 14px; font-size: 15px; line-height: 1.5; color: #4A5C68;">of the scans we re-read return a materially different finding from the original report.</div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -420,7 +410,7 @@
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 12px;">Patient stories</div>
       <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Real scans, real answers</h2>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+    <div onMouseEnter="{{ pauseStories }}" onMouseLeave="{{ resumeStories }}" onFocus="{{ pauseStories }}" onBlur="{{ resumeStories }}" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px;">
       <sc-for list="{{ testimonials }}" as="testimonial" hint-placeholder-count="3">
         <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 28px; box-shadow: 0 1px 3px rgba(10,31,44,0.06); height: 100%; box-sizing: border-box; transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 34px rgba(10,31,44,0.14);">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
@@ -442,7 +432,7 @@
       <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: #0A1F2C; letter-spacing: -0.01em;">Questions, answered straight</h2>
     </div>
     <div style="display: flex; flex-direction: column; gap: 12px;">
-      <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="5">
+      <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="2">
         <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 14px; box-shadow: 0 1px 2px rgba(10,31,44,0.05); overflow: hidden;">
           <button type="button" onClick="{{ faq.toggle }}" style="width: 100%; appearance: none; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; text-align: left; transition: background 140ms ease-out;" style-hover="background: #F4F7F8;">
             <span style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 16px; color: #0A1F2C;">{{ faq.q }}</span>
@@ -454,24 +444,20 @@
         </div>
       </sc-for>
     </div>
+    <div style="margin-top: 26px; text-align: center;">
+      <a href="FAQs.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 12px 26px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458; text-decoration: none;">Read all the questions {{ arrowSmallGlyph }}</a>
+    </div>
   </div>
 </section>
 
 <section id="enquiry" style="background: #0A1F2C; scroll-margin-top: 92px;">
-  <div data-r="enquiry" style="max-width: 1200px; margin: 0 auto; padding: 72px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;">
+  <div data-r="enquiry" style="max-width: 1200px; margin: 0 auto; padding: 56px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;">
     <div>
       <div style="font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #6FE3C5; margin-bottom: 12px;">Ask first, pay later</div>
       <h2 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 30px; color: #FFFFFF; letter-spacing: -0.01em;">Not sure whether a second read will help?</h2>
-      <p style="margin: 0 0 26px; color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.6;">Tell us your question and what you already have. We will tell you honestly whether a review is worth your money, free, within one working day. If the answer is no, we will say so.</p>
-      <div style="display: flex; flex-direction: column; gap: 14px;">
-        <sc-for list="{{ enquiryPoints }}" as="pt" hint-placeholder-count="3">
-          <div style="display: flex; gap: 11px; align-items: flex-start;">
-            <span style="flex-shrink: 0; width: 21px; height: 21px; border-radius: 50%; background: rgba(111,227,197,0.16); color: #6FE3C5; display: flex; align-items: center; justify-content: center; margin-top: 1px;">{{ checkGlyph }}</span>
-            <span style="font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.82);">{{ pt.text }}</span>
-          </div>
-        </sc-for>
+      <p style="margin: 0 0 26px; color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.6;">Tell us your question and what you already have. We’ll tell you honestly whether a review is worth your money, free, within one working day. If the answer is no, we’ll say so.</p>
       </div>
-      <p style="margin: 26px 0 0; font-size: 14.5px; color: rgba(255,255,255,0.66);">Would rather talk? Call <a href="tel:+447947834584" style="color: #6FE3C5; font-weight: 600;">+44 7947 834584</a>, 08:00–18:00, Monday to Friday.</p>
+      <p style="margin: 26px 0 0; font-size: 14.5px; color: rgba(255,255,255,0.66);">Would you rather talk? Call <a href="tel:+447947834584" style="color: #6FE3C5; font-weight: 600;">+44 7947 834584</a>, 08:00–18:00, Monday to Friday.</p>
     </div>
 
     <div style="background: #FFFFFF; border-radius: 20px; padding: 32px; box-shadow: 0 22px 50px rgba(0,0,0,0.28);">
@@ -479,7 +465,7 @@
         <div style="text-align: center; padding: 24px 8px;">
           <span style="display: inline-flex; width: 52px; height: 52px; border-radius: 50%; background: #0D6E70; color: #FFFFFF; align-items: center; justify-content: center; margin-bottom: 18px;">{{ sentGlyph }}</span>
           <h3 style="margin: 0 0 10px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">Thank you. That is with us</h3>
-          <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.65; color: #4A5C68;">A radiologist reads every enquiry personally. You will hear back by email within one working day, and there is nothing to pay either way.</p>
+          <p style="margin: 0 0 22px; font-size: 15px; line-height: 1.65; color: #4A5C68;">A radiologist reads every enquiry personally. You’ll hear back by email within one working day, and there is nothing to pay either way.</p>
           <button type="button" onClick="{{ resetEnquiry }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #D4DDE0; background: #FFFFFF; color: #0A1F2C; font-family: 'Inter', sans-serif; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease-out, color 140ms ease-out;" style-hover="border-color: #0D6E70; color: #095458;">Send another</button>
         </div>
       </sc-if>
@@ -493,7 +479,7 @@
           </label>
           <label style="display: flex; flex-direction: column; gap: 7px;">
             <span style="font-size: 13px; font-weight: 600; color: #4A5C68;">What would you like to know?</span>
-            <textarea rows="5" value="{{ enquiryMessage }}" onChange="{{ onEnquiryMessage }}" placeholder="I have an MRI of my knee and a report I do not understand…" style="padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ messageBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; outline: none; resize: vertical; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+            <textarea rows="5" value="{{ enquiryMessage }}" onChange="{{ onEnquiryMessage }}" placeholder="I have an MRI of my knee and a report I don’t understand…" style="padding: 13px 15px; border-radius: 11px; border: 1.5px solid {{ messageBorder }}; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; outline: none; resize: vertical; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
           </label>
           <sc-if value="{{ enquiryError }}" hint-placeholder-val="{{ false }}">
             <div role="alert" style="font-size: 14px; line-height: 1.5; color: #B4462F;">{{ enquiryError }}</div>
@@ -534,7 +520,7 @@
       </div>
     </div>
     <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>© 2026 Second Opinion Radiology Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>© 2026 Secondread Ltd, trading as Second Opinion Radiology. Registered in England and Wales, company number 17360526. · Not an emergency service. If you are unwell, contact NHS 111 or 999.</span>
       <div style="display: flex; gap: 18px; flex-wrap: wrap; row-gap: 10px;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -616,14 +602,14 @@ class Component extends DCLogic {
     pkgAddons: [],
     totalBump: false,
     howSteps: [
-      { number: '01', icon: 'UploadCloud', title: 'Upload your scans',
+      { number: '01', icon: 'ClipboardList', title: 'Tell us about your case',
+        description: 'You tell us the scan type and body area and we confirm it from the images, then we ask about your symptoms, relevant history, and what you would like our radiologist to review.',
+        note: 'We use this to assign your case to the appropriate subspecialist radiologist.' },
+      { number: '02', icon: 'UploadCloud', title: 'Upload your scans',
         description: 'Upload your original scan images, ideally as a DICOM folder or ZIP file, along with your original radiology report and any earlier related scans. DICOM is simply the format hospitals store scan images in.',
-        note: 'Do not have your images yet? We show you exactly how to request them from the hospital or imaging provider.' },
-      { number: '02', icon: 'ClipboardList', title: 'Tell us about your case',
-        description: 'We read the scan type and body area from your images, then ask about your symptoms, relevant history, and what you would like our radiologist to review. You can also invite your GP or treating clinician to add clinical information.',
-        note: 'We use this to assign your case to the appropriate subspecialist radiologist. Before payment, we confirm who will review your case, their relevant expertise, and your report delivery timeframe.' },
+        note: 'Don’t have your images yet? We show you exactly how to request them from the hospital or imaging provider.' },
       { number: '03', icon: 'FileText', title: 'Get your expert report',
-        description: 'An independent radiologist report with the findings, a plain-English "What this means for you" explanation, comparison with any prior scan where available, and recommended next steps.',
+        description: 'An independent radiologist report with the findings, a plain-English “What this means for you” explanation, comparison with any prior scan where available, and recommended next steps.',
         note: 'Your report is securely available in your patient dashboard, where you can download it, share it with your GP or treating clinician, and arrange available follow-up support.' }
     ],
     svcIndex: 0,
@@ -642,13 +628,13 @@ class Component extends DCLogic {
         gradient: 'linear-gradient(155deg, #12938F 9%, #0D6E70 45%, #06313A 91%)' },
       { photo: 'services/xray.webp', tag: 'X-ray', title: 'Clear answers on your X-ray', credit: '', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #6FE3C5 -12%, #12938F 40%, #095458 100%)' },
-      { photo: 'services/musculoskeletal.webp', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: 'Led by Dr Ramanan Rajakulasingam', href: 'Pricing.dc.html',
+      { photo: 'services/musculoskeletal.webp', tag: 'Musculoskeletal', title: 'Bones, joints and sarcoma', credit: '', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #0D6E70 0%, #12938F 38%, #06313A 100%)' },
-      { photo: 'services/cardiac.webp', tag: 'Cardiac', title: 'Heart and chest imaging', credit: 'Led by Dr Senan Alsanjari', href: 'Pricing.dc.html',
+      { photo: 'services/cardiac.webp', tag: 'Cardiac', title: 'Heart and chest imaging', credit: '', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #12938F -8%, #095458 46%, #0A1F2C 100%)' },
-      { photo: 'services/neuroradiology.webp', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: 'Led by Dr Dermot Mallon', href: 'Pricing.dc.html',
+      { photo: 'services/neuroradiology.webp', tag: 'Neuroradiology', title: 'Brain, spine and nerves', credit: '', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #6FE3C5 -16%, #0D6E70 42%, #06313A 100%)' },
-      { photo: 'services/abdomen.webp', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: 'Led by Dr Asad Tamimi', href: 'Pricing.dc.html',
+      { photo: 'services/abdomen.webp', tag: 'Abdomen & pelvis', title: 'Bowel, liver and urology', credit: '', href: 'Pricing.dc.html',
         gradient: 'linear-gradient(155deg, #095458 0%, #12938F 42%, #06313A 100%)' }
     ],
     // Portraits are ordinary files now, not the base64 blob in portraits/data.js, // swapping a headshot is a one-file drop-in. GMC numbers are placeholders and
@@ -673,16 +659,22 @@ class Component extends DCLogic {
       { id: 'questions', title: 'Three written questions', note: 'Answered by the same radiologist', price: 50, icon: 'FileText' },
       { id: 'call', title: '10-minute video call', note: 'Talk it through with your radiologist', price: 150, icon: 'Video' }
     ],
+    // Real reviews from the company's Trustpilot profile, trimmed to fit the card.
+    // The words are the reviewers' own and an ellipsis marks every cut; surnames are
+    // reduced to an initial, as patients are named everywhere else on the site.
     testimonials: [
-      { quote: 'After a confusing NHS report no one would take my calls. The response to my emails was prompt, the service fast, and the report exceptional.', author: 'Benjamin B', scan: 'Spine MRI' },
-      { quote: 'Detailed, well explained, and turned round over a weekend. It answered my follow-up questions too.', author: 'Tom G', scan: 'CT and MRI' },
-      { quote: 'Clear communication throughout and ultimately a report that gave the understanding I needed.', author: 'Kilo D', scan: 'Spine MRI' }
+      { quote: 'Their consultants spotted key things which were overlooked by the original radiologist, and these detailed observations have been crucial in my complex diagnostic journey.', author: 'Robin P \u00b7 April 2026', scan: 'Two MRI scans' },
+      { quote: 'The report was thorough and provided information from my MRI which the NHS report didn’t provide. I was sceptical at first as all done online\u2026', author: 'Dawn M \u00b7 May 2026', scan: 'Hip MRI' },
+      { quote: 'I\u2019d rather know one way or another as quickly as possible. I find the wait for results \u2014 weeks from my NHS trust \u2014 psychologically hard.', author: 'Naomi W \u00b7 April 2026', scan: 'CT cancer surveillance' },
+      { quote: 'Thorough and personalised to my exact questions, worries and concerns. They certainly put my mind at rest\u2026', author: 'Lisa Y \u00b7 April 2026', scan: 'Scan review' }
     ],
+    testimonialIndex: 0,
+    storiesPaused: false,
     faqData: [
-      { q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly. If you would like your GP or radiologist copied into the report, tell us their email at upload and we will send it to them at the same time as you.' },
-      { q: 'What if I do not have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report. They can usually supply a disc or a secure download. You can start your case now and add the images when they arrive. We cannot make the request for you, because it has to come from you, but we will talk you through it if you get stuck.' },
-      { q: 'Which scans can you review?', a: 'MRI, CT, ultrasound, X-ray and PET-CT, across neuro, musculoskeletal, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
-      { q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we are ICO registered. Only the reporting radiologist and our clinical governance lead can access your study.' },
+      { q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly. Your report is yours to share with your GP or any other doctor, and the dashboard lets you send it on in one click.' },
+      { q: 'What if I don’t have my images?', a: 'You have a legal right to a copy of your own scan images. Ask the radiology department at the hospital where the scan was done, and ask for the images themselves rather than just the report. They can usually supply a disc or a secure download. You can start your case now and add the images when they arrive. We can’t make the request for you, because it has to come from you, but we’ll talk you through it if you get stuck.' },
+      { q: 'Which scans can you review?', a: 'MRI, CT, Ultrasound, X-ray and PET-CT, across neuro, musculoskeletal, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
+      { q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we’re ICO registered. Only the reporting radiologist and our clinical governance lead can access your study.' },
     ]
   };
 
@@ -764,7 +756,7 @@ class Component extends DCLogic {
   componentDidMount() {
     // The page body is rendered by the runtime, so a #hash in the URL points at
     // an element the browser could not find at load time and the jump silently
-    // does nothing. Pricing links here as index.html#enquiry, so do it ourselves
+    // doesn’thing. Pricing links here as index.html#enquiry, so do it ourselves
     // once the target exists.
     if (window.location.hash) {
       const id = window.location.hash.slice(1);
@@ -783,10 +775,17 @@ class Component extends DCLogic {
     this.heroTimer = setInterval(() => {
       if (this.state.paused) return;
       this.setState(s => ({ slide: (s.slide + 1) % 2 }));
-    }, 7000);
+    }, 10000);
+
+    // Four reviews, three cards. The window walks forward one review at a time
+    // so every one of them is seen, and stops while a card is hovered or focused.
+    this.storyTimer = setInterval(() => {
+      if (this.state.storiesPaused) return;
+      this.setState(s => ({ testimonialIndex: (s.testimonialIndex + 1) % s.testimonials.length }));
+    }, 9000);
   }
 
-  componentWillUnmount() { clearInterval(this.heroTimer); clearTimeout(this.bumpTimer); }
+  componentWillUnmount() { clearInterval(this.heroTimer); clearInterval(this.storyTimer); clearTimeout(this.bumpTimer); }
 
   // ---- pricing configurator -----------------------------------------------
   // The total is the one number a visitor actually reads, so it gets a short
@@ -864,8 +863,7 @@ class Component extends DCLogic {
       })),
       quickAssurances: [
         { text: '\u00a3250 subspecialist report, back within 48 hours' },
-        { text: 'Full refund if we cannot read your images' },
-        { text: 'Do not have the images? We show you how to request them' }
+        { text: 'Don’t have your images? We’ll show you how to get them' }
       ],
       quickScans: ['MRI', 'CT', 'X-ray', 'Ultrasound', 'PET-CT', 'Not sure'].map(t => {
         const on = this.state.quickScan === t;
@@ -904,7 +902,7 @@ class Component extends DCLogic {
       enquiryPoints: [
         { text: 'Read by a radiologist, not a call centre' },
         { text: 'A straight answer within one working day' },
-        { text: 'Free, and we will tell you if a second read would not change anything' }
+        { text: 'Free, and we’ll tell you if a second read would not change anything' }
       ],
       heroGlyph: this.icon('Zap', 21),
       checkGlyph: this.icon('Check', 14),
@@ -944,7 +942,7 @@ class Component extends DCLogic {
          Every visual state here is derived from two pieces of state, so the
          cards, the checkboxes, the order lines and the total can never
          disagree about what is selected. */
-      // Counted from the roster rather than typed, so it cannot go stale
+      // Counted from the roster rather than typed, so it can’t go stale
       // the next time a radiologist is added or removed.
       consultantCount: CONSULTANTS.length,
       rosterWord: NUMBER_WORDS[CONSULTANTS.length] || String(CONSULTANTS.length),
@@ -1007,8 +1005,14 @@ class Component extends DCLogic {
       orderHref: 'Start Flow.dc.html',
       tickSmall: this.icon('Check', 14),
       lockGlyph: this.icon('Lock', 13),
-      testimonials: this.state.testimonials,
-      faqs: this.state.faqData.map((f, i) => ({
+      testimonials: (() => {
+        const all = this.state.testimonials;
+        const i = this.state.testimonialIndex;
+        return [0, 1, 2].map(n => all[(i + n) % all.length]);
+      })(),
+      pauseStories: () => this.setState({ storiesPaused: true }),
+      resumeStories: () => this.setState({ storiesPaused: false }),
+      faqs: this.state.faqData.slice(0, 2).map((f, i) => ({
         q: f.q,
         a: f.a,
         open: this.state.openFaq === i,

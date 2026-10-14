@@ -6,8 +6,8 @@
 <meta name="description" content="The GMC-registered consultant radiologists who read second opinions, listed by the body area each one subspecialises in.">
 <link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=20"></script>
-<script src="./portal.js?v=13"></script>
+<script src="./consultants.js?v=21"></script>
+<script src="./portal.js?v=14"></script>
 <link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
 <link rel="preload" as="script" href="vendor/react-dom-18.3.1.min.js">
 <script>
@@ -24,7 +24,7 @@
 <x-dc>
 <helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=28">
+  <link rel="stylesheet" href="responsive.css?v=37">
   <script src="./image-slot.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +66,7 @@
     </div>
     <div style="max-width: 780px;">
       <h1 style="margin: 0 0 18px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 42px; line-height: 1.08; letter-spacing: -0.025em; color: #0A1F2C;">Find a specialist</h1>
-      <p style="margin: 0; font-size: 18px; line-height: 1.65; color: #173B4F;">You do not have to choose. Tell us the body area during your order and the right subspecialist is assigned for you. This page is for people who want to see who will read their scan. Our specialists cover all major imaging modalities, including MRI, CT, PET-CT and Ultrasound.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 1.65; color: #173B4F;">You don’t have to choose. Tell us the body area during your order and the right subspecialist is assigned for you. This page is for people who want to see who will read their scan. Our specialists cover all major imaging modalities, including MRI, CT, PET-CT and Ultrasound.</p>
     </div>
   </div>
 </section>
@@ -154,7 +154,7 @@
       </div>
     </div>
     <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>© 2026 Second Opinion Radiology Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>© 2026 Secondread Ltd, trading as Second Opinion Radiology. Registered in England and Wales, company number 17360526. · Not an emergency service. If you are unwell, contact NHS 111 or 999.</span>
       <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -182,7 +182,7 @@ const AREAS = [
 const DOCTORS = CONSULTANTS;
 
 // Carried in from checkout, and handed straight back
-// so picking a different radiologist does not reset the order.
+// so picking a different radiologist doesn’t reset the order.
 function inboundOrder() {
   var out = {};
   try {
@@ -197,7 +197,9 @@ function inboundOrder() {
 
 
 class Component extends DCLogic {
-  state = { area: inboundOrder().area || 'brain' };
+  // Opens on every radiologist. Landing filtered to one body area hid nine of
+  // the twelve; the counts beside each filter already show the coverage.
+  state = { area: inboundOrder().area || '' };
 
   tick(size, width) {
     return React.createElement('svg', {

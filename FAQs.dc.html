@@ -6,7 +6,7 @@
 <meta name="description" content="How to get your images, what a second opinion can and cannot tell you, what it costs, and what happens to your data.">
 <link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./portal.js?v=13"></script>
+<script src="./portal.js?v=14"></script>
 <link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
 <link rel="preload" as="script" href="vendor/react-dom-18.3.1.min.js">
 <script>
@@ -23,7 +23,7 @@
 <x-dc>
 <helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=28">
+  <link rel="stylesheet" href="responsive.css?v=37">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -100,7 +100,7 @@
     <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
       <div style="background: #FFFFFF; border: 1px dashed #D4DDE0; border-radius: 16px; padding: 44px 32px; text-align: center;">
         <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #0A1F2C;">Nothing matches that</h3>
-        <p style="margin: 0 0 20px; font-size: 14.5px; color: #4A5C68;">Try a different word, or just call us. We answer in about 40 seconds.</p>
+        <p style="margin: 0 0 20px; font-size: 14.5px; color: #4A5C68;">Try a different word, or just call us.</p>
         <button type="button" onClick="{{ clearAll }}" style="min-height: 44px; padding: 11px 24px; border-radius: 999px; border: 1.5px solid #0D6E70; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 140ms ease-out, color 140ms ease-out;" style-hover="background: #0D6E70; color: #FFFFFF;">Clear search</button>
       </div>
     </sc-if>
@@ -125,7 +125,7 @@
     </div>
     <div style="background: #FFF6E9; border: 1px solid #F0DCC0; border-radius: 14px; padding: 20px 24px; display: flex; gap: 14px; align-items: flex-start;">
       <span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: #E8A33D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;">!</span>
-      <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #6B4A18;">We are not an emergency service. If you are seriously unwell, contact NHS 111 or 999.</p>
+      <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #6B4A18;">We’re not an emergency service. If you are seriously unwell, contact NHS 111 or 999.</p>
     </div>
   </div>
 </section>
@@ -158,7 +158,7 @@
       </div>
     </div>
     <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>© 2026 Second Opinion Radiology Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>© 2026 Secondread Ltd, trading as Second Opinion Radiology. Registered in England and Wales, company number 17360526. · Not an emergency service. If you are unwell, contact NHS 111 or 999.</span>
       <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -174,12 +174,14 @@
 const CATEGORIES = ['Before you order', 'Getting your images', 'Your report', 'Privacy'];
 
 const FAQS = [
-  { id: 'gp-referral', category: 'Before you order', q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly and order without seeing anyone first. If you would like your GP or radiologist copied into the report, give us their email at upload and we send it to them at the same time as you.' },
-  { id: 'nhs-scan', category: 'Getting your images', q: 'Can I use a scan done on the NHS?', a: 'Yes. The images belong to you under your right of access, and a second opinion on an NHS scan is entirely legitimate. Reporting on NHS imaging is routine for us and does not affect your NHS care in any way.' },
-  { id: 'no-images', category: 'Getting your images', q: 'What if I do not have the images?', a: 'You have a legal right to a copy of your own scan images. Ring the radiology department at the hospital where the scan was done, or medical records, and ask for the images themselves rather than just the written report. They can usually supply a disc or a secure download, and under UK data protection law they should respond within one month. If the scan was private or done abroad, ask the clinic for the download link they issued you. You can start your case now and add the images when they arrive. We cannot make the request on your behalf, because it has to come from you, but call us and we will talk you through it.' },
+  { id: 'gp-referral', category: 'Before you order', q: 'Do I need a GP referral?', a: 'No. You can upload your own images directly and order without seeing anyone first. Your report is yours to share with your GP or any other doctor, and the dashboard lets you send it on in one click.' },
+  { id: 'nhs-scan', category: 'Getting your images', q: 'Can I use a scan done on the NHS?', a: 'Yes. The images belong to you under your right of access, and a second opinion on an NHS scan is entirely legitimate. Reporting on NHS imaging is routine for us and doesn’t affect your NHS care in any way.' },
+  { id: 'no-images', category: 'Getting your images', q: 'What if I don’t have the images?', a: 'You have a legal right to a copy of your own scan images. Ring the radiology department at the hospital where the scan was done, or medical records, and ask for the images themselves rather than just the written report. They can usually supply a disc or a secure download, and under UK data protection law they should respond within one month. If the scan was private or done abroad, ask the clinic for the download link they issued you. You can start your case now and add the images when they arrive. We can’t make the request on your behalf, because it has to come from you, but call us and we’ll talk you through it.' },
   { id: 'bad-news', category: 'Your report', q: 'Will you tell me I have cancer over email?', a: 'Never as a surprise line in a PDF. If the radiologist finds something serious or urgent, we call you before the report is released and offer a video call with the reporting radiologist at no extra cost, so you hear it from a doctor who can answer your questions.' },
-  { id: 'who-sees', category: 'Privacy', q: 'Who can see my images?', a: 'Only the reporting radiologist and our clinical governance lead. Images are stored encrypted on UK servers under UK GDPR and we are ICO registered. We never share your study with insurers, employers or third parties, and you can ask us to delete it at any time.' },
-  { id: 'outside-uk', category: 'Before you order', q: 'I am outside the UK, can you still help?', a: 'Yes. We accept images from any country and report in English. Payment is in pounds sterling and the deadline you see at checkout is shown in your local time as well as UK time.' }
+  { id: 'who-sees', category: 'Privacy', q: 'Who can see my images?', a: 'Only the reporting radiologist and our clinical governance lead. Images are stored encrypted on UK servers under UK GDPR and we’re ICO registered. We never share your study with insurers, employers or third parties, and you can ask us to delete it at any time.' },
+  { id: 'which-scans', category: 'Before you order', q: 'Which scans can you review?', a: 'MRI, CT, Ultrasound, X-ray and PET-CT, across neuro, musculoskeletal, gastrointestinal, cardiothoracic and gynaecological subspecialties.' },
+  { id: 'data-safe', category: 'Privacy', q: 'Is my data safe?', a: 'Images are stored encrypted on UK servers under UK GDPR, and we’re ICO registered. Only the reporting radiologist and our clinical governance lead can access your study.' },
+  { id: 'outside-uk', category: 'Before you order', q: 'I live outside the UK. Can you still help?', a: 'Yes. We accept images from any country and report in English. Payment is in pounds sterling and the deadline you see at checkout is shown in your local time as well as UK time.' }
 ];
 
 class Component extends DCLogic {
@@ -232,9 +234,9 @@ class Component extends DCLogic {
         };
       }),
       contacts: [
-        { label: 'Phone', value: '+44 7947 834584', note: 'Average answer time 40 seconds' },
-        { label: 'Email', value: 'info@secondopinionradiology.co.uk', note: 'Replies within 3 working hours' },
-        { label: 'Registered office', value: 'Venture House, 2 Arlington Square', note: 'Downshire Way, Bracknell RG12 1WA' }
+        { label: 'Phone', value: '+44 7947 834584', note: '' },
+        { label: 'Email', value: 'info@secondopinionradiology.co.uk', note: '' },
+        { label: 'Registered office', value: 'Unit 7 Twelve O&rsquo;Clock Court', note: '21 Attercliffe Road, Sheffield S4 7WW' }
       ]
     };
   }

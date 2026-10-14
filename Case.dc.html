@@ -5,8 +5,8 @@
 <title>Your case · Second Opinion Radiology</title>
 <link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=20"></script>
-<script src="./portal.js?v=13"></script>
+<script src="./consultants.js?v=21"></script>
+<script src="./portal.js?v=14"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
 <link rel="preload" as="script" href="vendor/react-dom-18.3.1.min.js">
@@ -23,7 +23,7 @@
 <body>
 <x-dc><helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=28">
+  <link rel="stylesheet" href="responsive.css?v=37">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -97,7 +97,7 @@
 <div data-r="demobar" style="background: #FDF2E2; border-bottom: 1px solid #E7CB97;">
   <div style="max-width: 1180px; margin: 0 auto; padding: 11px 32px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
     <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: #8A5712; background: #FFFFFF; border: 1px solid #E7CB97; border-radius: 4px; padding: 3px 8px;">Demonstration</span>
-    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples. No real patient, and no real clinical content. Sign-in is not real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #6E4711;">Prototype only. The cases and reports below are written examples. No real patient, and no real clinical content. Sign-in isn’t real: no email is sent, the six-digit code is shown on screen, and everything is stored in this browser.</p>
   </div>
 </div>
 <div data-r="portalwrap" style="max-width: 1180px; margin: 0 auto; padding: 28px 32px 40px;">
@@ -106,7 +106,7 @@
 
   <sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
     <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 20px; padding: 48px 40px; text-align: center; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-      <h1 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; color: #0A1F2C;">We cannot find that case</h1>
+      <h1 style="margin: 0 0 12px; font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; color: #0A1F2C;">We can’t find that case</h1>
       <p style="margin: 0 auto 24px; max-width: 460px; font-size: 15.5px; line-height: 1.65; color: #4A5C68;">The link may be out of date, or the case may belong to a different account. Your own cases are all on your dashboard.</p>
       <a href="Dashboard.dc.html" style="display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 48px; padding: 13px 28px; border-radius: 999px; border: none; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Go to your dashboard</a>
     </div>
@@ -228,8 +228,8 @@
           </div>
 
           <label style="display: flex; flex-direction: column; gap: 7px;">
-            <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Send a message to the clinical team</span>
-            <textarea rows="3" value="{{ draft }}" onChange="{{ onDraft }}" placeholder="Ask about your case, your delivery time, or anything you are unsure about." style="width: 100%; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
+            <span style="font-size: 13.5px; font-weight: 600; color: #0A1F2C;">Send a message to the admin team</span>
+            <textarea rows="3" value="{{ draft }}" onChange="{{ onDraft }}" placeholder="Ask about your case, your delivery time, or anything you’re unsure about." style="width: 100%; padding: 13px 15px; border-radius: 11px; border: 1.5px solid #D4DDE0; background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; color: #0A1F2C; box-sizing: border-box; resize: vertical; outline: none; transition: border-color 140ms ease-out, box-shadow 140ms ease-out;" style-focus="border-color: #0D6E70; box-shadow: 0 0 0 3px rgba(13,110,112,0.16);"></textarea>
           </label>
           <div data-r="caseactions" style="display: flex; align-items: center; gap: 12px; margin-top: 14px; flex-wrap: wrap;">
             <button type="button" onClick="{{ sendMessage }}" aria-disabled="{{ sendBlocked }}" style="min-height: 46px; padding: 12px 26px; border-radius: 999px; border: none; background: {{ sendBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; cursor: {{ sendCursor }}; transition: background 140ms ease-out;" style-hover="background: #095458;">Send message</button>
@@ -262,7 +262,7 @@
 
 <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
   <h3 style="margin: 0 0 8px; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #5A6B77;">Not an emergency service</h3>
-  <p style="margin: 0; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">A second read takes up to 48 hours and is not a substitute for seeing a doctor. If you feel unwell or your symptoms are getting worse, contact your GP, call <strong style="color: #0A1F2C;">NHS 111</strong>, or in an emergency call <strong style="color: #0A1F2C;">999</strong>.</p>
+  <p style="margin: 0; font-size: 13.5px; line-height: 1.65; color: #4A5C68;">A second read takes up to 48 hours and isn’t a substitute for seeing a doctor. If you feel unwell or your symptoms are getting worse, contact your GP, call <strong style="color: #0A1F2C;">NHS 111</strong>, or in an emergency call <strong style="color: #0A1F2C;">999</strong>.</p>
 </div>
       </div>
     </div>
@@ -281,7 +281,7 @@
       </div>
     </div>
     <div style="padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>&copy; 2026 Second Opinion Radiology Ltd &middot; Registered in England &middot; Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>&copy; 2026 Secondread Ltd, trading as Second Opinion Radiology. Registered in England and Wales, company number 17360526. &middot; Not an emergency service. If you are unwell, contact NHS 111 or 999.</span>
       <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -314,11 +314,11 @@ const TICK = 'M20 6 9 17l-5-5';
 // the website, the confirmation screen and the emails name them. Clinical
 // quality check is deliberately folded into "Under expert review". Splitting
 // it out only invites "why is it stuck in checking?". "Action needed" and
-// "Follow-up available" are not stages on this rail: the first is a pause,
+// "Follow-up available" aren’t stages on this rail: the first is a pause,
 // shown as the amber panel above, and the second appears once a report lands.
 const PHASES = [
   { title: 'Submitted', body: 'Your images and report arrived and passed our checks for completeness and readability.' },
-  { title: 'Being assigned', body: 'Your case goes to a radiologist who subspecialises in this part of the body. You are not asked to choose them.' },
+  { title: 'Being assigned', body: 'Your case goes to a radiologist who subspecialises in this part of the body. You’re not asked to choose them.' },
   { title: 'Under expert review', body: 'Your radiologist reads every image, writes the report, and it passes a clinical check before release.' },
   { title: 'Report ready', body: 'Your report arrives in your account, with a plain-English explanation and a comparison against your original report.' }
 ];

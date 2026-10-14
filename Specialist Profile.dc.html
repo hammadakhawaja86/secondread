@@ -6,8 +6,8 @@
 <meta name="description" content="The subspecialty, hospital and qualifications of the consultant radiologist who would read your scan.">
 <link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./consultants.js?v=20"></script>
-<script src="./portal.js?v=13"></script>
+<script src="./consultants.js?v=21"></script>
+<script src="./portal.js?v=14"></script>
 <link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
 <link rel="preload" as="script" href="vendor/react-dom-18.3.1.min.js">
 <script>
@@ -24,7 +24,7 @@
 <x-dc>
 <helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=28">
+  <link rel="stylesheet" href="responsive.css?v=37">
   <script src="./image-slot.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,7 +110,7 @@
     </div>
     <div style="display: flex; flex-direction: column; gap: 20px;">
       <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 18px; padding: 30px 32px; box-shadow: 0 2px 8px rgba(10,31,44,0.06);">
-        <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 18px;">Turnaround you can choose</div>
+        <div style="font-weight: 600; font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #095458; margin-bottom: 18px;">Turnaround</div>
         <div style="display: flex; flex-direction: column;">
           <sc-for list="{{ turnaround }}" as="row" hint-placeholder-count="3">
             <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid #E2E9EC;">
@@ -165,7 +165,7 @@
       </div>
     </div>
     <div data-r="footdash" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px 28px; margin-bottom: 36px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;"><span style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Already submitted a case?</span><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #7FD8D4; transition: gap 140ms ease-out;" style-hover="color: #A9E8E5; gap: 12px; text-decoration: none;">View your dashboard <span aria-hidden="true">&#8594;</span></a></div><div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.72);">
-      <span>© 2026 Second Opinion Radiology Ltd · Registered in England · Not an emergency service. If you are unwell, contact 111 or 999.</span>
+      <span>© 2026 Secondread Ltd, trading as Second Opinion Radiology. Registered in England and Wales, company number 17360526. · Not an emergency service. If you are unwell, contact NHS 111 or 999.</span>
       <div style="display: flex; gap: 18px; flex-wrap: wrap;">
         <a href="Privacy.dc.html" style="color: rgba(255,255,255,0.72);">Privacy &amp; UK GDPR</a>
         <a href="Accessibility.dc.html" style="color: rgba(255,255,255,0.72);">Accessibility</a>
@@ -238,7 +238,7 @@ class Component extends DCLogic {
   renderVals() {
     const c = currentConsultant();
 
-    // No id, or an id that is not on the roster. Say so plainly and route the
+    // No id, or an id that isn’t on the roster. Say so plainly and route the
     // visitor to the directory rather than silently showing someone else.
     if (!c) {
       return {

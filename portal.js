@@ -175,13 +175,13 @@
             }
           ],
           messages: [
-            { from: 'Second Opinion Radiology clinical team', role: 'team', offsetH: -8.5, text: 'Thanks. Your images came through complete and readable. Your case has been assigned to Dr Mallon, consultant neuroradiologist.' }
+            { from: 'Second Opinion Radiology admin team', role: 'team', offsetH: -8.5, text: 'Thanks. Your images came through complete and readable. Your case has been assigned to Dr Mallon, consultant neuroradiologist.' }
           ],
           report: null,
           comparison: null
         },
         {
-          ref: 'SR-2025-8830',
+          ref: 'SR-2026-8830',
           status: 'ready',
           scan: 'CT',
           area: 'chest',
@@ -198,7 +198,7 @@
           demo: true,
           tasks: [],
           messages: [
-            { from: 'Second Opinion Radiology clinical team', role: 'team', offsetH: -120, text: 'Your images and original report are with Dr Al-Sanjari. Your report is due within 48 hours.' }
+            { from: 'Second Opinion Radiology admin team', role: 'team', offsetH: -120, text: 'Your images and original report are with Dr Senan Alsanjari. Your report is due within 48 hours.' }
           ],
           report: {
             inShort: 'The nodule in your right lung is there, and your radiologist agrees with the original description of it. Its appearance is the kind that is very unlikely to be cancer, and the recommended next step is a single repeat scan in twelve months rather than anything sooner.',
@@ -263,7 +263,7 @@
                 found: 'Interval CT at 12 months is sufficient. Shorter-interval imaging is not indicated on radiological grounds.',
                 category: 'differing',
                 differenceNote: 'The original recommendation is the correct and appropriate one for a nodule described as indeterminate. Once the benign calcification pattern is taken into account, published guidance supports a longer interval. Both recommendations are reasonable readings of the images; they differ because they rest on different characterisations of the nodule.',
-                meansForYou: 'You were told to come back in three months. Your radiologist thinks a year is enough, because of the calcium pattern. This is a judgement call between two specialists, not a mistake, take this report to your doctor and decide together.'
+                meansForYou: 'You were told to come back in three months. Your radiologist thinks a year is enough, because of the calcium pattern. This is a judgement call between two specialists, not a mistake. Take this report to your doctor and decide together.'
               },
               {
                 region: 'Rest of the chest',
@@ -277,7 +277,7 @@
           }
         },
         {
-          ref: 'SR-2025-6104',
+          ref: 'SR-2026-6104',
           status: 'followup',
           scan: 'MRI',
           area: 'bones',
@@ -395,17 +395,17 @@
   var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
                 'August', 'September', 'October', 'November', 'December'];
 
+  // 24-hour, matching the "14:02" already used on signed reports.
   function clock(d) {
     var h = d.getHours();
     var m = d.getMinutes();
-    var suffix = h < 12 ? 'am' : 'pm';
-    var h12 = h % 12; if (h12 === 0) h12 = 12;
-    return h12 + ':' + (m < 10 ? '0' : '') + m + ' ' + suffix;
+    return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
   }
 
-  // "Friday 15 March, 4:00 pm", an absolute moment, never a countdown.
+  // "Friday 15 March 2026, 16:00", an absolute moment, never a countdown.
   function fmtLong(d) {
-    return DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + ', ' + clock(d);
+    return DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' +
+           d.getFullYear() + ', ' + clock(d);
   }
 
   // "14 Mar 2026"
@@ -635,7 +635,7 @@
     var s = load();
     s.signedIn = true;
     var messages = [{
-      from: 'Second Opinion Radiology clinical team',
+      from: 'Second Opinion Radiology admin team',
       role: 'team',
       ts: new Date().toISOString(),
       text: 'Thanks. We have everything we need. We are checking your images are complete and readable, then assigning your case to a radiologist.'
@@ -644,7 +644,7 @@
     // not move to assignment until their section is in, so say so here.
     if (order.clinician && order.clinician.mode !== 'self' && order.clinician.email) {
       messages.push({
-        from: 'Second Opinion Radiology clinical team',
+        from: 'Second Opinion Radiology admin team',
         role: 'team',
         ts: new Date().toISOString(),
         text: 'We have sent a secure, single-case link to ' + order.clinician.email +

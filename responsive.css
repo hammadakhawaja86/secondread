@@ -61,8 +61,8 @@ a[href^="mailto:"], a[href^="tel:"] { overflow-wrap: anywhere; }
    large-size affordance; at 30px it just looks cramped) and leading opens up,
    because short measures need more air between lines.                        */
 
-h1[style*="font-size: 48px"] { font-size: clamp(31px, 6.2vw, 48px) !important; }
-h2[style*="font-size: 44px"] { font-size: clamp(27px, 5.6vw, 44px) !important; }
+h1[style*="font-size: 48px"] { font-size: clamp(26px, 6.9vw, 48px) !important; }
+h2[style*="font-size: 44px"] { font-size: clamp(25px, 6.3vw, 44px) !important; }
 h1[style*="font-size: 42px"] { font-size: clamp(29px, 5.6vw, 42px) !important; }
 h1[style*="font-size: 40px"] { font-size: clamp(28px, 5.4vw, 40px) !important; }
 h1[style*="font-size: 34px"],
@@ -557,16 +557,9 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
   span[style*="width: 1px"][style*="height: 18px"] { display: none !important; }
   [style*="gap: 28px"][style*="justify-content: center"] { gap: 10px 18px !important; }
 
-  /* Hero reassurance row: wrapped, its middot separators orphan onto their own
-     line. Three short stacked lines read cleanly and drop the dots. */
-  [style*="gap: 22px"][style*="font-size: 13px"] {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 7px !important;
-  }
-  [style*="gap: 22px"][style*="font-size: 13px"] > span[style*="color: rgb(108, 124, 135)"] {
-    display: none !important;
-  }
+  /* The hero reassurance row is handled by [data-r="heroassure"] in section 14.
+     This selector matched it by its inline gap and font size, which is why the
+     row kept stacking whatever the hero block asked for. */
 
   /* Pricing matrix: the feature label sticks so a row keeps its meaning while
      the tiers scroll past it. Without this you scroll away the only column
@@ -881,7 +874,8 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
 }
 
 @media (max-width: 820px) {
-  [data-r="prtag"] { display: none !important; }
+  /* The floating "Clear answers / faster" label has gone from the markup, so
+     only the heading rule is left here. */
   [data-r="prhead"] { display: block !important; }
 }
 
@@ -921,4 +915,113 @@ input:focus-visible, textarea:focus-visible, summary:focus-visible {
   [data-r="cardrow"],
   [data-r="docrow"] { grid-template-columns: minmax(0, 1fr) !important; }
   [data-r="trackrow"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 18px 14px !important; }
+}
+
+/* ------------------------------------------------------------------ 13 ---
+   Three breaks that only showed on a phone. The hero's two reassurances used
+   to wrap with the separator stranded on a line of its own; "48-hour" split
+   across the hyphen; and the radiologist workspace was laid out at a width no
+   phone has. */
+
+@media (max-width: 620px) {
+  /* Superseded by the hero block below, which keeps both phrases and the dot
+     that joins them on one line. */
+}
+
+/* "A 48-hour turnaround" broke as "48-" / "hour" at 390px. */
+h1, h2, h3 { hyphens: manual; }
+@media (max-width: 420px) {
+  h1, h2 { overflow-wrap: break-word; }
+}
+
+
+
+/* ------------------------------------------------------------------ 14 ---
+   The hero on a phone.
+
+   Stacked, the desktop proportions stopped working: a 48px headline became
+   three enormous lines, the two buttons stacked into a wall, the photo was
+   scrimmed almost out of existence, and the turnaround card was pushed to the
+   bottom of a 1,288px section by a 260px minimum height meant for a column
+   that no longer exists. The type comes down a step, the second action stops
+   competing with the first, the card moves up under the buttons, and the
+   photo is allowed to be seen in the space below. */
+
+@media (max-width: 860px) {
+  [data-r="herowrap"] { padding: 30px 20px 0 !important; }
+  /* Both slides share one grid cell for the crossfade, so the shorter one is
+     stretched to the height of the taller. Grid distributes that spare height
+     across its rows by default, which is what pushed the card down the page. */
+  [data-r="heroslide"] { gap: 14px !important; padding-bottom: 28px !important; min-height: 0 !important; align-content: start !important; }
+  [data-r="herocopy"] { gap: 18px !important; }
+
+  /* A headline is not more persuasive for being larger than the screen. */
+  [data-r="heroh1"] { line-height: 1.12 !important; letter-spacing: -0.02em !important; text-wrap: balance; }
+  [data-r="herolead"] { font-size: 15.5px !important; line-height: 1.55 !important; }
+
+  /* One obvious action, with the second offered quietly underneath. */
+  [data-r="herocta"] { flex-direction: column !important; gap: 10px !important; width: 100%; }
+  [data-r="herocta"] > a { width: 100%; justify-content: center; }
+  [data-r="herocta"] > a:last-child {
+    min-height: 44px !important;
+    border-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Two short phrases and the dot that joins them, on one line. */
+  [data-r="heroassure"] { gap: 10px !important; font-size: 12.5px !important; }
+
+  /* The card belonged beside the headline. Stacked, it belongs under the
+     buttons, not 400px below them. */
+  [data-r="heroturn"] { min-height: 0 !important; justify-content: flex-start !important; align-items: stretch !important; margin-top: 4px; }
+  [data-r="heroturn"] > div { max-width: none !important; width: 100%; }
+
+  [data-r="heropicker"] { padding: 22px 18px !important; border-radius: 18px !important; }
+  /* Both slides share one grid cell, so every row this card loses is a row of
+     empty space under the other slide. Three short labels fit across. */
+  /* Three across keeps the card two rows shorter, which is two rows of dead
+     space the other slide no longer carries. The labels are short enough. */
+  [data-r="heropicker"] [data-r="heroscangrid"] { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px !important; margin-bottom: 18px !important; }
+  [data-r="heropicker"] [data-r="heroscangrid"] > button { min-height: 44px !important; padding: 10px 4px !important; font-size: 13.5px !important; }
+  [data-r="heroticks"] { gap: 10px !important; }
+  [data-r="herodots"] { padding-bottom: 18px !important; }
+}
+
+@media (max-width: 620px) {
+  /* The scrim was built to fade left-to-right across a two-column hero. Turned
+     vertical it covered the whole photo; now it holds the text and releases
+     the image below it. */
+  [data-r="heroscrim"] {
+    background: linear-gradient(180deg,
+      rgba(216,238,234,0.98) 0%,
+      rgba(216,238,234,0.96) 52%,
+      rgba(216,238,234,0.62) 78%,
+      rgba(216,238,234,0.30) 100%) !important;
+  }
+  [data-r="heroimg"] { object-position: 62% center !important; }
+  [data-r="herolead"] { font-size: 15px !important; }
+}
+
+@media (max-width: 400px) {
+  [data-r="herowrap"] { padding-left: 16px !important; padding-right: 16px !important; }
+}
+
+
+/* ------------------------------------------------------------------ 15 ---
+   Two edge cases the width sweep turned up. */
+
+/* The rings around a portrait on Meet the team sit 15px and 30px outside it.
+   Between 860px and 1100px the gutter is no longer wide enough to hold them,
+   so they are drawn in rather than hidden; they disappear below 620px. */
+@media (max-width: 1100px) and (min-width: 621px) {
+  [data-r="teamfigback"] { inset: -8px !important; }
+  [data-r="teamfigback"] + [data-r="teamfigback"],
+  [data-r="teamfigback"]:nth-of-type(2) { inset: -16px !important; }
+}
+
+/* 320px is the narrowest screen still in use. The consoles were laid out for a
+   desk, so their headers and stat rows are allowed to wrap there. */
+@media (max-width: 360px) {
+  [data-r="statsrow"], [data-r="trackrow"] { grid-template-columns: minmax(0, 1fr) !important; }
 }
