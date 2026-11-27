@@ -1,0 +1,29 @@
+/* Consultant call scheduling — admin + consultant console additions.
+   Layered on top of admin.css; reuses its tokens (--teal, --navy, --line, …). */
+
+.statgrid.cols-4 { grid-template-columns:repeat(4,minmax(0,1fr)); }
+@media (max-width:1180px) { .statgrid.cols-4 { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:620px)  { .statgrid.cols-4 { grid-template-columns:minmax(0,1fr); } }
+
+/* Patient search results, inside the schedule/reschedule modal */
+.apt-presult { display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:9px;
+               border:1px solid transparent; background:none; cursor:pointer; text-align:left;
+               font-family:'Inter',sans-serif; width:100%; }
+.apt-presult:hover { background:var(--mint-soft); border-color:var(--mint-line); }
+.apt-presult .av { width:30px; height:30px; border-radius:50%; background:var(--mint); color:var(--teal-dark);
+                    font-family:'Montserrat',sans-serif; font-weight:700; font-size:12px;
+                    display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.apt-presult .nm { font-size:14px; font-weight:600; color:var(--navy); }
+.apt-presult .em { font-size:12.5px; color:var(--muted); }
+
+.apt-status { display:inline-flex; align-items:center; gap:6px; padding:4px 11px; border-radius:999px;
+              font-size:11.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.apt-status .d { width:7px; height:7px; border-radius:50%; background:currentColor; }
+
+/* Patient dashboard: upcoming consultant call card */
+.pcall-card { }
+.pcall-join[disabled] { opacity:.5; cursor:not-allowed; }
+
+@media (max-width:860px) {
+  .modal-rows.apt-rows dt { flex-basis:40%; }
+}

@@ -18,12 +18,13 @@
   });
 </script>
 <script src="./support.js?v=3"></script>
+<script src="./nav.js?v=1"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=37">
+  <link rel="stylesheet" href="responsive.css?v=45">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
@@ -37,18 +38,27 @@
 </helmet>
 
 <header style="position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #E2E9EC;">
-  <nav data-r="nav" style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
+  <nav data-r="nav" style="max-width: 1320px; margin: 0 auto; padding: 16px 32px; display: flex; align-items: center; gap: 40px;">
     <a href="index.html" style="display: inline-flex; align-items: center; transition: opacity 140ms ease-out;" style-hover="opacity: 0.78;"><img src="logo-secondread.svg" alt="SecondOpinion Radiology" style="height: 55px; width: 220px; display: block"></a>
     <details data-r="navmenu">
       <summary data-r="navburger" aria-label="Menu"><span></span><span></span><span></span></summary>
     </details>
     <div data-r="navlinks" style="display: flex; gap: 28px; align-items: center;"><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link data-r="navdashmobile" style="color: #095458; font-size: 14px; font-weight: 700;">Patient dashboard</a>
+
       <a href="How It Works.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">How it works</a>
+      <a href="index.html#why-choose-us" style="color: #173B4F; font-size: 14px; font-weight: 500;">Why Choose Us</a>
       <a href="Specialists.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Specialists</a>
       <a href="Pricing.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Pricing</a>
       <a href="Sample Report.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Sample report</a>
-      <a href="Meet the Team.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">Meet the team</a>
-      <a href="FAQs.dc.html" style="color: #173B4F; font-size: 14px; font-weight: 500;">FAQs</a>
+      <details data-r="navresources" style="position: relative;">
+        <summary data-r="navressummary" style="list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; color: #173B4F; font-size: 14px; font-weight: 500;">Resources<svg data-r="navreschevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transition: transform 160ms ease-out;"><path d="m6 9 6 6 6-6"></path></svg></summary>
+        <div data-r="navrespanel" style="position: absolute; top: 100%; left: 0; margin-top: 10px; min-width: 196px; background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 14px; box-shadow: 0 16px 36px rgba(10,31,44,0.14); padding: 8px; display: flex; flex-direction: column; gap: 2px; z-index: 50;">
+          <a href="Blog.dc.html" style="padding: 10px 12px; border-radius: 9px; color: #173B4F; font-size: 14px; font-weight: 500; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Blog &amp; Insights</a>
+          <a href="Meet the Team.dc.html" style="padding: 10px 12px; border-radius: 9px; color: #173B4F; font-size: 14px; font-weight: 500; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">Meet the team</a>
+          <a href="FAQs.dc.html" style="padding: 10px 12px; border-radius: 9px; color: #173B4F; font-size: 14px; font-weight: 500; transition: background 120ms ease-out;" style-hover="background: #F4F7F8; text-decoration: none;">FAQs</a>
+        </div>
+      </details>
+    
     </div>
     <div data-r="navcta" style="display: flex; gap: 14px; align-items: center; margin-left: auto;"><a href="Sign In.dc.html?next=Dashboard.dc.html" data-portal-link data-r="navdash" style="min-height: 42px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid #C3E0DE; background: #FFFFFF; color: #095458; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; transition: border-color 140ms ease-out, background 140ms ease-out;" style-hover="border-color: #0D6E70; background: #F0F8F8; color: #095458; text-decoration: none;">Patient dashboard</a>
       <a href="Start Flow.dc.html" style="min-height: 42px; padding: 11px 22px; border-radius: 999px; background: #0D6E70; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; box-sizing: border-box; box-shadow: 0 4px 14px rgba(13,110,112,0.28); transition: background 140ms ease-out;" style-hover="background: #095458; color: #FFFFFF; text-decoration: none;">Start my second read</a>
@@ -106,6 +116,7 @@
           <li><a href="Sample Report.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Sample report</a></li>
           <li><a href="Meet the Team.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Meet the team</a></li>
           <li><a href="FAQs.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">FAQs</a></li>
+          <li><a href="Blog.dc.html" style="color: rgba(255,255,255,0.85); font-size: 13px;">Blog</a></li>
         </ul>
       </div>
       <div>

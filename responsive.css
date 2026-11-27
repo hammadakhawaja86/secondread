@@ -38,9 +38,20 @@ a[href^="mailto:"], a[href^="tel:"] { overflow-wrap: anywhere; }
    row was authored with when it held five. Overridden here rather than in each
    page's inline style, which is where the 28px lives. */
 [data-r="navlinks"] { gap: 18px !important; }
-/* The 40px authored between wordmark, links and CTAs leaves the six-link row
-   with nothing in hand at 1264px, where the 1200px container stops growing. */
+/* The 40px authored between wordmark, links and CTAs left the six-link row
+   with nothing in hand at 1264px, where the container used to stop growing
+   at 1200px. Widened to 1320px below (where the nav itself is styled) once
+   "Why Choose Us" and the Resources menu made that row wider again. */
 [data-r="nav"] { gap: 32px !important; }
+/* "Why Choose Us" and the Resources menu made the row wider than the 1200px
+   container has room for even at the compressed gaps above, so the "Patient
+   dashboard" pill — the one flex child nothing here was protecting — quietly
+   shrank until its own two words wrapped. Protected the same way the links
+   already were, at every width this container is used: it never shrinks and
+   its label never wraps. The real headroom comes from widening the container
+   itself, in section 1b below. */
+[data-r="navcta"] { flex-shrink: 0; }
+[data-r="navcta"] > a { white-space: nowrap; }
 
 /* A 14px text link is a 17px hit target. Padding lifts it to ~37px without
    changing the header's height, which the 42px CTA already sets. */
@@ -157,6 +168,19 @@ button[style*="height: 6px"][style*="border-radius: 999px"]::after {
 [open] > [data-r="navburger"] > span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 [open] > [data-r="navburger"] > span:nth-child(2) { opacity: 0; transform: scaleX(0.4); }
 [open] > [data-r="navburger"] > span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ------------------------------------------------ 4c. "Resources" dropdown
+
+   A native <details>/<summary>, the same primitive the burger menu already
+   uses, so it needs no script to open, close or be keyboard-reachable. The
+   one thing <details> does not do on its own is close when something else is
+   clicked; nav.js adds that, plus Escape, and nothing else. */
+
+[data-r="navressummary"] { list-style: none; -webkit-tap-highlight-color: transparent; }
+[data-r="navressummary"]::-webkit-details-marker { display: none; }
+[data-r="navressummary"]::marker { content: ""; }
+[data-r="navresources"][open] [data-r="navreschevron"] { transform: rotate(180deg); }
+[data-r="navrespanel"] > a:focus-visible { outline: 2px solid #0D6E70; outline-offset: -2px; }
 
 /* ------------------------------------------------ 4b. services carousel
 
@@ -298,6 +322,24 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
     border-bottom: 1px solid #EEF2F4;
   }
   [data-r="navmenu"][open] ~ [data-r="navlinks"] > a:last-child { border-bottom: none; }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > [data-r="navresources"] {
+    border-bottom: 1px solid #EEF2F4;
+  }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > [data-r="navresources"] > [data-r="navressummary"] {
+    display: flex !important; align-items: center !important; justify-content: space-between;
+    min-height: 52px; font-size: 16px !important;
+  }
+  /* Stacked in the sheet, the panel is the next rows in the same list, not a
+     floating card: no position, no border, no shadow, just an indent. */
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > [data-r="navresources"] > [data-r="navrespanel"] {
+    position: static !important; margin-top: 0 !important; min-width: 0 !important;
+    border: none !important; box-shadow: none !important; border-radius: 0 !important;
+    padding: 0 0 8px !important;
+  }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > [data-r="navresources"] > [data-r="navrespanel"] > a {
+    min-height: 44px !important; padding: 0 0 0 14px !important; font-size: 15px !important;
+    display: flex !important; align-items: center !important; border-radius: 0 !important;
+  }
 }
 
 /* -------------------------------------------------- 6. tablet (<= 1024px) */
@@ -403,6 +445,24 @@ section[data-r="specsection"] { padding-left: 0 !important; padding-right: 0 !im
     border-bottom: 1px solid #EEF2F4;
   }
   [data-r="navmenu"][open] ~ [data-r="navlinks"] > a:last-child { border-bottom: none; }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > [data-r="navresources"] {
+    border-bottom: 1px solid #EEF2F4;
+  }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > [data-r="navresources"] > [data-r="navressummary"] {
+    display: flex !important; align-items: center !important; justify-content: space-between;
+    min-height: 52px; font-size: 16px !important;
+  }
+  /* Stacked in the sheet, the panel is the next rows in the same list, not a
+     floating card: no position, no border, no shadow, just an indent. */
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > [data-r="navresources"] > [data-r="navrespanel"] {
+    position: static !important; margin-top: 0 !important; min-width: 0 !important;
+    border: none !important; box-shadow: none !important; border-radius: 0 !important;
+    padding: 0 0 8px !important;
+  }
+  [data-r="navmenu"][open] ~ [data-r="navlinks"] > [data-r="navresources"] > [data-r="navrespanel"] > a {
+    min-height: 44px !important; padding: 0 0 0 14px !important; font-size: 15px !important;
+    display: flex !important; align-items: center !important; border-radius: 0 !important;
+  }
 
   /* Start Flow chrome: the reassurance line is the first thing to go */
   [data-r="flowbar"] { gap: 12px !important; padding: 12px 24px !important; }
@@ -1024,4 +1084,31 @@ h1, h2, h3 { hyphens: manual; }
    desk, so their headers and stat rows are allowed to wrap there. */
 @media (max-width: 360px) {
   [data-r="statsrow"], [data-r="trackrow"] { grid-template-columns: minmax(0, 1fr) !important; }
+}
+
+/* ------------------------------------------------------------------ 16 ---
+   The blog listing and post pages. */
+
+@media (max-width: 1024px) {
+  /* A grid item defaults to min-width: auto, so the text column kept its
+     unwrapped intrinsic width and the card's own overflow: hidden clipped it
+     instead of letting it reflow to the single column it now sits in. */
+  [data-r="featuredpost"] { grid-template-columns: 1fr !important; }
+  [data-r="featuredpost"] > span { min-width: 0; }
+  [data-r="featuredpost"] > span:first-child { min-height: 240px !important; aspect-ratio: 16 / 9; }
+  [data-r="blogrow"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 680px) {
+  [data-r="blogrow"] { grid-template-columns: minmax(0, 1fr) !important; gap: 18px !important; }
+  [data-r="featuredpost"] > span:last-child { padding: 28px 24px !important; }
+  /* The author/date/read-time row packs three short facts; on a narrow phone
+     they read better as two lines than squeezed onto a wrapping one. */
+  [data-r="featuredmeta"] { flex-wrap: wrap; row-gap: 6px; }
+}
+
+/* A long article column is the one place on the site the type scale needs to
+   soften, not jump: it is read top to bottom, not scanned. */
+@media (max-width: 620px) {
+  [data-r="articlebody"] h2 { font-size: 20px !important; }
 }

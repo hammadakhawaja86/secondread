@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultant call · Second Opinion Radiology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root { --navy:#0A1F2C; --ink:#173B4F; --body:#4A5C68; --muted:#5A6B77; --teal:#0D6E70; --teal-dark:#095458;
+          --mint:#D7F2F3; --mint-soft:#E4F2F2; --mint-line:#C3E0DE; --bg:#F4F7F8; --line:#E2E9EC;
+          --amber-bg:#FDF2E2; --amber-line:#E7CB97; --amber-ink:#8A5712; --alert:#B4462F; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#06131C; font-family:'Inter',sans-serif; color:#fff; min-height:100vh; }
+  h1,h2,h3 { font-family:'Montserrat',sans-serif; margin:0; }
+  .wrap { max-width:960px; margin:0 auto; padding:28px 24px 60px; min-height:100vh; display:flex; flex-direction:column; }
+  .topbar { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; color:#fff; }
+  .demo-pill { display:inline-flex; align-items:center; gap:7px; padding:5px 12px; border-radius:999px;
+               background:rgba(253,242,226,0.14); border:1px solid rgba(231,203,151,0.4); color:#F4D9A0;
+               font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+  .card { background:#0E222F; border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:32px; }
+  .center { flex:1; display:flex; align-items:center; justify-content:center; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:48px; padding:12px 26px;
+         border-radius:999px; border:none; font-family:'Inter',sans-serif; font-size:15px; font-weight:600; cursor:pointer;
+         transition:background 140ms ease-out, transform 140ms ease-out; }
+  .btn:active { transform:scale(.97); }
+  .btn-primary { background:#0D6E70; color:#fff; }
+  .btn-primary:hover { background:#095458; }
+  .btn-ghost { background:rgba(255,255,255,0.08); color:#fff; border:1.5px solid rgba(255,255,255,0.18); }
+  .btn-ghost:hover { background:rgba(255,255,255,0.14); }
+  .btn-danger { background:var(--alert); color:#fff; }
+  .btn[disabled] { opacity:.45; cursor:not-allowed; }
+  .stage-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+  @media (max-width:680px) { .stage-grid { grid-template-columns:1fr; } }
+  .tile { position:relative; aspect-ratio:4/3; background:#122C3B; border-radius:16px; overflow:hidden;
+          display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.08); }
+  .tile video { width:100%; height:100%; object-fit:cover; display:block; transform:scaleX(-1); }
+  .tile .av { width:88px; height:88px; border-radius:50%; background:var(--mint); color:var(--teal-dark);
+              font-family:'Montserrat',sans-serif; font-weight:700; font-size:30px; display:flex; align-items:center; justify-content:center; }
+  .tile .label { position:absolute; left:12px; bottom:12px; padding:5px 11px; border-radius:999px;
+                 background:rgba(6,19,28,0.72); font-size:12.5px; font-weight:600; display:flex; align-items:center; gap:6px; }
+  .tile .mutedflag { position:absolute; right:12px; bottom:12px; width:30px; height:30px; border-radius:50%;
+                      background:rgba(180,70,47,0.9); display:flex; align-items:center; justify-content:center; }
+  .tile .waiting { font-size:14px; color:#9FB2BC; text-align:center; padding:0 20px; }
+  .rec-flag { position:absolute; left:12px; top:12px; display:flex; align-items:center; gap:6px; padding:5px 10px;
+              border-radius:999px; background:rgba(180,70,47,0.92); font-size:12px; font-weight:700; letter-spacing:.04em; }
+  .rec-dot { width:8px; height:8px; border-radius:50%; background:#fff; animation:rec-pulse 1.4s ease-in-out infinite; }
+  @keyframes rec-pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .controls { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:6px; }
+  .ctrl { width:54px; height:54px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.06);
+          color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 140ms ease-out, transform 140ms ease-out; }
+  .ctrl:hover { background:rgba(255,255,255,0.14); }
+  .ctrl:active { transform:scale(.95); }
+  .ctrl.off { background:var(--alert); border-color:var(--alert); }
+  .ctrl.rec.on { background:var(--alert); border-color:var(--alert); }
+  .meta-row { display:flex; align-items:center; justify-content:center; gap:14px; color:#9FB2BC; font-size:13.5px; margin:14px 0 24px; }
+  .consent-box { background:rgba(253,242,226,0.08); border:1px solid rgba(231,203,151,0.3); border-radius:14px; padding:18px 20px; margin:18px 0; }
+  .consent-box p { margin:0 0 10px; font-size:14px; line-height:1.6; color:#E7D4AE; }
+  .consent-box label { display:flex; align-items:flex-start; gap:10px; font-size:14px; color:#fff; cursor:pointer; }
+  .transcript-box { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:18px 20px; margin-top:18px; }
+  .transcript-box p { margin:0; font-size:14px; line-height:1.7; color:#CBD7DC; }
+  .notice { font-size:12.5px; color:#8BA1AB; margin-top:16px; line-height:1.6; }
+  .hidden { display:none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><img src="logo-secondread-mark.svg" alt="" style="height:28px;width:28px;">Second Opinion Radiology</div>
+    <span class="demo-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>Simulated call &middot; not a real connection</span>
+  </div>
+
+  <div class="center" id="stage">
+    <div class="card" style="max-width:420px; width:100%; text-align:center;">
+      <p style="color:#9FB2BC;">Loading your call…</p>
+    </div>
+  </div>
+</div>
+
+<script src="consultants.js?v=21"></script>
+<script src="appointments.js?v=1"></script>
+<script>
+(function () {
+  var A = window.APPOINTMENTS;
+  var params = new URLSearchParams(window.location.search);
+  var apptId = params.get('id');
+  var role = params.get('role') === 'consultant' ? 'consultant' : 'patient';
+  var stage = document.getElementById('stage');
+
+  var localStream = null;
+  var micOn = true, camOn = true;
+  var step = 'preconsent'; // preconsent -> lobby -> live -> ended
+  var showRecBox = false;
+
+  function appt() { return A.getAppointment(apptId); }
+  function otherRole() { return role === 'patient' ? 'consultant' : 'patient'; }
+  function returnHref() { return role === 'patient' ? 'Dashboard.dc.html' : 'Consultant Appointments.dc.html'; }
+
+  function patientLabel(a) { var p = A.patientById(a.patientId); return p ? p.name : 'Patient'; }
+  function consultantLabel(a) { var c = A.consultantById(a.consultantId); return c ? 'Dr ' + c.name : 'Consultant'; }
+  function myLabel(a) { return role === 'patient' ? patientLabel(a) : consultantLabel(a); }
+  function otherLabel(a) { return role === 'patient' ? consultantLabel(a) : patientLabel(a); }
+  function myInitials(a) { return (myLabel(a).match(/[A-Z]/g) || ['?']).slice(0, 2).join(''); }
+  function otherInitials(a) { var l = otherLabel(a).replace('Dr ', ''); var parts = l.split(' '); return ((parts[0] || '?')[0] + (parts[1] || '')[0] || '').toUpperCase(); }
+
+  function fmtWhen(a) {
+    var d = A.startOf(a);
+    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var h = d.getHours(), m = d.getMinutes();
+    return days[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ', ' + (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+  }
+
+  function render() {
+    var a = appt();
+    if (!a) { renderNotFound(); return; }
+    if (a.status === 'cancelled') { renderCancelled(a); return; }
+    if (a.call.phase === 'ended') { renderEnded(a); return; }
+    if (step === 'preconsent') { renderConsent(a); return; }
+    renderInCall(a);
+  }
+
+  function renderNotFound() {
+    stage.innerHTML = '<div class="card" style="max-width:420px;width:100%;text-align:center;"><h2 style="margin-bottom:10px;">Call not found</h2><p style="color:#9FB2BC;margin-bottom:20px;">This link does not match a scheduled call.</p><a class="btn btn-ghost" href="' + returnHref() + '">Return to dashboard</a></div>';
+  }
+
+  function renderCancelled(a) {
+    stage.innerHTML = '<div class="card" style="max-width:460px;width:100%;text-align:center;"><h2 style="margin-bottom:10px;">This call was cancelled</h2><p style="color:#9FB2BC;margin-bottom:20px;">' + myLabel(a) + ', this appointment with ' + otherLabel(a) + ' is no longer scheduled.</p><a class="btn btn-primary" href="' + returnHref() + '">Return to dashboard</a></div>';
+  }
+
+  // ---------------------------------------------------- 1. consent / pre-join
+  function renderConsent(a) {
+    stage.innerHTML =
+      '<div class="card" style="max-width:480px;width:100%;">' +
+        '<h2 style="margin-bottom:6px;">Join your call</h2>' +
+        '<p style="color:#9FB2BC;font-size:14.5px;margin:0 0 18px;">With ' + otherLabel(a) + ' &middot; ' + fmtWhen(a) + ' &middot; ' + a.durationMins + ' minutes</p>' +
+        '<div class="consent-box">' +
+          '<p><b>Camera and microphone.</b> Joining will ask your browser to share your camera and microphone with this page, so the other participant can see and hear a preview of you. Nothing is sent anywhere outside this browser: there is no real call server behind this demo.</p>' +
+          '<label><input type="checkbox" id="consent-media" style="margin-top:3px;"> I understand, and I am choosing to allow camera and microphone access for this demo.</label>' +
+        '</div>' +
+        '<div style="display:flex; gap:12px; margin-top:4px;">' +
+          '<a class="btn btn-ghost" href="' + returnHref() + '">Cancel</a>' +
+          '<button class="btn btn-primary" id="consent-go" disabled style="flex:1;">Continue</button>' +
+        '</div>' +
+        '<p class="notice">This is a demonstration. If camera or microphone access is denied, you can still continue with a placeholder preview.</p>' +
+      '</div>';
+    var cb = document.getElementById('consent-media');
+    var go = document.getElementById('consent-go');
+    cb.addEventListener('change', function () { go.disabled = !cb.checked; });
+    go.addEventListener('click', function () { requestMedia(a); });
+  }
+
+  function requestMedia(a) {
+    A.patch(a.id, function (ap) { ap.call[role === 'patient' ? 'consentPatient' : 'consentConsultant'] = true; });
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function (stream) {
+        localStream = stream;
+        enterLobby(a);
+      }).catch(function () {
+        localStream = null;
+        enterLobby(a);
+      });
+    } else {
+      localStream = null;
+      enterLobby(a);
+    }
+  }
+
+  function enterLobby(a) {
+    step = 'live';
+    A.patch(a.id, function (ap) {
+      if (role === 'patient') ap.call.patientJoinedAt = new Date().toISOString();
+      else ap.call.consultantJoinedAt = new Date().toISOString();
+      if (ap.call.phase === 'not_started') ap.call.phase = role + '_lobby';
+      if (ap.call.patientJoinedAt && ap.call.consultantJoinedAt) ap.call.phase = 'live';
+    });
+    render();
+  }
+
+  // -------------------------------------------------------------- in-call UI
+  function renderInCall(a) {
+    var bothJoined = !!(a.call.patientJoinedAt && a.call.consultantJoinedAt);
+    var rec = a.call.recording;
+    stage.innerHTML =
+      '<div style="width:100%;max-width:900px;">' +
+        '<div class="meta-row">' +
+          '<span>Call ' + a.id + '</span><span>&middot;</span><span>' + a.durationMins + ' min scheduled</span>' +
+          (rec.active ? '<span>&middot;</span><span style="color:#F2A9A0;">Recording</span>' : '') +
+        '</div>' +
+        '<div class="stage-grid">' +
+          '<div class="tile" id="tile-self">' +
+            (rec.active ? '<div class="rec-flag"><span class="rec-dot"></span>REC</div>' : '') +
+            '<div class="label">' + myLabel(a) + ' (you)</div>' +
+          '</div>' +
+          '<div class="tile" id="tile-other">' +
+            (bothJoined
+              ? '<div class="av">' + otherInitials(a) + '</div><div class="label">' + otherLabel(a) + '</div>'
+              : '<div class="waiting">Waiting for ' + otherLabel(a) + ' to join&hellip;<br><span style="font-size:12px;">Open this call as the other role in another tab to see them join live.</span></div>') +
+          '</div>' +
+        '</div>' +
+        '<div class="controls">' +
+          '<button class="ctrl' + (micOn ? '' : ' off') + '" id="ctrl-mic" title="' + (micOn ? 'Mute microphone' : 'Unmute microphone') + '" aria-label="Toggle microphone">' + micIcon() + '</button>' +
+          '<button class="ctrl' + (camOn ? '' : ' off') + '" id="ctrl-cam" title="' + (camOn ? 'Turn off camera' : 'Turn on camera') + '" aria-label="Toggle camera">' + camIcon() + '</button>' +
+          '<button class="ctrl rec' + (rec.active ? ' on' : '') + '" id="ctrl-rec" title="' + (rec.active ? 'Stop recording' : 'Start recording') + '" aria-label="Toggle recording">' + recIcon() + '</button>' +
+          '<button class="btn btn-danger" id="ctrl-end">End call</button>' +
+        '</div>' +
+        (showRecBox ?
+        '<div id="rec-consent" class="consent-box">' +
+          '<p><b>Start recording?</b> Both participants will see a recording indicator for the rest of the call. This demo does not store any audio or video &mdash; the indicator is for show only.</p>' +
+          '<div style="display:flex; gap:10px;"><button class="btn btn-ghost" id="rec-cancel">Cancel</button><button class="btn btn-primary" id="rec-confirm">Start recording</button></div>' +
+        '</div>' : '') +
+      '</div>';
+
+    attachVideo(document.getElementById('tile-self'));
+    document.getElementById('ctrl-mic').addEventListener('click', toggleMic);
+    document.getElementById('ctrl-cam').addEventListener('click', toggleCam);
+    document.getElementById('ctrl-rec').addEventListener('click', function () {
+      if (rec.active) { stopRecording(a); } else { showRecBox = true; render(); }
+    });
+    document.getElementById('ctrl-end').addEventListener('click', function () { endCall(a); });
+    if (showRecBox) {
+      document.getElementById('rec-cancel').addEventListener('click', function () { showRecBox = false; render(); });
+      document.getElementById('rec-confirm').addEventListener('click', function () {
+        showRecBox = false;
+        startRecording(appt());
+      });
+    }
+  }
+
+  function startRecording(a) {
+    A.patch(a.id, function (ap) {
+      ap.call.recording.active = true;
+      ap.call.recording.everRecorded = true;
+      ap.call.recording.startedAt = new Date().toISOString();
+      ap.call.recording[role === 'patient' ? 'consentPatient' : 'consentConsultant'] = true;
+    });
+    render();
+  }
+  function stopRecording(a) {
+    A.patch(a.id, function (ap) {
+      ap.call.recording.active = false;
+      ap.call.recording.stoppedAt = new Date().toISOString();
+    });
+    render();
+  }
+
+  function attachVideo(tile) {
+    if (!tile) return;
+    if (localStream && camOn) {
+      var v = document.createElement('video');
+      v.autoplay = true; v.muted = true; v.playsInline = true;
+      v.srcObject = localStream;
+      tile.insertBefore(v, tile.firstChild);
+    } else {
+      var av = document.createElement('div');
+      av.className = 'av';
+      av.textContent = appt() ? myInitials(appt()) : '?';
+      tile.insertBefore(av, tile.firstChild);
+      if (!camOn) {
+        var flag = document.createElement('div');
+        flag.className = 'mutedflag';
+        flag.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 20 20"/><path d="M9.5 4.5A3 3 0 0 1 15 7v4a3 3 0 0 1-.17 1"/></svg>';
+        tile.appendChild(flag);
+      }
+    }
+  }
+
+  function toggleMic() {
+    micOn = !micOn;
+    if (localStream) localStream.getAudioTracks().forEach(function (t) { t.enabled = micOn; });
+    render();
+  }
+  function toggleCam() {
+    camOn = !camOn;
+    if (localStream) localStream.getVideoTracks().forEach(function (t) { t.enabled = camOn; });
+    render();
+  }
+
+  function micIcon() { return micOn
+    ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><path d="M12 18v4"/></svg>'
+    : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 20 20"/><path d="M19 10v1a7 7 0 0 1-.11 1.23"/><path d="M14.9 9.9V5a3 3 0 0 0-5.87-.88"/><path d="M9 9v3a3 3 0 0 0 4.2 2.75"/><path d="M5 10v1a7 7 0 0 0 12 5"/><path d="M12 18v4"/></svg>'; }
+  function camIcon() { return camOn
+    ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>'
+    : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 2 20 20"/><path d="M9.5 6H14a2 2 0 0 1 2 2v2.5"/><path d="m22 8-6 4"/><path d="M2 6.5V18a2 2 0 0 0 2 2h11.5"/></svg>'; }
+  function recIcon() { return '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>'; }
+
+  // ----------------------------------------------------------- 4. call ended
+  function endCall(a) {
+    A.patch(a.id, function (ap) {
+      ap.call.phase = 'ended';
+      ap.call.endedAt = new Date().toISOString();
+      var started = ap.call.patientJoinedAt || ap.call.consultantJoinedAt || ap.createdAt;
+      ap.call.durationSec = Math.max(60, Math.round((Date.now() - new Date(started).getTime()) / 1000));
+      ap.call.recording.active = false;
+      if (ap.status !== 'completed') {
+        ap.status = 'completed';
+        ap.history.push({ at: new Date().toISOString(), event: 'Call completed', by: 'system' });
+      }
+      if (ap.call.recording.everRecorded) ap.call.transcription.status = 'pending';
+    });
+    if (localStream) { localStream.getTracks().forEach(function (t) { t.stop(); }); localStream = null; }
+    if (appt().call.transcription.status === 'pending') {
+      setTimeout(function () {
+        A.patch(a.id, function (ap) {
+          ap.call.transcription.status = 'completed';
+          ap.call.transcription.text = 'Sample transcript (demo content only). ' + consultantLabel(a) + ': Thanks for joining today — I’ve had a good look through your images. ' + patientLabel(a) + ': Thank you, I appreciate the call. ' + consultantLabel(a) + ': The key finding is explained in your written report; I’m happy to go over anything that wasn’t clear.';
+        });
+        if (appt() && appt().call.phase === 'ended') render();
+      }, 4000);
+    }
+    render();
+  }
+
+  function renderEnded(a) {
+    var rec = a.call.recording, tr = a.call.transcription;
+    var mins = Math.floor((a.call.durationSec || 0) / 60), secs = (a.call.durationSec || 0) % 60;
+    var trBlock = '';
+    if (rec.everRecorded) {
+      if (tr.status === 'pending') {
+        trBlock = '<div class="transcript-box"><p><b>Transcription processing&hellip;</b><br>This usually takes a few moments after the call ends.</p></div>';
+      } else if (tr.status === 'completed') {
+        trBlock = '<div class="transcript-box"><p><b>Transcript (sample content)</b><br>' + tr.text + '</p></div>';
+      }
+    } else {
+      trBlock = '<p class="notice">This call was not recorded, so no transcript is available.</p>';
+    }
+    stage.innerHTML =
+      '<div class="card" style="max-width:520px;width:100%;">' +
+        '<h2 style="margin-bottom:6px;">Call ended</h2>' +
+        '<p style="color:#9FB2BC;font-size:14.5px;margin:0 0 16px;">With ' + otherLabel(a) + ' &middot; ' + mins + ' min ' + secs + ' sec</p>' +
+        trBlock +
+        '<a class="btn btn-primary" href="' + returnHref() + '" style="width:100%;margin-top:20px;">Return to dashboard</a>' +
+      '</div>';
+    if (tr.status === 'pending') setTimeout(function () { if (appt()) render(); }, 1500);
+  }
+
+  if (!apptId || !A.getAppointment(apptId)) { renderNotFound(); return; }
+  render();
+
+  window.addEventListener('storage', function (e) { if (e.key === 'secondread:appointments:v1' && step !== 'preconsent') render(); });
+  setInterval(function () { if (step !== 'preconsent' && appt()) render(); }, 2000);
+  window.addEventListener('beforeunload', function () {
+    if (localStream) localStream.getTracks().forEach(function (t) { t.stop(); });
+  });
+})();
+</script>
+</body>
+</html>

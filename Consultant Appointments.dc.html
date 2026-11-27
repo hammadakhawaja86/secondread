@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appointments · Second Opinion Radiology console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="admin.css?v=66">
+<link rel="stylesheet" href="appointments.css?v=1">
+<script>try{if(localStorage.getItem("secondread:console:nav")==="collapsed")document.documentElement.classList.add("nav-collapsed")}catch(e){}</script>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="side">
+    <div class="side-top">
+      <a class="side-brand" href="index.html" title="SecondOpinion Radiology"><img class="side-logo full" src="logo-secondread.svg" alt="SecondOpinion Radiology"><img class="side-logo mark" src="logo-secondread-mark.svg" alt=""></a>
+      <button class="nav-toggle" type="button" aria-label="Collapse navigation" aria-expanded="true" title="Collapse navigation"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    </div>
+    <nav class="nav">
+      <a href="Consultant.dc.html" title="Dashboard"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span class="lbl">Dashboard</span></a>
+      <a href="Consultant%20Cases.dc.html" title="Cases assigned"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg><span class="lbl">Cases assigned</span></a>
+      <a class="on" href="Consultant%20Appointments.dc.html" title="Appointments"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/></svg><span class="lbl">Appointments</span></a>
+      <a href="Consultant%20Profile.dc.html" title="Profile"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="lbl">Profile</span></a>
+    </nav>
+    <div class="side-foot">
+      <a class="logout" href="Admin%20Sign%20In.dc.html" title="Log out"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg><span class="lbl">Log out</span></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="demobar">
+      <div class="demotag">Demonstration</div>
+      <p>Prototype only. Every patient and call below is a written example. No real patient and no real clinical content. There is no real video connection: joining a call opens a clearly labelled simulated session.</p>
+    </div>
+
+    <div class="inner">
+      <div class="head">
+        <div>
+          <h1>Your consultant calls</h1>
+          <p class="who">Dr Dermot Mallon &middot; Neuroradiology</p>
+        </div>
+      </div>
+
+      <div class="next" id="ca-next" style="display:none;">
+        <div><div class="lab">Next call</div><div class="clock" id="ca-next-clock">—</div></div>
+        <div class="mid"><b id="ca-next-title">—</b><span id="ca-next-sub">—</span></div>
+        <button class="go pcall-join" type="button" id="ca-next-join" disabled>Join call <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+      </div>
+
+      <div class="statgrid cols-4" role="group" aria-label="Filter your calls">
+        <button class="statf on" type="button" data-filter="all" aria-pressed="true"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/></svg></span><span class="t"><span class="lab">All calls</span><span class="num" data-n="all">0</span><span class="delta">Everything with you</span></span></button>
+        <button class="statf" type="button" data-filter="today" aria-pressed="false"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span class="t"><span class="lab">Today</span><span class="num" data-n="today">0</span><span class="delta">Due in the next 24h</span></span></button>
+        <button class="statf" type="button" data-filter="upcoming" aria-pressed="false"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span class="t"><span class="lab">Upcoming</span><span class="num" data-n="upcoming">0</span><span class="delta">Scheduled ahead</span></span></button>
+        <button class="statf" type="button" data-filter="completed" aria-pressed="false"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t"><span class="lab">Completed</span><span class="num" data-n="completed">0</span><span class="delta">Your call history</span></span></button>
+      </div>
+
+      <div class="sect">
+        <div>
+          <h2 class="sect-title">Your calls</h2>
+          <p class="sect-sub">Soonest first. Join opens ten minutes before the scheduled start.</p>
+        </div>
+      </div>
+
+      <div class="tablewrap" style="--tmin:900px">
+        <table class="compact">
+          <thead><tr>
+            <th>Call</th><th>Patient</th><th>When</th><th>Duration</th><th>Status</th><th class="th-acts">Actions</th>
+          </tr></thead>
+          <tbody id="ca-rows"></tbody>
+        </table>
+        <p class="tempty" id="ca-empty" hidden>No call of yours is in this view.</p>
+      </div>
+
+      <div class="tfoot">
+        <span class="count" id="ca-count">Showing 0 calls</span>
+      </div>
+      <p class="page-note">© 2026 Secondread Ltd, trading as Second Opinion Radiology · Radiologist console &middot; Dr Dermot Mallon · GMC 7042054</p>
+
+    </div>
+  </div>
+
+</div>
+
+<dialog class="modal modal-case" id="ca-detail-modal" aria-labelledby="ca-detail-title">
+  <div class="case-bar">
+    <h2 id="ca-detail-title">Call <span data-f="id"></span></h2>
+    <button class="case-x" type="button" data-close aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  </div>
+  <dl class="modal-rows" id="ca-detail-rows"></dl>
+  <p class="modal-note">Written example. No real patient and no real clinical content.</p>
+  <div class="case-foot">
+    <a class="btn btn-primary pcall-join" id="ca-detail-join" href="#">Join call</a>
+  </div>
+</dialog>
+
+<script src="consultants.js?v=21"></script>
+<script src="appointments.js?v=1"></script>
+<script src="console-nav.js?v=1"></script>
+<script src="console-tips.js?v=1"></script>
+<script src="console-consultant-appts.js?v=1"></script>
+</body>
+</html>

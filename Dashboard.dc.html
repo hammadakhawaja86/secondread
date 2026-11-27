@@ -6,6 +6,7 @@
 <link rel="icon" href="logo-secondread-mark.svg" type="image/svg+xml">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./consultants.js?v=21"></script>
+<script src="./appointments.js?v=1"></script>
 <script src="./portal.js?v=14"></script>
 <script>window.PORTAL && PORTAL.guard('Dashboard.dc.html');</script>
 <link rel="preload" as="script" href="vendor/react-18.3.1.min.js">
@@ -23,7 +24,7 @@
 <body>
 <x-dc><helmet>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="responsive.css?v=37">
+  <link rel="stylesheet" href="responsive.css?v=45">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -123,6 +124,24 @@
   <div data-r="portalgrid" style="display: grid; grid-template-columns: 1.85fr 1fr; gap: 24px; align-items: start;">
 
     <div data-r="portalmain" style="display: flex; flex-direction: column; gap: 24px; min-width: 0;">
+
+      <sc-if value="{{ hasUpcomingCall }}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FFFFFF; border: 1.5px solid #C3E0DE; border-radius: 20px; padding: 26px 28px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;">
+            <span style="display: inline-flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 500; color: #095458;">{{ callClockGlyph }} Upcoming consultant call</span>
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: {{ callStatusFg }}; background: {{ callStatusBg }}; border: 1px solid {{ callStatusBorder }}; border-radius: 999px; padding: 4px 11px;">{{ callStatusLabel }}</span>
+          </div>
+          <h2 style="margin: 0 0 6px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; color: #0A1F2C;">{{ callConsultantName }}</h2>
+          <p style="margin: 0 0 4px; font-size: 15px; color: #4A5C68;">{{ callWhen }} &middot; {{ callDuration }} minutes</p>
+          <sc-if value="{{ callHasReason }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0 0 18px; font-size: 14px; color: #5A6B77;">{{ callReason }}</p>
+          </sc-if>
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 10px;">
+            <a href="{{ callJoinHref }}" aria-disabled="{{ callJoinDisabled }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 9px; box-sizing: border-box; min-height: 48px; padding: 13px 26px; border-radius: 999px; border: none; background: {{ callJoinBg }}; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; pointer-events: {{ callJoinPointer }}; cursor: {{ callJoinCursor }};">{{ callJoinLabel }}</a>
+            <span style="font-size: 13.5px; color: #5A6B77;">{{ callJoinHint }}</span>
+          </div>
+        </div>
+      </sc-if>
 
       <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="1">
         <div style="background: #FDF2E2; border: 1.5px solid #E7CB97; border-radius: 20px; padding: 26px 28px;">
@@ -263,6 +282,17 @@
         </sc-if>
       </div>
 
+      <sc-if value="{{ hasCallHistory }}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
+          <h3 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #5A6B77;">Call history</h3>
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{ callHistory }}" as="h" hint-placeholder-count="1">
+              <a href="{{ h.href }}" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 0; border-bottom: 1px solid #E2E9EC; font-size: 14px; color: #173B4F;" style-hover="color: #0D6E70; text-decoration: none;"><span>{{ h.label }}</span><span style="font-size: 12.5px; color: #5A6B77; flex-shrink: 0;">{{ h.when }}</span></a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
       <div style="background: #FFFFFF; border: 1px solid #E2E9EC; border-radius: 16px; padding: 22px 24px;">
         <h3 style="margin: 0 0 14px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #5A6B77;">Your details</h3>
         <div style="display: flex; flex-direction: column;">
@@ -349,11 +379,25 @@ function timelineFor(c) {
   });
 }
 
+const CALL_PATIENT_ID = 'hammad'; // the only portal account with real sign-in, see appointments.js
+
 class Component extends DCLogic {
   state = {
     store: PORTAL.load(),
     answers: {}
   };
+
+  componentDidMount() {
+    // Join-call windows and countdowns depend on the actual clock, and a
+    // call scheduled in another tab needs to show up here without a reload.
+    this.__tick = setInterval(() => this.forceUpdate(), 10000);
+    this.__onStorage = (e) => { if (e.key === 'secondread:appointments:v1') this.forceUpdate(); };
+    window.addEventListener('storage', this.__onStorage);
+  }
+  componentWillUnmount() {
+    clearInterval(this.__tick);
+    window.removeEventListener('storage', this.__onStorage);
+  }
 
   refresh() { this.setState({ store: PORTAL.load() }); }
 
@@ -427,6 +471,8 @@ class Component extends DCLogic {
     // The new-case button drops to a secondary treatment whenever something
     // else on the page has a stronger claim on the eye.
     const quiet = tasks.length > 0 || ready.length > 0 || active.length > 0;
+
+    const callVals = this.callVals();
 
     return Object.assign(this.chromeVals(), {
       greeting: this.greeting(),
@@ -512,6 +558,74 @@ class Component extends DCLogic {
       lastAgo: last ? last.m.ago : '',
       lastText: last ? last.m.text : '',
       lastHref: last ? last.c.caseHref + '#messages' : 'Dashboard.dc.html'
+    }, callVals);
+  }
+
+  // Everything the "Upcoming consultant call" card and the call-history list
+  // need, read fresh from APPOINTMENTS on every render so a call scheduled,
+  // rescheduled or cancelled from the admin console (or completed in another
+  // tab) shows up here without a reload.
+  callVals() {
+    if (!window.APPOINTMENTS) {
+      return { hasUpcomingCall: false, hasCallHistory: false, callHistory: [] };
+    }
+    const A = window.APPOINTMENTS;
+    const mine = A.forPatient(CALL_PATIENT_ID);
+    const upcoming = mine
+      .filter(a => a.status !== 'cancelled' && a.status !== 'completed')
+      .sort((x, y) => A.startOf(x) - A.startOf(y))[0];
+    const history = mine
+      .filter(a => a.status === 'completed' || a.status === 'cancelled')
+      .sort((x, y) => A.startOf(y) - A.startOf(x))
+      .slice(0, 4);
+
+    const fmtWhen = (a) => {
+      const d = A.startOf(a);
+      const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const h = d.getHours(), m = d.getMinutes();
+      return days[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()] + ', ' + (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+    };
+
+    let callOut = { hasUpcomingCall: false };
+    if (upcoming) {
+      const consultant = A.consultantById(upcoming.consultantId);
+      const js = A.joinState(upcoming);
+      const mins = A.minutesUntil(upcoming);
+      callOut = {
+        hasUpcomingCall: true,
+        callClockGlyph: icon(CLOCK, 14, 2),
+        callStatusLabel: upcoming.status === 'rescheduled' ? 'Rescheduled' : 'Scheduled',
+        callStatusFg: upcoming.status === 'rescheduled' ? '#6B4310' : '#095458',
+        callStatusBg: upcoming.status === 'rescheduled' ? '#FDF2E2' : '#E4F2F2',
+        callStatusBorder: upcoming.status === 'rescheduled' ? '#E7CB97' : '#C3E0DE',
+        callConsultantName: consultant ? 'Dr ' + consultant.name + ' · ' + consultant.role : 'Your consultant',
+        callWhen: fmtWhen(upcoming),
+        callDuration: upcoming.durationMins,
+        callHasReason: !!upcoming.reason,
+        callReason: upcoming.reason || '',
+        callJoinHref: js === 'ready' ? ('Call.dc.html?id=' + encodeURIComponent(upcoming.id) + '&role=patient') : '#',
+        callJoinDisabled: js === 'ready' ? null : 'true',
+        callJoinPointer: js === 'ready' ? 'auto' : 'none',
+        callJoinCursor: js === 'ready' ? 'pointer' : 'not-allowed',
+        callJoinBg: js === 'ready' ? '#0D6E70' : '#A9BFC4',
+        callJoinLabel: js === 'ready' ? 'Join call' : 'Join call',
+        callJoinHint: js === 'ready'
+          ? 'Your consultant may already be waiting.'
+          : (mins > 0 ? 'Opens 10 minutes before your call.' : 'Opens shortly.')
+      };
+    }
+
+    return Object.assign(callOut, {
+      hasCallHistory: history.length > 0,
+      callHistory: history.map(a => {
+        const consultant = A.consultantById(a.consultantId);
+        return {
+          label: (a.status === 'cancelled' ? 'Cancelled call with ' : 'Call with ') + (consultant ? 'Dr ' + consultant.name : 'consultant'),
+          when: fmtWhen(a),
+          href: a.status === 'cancelled' ? 'Dashboard.dc.html' : ('Call.dc.html?id=' + encodeURIComponent(a.id) + '&role=patient')
+        };
+      })
     });
   }
 
