@@ -99,10 +99,17 @@
       <div id="apt-f-patientlist" style="display:flex; flex-direction:column; gap:4px; max-height:160px; overflow-y:auto; margin-top:4px;"></div>
       <input type="hidden" id="apt-f-patientid">
     </label>
-    <div class="fld wide" id="apt-f-patientchosen" style="display:none; align-items:center; gap:10px; padding:10px 14px; border-radius:11px; background:var(--mint-soft); border:1.5px solid var(--mint-line);">
-      <span class="modal-av sm" style="width:34px;height:34px;font-size:13px;margin:0;" id="apt-f-patientav"></span>
-      <span style="flex:1; font-size:14.5px; font-weight:600; color:var(--navy);" id="apt-f-patientname"></span>
-      <button type="button" class="icon-act" id="apt-f-patientclear" aria-label="Change patient" title="Change patient"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+    <div class="fld wide" id="apt-f-patientchosen" style="display:none; flex-direction:row; align-items:center; gap:16px; padding:14px 18px; border-radius:14px; background:linear-gradient(135deg, var(--mint-soft), #EEF9F7); border:1.5px solid var(--mint-line);">
+      <span class="modal-av" style="width:52px;height:52px;font-size:17px;margin:0;flex:none;" id="apt-f-patientav"></span>
+      <span style="width:1px; align-self:stretch; background:var(--mint-line); flex:none;"></span>
+      <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:17px; font-weight:700; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" id="apt-f-patientname"></span>
+        <span style="display:flex; align-items:center; gap:6px; font-size:13.5px; font-weight:500; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M4 4h16v16H4z" opacity="0"/><path d="m2 6 10 7L22 6"/><path d="M2 6h20v12H2z"/></svg>
+          <span id="apt-f-patientemail" style="overflow:hidden; text-overflow:ellipsis;"></span>
+        </span>
+      </div>
+      <button type="button" class="icon-act" id="apt-f-patientclear" aria-label="Change patient" title="Change patient" style="flex:none; margin-left:auto;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
     </div>
   </div>
   <div class="modal-fields">
@@ -182,6 +189,6 @@
 <script src="appointments.js?v=2"></script>
 <script src="console-nav.js?v=1"></script>
 <script src="console-tips.js?v=1"></script>
-<script src="console-appointments.js?v=3"></script>
+<script src="console-appointments.js?v=4"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@
   ['apt-when', 'apt-new', 'apt-rows', 'apt-empty', 'apt-count',
    'apt-form-modal', 'apt-form-title', 'apt-form-sub',
    'apt-f-patientsearch', 'apt-f-patientlist', 'apt-f-patientid',
-   'apt-f-patientchosen', 'apt-f-patientav', 'apt-f-patientname', 'apt-f-patientclear',
+   'apt-f-patientchosen', 'apt-f-patientav', 'apt-f-patientname', 'apt-f-patientemail', 'apt-f-patientclear',
    'apt-f-consultant', 'apt-f-date', 'apt-f-time', 'apt-f-duration', 'apt-f-reason',
    'apt-f-conflict', 'apt-f-submit',
    'apt-confirm-modal', 'apt-confirm-rows', 'apt-confirm-go', 'apt-confirm-back', 'apt-confirm-back-x',
@@ -147,7 +147,8 @@
     els.aptFPatientlist.innerHTML = '';
     els.aptFPatientchosen.style.display = 'flex';
     els.aptFPatientav.textContent = p.initials;
-    els.aptFPatientname.textContent = p.name + ' · ' + p.email;
+    els.aptFPatientname.textContent = p.name;
+    els.aptFPatientemail.textContent = p.email;
     checkFormValid();
   }
 
