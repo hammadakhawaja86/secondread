@@ -350,4 +350,16 @@
   setInterval(render, 30000);
 
   render();
+
+  // Arriving from a case row's "Schedule a call" action: open straight into
+  // the form with that patient already chosen, rather than making admin
+  // search for them again.
+  (function openFromQueryString() {
+    var patientId = new URLSearchParams(window.location.search).get('schedule');
+    if (!patientId) return;
+    var p = A.patientById(patientId);
+    openForm('create', null);
+    if (p) choosePatient(p);
+    history.replaceState(null, '', window.location.pathname);
+  })();
 })();

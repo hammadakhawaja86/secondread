@@ -31,7 +31,9 @@
     { id: 'tmensah', name: 'T. Mensah', email: 't.mensah@example.com', initials: 'TM' },
     { id: 'rokafor', name: 'R. Okafor', email: 'r.okafor@example.com', initials: 'RO' },
     { id: 'sidris', name: 'S. Idris', email: 's.idris@example.com', initials: 'SI' },
-    { id: 'mdoyle', name: 'M. Doyle', email: 'm.doyle@example.com', initials: 'MD' }
+    { id: 'mdoyle', name: 'M. Doyle', email: 'm.doyle@example.com', initials: 'MD' },
+    { id: 'lwhitfield', name: 'L. Whitfield', email: 'l.whitfield@example.com', initials: 'LW' },
+    { id: 'knakamura', name: 'K. Nakamura', email: 'k.nakamura@example.com', initials: 'KN' }
   ];
 
   var DURATIONS = [10, 15, 20, 30]; // minutes
